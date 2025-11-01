@@ -3,7 +3,7 @@
 #include <string>
 
 int main() {
-    // 以写模式打开文件
+    // 浠ュ啓妯″紡鎵撳紑鏂囦欢
     std::ofstream outFile("example.txt", std::ios::out | std::ios::trunc);
     if (!outFile) {
         std::cerr << "Error opening file for writing" << std::endl;
@@ -12,7 +12,7 @@ int main() {
     outFile << "Initial content" << std::endl;
     outFile.close();
 
-    // 以追加模式打开文件
+    // 浠ヨ拷鍔犳ā寮忔墦寮�鏂囦欢
     outFile.open("example.txt", std::ios::app);
     if (!outFile) {
         std::cerr << "Error opening file for appending" << std::endl;
@@ -21,7 +21,7 @@ int main() {
     outFile << "Appending more content" << std::endl;
     outFile.close();
 
-    // 以读模式打开文件
+    // 浠ヨ妯″紡鎵撳紑鏂囦欢
     std::ifstream inFile("example.txt", std::ios::in);
     if (!inFile) {
         std::cerr << "Error opening file for reading" << std::endl;

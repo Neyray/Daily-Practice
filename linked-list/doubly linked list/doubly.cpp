@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//1.用头插法建表
+//1.鐢ㄥご鎻掓硶寤鸿〃
 template <typename T>
 void DLinkList<T>::CreateListF(T a[], int n) {
 	for (int i = 0; i < n; ++i) {
@@ -15,7 +15,7 @@ void DLinkList<T>::CreateListF(T a[], int n) {
 	}
 }
 
-//2.用尾插法建表
+//2.鐢ㄥ熬鎻掓硶寤鸿〃
 template <typename T>
 void DLinkList<T>::CreateListR(T a[], int n) {
 	DLinkNode<T>* s, * r;
@@ -29,7 +29,7 @@ void DLinkList<T>::CreateListR(T a[], int n) {
 	r->next = NULL;
 }
 
-//3.插入
+//3.鎻掑叆
 template <typename T>
 bool DLinkList<T>::Insert(int i, T e) {
 	if (i < 0)return false;
@@ -47,7 +47,7 @@ bool DLinkList<T>::Insert(int i, T e) {
 		return false;
 }
 
-//4.删除
+//4.鍒犻櫎
 template <typename T>
 bool DLinkList<T>::Delete(int i) {
 	if (i < 0)return false;
@@ -63,7 +63,7 @@ bool DLinkList<T>::Delete(int i) {
 		return false;
 }
 
-//5.查找元素位置
+//5.鏌ユ壘鍏冪礌浣嶇疆
 template <typename T>
 DLinkNode<T>* geti(int i) {
 	if (i < -1)return NULL;

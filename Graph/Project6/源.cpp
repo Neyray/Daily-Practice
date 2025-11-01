@@ -8,12 +8,12 @@ vector<int> topologicalSort(int V, vector<vector<int>>& adj) {
     queue<int> q;
     vector<int> result;
 
-    // ¼ÆËãÈë¶È
+    // è®¡ç®—å…¥åº¦
     for (auto& edges : adj)
         for (int v : edges)
             inDegree[v]++;
 
-    // ³õÊ¼»¯¶ÓÁĞ
+    // åˆå§‹åŒ–é˜Ÿåˆ—
     for (int i = 0; i < V; i++)
         if (inDegree[i] == 0) q.push(i);
 
@@ -40,7 +40,7 @@ int main() {
 
     vector<int> order = topologicalSort(V, adj);
 
-    cout << "ÍØÆËÅÅĞò½á¹û£º";
+    cout << "æ‹“æ‰‘æ’åºç»“æœï¼š";
     for (int v : order) cout << v << " ";
     return 0;
 }

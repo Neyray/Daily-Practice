@@ -7,21 +7,21 @@ private:
     double imag;
 
 public:
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     Complex(double r = 0, double i = 0) : real(r), imag(i) {}
 
-    // ÖØÔØÔËËã·û +
+    // é‡è½½è¿ç®—ç¬¦ +
     Complex operator+(const Complex& other) const {
         return Complex(real + other.real, imag + other.imag);
     }
 
-    // ÖØÔØÔËËã·û <<
+    // é‡è½½è¿ç®—ç¬¦ <<
     friend std::ostream& operator<<(std::ostream& os, const Complex& c) {
         os << "(" << c.real << ", " << c.imag << "i)";
         return os;
     }
 
-    // ÖØÔØÔËËã·û ==
+    // é‡è½½è¿ç®—ç¬¦ ==
     bool operator==(const Complex& other) const {
         return (real == other.real) && (imag == other.imag);
     }
@@ -35,15 +35,15 @@ int main() {
     Complex c1(3.0, 4.0);
     Complex c2(1.5, 2.5);
 
-    // ²âÊÔ¼Ó·¨ÔËËã·ûÖØÔØ
+    // æµ‹è¯•åŠ æ³•è¿ç®—ç¬¦é‡è½½
     Complex c3 = c1 + c2;
     std::cout << "c1 + c2 = " << c3 << std::endl;
 
-    // ²âÊÔÊä³öÔËËã·ûÖØÔØ
+    // æµ‹è¯•è¾“å‡ºè¿ç®—ç¬¦é‡è½½
     std::cout << "c1 = " << c1 << std::endl;
     std::cout << "c2 = " << c2 << std::endl;
 
-    // ²âÊÔÏàµÈÔËËã·ûÖØÔØ
+    // æµ‹è¯•ç›¸ç­‰è¿ç®—ç¬¦é‡è½½
     Complex c4(4.5, 6.5);
     if (c3 == c4) {
         std::cout << "c3 is equal to c4" << std::endl;

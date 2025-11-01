@@ -8,11 +8,11 @@ int countGoodTriplets(vector<int>& arr, int a, int b, int c) {
     int count = 0;
     int n = arr.size();
 
-    // ±éÀúËùÓĞ¿ÉÄÜµÄÈıÔª×é (i, j, k)
+    // éå†æ‰€æœ‰å¯èƒ½çš„ä¸‰å…ƒç»„ (i, j, k)
     for (int i = 0; i < n - 2; ++i) {
         for (int j = i + 1; j < n - 1; ++j) {
             for (int k = j + 1; k < n; ++k) {
-                // ¼ì²éÈıÔª×é (arr[i], arr[j], arr[k]) ÊÇ·ñ·ûºÏÌõ¼ş
+                // æ£€æŸ¥ä¸‰å…ƒç»„ (arr[i], arr[j], arr[k]) æ˜¯å¦ç¬¦åˆæ¡ä»¶
                 if (abs(arr[i] - arr[j]) <= a && abs(arr[j] - arr[k]) <= b && abs(arr[i] - arr[k]) <= c) {
                     count++;
                 }
@@ -24,15 +24,15 @@ int countGoodTriplets(vector<int>& arr, int a, int b, int c) {
 }
 
 int main() {
-    // Ê¾Àı1
+    // ç¤ºä¾‹1
     vector<int> arr1 = { 3, 0, 1, 1, 9, 7 };
     int a1 = 7, b1 = 2, c1 = 3;
-    cout << "Êä³ö: " << countGoodTriplets(arr1, a1, b1, c1) << endl; // Êä³ö: 4
+    cout << "è¾“å‡º: " << countGoodTriplets(arr1, a1, b1, c1) << endl; // è¾“å‡º: 4
 
-    // Ê¾Àı2
+    // ç¤ºä¾‹2
     vector<int> arr2 = { 1, 1, 2, 2, 3 };
     int a2 = 0, b2 = 0, c2 = 1;
-    cout << "Êä³ö: " << countGoodTriplets(arr2, a2, b2, c2) << endl; // Êä³ö: 0
+    cout << "è¾“å‡º: " << countGoodTriplets(arr2, a2, b2, c2) << endl; // è¾“å‡º: 0
 
     return 0;
 }

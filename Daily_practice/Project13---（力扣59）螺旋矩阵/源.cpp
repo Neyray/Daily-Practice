@@ -9,19 +9,19 @@ vector<vector<int>> generateMatrix(int n) {
     int num = 1;
 
     while (left <= right && top <= bottom) {
-        // ´Ó×óµ½ÓÒÌî³ä
+        // ä»Žå·¦åˆ°å³å¡«å……
         for (int i = left; i <= right; ++i) {
             matrix[top][i] = num++;
         }
         top++;
 
-        // ´ÓÉÏµ½ÏÂÌî³ä
+        // ä»Žä¸Šåˆ°ä¸‹å¡«å……
         for (int i = top; i <= bottom; ++i) {
             matrix[i][right] = num++;
         }
         right--;
 
-        // ´ÓÓÒµ½×óÌî³ä
+        // ä»Žå³åˆ°å·¦å¡«å……
         if (top <= bottom) {
             for (int i = right; i >= left; --i) {
                 matrix[bottom][i] = num++;
@@ -29,7 +29,7 @@ vector<vector<int>> generateMatrix(int n) {
             bottom--;
         }
 
-        // ´ÓÏÂµ½ÉÏÌî³ä
+        // ä»Žä¸‹åˆ°ä¸Šå¡«å……
         if (left <= right) {
             for (int i = bottom; i >= top; --i) {
                 matrix[i][left] = num++;
@@ -52,11 +52,11 @@ void printMatrix(const vector<vector<int>>& matrix) {
 
 int main() {
     int n;
-    cout << "ÇëÊäÈë¾ØÕóµÄ´óÐ¡ n (1 <= n <= 20): ";
+    cout << "è¯·è¾“å…¥çŸ©é˜µçš„å¤§å° n (1 <= n <= 20): ";
     cin >> n;
 
     if (n < 1 || n > 20) {
-        cout << "n µÄÖµ±ØÐëÔÚ 1 µ½ 20 Ö®¼ä£¡" << endl;
+        cout << "n çš„å€¼å¿…é¡»åœ¨ 1 åˆ° 20 ä¹‹é—´ï¼" << endl;
         return 1;
     }
 

@@ -10,7 +10,7 @@ const int INF = INT_MAX;
 
 struct MatrixGraph {
     vector<vector<int>> matrix;
-    int vertices;//ÔªËØ¸öÊı
+    int vertices;//å…ƒç´ ä¸ªæ•°
     bool isDirected;
 };
 
@@ -18,7 +18,7 @@ void initGraph(MatrixGraph& graph, int v, bool directed = false) {
     graph.vertices = v;
     graph.isDirected = directed;
     graph.matrix.resize(v, vector<int>(v, INF));
-    //³õÊ¼»¯¶Ô½ÇÏßÔªËØ
+    //åˆå§‹åŒ–å¯¹è§’çº¿å…ƒç´ 
     for (int i = 0; i < v; i++)
         graph.matrix[i][i] = 0;
 }
@@ -50,8 +50,8 @@ int getWeight(const MatrixGraph& graph, int u, int v) {
 }
 
 void printMatrix(const MatrixGraph& graph) {
-    cout << "\nÁÚ½Ó¾ØÕó ("
-        << (graph.isDirected ? "ÓĞÏòÍ¼" : "ÎŞÏòÍ¼") << "):\n    ";
+    cout << "\né‚»æ¥çŸ©é˜µ ("
+        << (graph.isDirected ? "æœ‰å‘å›¾" : "æ— å‘å›¾") << "):\n    ";
 
     for (int j = 0; j < graph.vertices; j++)
         cout << setw(3) << j;
@@ -60,12 +60,12 @@ void printMatrix(const MatrixGraph& graph) {
     for (int i = 0; i < graph.vertices; i++) {
         cout << setw(3) << i;
         for (int j = 0; j < graph.vertices; j++)
-            cout << setw(3) << (graph.matrix[i][j] == INF ? "¡Ş" : to_string(graph.matrix[i][j]));
+            cout << setw(3) << (graph.matrix[i][j] == INF ? "âˆ" : to_string(graph.matrix[i][j]));
         cout << endl;
     }
 }
 
-// DFS µİ¹é¹¤¾ßº¯Êı
+// DFS é€’å½’å·¥å…·å‡½æ•°
 void dfsUtil(const MatrixGraph& graph, int vertex, vector<bool>& visited) {
     visited[vertex] = true;
     cout << vertex << " ";
@@ -74,22 +74,22 @@ void dfsUtil(const MatrixGraph& graph, int vertex, vector<bool>& visited) {
             dfsUtil(graph, i, visited);
 }
 
-// DFS Èë¿Úº¯Êı
+// DFS å…¥å£å‡½æ•°
 void dfs(const MatrixGraph& graph, int startVertex) {
     vector<bool> visited(graph.vertices, false);
-    cout << "DFS ´Ó " << startVertex << ": ";
+    cout << "DFS ä» " << startVertex << ": ";
     dfsUtil(graph, startVertex, visited);
     cout << endl;
 }
 
-// BFS ±éÀú
+// BFS éå†
 void bfs(const MatrixGraph& graph, int startVertex) {
     vector<bool> visited(graph.vertices, false);
     queue<int> q;
     visited[startVertex] = true;
     q.push(startVertex);
 
-    cout << "BFS ´Ó " << startVertex << ": ";
+    cout << "BFS ä» " << startVertex << ": ";
     while (!q.empty()) {
         int current = q.front();
         q.pop();
@@ -113,7 +113,7 @@ int getDegree(const MatrixGraph& graph, int vertex) {
 }
 
 int main() {
-    // ÎŞÏòÍ¼ÑİÊ¾
+    // æ— å‘å›¾æ¼”ç¤º
     MatrixGraph ugraph;
     initGraph(ugraph, 5, false);
     addEdge(ugraph, 0, 1, 2);
@@ -126,9 +126,9 @@ int main() {
     printMatrix(ugraph);
     dfs(ugraph, 0);
     bfs(ugraph, 0);
-    cout << "¶¥µã 1 µÄ¶ÈÊı: " << getDegree(ugraph, 1) << endl;
+    cout << "é¡¶ç‚¹ 1 çš„åº¦æ•°: " << getDegree(ugraph, 1) << endl;
 
-    // ÓĞÏòÍ¼ÑİÊ¾
+    // æœ‰å‘å›¾æ¼”ç¤º
     MatrixGraph dgraph;
     initGraph(dgraph, 4, true);
     addEdge(dgraph, 0, 1, 1);
@@ -137,6 +137,6 @@ int main() {
     addEdge(dgraph, 3, 1, 1);
 
     printMatrix(dgraph);
-    cout << "¶¥µã 1 µÄ³ö¶È: " << getDegree(dgraph, 1) << endl;
+    cout << "é¡¶ç‚¹ 1 çš„å‡ºåº¦: " << getDegree(dgraph, 1) << endl;
     return 0;
 }
