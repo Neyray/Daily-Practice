@@ -15,26 +15,26 @@ pair<int, string> longestUniqueSubstring(const string& s) {
         }
         charIndexMap[s[end]] = end;
 
-        // ¸üÐÂ×î´ó×Ó´®µÄ³¤¶È¼°ÆäÆðÊ¼Î»ÖÃ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½Ä³ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼Î»ï¿½ï¿½
         if (end - start + 1 > maxLength) {
             maxLength = end - start + 1;
             bestStart = start;
         }
     }
 
-    // ½ØÈ¡×î³¤×Ó´®
+    // ï¿½ï¿½È¡ï¿½î³¤ï¿½Ó´ï¿½
     string longestSubstring = s.substr(bestStart, maxLength);
     return { maxLength, longestSubstring };
 }
 
 int main() {
     string s;
-    cout << "ÇëÊäÈëÒ»¸ö×Ö·û´®: ";
+    cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½: ";
     cin >> s;
 
     auto result = longestUniqueSubstring(s);
-    cout << "×î³¤²»º¬ÖØ¸´×Ö·ûµÄ×Ó´®³¤¶ÈÎª: " << result.first << endl;
-    cout << "×î³¤²»º¬ÖØ¸´×Ö·ûµÄ×Ó´®Îª: " << result.second << endl;
+    cout << "ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½Îª: " << result.first << endl;
+    cout << "ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ó´ï¿½Îª: " << result.second << endl;
 
     return 0;
 }
