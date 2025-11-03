@@ -46,6 +46,10 @@
         "streambuf": "cpp",
         "text_encoding": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "deque": "cpp",
+        "numeric": "cpp",
+        "iomanip": "cpp",
+        "sstream": "cpp"
     }
 }

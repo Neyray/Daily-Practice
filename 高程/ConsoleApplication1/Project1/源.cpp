@@ -24,3 +24,44 @@
 #include <iostream>
 using namespace std;
 
+int main(){
+    int T;
+    cin>>T;
+    while (T--) {
+        char choice;
+        int h, w;
+        cin >> choice >> h >> w;
+        //打印三角形
+        if (choice == 'a') {
+            for (int i = 0; i <= h; ++i) {
+                for (int j = 0; j <= h - 1 - i; ++j) {
+                    cout << " ";
+                }
+                for (int j = 0; j < 2 * i - 1; ++j) {
+                    cout << "*";
+                }
+                cout << endl;
+            }
+        }
+        else if (choice == 'b') {
+            for (int i = 0; i < h; ++i) {
+                for (int j = 0; j < w; ++j) {
+                    cout << "*";
+                }
+                cout << endl;
+            }
+        }
+        else if (choice == 'c') {
+            for (int i = 0; i < h; ++i) {
+                for (int j = 0; j < h - 1 - i; ++j) {
+                    cout << " ";
+                }
+                for (int j = 0; j < w; ++j) {
+                    cout << "*";
+                }
+                cout << endl;
+            }
+        }
+    }
+    return 0;
+}
