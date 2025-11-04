@@ -50,6 +50,7 @@
         "deque": "cpp",
         "numeric": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "fstream": "cpp"
     }
 }
