@@ -8,24 +8,24 @@ public:
     }
 
     void show() const {
-        cout << "CPUÐÅÏ¢£º" << endl;
-        cout << "  Ö÷Æµ: " << frequency << " MHz" << endl;
-        cout << "  ×Ö³¤: " << wordLength << " Î»" << endl;
-        cout << "  ºËÐÄÊý: " << coreCount << endl;
-        cout << "  ÊÇ·ñÖ§³Ö³¬Ïß³Ì: " << (hyperThreading ? "ÊÇ" : "·ñ") << endl;
+        cout << "CPUä¿¡æ¯ï¼š" << endl;
+        cout << "  ä¸»é¢‘: " << frequency << " MHz" << endl;
+        cout << "  å­—é•¿: " << wordLength << " ä½" << endl;
+        cout << "  æ ¸å¿ƒæ•°: " << coreCount << endl;
+        cout << "  æ˜¯å¦æ”¯æŒè¶…çº¿ç¨‹: " << (hyperThreading ? "æ˜¯" : "å¦") << endl;
     }
 
 private:
-    //±íÊ¾ËùÕ¼µÄÎ»Óò£¬Ò²¾ÍÊÇ¶þ½øÖÆÎ»
-    unsigned int frequency : 12;     // Ö§³Öµ½ 4095 MHz
-    unsigned int wordLength : 6;     // 32»ò64
-    unsigned int coreCount : 4;      // µ¥ºË/Ë«ºË/ËÄºË
-    bool hyperThreading : 1;         // ÊÇ·ñ³¬Ïß³Ì
+    //è¡¨ç¤ºæ‰€å çš„ä½åŸŸï¼Œä¹Ÿå°±æ˜¯äºŒè¿›åˆ¶ä½
+    unsigned int frequency : 12;     // æ”¯æŒåˆ° 4095 MHz
+    unsigned int wordLength : 6;     // 32æˆ–64
+    unsigned int coreCount : 4;      // å•æ ¸/åŒæ ¸/å››æ ¸
+    bool hyperThreading : 1;         // æ˜¯å¦è¶…çº¿ç¨‹
 };
 
 int main() {
     CPU cpu1(2800, 64, 4, true);
     cpu1.show();
-    cout << "sizeof(CPU) = " << sizeof(CPU) << " ×Ö½Ú" << endl;
+    cout << "sizeof(CPU) = " << sizeof(CPU) << " å­—èŠ‚" << endl;
     return 0;
 }
