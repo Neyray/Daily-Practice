@@ -9,9 +9,9 @@ public:
 
     void show() const {
         switch (type) {
-        case 'c': cout << "×Ö·ûÐÍ: " << ch << endl; break;
-        case 'i': cout << "ÕûÐÍ: " << in << endl; break;
-        case 'f': cout << "¸¡µãÐÍ: " << fl << endl; break;
+        case 'c': cout << "å­—ç¬¦åž‹: " << ch << endl; break;
+        case 'i': cout << "æ•´åž‹: " << in << endl; break;
+        case 'f': cout << "æµ®ç‚¹åž‹: " << fl << endl; break;
         }
     }
 
@@ -34,3 +34,5 @@ int main() {
     c.show();
     return 0;
 }
+
+
