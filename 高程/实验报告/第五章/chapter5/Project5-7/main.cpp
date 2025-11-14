@@ -8,11 +8,17 @@ class Cat {
 private:
 	static int numOfCats;
 public:
+	//静态变量
 	static int getNumOfCats();
+
 	//构造函数
 	Cat(int x) {
 		numOfCats = x;
+		cout << numOfCats << endl;
 	}
+
+	//输出函数
+	static void show();
 };
 
 //定义静态对象
@@ -22,7 +28,20 @@ int Cat::getNumOfCats() {
 	return numOfCats;
 }
 
+void Cat::show() {
+	cout << ++numOfCats << endl;
+}
 
 int main() {
+	Cat::show();//输出11
+
+	Cat c1(6);//输出6
+	Cat c2(7);//输出7
+
+	cout << c1.getNumOfCats() << endl;//输出7
+	cout << c2.getNumOfCats() << endl;//输出7
+
+	c1.show();//输出8
+	c2.show();//输出9
 
 }
