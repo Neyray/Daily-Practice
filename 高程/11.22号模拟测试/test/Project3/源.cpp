@@ -12,7 +12,6 @@
 
 【样例输入】
 
-
 ABCDBDCDBCCDD
 
 【样例输出】
