@@ -45,7 +45,9 @@ public:
     }
 };
 
-bool isSame(Node* ahead, Node* bhead, int n) {
+
+//只找了第一个匹配字符就开始比较，但同一个字符可能出现多次。
+/*bool isSame(Node* ahead, Node* bhead, int n) {
     Node* p = ahead;
     Node* q = bhead;
     int cnt = 0;
@@ -63,6 +65,26 @@ bool isSame(Node* ahead, Node* bhead, int n) {
         cnt++;
     }
     return true;
+}*/
+
+bool isSame(Node* ahead, Node* bhead, int n) {
+    Node* q = bhead;
+    for (int start = 0; start < n; start++) {
+        // 只在字符相同时才尝试比较
+        if (q->ch == ahead->ch) {
+            Node* p = ahead;
+            Node* r = q;
+            int cnt = 0;
+            while (cnt < n && p->ch == r->ch) {
+                p = p->next;
+                r = r->next;
+                cnt++;
+            }
+            if (cnt == n) return true;  // 完整匹配成功
+        }
+        q = q->next;
+    }
+    return false;
 }
 
 int main() {
