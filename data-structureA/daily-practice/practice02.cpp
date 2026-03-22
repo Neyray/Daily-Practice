@@ -38,6 +38,7 @@ int main(){
         }
     }
 
+    //进行输出
     while(!st2.empty()){
         cout<<st2.top()<<" ";
         st2.pop();

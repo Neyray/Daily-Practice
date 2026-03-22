@@ -4,7 +4,7 @@
 using namespace std;
 
 template <typename T>
-LinkList<T> reverse(LinkList<T> list){
+LinkList<T> reverse(LinkList<T>& list){
     if (list.head->next == NULL || list.head->next->next == NULL) 
         return list; // 空表或只有一个元素，无需翻转
     //对链表List进行翻转操作

@@ -39,8 +39,8 @@ public:
     void CreateF(T a[],int n){
         for(int i=0;i<n;++i){
             LinkNode<T>* s=new LinkNode(a[i]);
-            head->next=s->next;
-            hed->next=s;
+            s->next=head->next;
+            head->next=s;
         }
     }
 
@@ -73,7 +73,7 @@ public:
 
         int cnt=-1;
         LinkNode<T>* p=head;
-        while(p!=NULL && cnt < n-1){
+        while(p!=NULL && cnt < i-1){
             p=p->next;
             cnt++;
         }
