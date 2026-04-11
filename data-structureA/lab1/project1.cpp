@@ -24,6 +24,7 @@ int main() {
             cur += ch;
         } else if (ch == ']') {
             int times = numSt.top(); numSt.pop();
+            //prev保存的是之前的字符串
             string prev = strSt.top(); strSt.pop();
             string repeated = "";
             for (int k = 0; k < times; k++) repeated += cur;
