@@ -31,6 +31,7 @@ vector<int> kmpSearch(const string& text, const string& pattern) {
     
     while (i < n) {
         // 修正点 1: 必须处理 j == -1 的情况
+        //一定不要忘了这里！！！
         if (j == -1 || text[i] == pattern[j]) {
             i++; 
             j++;
@@ -48,7 +49,7 @@ vector<int> kmpSearch(const string& text, const string& pattern) {
 }
 
 int main() {
-    string text = "ABC ABCDAB ABCDABCDABDE";
+    string text = "ABCABCDABABCDABCDABDE";
     string pattern = "ABCDABD";
     vector<int> res = kmpSearch(text, pattern);
     

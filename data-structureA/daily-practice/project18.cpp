@@ -1,4 +1,5 @@
 //单链表逆置---迭代法
+//必须是前一个节点和现有节点！！！
 #include <iostream>
 #include <string>
 #include <vector>
