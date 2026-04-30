@@ -34,12 +34,12 @@ void PreOrder2(BTNode* r){
         cout<<p->data;
 
         //先进栈右孩子
-        if(p->rchild!=NULL)st.push(r->rchild);
-        if(p->lchild!=NULL)st.push(r->lchild);
+        if(p->rchild!=NULL)st.push(p->rchild);
+        if(p->lchild!=NULL)st.push(p->lchild);
     }
 }
 
-//先序遍历的非递归算法2
+//先序遍历的非递归算法2---一路向左
 void PreOrder3(BTNode* r){
     if(r==NULL)return;
     

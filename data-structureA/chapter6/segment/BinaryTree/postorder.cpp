@@ -33,12 +33,14 @@ void PostOrder2(BTNode* r){
     while(!st.empty()){
         p=st.top();st.pop();
 
+        //根右左
         res.push_back(p->data);
 
         if(p->lchild!=NULL)st.push(p->lchild);
         if(p->rchild!=NULL)st.push(p->rchild);
     }
 
+    //倒过来
     vector<char>::reverse_iterator rit;
     for(rit=res.rbegin();rit!=res.rend();++rit){
         cout<<*rit;

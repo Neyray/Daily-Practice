@@ -56,6 +56,7 @@ void Inorder2(BTNode* r){
         else{
             if(p->rchild!=NULL) Push(st,p->rchild);
             //访问根节点的任务进栈（还没有输出的！）
+            //此时将flag设为true，是因为之后弹栈弹到这个元素时直接输出了
             st.push(SNode(p,true));
             if(p->lchild!=NULL)Push(st,p->lchild);
         }
@@ -63,7 +64,7 @@ void Inorder2(BTNode* r){
 }
 
 
-//非递归算法2
+//非递归算法2---一路向左
 void Inorder3(BTNode* r){
     if(r==NULL)return;
 
