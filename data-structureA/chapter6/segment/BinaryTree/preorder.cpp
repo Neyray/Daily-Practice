@@ -21,6 +21,9 @@ void PreOrder11(BTNode* r){
     }
 }
 
+
+//！！！
+//这个算法只能先输出根
 //先序遍历的非递归算法1
 void PreOrder2(BTNode* r){
     if(r==NULL)return;
@@ -39,6 +42,8 @@ void PreOrder2(BTNode* r){
     }
 }
 
+//！！！
+//只有一路向左才不需要在循环外压栈，因为它是先遍历完所有，再回溯
 //先序遍历的非递归算法2---一路向左
 void PreOrder3(BTNode* r){
     if(r==NULL)return;
