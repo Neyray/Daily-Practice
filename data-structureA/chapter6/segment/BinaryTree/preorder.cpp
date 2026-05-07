@@ -62,6 +62,7 @@ void PreOrder3(BTNode* r){
 
         if(!st.empty()){
             p=st.top();st.pop();
+            //转到右子树，之前向下遍历已经输出“根左”了
             p=p->rchild;
         }
     }
