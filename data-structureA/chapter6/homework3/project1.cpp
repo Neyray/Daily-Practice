@@ -22,13 +22,14 @@ bool insertCode(BTNode* root, const string& str) {
 	int n = str.size();
 
 	for (int i = 0; i < n; ++i) {
-		//1.当前长编码是现有短编码的前缀
+		//1.现有短编码是当前长编码的前缀
 		if (p->isEnd)return false;
 
 		if (str[i] == '0') {
 			//只有不匹配的情况才会新建节点
 			if (p->left == NULL)p->left = new BTNode();
 			p = p->left;//更新节点位置
+			//之所以不直接break，是因为后面也要与当前的树比较，所以必须把树建完
 		}
 		else if (str[i] == '1') {
 			if (p->right == NULL)p->right = new BTNode();

@@ -41,6 +41,7 @@ void InOrderTraversal(ThreadNode* root) {
         cout << p->data;                     // 2.访问
 
         //这一步是“左->根”的操作，左是没有右节点的节点
+        //也有可能是无叶子节点的右->上一层的根
         while (p->rtag == 1 && p->rchild) { // 3.沿后继线索连续访问
             p = p->rchild;
             cout << p->data;//输出“根”

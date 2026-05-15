@@ -94,6 +94,7 @@ void DFS_nonrecursive(AdjGraph& G, int v) {
                 visited[w] = 1;
                 st.push(w);
                 found = true;
+                //break只会杀掉自己的内层循环
                 break;          // 找到一个未访问邻接点就深入
             }
             p = p->nextarc;
