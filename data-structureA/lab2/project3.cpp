@@ -112,6 +112,7 @@ int main() {
 	cout << endl;
 	string str1, str2;
 
+	//！！！重点：不处理本身就是叶节点的方法是分别处理左子树和右子树
 	// 只统计 target1 的子孙，不统计 target1 自己
 	if (root1 != NULL) {
 		func2(root1->left, str1);
@@ -124,6 +125,8 @@ int main() {
 		func2(root2->right, str2);
 	}
 
+
+	//输出
 	if (!str1.empty()) {
 		cout << '[';
 		for (int i = 0; i < str1.length(); ++i) {

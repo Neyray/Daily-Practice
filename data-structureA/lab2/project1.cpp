@@ -58,6 +58,7 @@ public:
     }
 
     //关键是要更新head,tail的位置
+    //！！！不要看位置，要看移动次数！就是从当前节点移动m-1次！
     void Joseff(int m) {
         //数到m的人出列
         if (head == NULL || m <= 0)return;
