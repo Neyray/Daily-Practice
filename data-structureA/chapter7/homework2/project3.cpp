@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -6,10 +7,11 @@ using namespace std;
 const int INF = 0x3f3f3f3f;
 
 int main() {
+    ifstream inFile("in.txt");
     int n;
 
     // 多组输入，n == 0 时结束
-    while (cin >> n && n != 0) {
+    while (inFile >> n && n != 0) {
         vector<vector<int>> dist(n + 1, vector<int>(n + 1, INF));
 
         // 自己到自己距离为 0
@@ -20,11 +22,11 @@ int main() {
         // 读入每个经纪人的联系人信息
         for (int i = 1; i <= n; ++i) {
             int m;
-            cin >> m;
+            inFile >> m;
 
             for (int j = 0; j < m; ++j) {
                 int v, w;
-                cin >> v >> w;
+                inFile >> v >> w;
 
                 // i 可以把消息传给 v，花费 w 分钟
                 dist[i][v] = w;

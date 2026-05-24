@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <fstream>
 #include <string>
 using namespace std;
 
@@ -90,9 +91,10 @@ int networkDelayTime(MatGraph& G, int N, int K) {
 }
 
 int main() {
+    ifstream inFile("in.txt");
     int N, K;
-    cin >> N >> K;
-    cin.ignore();
+    inFile >> N >> K;
+    inFile.ignore();
 
     MatGraph G;
     int m[MAXV][MAXV];
@@ -105,7 +107,7 @@ int main() {
 
     string str;
     int e = 0;
-    while (getline(cin, str) && str!="") {
+    while (getline(inFile, str) && str!="") {
         stringstream ss(str);
         int a, b, c;
         ss >> a >> b >> c;

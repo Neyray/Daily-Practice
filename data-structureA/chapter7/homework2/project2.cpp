@@ -1,5 +1,6 @@
 //Floyd算法求最小环
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <cstring>
 using namespace std;
@@ -12,7 +13,8 @@ int g[MAXN][MAXN];      // 原图边权
 int dista[MAXN][MAXN];  // Floyd 最短路数组
 
 int main() {
-    while (cin >> n >> m) {
+    ifstream inFile("in.txt");
+    while (inFile >> n >> m) {
         // 初始化
         for (int i = 1; i <= n; ++i) {
             for (int j = 1; j <= n; ++j) {
@@ -28,7 +30,7 @@ int main() {
         // 读入无向图
         for (int i = 0; i < m; ++i) {
             int a, b, c;
-            cin >> a >> b >> c;
+            inFile >> a >> b >> c;
 
             // 可能有重边，保留最小边
             if (c < g[a][b]) {
