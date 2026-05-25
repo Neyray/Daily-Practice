@@ -192,11 +192,11 @@ void Floyd(MatGraph& g)             // Floyd求多源最短路径
                 path[i][j]=-1;      // i和j顶点之间没有一条边时
         }
 
-    for (int k=0;k<g.n;k++)         // 求Ak[i][j]
+    for (int k=0;k<g.n;k++)         // 求Ak[i][j]    // k 代表尝试引入的中间过渡顶点
     {  
-        for (int i=0;i<g.n;i++)
-            for (int j=0;j<g.n;j++)
-                if (A[i][j]>A[i][k]+A[k][j])
+        for (int i=0;i<g.n;i++)// i 为源点
+            for (int j=0;j<g.n;j++)// j 为终点
+                if (A[i][j]>A[i][k]+A[k][j])// 如果绕道 k 点比直接走更短
                 {  
                     A[i][j]=A[i][k]+A[k][j];
                     path[i][j]=path[k][j];    // 修改最短路径

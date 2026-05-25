@@ -124,7 +124,7 @@ struct Edge                    // 边向量元素类型
 
 void Kruskal(MatGraph& g)        // Kruskal算法输出最小生成树
 {  
-    int vset[MAXV];              // 建立数组vset
+    int vset[MAXV];              // 建立数组vset，特征位
     vector<Edge> E;              // 建立存放所有边的向量E
 
     for (int i=0;i<g.n;i++)      // 由图的邻接矩阵g产生边向量E

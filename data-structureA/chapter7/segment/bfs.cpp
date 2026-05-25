@@ -73,7 +73,7 @@ void BFS(AdjGraph& G, int v) {
 
     while (!qu.empty()) {
         int u = qu.front(); qu.pop();
-        ArcNode* p = G.adjlist[u].firstarc;
+        ArcNode* p = G.adjlist[u].firstarc;//第一条邻接边
 
         //当当前节点的所有邻接节点都访问完了之后，退出这个循环，再从队列弹出节点
         while (p != NULL) {
@@ -85,7 +85,7 @@ void BFS(AdjGraph& G, int v) {
                 //将w放进队列，访问w的邻接节点
                 qu.push(w);
             }
-            p = p->nextarc;
+            p = p->nextarc;//p还是在之前开始的第一个节点的邻接节点中找
         }
     }
 }

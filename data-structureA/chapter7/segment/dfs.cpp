@@ -92,6 +92,8 @@ void DFS_nonrecursive(AdjGraph& G, int v) {
             if (visited[w] == 0) {
                 cout << w << " ";
                 visited[w] = 1;
+                //与bfs不同，dfs必须让当前这个被发现的节点放在栈的顶部，优先访问
+                //bfs访问过后可以直接丢弃，因为p指针是沿着这个节点的邻接表链走的
                 st.push(w);
                 found = true;
                 //break只会杀掉自己的内层循环

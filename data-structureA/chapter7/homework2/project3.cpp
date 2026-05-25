@@ -55,10 +55,10 @@ int main() {
             for (int j = 1; j <= n; ++j) {
                 if (dist[i][j] == INF) {
                     canReachAll = false;
-                    break;
+                    break;//退出小循环
                 }
 
-                maxTime = max(maxTime, dist[i][j]);
+                maxTime = max(maxTime, dist[i][j]);//最大的时间就是从起点到终点的时间
             }
 
             // 如果 i 能传到所有人，并且所需总时间更短
