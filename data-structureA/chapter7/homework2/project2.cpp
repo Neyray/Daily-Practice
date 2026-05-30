@@ -45,10 +45,13 @@ int main() {
         for (int k = 1; k <= n; ++k) {
 
             // 在用 k 更新最短路之前，先尝试找经过 k 的最小环
+            //dista[i][j] 的含义是：只允许使用编号 < k 的点作为中间点时，i 到 j 的最短路，所以此时 dista[i][j] 不可能经过 k。
             for (int i = 1; i < k; ++i) {
                 for (int j = i + 1; j < k; ++j) {
+                    //！！！之所以i,j<k是因为floyd算法只计算到了前k个节点作为中间节点时任意两条边的最短长度
+                    //j>i是因为除了出发点至少要经过2个不同点
                     if (dista[i][j] != INF && g[i][k] != INF && g[k][j] != INF) {
-                        ans = min(ans, dista[i][j] + g[i][k] + g[k][j]);
+                        ans = min(ans, dista[i][j] + g[i][k] + g[k][j]);//i → ... → j → k → i
                     }
                 }
             }
