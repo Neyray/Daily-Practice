@@ -119,11 +119,33 @@
 - `graph.cpp`: 图的两种存储结构。核心：邻接矩阵直接二维数组存储；邻接表通过头结点 + 边结点链表存储，构造时从后向前头插以保证遍历顺序与邻接矩阵一致。
 - `bfs.cpp`: 邻接表的广度优先遍历。核心：用队列层层扩展，节点入队即刻标记已访问，避免重复入队。
 - `dfs.cpp`: 邻接表的深度优先遍历。核心：递归版直接按邻接表深入；非递归版用栈模拟，找到一个未访问邻接点就 `break` 深入，没有可走的邻接点才出栈回溯。
+- `mst.cpp`: 最小生成树。核心：Prim 算法用 `lowcost[]` 记录非树点到树的最小权、`closest[]` 记录对应树内端点，每轮选最小后用新加入点松弛；Kruskal 算法把所有边按权升序排序，用并查集思想的 `vset[]` 特征位判同集合，不同集合就并入。
+- `shortestPath.cpp`: 最短路径。核心：Dijkstra 单源算法用 `S[]` 标记已确定点，每轮在未确定点中挑 `dist` 最小者加入并松弛邻居；Floyd 多源算法三重循环以中间点 `k` 不断更新 `A[i][j]`，`path[i][j]` 存放路径中 `j` 的前驱以便逆向回溯输出整条路径。
 
 ### chapter7/homework
 
 - `project1.cpp`: 邻接矩阵 + BFS 判断两点之间是否连通。核心：起点入队后做广度优先搜索，到达终点立即返回 `true`。
 - `project2.cpp`: 邻接矩阵 + DFS 输出遍历序列。核心：分别用递归 DFS 和栈式非递归 DFS 输出从指定起点出发的两种遍历结果。
+
+### chapter7/homework2
+
+- `project1.cpp`: 网络延迟时间。核心：以 `K` 为源点跑 Dijkstra 求所有点的最短到达时间，结果取 `dist[]` 中的最大值；如果有点不可达就返回 `-1`。输入直接"用节点值当下标"建邻接矩阵，没有边的位置必须置为 `INF`。
+- `project2.cpp`: Floyd 算法求无向图最小环。核心：在用 `k` 松弛之前，先枚举 `i, j < k`，把"`i→...→j`（仅经过编号 `<k` 的中间点的最短路）+ 原边 `g[j][k]` + 原边 `g[k][i]`"作为经过 `k` 的环长度候选，再做常规 Floyd 更新。重边只保留最小的一条。
+- `project3.cpp`: 信息传播 / 经纪人问题。核心：Floyd 求任意两点最短路后，枚举每个起点 `i`，看是否能传到所有人；可达时取 `max(dist[i][j])` 作为这个人的最差传播时间，挑全员可达且最差时间最小的人输出。
+
+## chapter8
+
+### chapter8/segment
+
+- `find.cpp`: 折半查找。核心：迭代版用 `low/high` 不断缩半，相等返回 `mid`、小走左、大走右；递归版用辅助函数 `BinSearch21(R, low, high, k)` 处理同样的三种分支。
+- `BST.cpp`: 二叉排序树类模板 `BSTClass<T1,T2>`。核心：插入递归 `_InsertBST` 按 `k < key / k > key` 走左右子树，等键修改 `data`；`CreateBST` 用第一个元素建根、其余调用 `InsertBST`；查找 `_SearchBST` 递归向左右下行；`r` 是根、`f` 临时记录待删节点的双亲。
+- `AVL.cpp`: AVL 平衡二叉树类模板。核心：每个节点存子树高度 `ht`，提供四种旋转 —— LL 直接右旋；RR 直接左旋；LR 先对左孩子左旋再对自己右旋；RL 先对右孩子右旋再对自己左旋。旋转后必须先更新原根再更新新根的 `ht`。
+
+### chapter8/homework1
+
+- `project1.cpp`: 折半查找并输出查找经过的元素序列。核心：每次进入循环先把 `R[mid]` 推入 `ans`（必须放在 `return` 前面），找到返回 `mid`、否则按大小调整 `low/high`。文件 IO：从 `in.txt` 读目标值和有序序列，结果写 `out.txt`。
+- `project2.cpp`: 判断完全二叉树（数组式输入，`"null"` 表空）是否为平衡二叉树。核心：用 `checkHeight` 返回子树高度，左右子树有任一为 `-1` 或高度差 `> 1` 时直接返回 `-1` 作为"不平衡"哨兵，避免重复遍历。
+- `project3.cpp`: 求 `n` 个数两两差值绝对值的中位数（二分答案 + 双指针）。核心：排序后对"差值上限 `mid`"二分，用双指针滑动窗口在 `O(n)` 内统计差值 `<= mid` 的对数；目标位次取 `(C(n,2) + 1) / 2`，用 `long long` 防溢出。
 
 ## daily-practice1
 
@@ -380,3 +402,30 @@ break;
 | 思想 | 一层一层访问 | 一条路走到底，走不下去再回退 |
 | 标记时机 | **入队**时立刻标记 | **入栈 / 进入节点**时立刻标记 |
 | 关键点 | 同一节点不允许被多个邻居重复入队 | 找到一个未访问邻接点就 `break` 深入；当前点无路可走才 `st.pop()` 回溯 |
+
+### 八、最小生成树与最短路径
+
+- **Prim 的 `lowcost[k] = 0` 是"已加入树"的标记**（`chapter7/segment/mst.cpp`）：每轮先扫描 `lowcost[j] != 0` 找最小，选中后把 `lowcost[k]` 置 0，再用 `g.edges[k][j] < lowcost[j]` 做松弛——**松弛只需要看新加入的 k，不要从头遍历整张邻接矩阵。**
+- **Kruskal 的并集合并**（`chapter7/segment/mst.cpp`）：取边 `(u,v)` 时比较 `vset[u]` 和 `vset[v]` 两个特征位，不同才接收；合并时必须把所有等于 `sn2` 的特征位整体改成 `sn1`，否则后续判断会失效。
+- **Dijkstra 初始化**（`chapter7/segment/shortestPath.cpp`、`chapter7/homework2/project1.cpp`）：`dist[i] = edges[v][i]`，`v` 到 `i` 有边时 `path[i] = v`，否则 `path[i] = -1`；源点直接 `S[v] = 1`。这样松弛循环 `g.n - 1` 次而不是 `g.n` 次。
+- **Dijkstra 没有边的位置必须显式置 `INF`**（`chapter7/homework2/project1.cpp`）：松弛条件 `g.edges[u][j] < INF && dist[u] + g.edges[u][j] < dist[j]` 依赖这个约定，否则一个 `0` 邻接矩阵会被当成"边权为 0 的捷径"。
+- **Floyd 路径回溯**（`chapter7/segment/shortestPath.cpp`）：`path[i][j]` 保存"`i` 到 `j` 最短路径上 `j` 的前驱"，松弛时写 `path[i][j] = path[k][j]`（不是 `k`）；输出时从终点 `j` 反向走 `pre = path[i][pre]`，到 `i` 停止再反向打印。
+- **Floyd 求最小环**（`chapter7/homework2/project2.cpp`）：核心是利用 `dista[i][j]` 在引入 `k` 之前只用了编号 `<k` 的中间点，所以 `dista[i][j] + g[i][k] + g[k][j]` 构成一个不重复经过 `k` 的环；枚举必须放在用 `k` 更新 `dista` 之前。`i < j < k` 是为了避免重复计数同一个环。
+
+### 九、查找
+
+- **折半查找区间收敛**（`chapter8/segment/find.cpp`、`chapter8/homework1/project1.cpp`）：循环条件用 `low <= high`（带等号），收缩时 `high = mid - 1` / `low = mid + 1`；不能写成 `high = mid` / `low = mid`，否则在剩两个元素时可能死循环。
+- **要"输出查找路径"时，`R[mid]` 必须在判断之前 push**（`chapter8/homework1/project1.cpp`）：放在 `return` 后面会漏掉命中元素本身。
+- **二分答案 + 双指针计对数**（`chapter8/homework1/project3.cpp`）：先排序，外层二分 `mid`（差值上限），内层用 `right` 扫描时让 `left` 一起右移到 `arr[right] - arr[left] <= mid`，每个 `right` 贡献 `right - left` 对。
+- **中位数的目标位次**（`chapter8/homework1/project3.cpp`）：总对数 `n*(n-1)/2`，目标位次为 `(total + 1) / 2`；用 `long long` 算，`n*(n-1)` 容易溢出。
+- **BST 插入返回根**（`chapter8/segment/BST.cpp`）：`_InsertBST` 的递归签名是返回 `BSTNode*` 并在调用点 `p->lchild = _InsertBST(p->lchild, ...)`，这样新建的叶子能"挂回"父亲；不能写成 void 修改。
+
+### 十、AVL 旋转
+
+- **四种旋转的对应关系**（`chapter8/segment/AVL.cpp`）：
+  - LL（左孩子的左子树过高）→ 对自己右旋；
+  - RR（右孩子的右子树过高）→ 对自己左旋；
+  - LR（左孩子的右子树过高）→ 先对左孩子左旋，再对自己右旋；
+  - RL（右孩子的左子树过高）→ 先对右孩子右旋，再对自己左旋。
+- **旋转后 `ht` 更新顺序**（`chapter8/segment/AVL.cpp`）：先更新原根 `a`，再更新新根 `b`。因为 `b` 的子树包含 `a`，`a` 的新高度算完之后 `b` 才能正确取 `max`。
+- **新建叶子 `ht = 1`**：AVL 的高度按"包含自己"的层数算，叶子是 1 不是 0，`getht(NULL)` 才返回 0。
