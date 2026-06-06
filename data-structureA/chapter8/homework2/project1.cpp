@@ -1,3 +1,4 @@
+//！！！重点：BST树
 //二叉排序树---插入、删除
 #include <iostream>
 using namespace std;
@@ -57,6 +58,7 @@ Node* deleteNode(Node* root, int x) {
         }
 
         // 情况2：只有右子树
+        //！！！一定要注意判断条件，是判断==NULL，不是!=NULL
         else if (root->left == NULL) {
             Node* temp = root->right;
             delete root;

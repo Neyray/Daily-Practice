@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <sstream>
 #include <vector>
 #include <string>
@@ -83,7 +84,7 @@ Node* buildTree2(vector<int>& preorder) {
 }
 
 
-//2.2根据层次遍历序列构造二叉树（完全二叉树）
+//2.2根据完全二叉树遍历序列构造二叉树（完全二叉树）
 Node* createTree(string str, int i) {
 	if (i >= str.size()) return NULL;
 
@@ -95,6 +96,38 @@ Node* createTree(string str, int i) {
 	root->right = createTree(str, 2 * i + 2);
 
 	return root;
+}
+
+//2.3根据层序序列建树，-1 表示空结点
+Node* buildTree(vector<int>& nums) {
+    if (nums.empty() || nums[0] == -1) {
+        return NULL;
+    }
+
+    Node* root = new Node(nums[0]);
+    queue<Node*> q;
+    q.push(root);
+
+    int i = 1;
+
+    while (!q.empty() && i < nums.size()) {
+        Node* cur = q.front();
+        q.pop();
+
+        if (i < nums.size() && nums[i] != -1) {
+            cur->left = new Node(nums[i]);
+            q.push(cur->left);
+        }
+        i++;
+
+        if (i < nums.size() && nums[i] != -1) {
+            cur->right = new Node(nums[i]);
+            q.push(cur->right);
+        }
+        i++;
+    }
+
+    return root;
 }
 
 

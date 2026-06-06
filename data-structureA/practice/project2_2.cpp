@@ -70,6 +70,7 @@ Node* buildTree() {
 void output1(Node* root, vector<string>& ans) {
 	Node* p = root;
 
+	//！！！之所以不写成p->left，是因为我需要对最后一个元素进行操作，而不是需要p变成最后一个元素
 	while (p != NULL) {
 		//输出外围左端点
 		// 修改：左边界不加入叶子，叶子统一交给 output2 处理，防止重复
@@ -82,6 +83,7 @@ void output1(Node* root, vector<string>& ans) {
 			p = p->left;
 		}
 		else {
+			//！！！刻意制造退出条件，即：如果是叶子节点也会到右子树NULL
 			p = p->right;
 		}
 	}
