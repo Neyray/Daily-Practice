@@ -12,7 +12,7 @@ using namespace std;
 
 //邻接表定义
 struct ArcNode {        // 边结点（弧结点）
-    int adjvex;         // 邻接点编号
+    int adjvex;         // 邻接点编号（当前节点）
     int weight;         // 边的权值
     ArcNode* nextarc;   // 指向下一条边
 };
@@ -77,6 +77,7 @@ void BFS(AdjGraph& G, int v) {
 
         //当当前节点的所有邻接节点都访问完了之后，退出这个循环，再从队列弹出节点
         while (p != NULL) {
+            //当前这个节点不需要输出，因为之前在别的HNode里面已经输出过一次了
             int w = p->adjvex;
             if (visited[w] == 0) {
                 cout << w << " ";
