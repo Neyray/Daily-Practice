@@ -189,6 +189,10 @@
 - `project05.cpp`: 判断两棵二叉树是否相同。核心：同步递归比较节点是否同时为空、值是否相同、左右子树是否相同。
 - `project06.cpp`: 求二叉树叶子节点个数。核心：递归统计左右子树叶子数，空树返回 0，叶子返回 1。
 - `project07.cpp`: 求二叉树节点总数。核心：递归统计 `1 + 左子树节点数 + 右子树节点数`。
+- `project14.cpp`: 表达式树求值。核心：按 `id type value left right` 建树，用 `flag` 排除所有被当作孩子的节点后剩下的就是根；`evaluate` 是后序思想——先递归求左右子树的值，再按当前运算符合并。
+- `project15.cpp`: BST 转有序双向链表。核心：先序序列（`-1` 表空）建树，中序遍历过程中用引用参数 `head/prev` 把节点依次串起来，`left` 当前驱、`right` 当后继；`prev == NULL` 时记录链表头。
+- `project16.cpp`: 二叉排序树插入 / 查找 / 删除 / 求最值。核心：递归插入用 `root->left = insertVal(root->left, x)` 把新叶子挂回父节点；删除分四种情况，左右子树都有时用**左子树最大值（中序前驱）**覆盖当前值再递归删除那个前驱。
+- `project17.cpp`: 判断是否为二叉排序树。核心：中序遍历配合引用参数 `prev`，一旦发现 `prev->val >= root->val`（不严格递增）立即返回 `false`。
 
 ## lab1
 
@@ -202,6 +206,12 @@
 - `project1.cpp`: 约瑟夫环（循环单链表实现）。核心：维护 `head/tail`，每轮从当前节点出发移动 `m-1` 次定位出列者，删除时同步更新 `head/tail`。
 - `project2.cpp`: 括号表示法（含负数）建树，输出从右到左的叶子节点和中序遍历序列。核心：栈记录父节点和左右子树标志位 `k`，中序用一路向左的非递归遍历。
 - `project3.cpp`: 判断括号表示二叉树中两个字符是否在同一层，并输出它们子树中除自身以外的叶子。核心：层序遍历找同层并记录两节点，再分别对两节点的左右子树递归收集叶子。
+
+## practice
+
+- `project1.cpp`: 后序遍历输出叶子节点。核心：按 `父 左 右` 行输入（`#` 表空）用 `map<char, Node*>` 建树，后序递归到底，左右孩子都为空才输出。
+- `project2.cpp`: 输出二叉树的边界（左边界 + 叶子 + 右边界）。核心：左边界从根**有左走左、没左走右**地下沉，右边界对称且最后倒序，叶子单独 DFS 收集；用 `existsInAns` 去重避免拐角节点被重复计入。
+- `project2_2.cpp`: `project2` 的精简版（多位数当字符串、`map` 建树）。核心：同样是左边界（有左走左没左走右）、中间叶子、右边界倒序三段拼接；关键提醒——**左边界不是只走左边**，且叶子统一交给中间一段处理以防重复。
 
 ## weeklyTest
 
@@ -557,3 +567,178 @@ n  p0  key1  p1  key2  p2  ...  keyn  pn
 
 - **BST 删除"只有右子树"分支的判断**（`chapter8/homework2/project1.cpp`）：写成 `else if (root->left == NULL)`，判断条件是 `== NULL` 不是 `!= NULL`。容易写反——思维上是"只有右子树"，但代码里检查的是"左子树是空的"。
 - **AVL 的核心心法**（`chapter8/segment/total.cpp`）：`AVL < BST < 普通二叉排序树`（约束越来越强）；不管是插入还是删除，都是先在普通 BST 上完成操作，**回溯时检查平衡 → 旋转**（AVL 专有），整套逻辑通过 `return balance(root);` 一行串起来。
+
+### 十四、递归理解（链表 / 二叉树 / 图）
+
+递归看着千变万化，但**按"函数到底返回什么、要不要返回"来分类**，就只有下面 6 种。读代码时先问自己：*这个递归函数的一句话语义是什么？* 想清楚这句话，递归就不难了。
+
+#### 1. 遍历型递归
+
+- **目标**：按某种顺序访问每个节点，**不一定需要返回值**，重点是访问顺序。
+- **常见形式**：前序（根左右）、中序（左根右）、后序（左右根）；图里就是 DFS。
+- **本项目用到的文件**：
+  - `chapter6/segment/BinaryTree/preorder.cpp`、`inorder.cpp`、`postorder.cpp`（三种遍历的递归版）
+  - `chapter6/segment/ThreadBinaryTree/inorder.cpp`、`preorder.cpp`、`postorder.cpp`（递归线索化本质也是按序遍历）
+  - `chapter6/homework2/project1.cpp`（前序、后序递归输出）
+  - `practice/project1.cpp`（后序遍历，只在叶子处输出）
+  - `chapter7/segment/dfs.cpp`、`chapter7/homework1/project2.cpp`、`chapter7/homework2/project2.cpp`（图的 DFS 递归遍历）
+
+```
+void inorder(Node* root) {
+    if (root == NULL) return;
+    inorder(root->left);
+    cout << root->val;        // 中序：左 → 根 → 右
+    inorder(root->right);
+}
+```
+
+#### 2. 构造型递归
+
+- **目标**：创建结构并**返回创建好的根节点**——返回值不是用来判断真假，而是用来"接结构"。
+- **一句话语义**：`buildTree()` = 读一段序列，建一棵树，返回这棵树的根。
+- **关键三句**：`root->left = buildTree(); root->right = buildTree(); return root;`——左右子树让递归去建，最后把当前根交还给上一层。
+- **本项目用到的文件**：
+  - `daily-practice2/project15.cpp`、`project17.cpp`（先序 `-1` 表空建树）
+  - `daily-practice2/project01.cpp`、`project04.cpp`（带空标记前序建树）
+  - `chapter6/segment/BinaryTree/buildTree.cpp`（前序+中序、后序+中序、层序+中序等多种构造）
+  - `chapter6/homework2/project2.cpp`（前序+中序构造）
+  - `weeklyTest/week4/project2.cpp`、`project3.cpp`
+  - 插入也是构造型：`chapter8/segment/BST.cpp` 的 `_InsertBST`、`chapter8/homework2/project1.cpp`、`daily-practice2/project16.cpp` 的 `insertVal`（`root->left = insertVal(root->left, x)` 把新叶子挂回父节点）
+
+```
+Node* buildTree() {
+    int x; cin >> x;
+    if (x == -1) return NULL;          // 空树
+    Node* root = new Node(x);
+    root->left  = buildTree();         // 左子树让递归建
+    root->right = buildTree();         // 右子树让递归建
+    return root;                       // 把当前根交还上一层
+}
+```
+
+#### 3. 判断型递归
+
+- **目标**：判断是否满足某个条件，返回 `bool`。
+- **模板感很强**：`if (空) return true; if (左不满足) return false; if (当前不满足) return false; if (右不满足) return false; return true;`——发现一个错就立刻 `return false`，全对才 `return true`。
+- **本项目用到的文件**：
+  - `daily-practice2/project17.cpp`（判断 BST，中序配合 `prev`）
+  - `daily-practice2/project01.cpp`（判断轴对称，左右镜像比较）
+  - `daily-practice2/project05.cpp`（判断两棵树是否相同）
+  - `chapter8/homework1/project2.cpp`（判断平衡二叉树，用 `-1` 作"不平衡"哨兵）
+  - 查找也算判断型：`daily-practice2/project16.cpp` 的 `find`、`chapter8/segment/BST.cpp` 的 `_SearchBST`、`weeklyTest/week3/project2.cpp`（链串回文）
+
+```
+bool isBST(Node* root, Node*& prev) {
+    if (root == NULL) return true;
+    if (!isBST(root->left, prev)) return false;          // 左边不满足
+    if (prev != NULL && prev->val >= root->val) return false; // 当前不满足
+    prev = root;
+    if (!isBST(root->right, prev)) return false;         // 右边不满足
+    return true;
+}
+```
+
+#### 4. 计算型递归
+
+- **目标**：从子问题得到结果，**合并**成当前结果——本质就是**后序思想（左 → 右 → 根）**。
+- **本项目用到的文件**：
+  - `daily-practice2/project14.cpp`（表达式树求值：先算左右子树值，再按运算符合并）
+  - `daily-practice2/project03.cpp`（树高）、`project06.cpp`（叶子个数）、`project07.cpp`（节点总数）
+  - `chapter6/segment/BinaryTree/calculate.cpp`（求高度）
+  - `chapter8/homework1/project2.cpp` 的 `checkHeight`（既算高度又顺带判平衡）
+
+```
+int evaluate(Node* root) {
+    if (root->type == 0) return stoi(root->value);   // 叶子是数字
+    int l = evaluate(root->left);                    // 先拿左结果
+    int r = evaluate(root->right);                   // 再拿右结果
+    if (root->value == "+") return l + r;            // 最后合并
+    if (root->value == "-") return l - r;
+    if (root->value == "*") return l * r;
+    if (root->value == "/") return l / r;
+    return 0;
+}
+```
+
+#### 5. 修改状态型递归
+
+- **目标**：递归本身不返回主要结果，结果通过**引用参数 / 全局变量 / vector** 等外部状态保存。
+- **本项目用到的文件**：
+  - `daily-practice2/project15.cpp`（BST 转双向链表，用 `head/prev` 引用边中序边串链）
+  - `daily-practice2/project17.cpp`（判 BST 时维护中序前驱 `prev`——既判断又改状态）
+  - `practice/project2.cpp`、`practice/project2_2.cpp`、`lab2/project3.cpp`、`chapter6/homework1/project1.cpp`（递归把叶子收进 `vector& ans`）
+  - `chapter6/homework3/project3.cpp`（按剩余距离收集节点）
+  - `weeklyTest/week4/project1.cpp`（先序递归时把 `level` 作为参数下传）
+
+```
+void collectLeaves(Node* root, vector<int>& ans) {
+    if (root == NULL) return;
+    if (root->left == NULL && root->right == NULL) { ans.push_back(root->val); return; }
+    collectLeaves(root->left, ans);
+    collectLeaves(root->right, ans);
+}
+```
+
+#### 6. 修改结构型递归
+
+- **目标**：在**递归返回（回溯）过程中修改原有结构的指针关系**——先递归到底，回溯时改指针。
+- **本项目用到的文件**：
+  - `daily-practice1/project23.cpp`（链表递归逆置）
+  - `daily-practice2/project02.cpp`（二叉树镜像翻转，递归交换左右孩子）
+  - `weeklyTest/week3/project3.cpp`（递归删除链表节点，回溯时删）
+  - `daily-practice2/project16.cpp` 的 `deleteVal`（BST 删除，回溯时重接子树）
+
+以**链表递归逆置**为例（`daily-practice1/project23.cpp`）：
+
+```
+Node* reverse(Node* curr) {
+    if (curr == NULL || curr->next == NULL) return curr;  // 递归到尾节点，它就是新头
+    Node* newHead = reverse(curr->next);                  // 先一路深入到尾部
+    curr->next->next = curr;                              // 回溯时让后继指回自己
+    curr->next = NULL;                                    // 断开原来的正向指针
+    return newHead;                                       // 新头一路返回到最外层
+}
+```
+
+对 `1 → 2 → 3` 的过程：递归深入到 `3` 返回作为 `newHead`；回到 `2` 时 `3->next = 2`、`2->next = NULL`，得到 `3 → 2`；回到 `1` 时 `2->next = 1`、`1->next = NULL`，最终 `3 → 2 → 1`。**特点：先递归到尾部，回溯时改指针，最后返回新头。**
+
+#### 7. 用 `buildTree()` 彻底吃透"构造型递归"
+
+构造型是最容易绕晕的，关键是记住：**每一层递归都有自己独立的 `root`，名字相同但不是同一个变量。**
+
+代码（`daily-practice2/project15.cpp`、`project17.cpp`）：
+
+```
+Node* buildTree() {
+    int x;
+    if (!(cin >> x)) return NULL;
+    if (x == -1) return NULL;
+    Node* root = new Node(x);
+    root->left  = buildTree();
+    root->right = buildTree();
+    return root;
+}
+```
+
+设输入 `4 2 1 -1 -1 3 -1 -1 5 -1 -1`，对应树：
+
+```
+    4
+   / \
+  2   5
+ / \
+1   3
+```
+
+执行顺序（把每层的 `root` 想成 `root_4 / root_2 / root_1`，互不干扰）：
+
+1. 读 `4` → `new Node(4)`，然后**暂停**去建左子树（还没轮到 `root->right`）。
+2. 读 `2` → `new Node(2)`，再去建 `2` 的左子树。
+3. 读 `1` → `new Node(1)`；它的左右都读到 `-1`，于是 `1->left = 1->right = NULL`，`return` 节点 `1`。这个返回值被上一层接住：`2->left = 1`。
+4. 回到 `2` 这层执行 `root->right = buildTree()`，读 `3`，建好后 `return`，于是 `2->right = 3`；`2` 左右都好了，`return` 节点 `2`，被最外层接住：`4->left = 2`。
+5. 回到 `4` 这层执行 `root->right = buildTree()`，读 `5`（左右都是 `-1`），`return`，于是 `4->right = 5`。
+6. 最外层 `return root` 返回的就是整棵树的根 `4`，`main` 里的 `root = buildTree()` 拿到的正是它。
+
+**一句话总结**：`root->left = buildTree();` 的含义就是"请递归帮我建好左子树，并把左子树的根返回给我接住"；右子树同理。子树建好就把根返回给父节点，父节点用 `left/right` 接住，最外层最后返回整棵树的根。
+
+> 备注：图的 BFS / DFS 遍历模板（队列、栈、标记时机）见上文 **七、BFS 与 DFS 核心模板**，这里不再重复。
