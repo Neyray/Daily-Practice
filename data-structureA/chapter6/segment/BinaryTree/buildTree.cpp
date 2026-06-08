@@ -320,3 +320,21 @@ Node* buildTree(vector<char> level, vector<char> in) {
 
     return root;
 }
+
+// 根据先序序列建树，-1 表示空节点
+Node* buildTree() {
+    int x;
+    if (!(cin >> x)) {
+        return NULL;
+    }
+
+    if (x == -1) {
+        return NULL;
+    }
+
+    Node* root = new Node(x);
+    root->left = buildTree();
+    root->right = buildTree();
+
+    return root;
+}
