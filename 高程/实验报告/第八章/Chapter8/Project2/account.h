@@ -8,9 +8,9 @@
 
 class Account {
 private:
-    std::string id;    // ÕÊºÅ
-    double balance;    // Óà¶î
-    static double total;    // ËùÓĞÕË»§µÄ×Ü½ğ¶î
+    std::string id;    // å¸å·
+    double balance;    // ä½™é¢
+    static double total;    // æ‰€æœ‰è´¦æˆ·çš„æ€»é‡‘é¢
 protected:
     Account(const Date& date, const std::string& id);
     void record(const Date& date, double amount, const std::string& desc);
@@ -20,7 +20,7 @@ public:
     double getBalance() const { return balance; }
     static double getTotal() { return total; }
 
-    // ´¿Ğéº¯Êı
+    // çº¯è™šå‡½æ•°
     virtual void deposit(const Date& date, double amount,
         const std::string& desc) = 0;
     virtual void withdraw(const Date& date, double amount,
@@ -30,7 +30,7 @@ public:
     virtual ~Account() {}
 };
 
-// °üº¬ÅÉÉúÀàµÄÍ·ÎÄ¼ş
+// åŒ…å«æ´¾ç”Ÿç±»çš„å¤´æ–‡ä»¶
 #include "savingsaccount.h"
 #include "creditaccount.h"
 

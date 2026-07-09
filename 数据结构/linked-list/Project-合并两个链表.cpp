@@ -2,14 +2,14 @@
 #include <vector>
 using namespace std;
 
-// Á´±í½Úµã½á¹¹
+// é“¾è¡¨èŠ‚ç‚¹ç»“æ„
 struct Node {
     int val;
     Node* next;
     Node(int x) : val(x), next(nullptr) {}
 };
 
-// Êı×é×ªÁ´±í
+// æ•°ç»„è½¬é“¾è¡¨
 Node* arrayToList(const vector<int>& arr) {
     if (arr.empty()) return nullptr;
     Node* head = new Node(arr[0]);
@@ -21,7 +21,7 @@ Node* arrayToList(const vector<int>& arr) {
     return head;
 }
 
-// ºÏ²¢Á½¸öÁ´±í
+// åˆå¹¶ä¸¤ä¸ªé“¾è¡¨
 Node* mergeLists(Node* l1, Node* l2) {
     if (!l1) return l2;
     Node* curr = l1;
@@ -32,7 +32,7 @@ Node* mergeLists(Node* l1, Node* l2) {
     return l1;
 }
 
-// ¹é²¢ÅÅĞò£¨Á´±í°æ£©
+// å½’å¹¶æ’åºï¼ˆé“¾è¡¨ç‰ˆï¼‰
 Node* mergeSortedLists(Node* l1, Node* l2) {
     Node dummy(0);
     Node* curr = &dummy;
@@ -54,21 +54,21 @@ Node* mergeSortedLists(Node* l1, Node* l2) {
 Node* mergeSort(Node* head) {
     if (!head || !head->next) return head;
 
-    // ¿ìÂıÖ¸ÕëÕÒÖĞµã
+    // å¿«æ…¢æŒ‡é’ˆæ‰¾ä¸­ç‚¹
     Node* slow = head, * fast = head->next;
     while (fast && fast->next) {
         slow = slow->next;
         fast = fast->next->next;
     }
 
-    // ·Ö¸îÁ´±í
+    // åˆ†å‰²é“¾è¡¨
     Node* right = slow->next;
     slow->next = nullptr;
 
     return mergeSortedLists(mergeSort(head), mergeSort(right));
 }
 
-// È¥ÖØ²Ù×÷
+// å»é‡æ“ä½œ
 void removeDuplicates(Node* head) {
     if (!head) return;
     Node* curr = head;
@@ -84,7 +84,7 @@ void removeDuplicates(Node* head) {
     }
 }
 
-// ´òÓ¡Á´±í
+// æ‰“å°é“¾è¡¨
 void printList(Node* head) {
     while (head) {
         cout << head->val << " ";
@@ -93,7 +93,7 @@ void printList(Node* head) {
     cout << endl;
 }
 
-// ÊÍ·ÅÄÚ´æ
+// é‡Šæ”¾å†…å­˜
 void deleteList(Node* head) {
     while (head) {
         Node* temp = head;
@@ -106,22 +106,22 @@ int main() {
     vector<int> arr1 = { 3, 1, 4, 2, 2 };
     vector<int> arr2 = { 5, 7, 6, 4, 5 };
 
-    // ´´½¨Á´±í
+    // åˆ›å»ºé“¾è¡¨
     Node* list1 = arrayToList(arr1);
     Node* list2 = arrayToList(arr2);
 
-    // ºÏ²¢Á´±í
+    // åˆå¹¶é“¾è¡¨
     Node* merged = mergeLists(list1, list2);
 
-    // ÅÅĞò + È¥ÖØ
+    // æ’åº + å»é‡
     merged = mergeSort(merged);
     removeDuplicates(merged);
 
-    // Êä³ö½á¹û
-    cout << "È¥ÖØºóµÄÓĞĞòÁ´±í£º";
+    // è¾“å‡ºç»“æœ
+    cout << "å»é‡åçš„æœ‰åºé“¾è¡¨ï¼š";
     printList(merged);
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     deleteList(merged);
 
     return 0;

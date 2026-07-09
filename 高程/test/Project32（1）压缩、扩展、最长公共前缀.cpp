@@ -1,10 +1,10 @@
-// ×Ö·û´®²Ù×÷£ºÑ¹Ëõ¡¢À©Õ¹¡¢×î³¤¹«¹²Ç°×º
+// å­—ç¬¦ä¸²æ“ä½œï¼šå‹ç¼©ã€æ‰©å±•ã€æœ€é•¿å…¬å…±å‰ç¼€
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
 
-// Ñ¹Ëõ×Ö·û´®£ºaaabbc -> a3b2c1
+// å‹ç¼©å­—ç¬¦ä¸²ï¼šaaabbc -> a3b2c1
 string compress(const string& s) {
     if (s.empty()) return "";
 
@@ -25,7 +25,7 @@ string compress(const string& s) {
     return result.length() < s.length() ? result : s;
 }
 
-// À©Õ¹×Ö·û´®£ºa3b2 -> aaabb
+// æ‰©å±•å­—ç¬¦ä¸²ï¼ša3b2 -> aaabb
 string expand(const string& s) {
     string result = "";
     int i = 0;
@@ -33,24 +33,24 @@ string expand(const string& s) {
     while (i < s.length()) {
         char current_char = s[i];
 
-        // ¼ì²éÏÂÒ»¸ö×Ö·ûÊÇ·ñÊÇÊı×Ö
+        // æ£€æŸ¥ä¸‹ä¸€ä¸ªå­—ç¬¦æ˜¯å¦æ˜¯æ•°å­—
         if (i + 1 < s.length() && isdigit(s[i + 1])) {
-            i++;  // ÒÆ¶¯µ½Êı×ÖÎ»ÖÃ
+            i++;  // ç§»åŠ¨åˆ°æ•°å­—ä½ç½®
 
-            // ÌáÈ¡Êı×Ö£¨¿ÉÄÜÓĞ¶àÎ»£©
+            // æå–æ•°å­—ï¼ˆå¯èƒ½æœ‰å¤šä½ï¼‰
             int repeat_count = 0;
             while (i < s.length() && isdigit(s[i])) {
                 repeat_count = repeat_count * 10 + (s[i] - '0');
                 i++;
             }
 
-            // ½«×Ö·ûÖØ¸´Ö¸¶¨´ÎÊı
+            // å°†å­—ç¬¦é‡å¤æŒ‡å®šæ¬¡æ•°
             for (int j = 0; j < repeat_count; j++) {
                 result += current_char;
             }
         }
         else {
-            // Èç¹ûÃ»ÓĞÊı×Ö£¬Ö»Ìí¼ÓÒ»´Î×Ö·û
+            // å¦‚æœæ²¡æœ‰æ•°å­—ï¼Œåªæ·»åŠ ä¸€æ¬¡å­—ç¬¦
             result += current_char;
             i++;
         }
@@ -59,7 +59,7 @@ string expand(const string& s) {
     return result;
 }
 
-// ×î³¤¹«¹²Ç°×º
+// æœ€é•¿å…¬å…±å‰ç¼€
 string longestCommonPrefix(vector<string>& strs) {
     if (strs.empty()) return "";
 
@@ -84,19 +84,19 @@ int main() {
     cin.ignore();
 
     if (choice == 1) {
-        // Ñ¹Ëõ×Ö·û´®
+        // å‹ç¼©å­—ç¬¦ä¸²
         string s;
         getline(cin, s);
         cout << compress(s) << endl;
     }
     else if (choice == 2) {
-        // À©Õ¹×Ö·û´®
+        // æ‰©å±•å­—ç¬¦ä¸²
         string s;
         getline(cin, s);
         cout << expand(s) << endl;
     }
     else if (choice == 3) {
-        // ×î³¤¹«¹²Ç°×º
+        // æœ€é•¿å…¬å…±å‰ç¼€
         int n;
         cin >> n;
         cin.ignore();

@@ -5,11 +5,11 @@ using namespace std;
 class GradeBook
 {
 public:
-    // ³£Á¿
-    static const int students = 10; // Ñ§ÉúÊıÁ¿
-    static const int tests = 3;     // ²âÊÔÊıÁ¿
+    // å¸¸é‡
+    static const int students = 10; // å­¦ç”Ÿæ•°é‡
+    static const int tests = 3;     // æµ‹è¯•æ•°é‡
 
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     GradeBook(string, const int[][tests]);
 
     void setCourseName(string);
@@ -24,5 +24,5 @@ public:
 
 private:
     string courseName;
-    int grades[students][tests]; // ¶şÎ¬Êı×é´æ´¢³É¼¨
+    int grades[students][tests]; // äºŒç»´æ•°ç»„å­˜å‚¨æˆç»©
 };

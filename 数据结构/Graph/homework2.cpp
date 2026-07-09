@@ -40,12 +40,12 @@ int main() {
     vector<int> dist(n + 1);
     vector<bool> used(n + 1);
 
-    // Ã¶¾ÙÒª¡°É¾³ı¡±µÄÄÇÌõ±ß eid
+    // æšä¸¾è¦â€œåˆ é™¤â€çš„é‚£æ¡è¾¹ eid
     for (int eid = 0; eid < m; eid++) {
         int su, sv, sw;
         tie(su, sv, sw) = edges[eid];
 
-        // ³õÊ¼»¯ Dijkstra
+        // åˆå§‹åŒ– Dijkstra
         fill(dist.begin(), dist.end(), INF);
         fill(used.begin(), used.end(), false);
         dist[su] = 0;
@@ -60,17 +60,17 @@ int main() {
             }
             if (u == -1) break;
             used[u] = true;
-            if (u == sv) break;  // ÕÒµ½ sv£¬¾Í¿ÉÒÔ½áÊøÁË
+            if (u == sv) break;  // æ‰¾åˆ° svï¼Œå°±å¯ä»¥ç»“æŸäº†
 
-            // ËÉ³Ú
+            // æ¾å¼›
             for (auto& e : adj[u]) {
                 int v = e.to;
-                // Ìø¹ı±»¡°É¾³ı¡±µÄÄÇÌõ±ß
+                // è·³è¿‡è¢«â€œåˆ é™¤â€çš„é‚£æ¡è¾¹
                 if (e.id == eid) continue;
-                // Ìø¹ı´Ó su Ö±½Óµ½ sv µÄÈÎºÎÒ»Ìõ±ß£¬±ÜÃâ k=2 µÄÆ½ĞĞ±ß»·
+                // è·³è¿‡ä» su ç›´æ¥åˆ° sv çš„ä»»ä½•ä¸€æ¡è¾¹ï¼Œé¿å… k=2 çš„å¹³è¡Œè¾¹ç¯
                 if (u == su && v == sv) continue;
 
-                // ·ÀÖ¹ INF + e.weight Òç³ö
+                // é˜²æ­¢ INF + e.weight æº¢å‡º
                 if (dist[u] != INF && dist[u] + e.weight < dist[v]) {
                     dist[v] = dist[u] + e.weight;
                 }

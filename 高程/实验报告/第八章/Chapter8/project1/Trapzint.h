@@ -1,27 +1,27 @@
 #pragma once
-// Trapzint.h ÎÄ¼şÒ»£¬Àà¶¨Òå
-class Function {    //³éÏóÀàFunctionµÄ¶¨Òå
+// Trapzint.h æ–‡ä»¶ä¸€ï¼Œç±»å®šä¹‰
+class Function {    //æŠ½è±¡ç±»Functionçš„å®šä¹‰
 public:
-    virtual double operator () (double x) const = 0; //´¿Ğéº¯ÊıÖØÔØÔËËã·û()
+    virtual double operator () (double x) const = 0; //çº¯è™šå‡½æ•°é‡è½½è¿ç®—ç¬¦()
     virtual ~Function() {}
 };
 
-class MyFunction : public Function {    //¹«ÓĞÅÉÉúÀàMyFunction¶¨Òå
+class MyFunction : public Function {    //å…¬æœ‰æ´¾ç”Ÿç±»MyFunctionå®šä¹‰
 public:
-    virtual double operator()(double x) const;    //¸²¸ÇĞéº¯Êı
+    virtual double operator()(double x) const;    //è¦†ç›–è™šå‡½æ•°
 };
 
-class Integration {    //³éÏóÀàIntegration¶¨Òå
+class Integration {    //æŠ½è±¡ç±»Integrationå®šä¹‰
 public:
     virtual double operator () (double a, double b, double eps) const = 0;
-    //Ğé¹¹º¯Êı
+    //è™šæ„å‡½æ•°
     virtual ~Integration() {}
 };
 
-class Trapz : public Integration {    //¹«ÓĞÅÉÉúÀàTrapz¶¨Òå
+class Trapz : public Integration {    //å…¬æœ‰æ´¾ç”Ÿç±»Trapzå®šä¹‰
 public:
-    Trapz(const Function& f) : f(f) {}    //¹¹Ôìº¯Êı
+    Trapz(const Function& f) : f(f) {}    //æ„é€ å‡½æ•°
     virtual double operator () (double a, double b, double eps) const;
 private:
-    const Function& f;    //Ë½ÓĞ³ÉÔ±£¬FunctionÀà¶ÔÏóµÄÖ¸Õë
+    const Function& f;    //ç§æœ‰æˆå‘˜ï¼ŒFunctionç±»å¯¹è±¡çš„æŒ‡é’ˆ
 };

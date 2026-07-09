@@ -10,32 +10,32 @@ int main() {
         return -1;
     }
 
-    // ÊäÈëÊı×ÖmºÍ½øÖÆn
+    // è¾“å…¥æ•°å­—må’Œè¿›åˆ¶n
     int num, n;
     inFiles >> num >> n;
 
     vector<int> result;
 
-    // ½«Êı×Ö×ª»»Îªn½øÖÆ
+    // å°†æ•°å­—è½¬æ¢ä¸ºnè¿›åˆ¶
     while (num > 0) {
-        result.push_back(num % n);  // ÓàÊı×÷Îªµ±Ç°Î»
-        num = num / n;  // ¸üĞÂnumÎª³ıÒÔnºóµÄÖµ
+        result.push_back(num % n);  // ä½™æ•°ä½œä¸ºå½“å‰ä½
+        num = num / n;  // æ›´æ–°numä¸ºé™¤ä»¥nåçš„å€¼
     }
 
-    // ÓÉÓÚÎÒÃÇÊÇ´ÓµÍÎ»µ½¸ßÎ»´æ´¢£¬½á¹ûĞèÒª·´×ª
+    // ç”±äºæˆ‘ä»¬æ˜¯ä»ä½ä½åˆ°é«˜ä½å­˜å‚¨ï¼Œç»“æœéœ€è¦åè½¬
     int size = result.size();
     for (int i = 0; i < (size / 2); ++i) {
         swap(result[i], result[size - i - 1]);
     }
 
-    // Êä³öµ½out.txt
+    // è¾“å‡ºåˆ°out.txt
     ofstream outFiles("out.txt");
     if (!outFiles) {
         cerr << "error!" << endl;
         return -1;
     }
 
-    // Êä³öÃ¿Ò»Î»£¬ÖĞ¼äÓÃ¿Õ¸ñ¸ô¿ª
+    // è¾“å‡ºæ¯ä¸€ä½ï¼Œä¸­é—´ç”¨ç©ºæ ¼éš”å¼€
     for (int i = 0; i < size; ++i) {
         outFiles << result[i] << " ";
     }

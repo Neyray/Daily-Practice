@@ -49,7 +49,7 @@ public:
 
 int main() {
     ChildTree tree;
-    tree.addNode('A');  // ¸ù½Úµã
+    tree.addNode('A');  // æ ¹èŠ‚ç‚¹
     tree.addNode('B');
     tree.addNode('C');
     tree.addNode('D');
@@ -57,12 +57,12 @@ int main() {
     tree.addNode('F');
     tree.addNode('G');
 
-    tree.addChild(0, 1);  // AµÄº¢×ÓÊÇB
-    tree.addChild(0, 2);  // AµÄº¢×ÓÊÇC
-    tree.addChild(0, 3);  // AµÄº¢×ÓÊÇD
-    tree.addChild(1, 4);  // BµÄº¢×ÓÊÇE
-    tree.addChild(2, 5);  // CµÄº¢×ÓÊÇF
-    tree.addChild(3, 6);  // DµÄº¢×ÓÊÇG
+    tree.addChild(0, 1);  // Açš„å­©å­æ˜¯B
+    tree.addChild(0, 2);  // Açš„å­©å­æ˜¯C
+    tree.addChild(0, 3);  // Açš„å­©å­æ˜¯D
+    tree.addChild(1, 4);  // Bçš„å­©å­æ˜¯E
+    tree.addChild(2, 5);  // Cçš„å­©å­æ˜¯F
+    tree.addChild(3, 6);  // Dçš„å­©å­æ˜¯G
 
     tree.printTree();
     return 0;

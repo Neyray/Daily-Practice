@@ -5,60 +5,60 @@
 using namespace std;
 
 /**
- * ¶ş·Ö²éÕÒ£¨Binary Search£©
- * ÊÊÓÃÓÚÓĞĞòÊı×éµÄ²éÕÒËã·¨
- * Ê±¼ä¸´ÔÓ¶È£ºO(log n)
- * ¿Õ¼ä¸´ÔÓ¶È£ºO(1)
+ * äºŒåˆ†æŸ¥æ‰¾ï¼ˆBinary Searchï¼‰
+ * é€‚ç”¨äºæœ‰åºæ•°ç»„çš„æŸ¥æ‰¾ç®—æ³•
+ * æ—¶é—´å¤æ‚åº¦ï¼šO(log n)
+ * ç©ºé—´å¤æ‚åº¦ï¼šO(1)
  */
 
- // µİ¹é°æ±¾µÄ¶ş·Ö²éÕÒ
+ // é€’å½’ç‰ˆæœ¬çš„äºŒåˆ†æŸ¥æ‰¾
 int binarySearchRecursive(vector<int>& arr, int target, int left, int right) {
-    // »ù±¾Çé¿ö£º²éÕÒ·¶Î§ÎŞĞ§
+    // åŸºæœ¬æƒ…å†µï¼šæŸ¥æ‰¾èŒƒå›´æ— æ•ˆ
     if (left > right) {
-        return -1; // Î´ÕÒµ½
+        return -1; // æœªæ‰¾åˆ°
     }
 
-    // ¼ÆËãÖĞ¼äÎ»ÖÃ£¬·ÀÖ¹Òç³ö
+    // è®¡ç®—ä¸­é—´ä½ç½®ï¼Œé˜²æ­¢æº¢å‡º
     int mid = left + (right - left) / 2;
 
-    // ÕÒµ½Ä¿±êÔªËØ
+    // æ‰¾åˆ°ç›®æ ‡å…ƒç´ 
     if (arr[mid] == target) {
         return mid;
     }
-    // Ä¿±êÔÚ×ó°ë²¿·Ö
+    // ç›®æ ‡åœ¨å·¦åŠéƒ¨åˆ†
     else if (arr[mid] > target) {
         return binarySearchRecursive(arr, target, left, mid - 1);
     }
-    // Ä¿±êÔÚÓÒ°ë²¿·Ö
+    // ç›®æ ‡åœ¨å³åŠéƒ¨åˆ†
     else {
         return binarySearchRecursive(arr, target, mid + 1, right);
     }
 }
 
-// µü´ú°æ±¾µÄ¶ş·Ö²éÕÒ
+// è¿­ä»£ç‰ˆæœ¬çš„äºŒåˆ†æŸ¥æ‰¾
 int binarySearchIterative(vector<int>& arr, int target) {
     int left = 0;
     int right = arr.size() - 1;
 
     while (left <= right) {
-        // ¼ÆËãÖĞ¼äÎ»ÖÃ
+        // è®¡ç®—ä¸­é—´ä½ç½®
         int mid = left + (right - left) / 2;
 
         if (arr[mid] == target) {
-            return mid; // ÕÒµ½Ä¿±ê£¬·µ»ØË÷Òı
+            return mid; // æ‰¾åˆ°ç›®æ ‡ï¼Œè¿”å›ç´¢å¼•
         }
         else if (arr[mid] > target) {
-            right = mid - 1; // ÔÚ×ó°ë²¿·Ö¼ÌĞø²éÕÒ
+            right = mid - 1; // åœ¨å·¦åŠéƒ¨åˆ†ç»§ç»­æŸ¥æ‰¾
         }
         else {
-            left = mid + 1;   // ÔÚÓÒ°ë²¿·Ö¼ÌĞø²éÕÒ
+            left = mid + 1;   // åœ¨å³åŠéƒ¨åˆ†ç»§ç»­æŸ¥æ‰¾
         }
     }
 
-    return -1; // Î´ÕÒµ½
+    return -1; // æœªæ‰¾åˆ°
 }
 
-// ²éÕÒµÚÒ»¸ö³öÏÖµÄÎ»ÖÃ£¨´¦ÀíÖØ¸´ÔªËØ£©
+// æŸ¥æ‰¾ç¬¬ä¸€ä¸ªå‡ºç°çš„ä½ç½®ï¼ˆå¤„ç†é‡å¤å…ƒç´ ï¼‰
 int findFirst(vector<int>& arr, int target) {
     int left = 0, right = arr.size() - 1;
     int result = -1;
@@ -67,8 +67,8 @@ int findFirst(vector<int>& arr, int target) {
         int mid = left + (right - left) / 2;
 
         if (arr[mid] == target) {
-            result = mid;      // ¼ÇÂ¼µ±Ç°Î»ÖÃ
-            right = mid - 1;   // ¼ÌĞøÔÚ×ó°ë²¿·Ö²éÕÒ
+            result = mid;      // è®°å½•å½“å‰ä½ç½®
+            right = mid - 1;   // ç»§ç»­åœ¨å·¦åŠéƒ¨åˆ†æŸ¥æ‰¾
         }
         else if (arr[mid] > target) {
             right = mid - 1;
@@ -81,7 +81,7 @@ int findFirst(vector<int>& arr, int target) {
     return result;
 }
 
-// ²éÕÒ×îºóÒ»¸ö³öÏÖµÄÎ»ÖÃ£¨´¦ÀíÖØ¸´ÔªËØ£©
+// æŸ¥æ‰¾æœ€åä¸€ä¸ªå‡ºç°çš„ä½ç½®ï¼ˆå¤„ç†é‡å¤å…ƒç´ ï¼‰
 int findLast(vector<int>& arr, int target) {
     int left = 0, right = arr.size() - 1;
     int result = -1;
@@ -90,8 +90,8 @@ int findLast(vector<int>& arr, int target) {
         int mid = left + (right - left) / 2;
 
         if (arr[mid] == target) {
-            result = mid;      // ¼ÇÂ¼µ±Ç°Î»ÖÃ
-            left = mid + 1;    // ¼ÌĞøÔÚÓÒ°ë²¿·Ö²éÕÒ
+            result = mid;      // è®°å½•å½“å‰ä½ç½®
+            left = mid + 1;    // ç»§ç»­åœ¨å³åŠéƒ¨åˆ†æŸ¥æ‰¾
         }
         else if (arr[mid] > target) {
             right = mid - 1;
@@ -104,39 +104,39 @@ int findLast(vector<int>& arr, int target) {
     return result;
 }
 
-// ²âÊÔº¯Êı
+// æµ‹è¯•å‡½æ•°
 void testBinarySearch() {
     vector<int> arr = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 };
     int target = 7;
 
-    cout << "Êı×é: ";
+    cout << "æ•°ç»„: ";
     for (int num : arr) {
         cout << num << " ";
     }
     cout << endl;
 
-    cout << "²éÕÒÄ¿±ê: " << target << endl;
+    cout << "æŸ¥æ‰¾ç›®æ ‡: " << target << endl;
 
-    // ²âÊÔµİ¹é°æ±¾
+    // æµ‹è¯•é€’å½’ç‰ˆæœ¬
     int result1 = binarySearchRecursive(arr, target, 0, arr.size() - 1);
-    cout << "µİ¹é°æ±¾½á¹û: " << (result1 != -1 ? to_string(result1) : "Î´ÕÒµ½") << endl;
+    cout << "é€’å½’ç‰ˆæœ¬ç»“æœ: " << (result1 != -1 ? to_string(result1) : "æœªæ‰¾åˆ°") << endl;
 
-    // ²âÊÔµü´ú°æ±¾
+    // æµ‹è¯•è¿­ä»£ç‰ˆæœ¬
     int result2 = binarySearchIterative(arr, target);
-    cout << "µü´ú°æ±¾½á¹û: " << (result2 != -1 ? to_string(result2) : "Î´ÕÒµ½") << endl;
+    cout << "è¿­ä»£ç‰ˆæœ¬ç»“æœ: " << (result2 != -1 ? to_string(result2) : "æœªæ‰¾åˆ°") << endl;
 
-    // ²âÊÔÖØ¸´ÔªËØµÄÇé¿ö
+    // æµ‹è¯•é‡å¤å…ƒç´ çš„æƒ…å†µ
     vector<int> arrWithDup = { 1, 2, 2, 2, 3, 4, 5 };
-    cout << "\n´øÖØ¸´ÔªËØµÄÊı×é: ";
+    cout << "\nå¸¦é‡å¤å…ƒç´ çš„æ•°ç»„: ";
     for (int num : arrWithDup) {
         cout << num << " ";
     }
     cout << endl;
 
     int dupTarget = 2;
-    cout << "²éÕÒÄ¿±ê: " << dupTarget << endl;
-    cout << "µÚÒ»¸ö³öÏÖÎ»ÖÃ: " << findFirst(arrWithDup, dupTarget) << endl;
-    cout << "×îºóÒ»¸ö³öÏÖÎ»ÖÃ: " << findLast(arrWithDup, dupTarget) << endl;
+    cout << "æŸ¥æ‰¾ç›®æ ‡: " << dupTarget << endl;
+    cout << "ç¬¬ä¸€ä¸ªå‡ºç°ä½ç½®: " << findFirst(arrWithDup, dupTarget) << endl;
+    cout << "æœ€åä¸€ä¸ªå‡ºç°ä½ç½®: " << findLast(arrWithDup, dupTarget) << endl;
 }
 
 int main() {

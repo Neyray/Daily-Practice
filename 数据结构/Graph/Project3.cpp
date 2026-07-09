@@ -28,14 +28,14 @@ void bfs(int start) {
 }
 
 int main() {
-    // ¹¹½¨Í¼
+    // æž„å»ºå›¾
     adj[0] = { 1, 2 };
     adj[1] = { 0, 3 };
     adj[2] = { 0, 4 };
     adj[3] = { 1 };
     adj[4] = { 2 };
 
-    cout << "BFS±éÀú½á¹û£º";
+    cout << "BFSéåŽ†ç»“æžœï¼š";
     bfs(0);
     return 0;
 }

@@ -3,7 +3,7 @@
 #include <unordered_map>
 using namespace std;
 
-// ¶¨Òå¶ş²æÊ÷½Úµã½á¹¹
+// å®šä¹‰äºŒå‰æ ‘èŠ‚ç‚¹ç»“æ„
 struct TreeNode {
     int val;         
     TreeNode* left;  
@@ -13,65 +13,65 @@ struct TreeNode {
 
 
 TreeNode * buildTreeHelper(vector<int>&preorder, int& preIdx, int inStart, int inEnd, unordered_map<int, int>&inMap) {
-    // µİ¹éÖÕÖ¹Ìõ¼ş£ºµ±Ç°×ÓÊ÷·¶Î§ÎŞĞ§
+    // é€’å½’ç»ˆæ­¢æ¡ä»¶ï¼šå½“å‰å­æ ‘èŒƒå›´æ— æ•ˆ
     if (inStart > inEnd) return nullptr;
 
-    // ´ÓÇ°ĞòÊı×é»ñÈ¡µ±Ç°¸ù½ÚµãÖµ£¬²¢´´½¨½Úµã
+    // ä»å‰åºæ•°ç»„è·å–å½“å‰æ ¹èŠ‚ç‚¹å€¼ï¼Œå¹¶åˆ›å»ºèŠ‚ç‚¹
     int rootVal = preorder[preIdx];
     TreeNode* root = new TreeNode(rootVal);
 
-    // ²éÕÒµ±Ç°¸ù½ÚµãÔÚÖĞĞòÊı×éÖĞµÄÎ»ÖÃ£¬·Ö¸î×óÓÒ×ÓÊ÷
+    // æŸ¥æ‰¾å½“å‰æ ¹èŠ‚ç‚¹åœ¨ä¸­åºæ•°ç»„ä¸­çš„ä½ç½®ï¼Œåˆ†å‰²å·¦å³å­æ ‘
     int inRootIdx = inMap[rootVal];
 
-    // Ç°ĞòË÷ÒıµİÔö£¬×¼±¸´¦ÀíÏÂÒ»¸ö¸ù½Úµã
+    // å‰åºç´¢å¼•é€’å¢ï¼Œå‡†å¤‡å¤„ç†ä¸‹ä¸€ä¸ªæ ¹èŠ‚ç‚¹
     preIdx++;
 
-    // µİ¹é¹¹½¨×ó×ÓÊ÷£¨·¶Î§£ºinStartµ½inRootIdx-1£©
+    // é€’å½’æ„å»ºå·¦å­æ ‘ï¼ˆèŒƒå›´ï¼šinStartåˆ°inRootIdx-1ï¼‰
     root->left = buildTreeHelper(preorder, preIdx, inStart, inRootIdx - 1, inMap);
-    // µİ¹é¹¹½¨ÓÒ×ÓÊ÷£¨·¶Î§£ºinRootIdx+1µ½inEnd£©
+    // é€’å½’æ„å»ºå³å­æ ‘ï¼ˆèŒƒå›´ï¼šinRootIdx+1åˆ°inEndï¼‰
     root->right = buildTreeHelper(preorder, preIdx, inRootIdx + 1, inEnd, inMap);
 
-    return root; // ·µ»Øµ±Ç°¹¹½¨µÄ×ÓÊ÷¸ù½Úµã
+    return root; // è¿”å›å½“å‰æ„å»ºçš„å­æ ‘æ ¹èŠ‚ç‚¹
 }
 
 
 TreeNode * buildTree(vector<int>&preorder, vector<int>&inorder) {
-    // ´´½¨ÖĞĞòÊı×éµÄÖµµ½Ë÷ÒıµÄÓ³Éä±í£¨¼ÓËÙ²éÕÒ£©
+    // åˆ›å»ºä¸­åºæ•°ç»„çš„å€¼åˆ°ç´¢å¼•çš„æ˜ å°„è¡¨ï¼ˆåŠ é€ŸæŸ¥æ‰¾ï¼‰
     unordered_map<int, int> inMap;
     for (int i = 0; i < inorder.size(); ++i) {
         inMap[inorder[i]] = i; 
     }
 
-    int preIdx = 0; // Ç°ĞòÊı×é´ÓµÚÒ»¸öÔªËØ¿ªÊ¼´¦Àí£¨¸ù½Úµã£©
-    // µ÷ÓÃ¸¨Öúº¯Êı£¬³õÊ¼·¶Î§ÊÇÕû¸öÖĞĞòÊı×é
+    int preIdx = 0; // å‰åºæ•°ç»„ä»ç¬¬ä¸€ä¸ªå…ƒç´ å¼€å§‹å¤„ç†ï¼ˆæ ¹èŠ‚ç‚¹ï¼‰
+    // è°ƒç”¨è¾…åŠ©å‡½æ•°ï¼Œåˆå§‹èŒƒå›´æ˜¯æ•´ä¸ªä¸­åºæ•°ç»„
     return buildTreeHelper(preorder, preIdx, 0, inorder.size() - 1, inMap);
 }
 
 
 void postorderTraversal(TreeNode * root, vector<int>&result) {
-    if (!root) return; // µİ¹éÖÕÖ¹Ìõ¼ş
+    if (!root) return; // é€’å½’ç»ˆæ­¢æ¡ä»¶
 
-    postorderTraversal(root->left, result);  // ÏÈ±éÀú×ó×ÓÊ÷
-    postorderTraversal(root->right, result); // ÔÙ±éÀúÓÒ×ÓÊ÷
-    result.push_back(root->val);             // ×îºó¼ÇÂ¼µ±Ç°½ÚµãÖµ
+    postorderTraversal(root->left, result);  // å…ˆéå†å·¦å­æ ‘
+    postorderTraversal(root->right, result); // å†éå†å³å­æ ‘
+    result.push_back(root->val);             // æœ€åè®°å½•å½“å‰èŠ‚ç‚¹å€¼
 }
 
 int main() {
-    // Ê¾ÀıÊäÈëÊı¾İ
-    vector<int> preorder = { 3, 9, 20, 15, 7 };  // Ç°Ğò£º¸ù -> ×ó -> ÓÒ
-    vector<int> inorder = { 9, 3, 15, 20, 7 };   // ÖĞĞò£º×ó -> ¸ù -> ÓÒ
+    // ç¤ºä¾‹è¾“å…¥æ•°æ®
+    vector<int> preorder = { 3, 9, 20, 15, 7 };  // å‰åºï¼šæ ¹ -> å·¦ -> å³
+    vector<int> inorder = { 9, 3, 15, 20, 7 };   // ä¸­åºï¼šå·¦ -> æ ¹ -> å³
 
-    // ¹¹½¨¶ş²æÊ÷
+    // æ„å»ºäºŒå‰æ ‘
     TreeNode* root = buildTree(preorder, inorder);
 
-    // Ö´ĞĞºóĞò±éÀú
+    // æ‰§è¡Œååºéå†
     vector<int> postorder;
     postorderTraversal(root, postorder);
 
-    // Êä³öºóĞò½á¹û£¨×ó -> ÓÒ -> ¸ù£©
+    // è¾“å‡ºååºç»“æœï¼ˆå·¦ -> å³ -> æ ¹ï¼‰
     cout << "Postorder traversal: ";
     for (int num : postorder) {
-        cout << num << " ";  // Ô¤ÆÚÊä³ö£º9 15 7 20 3 
+        cout << num << " ";  // é¢„æœŸè¾“å‡ºï¼š9 15 7 20 3 
     }
 
     return 0;

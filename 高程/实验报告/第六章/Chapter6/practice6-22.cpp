@@ -4,16 +4,16 @@ using namespace std;
 
 void reverse(string& s, int start = 0, int end = -1)
 {
-    if (end == -1)  // 第一次调用时设置结束位置
+    if (end == -1)  // 绗竴娆¤皟鐢ㄦ椂璁剧疆缁撴潫浣嶇疆
         end = s.length() - 1;
 
-    if (start >= end)  // 基线条件
+    if (start >= end)  // 鍩虹嚎鏉′欢
         return;
 
-    // 交换首尾字符
+    // 浜ゆ崲棣栧熬瀛楃
     swap(s[start], s[end]);
 
-    // 递归处理子字符串
+    // 閫掑綊澶勭悊瀛愬瓧绗︿覆
     reverse(s, start + 1, end - 1);
 }
 

@@ -6,8 +6,8 @@ struct ThreadNode {
     int data;
     ThreadNode* lchild;
     ThreadNode* rchild;
-    int ltag;  // 0 ±íÊ¾ÕæÕıµÄ×ó×ÓÖ¸Õë£¬1 ±íÊ¾Ç°ÇıÏßË÷Ö¸Õë
-    int rtag;  // 0 ±íÊ¾ÕæÕıµÄÓÒ×ÓÖ¸Õë£¬1 ±íÊ¾ºó¼ÌÏßË÷Ö¸Õë
+    int ltag;  // 0 è¡¨ç¤ºçœŸæ­£çš„å·¦å­æŒ‡é’ˆï¼Œ1 è¡¨ç¤ºå‰é©±çº¿ç´¢æŒ‡é’ˆ
+    int rtag;  // 0 è¡¨ç¤ºçœŸæ­£çš„å³å­æŒ‡é’ˆï¼Œ1 è¡¨ç¤ºåç»§çº¿ç´¢æŒ‡é’ˆ
 
     ThreadNode(int val)
         : data(val), lchild(nullptr), rchild(nullptr), ltag(0), rtag(0)
@@ -15,7 +15,7 @@ struct ThreadNode {
     }
 };
 
-// ¹¹½¨Ê¾Àı¶ş²æÊ÷£º
+// æ„å»ºç¤ºä¾‹äºŒå‰æ ‘ï¼š
 //        1
 //      /   \
 //     2     3
@@ -31,7 +31,7 @@ ThreadNode* buildSample() {
     return root;
 }
 
-// ¡ª¡ª Ç°ĞòÏßË÷»¯ºËĞÄº¯Êı ¡ª¡ª
+// â€”â€” å‰åºçº¿ç´¢åŒ–æ ¸å¿ƒå‡½æ•° â€”â€”
 void preThreading(ThreadNode* cur, ThreadNode*& pre) {
     if (!cur) return;
     if (!cur->lchild) {
@@ -61,7 +61,7 @@ void preOrderTraverse(ThreadNode* root) {
     }
 }
 
-// ¡ª¡ª ÖĞĞòÏßË÷»¯ºËĞÄº¯Êı ¡ª¡ª
+// â€”â€” ä¸­åºçº¿ç´¢åŒ–æ ¸å¿ƒå‡½æ•° â€”â€”
 void inThreading(ThreadNode* cur, ThreadNode*& pre) {
     if (!cur) return;
     inThreading(cur->lchild, pre);
@@ -96,7 +96,7 @@ void inOrderTraverse(ThreadNode* root) {
     }
 }
 
-// ¡ª¡ª ºóĞò±éÀú£¨µİ¹é°æ±¾£¬±Ü¿ªÏßË÷»¯ÆÆ»µ£© ¡ª¡ª
+// â€”â€” ååºéå†ï¼ˆé€’å½’ç‰ˆæœ¬ï¼Œé¿å¼€çº¿ç´¢åŒ–ç ´åï¼‰ â€”â€”
 void postOrderTraverse(ThreadNode* root) {
     if (!root) return;
     if (root->ltag == 0) postOrderTraverse(root->lchild);
@@ -105,7 +105,7 @@ void postOrderTraverse(ThreadNode* root) {
 }
 
 int main() {
-    // ÖĞĞòÊ¾Àı
+    // ä¸­åºç¤ºä¾‹
     {
         ThreadNode* root = buildSample();
         createInThread(root);
@@ -114,7 +114,7 @@ int main() {
         cout << "\n";
     }
 
-    // Ç°ĞòÊ¾Àı
+    // å‰åºç¤ºä¾‹
     {
         ThreadNode* root = buildSample();
         createPreThread(root);
@@ -123,7 +123,7 @@ int main() {
         cout << "\n";
     }
 
-    // ºóĞòÊ¾Àı£¨²ÉÓÃµİ¹é£¬±ÜÃâÏßË÷»¯¸ÉÈÅ£©
+    // ååºç¤ºä¾‹ï¼ˆé‡‡ç”¨é€’å½’ï¼Œé¿å…çº¿ç´¢åŒ–å¹²æ‰°ï¼‰
     {
         ThreadNode* root = buildSample();
         cout << "PostOrder:";

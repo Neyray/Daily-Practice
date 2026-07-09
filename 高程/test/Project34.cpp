@@ -1,38 +1,38 @@
 #include <iostream>
 using namespace std;
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void computeGCDandLCM(int a, int b, int& gcd, int& lcm);
 
 int main() {
     int num1, num2, gcd, lcm;
 
-    // ÊäÈëÁ½¸öÕûÊı
-    cout << "ÇëÊäÈëÁ½¸öÕıÕûÊı: ";
+    // è¾“å…¥ä¸¤ä¸ªæ•´æ•°
+    cout << "è¯·è¾“å…¥ä¸¤ä¸ªæ­£æ•´æ•°: ";
     cin >> num1 >> num2;
 
-    // È·±£ÊäÈëÎªÕıÊı
+    // ç¡®ä¿è¾“å…¥ä¸ºæ­£æ•°
     if (num1 <= 0 || num2 <= 0) {
-        cout << "ÇëÊäÈëÕıÕûÊı£¡" << endl;
+        cout << "è¯·è¾“å…¥æ­£æ•´æ•°ï¼" << endl;
         return 1;
     }
 
-    // ¼ÆËãGCDºÍLCM
+    // è®¡ç®—GCDå’ŒLCM
     computeGCDandLCM(num1, num2, gcd, lcm);
 
-    // Êä³ö½á¹û
-    cout << "×î´ó¹«Ô¼Êı (GCD): " << gcd << endl;
-    cout << "×îĞ¡¹«±¶Êı (LCM): " << lcm << endl;
+    // è¾“å‡ºç»“æœ
+    cout << "æœ€å¤§å…¬çº¦æ•° (GCD): " << gcd << endl;
+    cout << "æœ€å°å…¬å€æ•° (LCM): " << lcm << endl;
 
     return 0;
 }
 
-// Ê¹ÓÃÅ·¼¸ÀïµÃËã·¨¼ÆËã×î´ó¹«Ô¼ÊıºÍ×îĞ¡¹«±¶Êı
+// ä½¿ç”¨æ¬§å‡ é‡Œå¾—ç®—æ³•è®¡ç®—æœ€å¤§å…¬çº¦æ•°å’Œæœ€å°å…¬å€æ•°
 void computeGCDandLCM(int a, int b, int& gcd, int& lcm) {
     int originalA = a;
     int originalB = b;
 
-    // ¼ÆËã×î´ó¹«Ô¼Êı£¨Õ·×ªÏà³ı·¨£©
+    // è®¡ç®—æœ€å¤§å…¬çº¦æ•°ï¼ˆè¾—è½¬ç›¸é™¤æ³•ï¼‰
     while (b != 0) {
         int temp = b;
         b = a % b;
@@ -40,7 +40,7 @@ void computeGCDandLCM(int a, int b, int& gcd, int& lcm) {
     }
     gcd = a;
 
-    // ¼ÆËã×îĞ¡¹«±¶Êı£ºLCM = (a * b) / GCD
-    // ÏÈ½øĞĞ³ı·¨±ÜÃâÒç³ö
+    // è®¡ç®—æœ€å°å…¬å€æ•°ï¼šLCM = (a * b) / GCD
+    // å…ˆè¿›è¡Œé™¤æ³•é¿å…æº¢å‡º
     lcm = (originalA / gcd) * originalB;
 }

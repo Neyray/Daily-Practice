@@ -3,20 +3,20 @@
 #include <iostream>
 using namespace std;
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 Accumulator::Accumulator(const Date& date, double value)
     : lastDate(date), value(value), sum(0) {
 }
 
-// ¸Ä±äÊıÖµ
+// æ”¹å˜æ•°å€¼
 void Accumulator::change(const Date& date, double newValue) {
-    // ÀÛ¼ÓÖ®Ç°µÄÖµ
+    // ç´¯åŠ ä¹‹å‰çš„å€¼
     sum = getSum(date);
     lastDate = date;
     value = newValue;
 }
 
-// ÖØÖÃÊıÖµ
+// é‡ç½®æ•°å€¼
 void Accumulator::reset(const Date& date, double newValue) {
     lastDate = date;
     value = newValue;

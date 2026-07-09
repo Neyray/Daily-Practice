@@ -4,7 +4,7 @@ using namespace std;
 int fn1()
 {
     int* p = new int(5);
-    return *p;  // ÄÚ´æĞ¹Â©£ºÃ»ÓĞdelete
+    return *p;  // å†…å­˜æ³„æ¼ï¼šæ²¡æœ‰delete
 }
 
 int main()

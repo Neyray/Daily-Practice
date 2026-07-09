@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void inputMatrix(int** matrix, int m, int n);
 void printMatrix(int** matrix, int m, int n);
 int** transposeMatrix(int** matrix, int m, int n);
@@ -10,23 +10,23 @@ int** multiplyMatrix(int** matrix1, int m, int n, int** matrix2, int p);
 int main() {
     int m, n, p;
 
-    cout << "ÇëÊäÈëµÚÒ»¸ö¾ØÕóµÄĞĞÊıºÍÁĞÊı: ";
+    cout << "è¯·è¾“å…¥ç¬¬ä¸€ä¸ªçŸ©é˜µçš„è¡Œæ•°å’Œåˆ—æ•°: ";
     cin >> m >> n;
 
-    // ·ÖÅäµÚÒ»¸ö¾ØÕóÄÚ´æ
+    // åˆ†é…ç¬¬ä¸€ä¸ªçŸ©é˜µå†…å­˜
     int** matrix1 = new int* [m];
     for (int i = 0; i < m; ++i) {
         matrix1[i] = new int[n];
     }
 
-    // ÊäÈëµÚÒ»¸ö¾ØÕó
-    cout << "ÇëÊäÈë" << m << "ĞĞ" << n << "ÁĞµÄµÚÒ»¸ö¾ØÕó:" << endl;
+    // è¾“å…¥ç¬¬ä¸€ä¸ªçŸ©é˜µ
+    cout << "è¯·è¾“å…¥" << m << "è¡Œ" << n << "åˆ—çš„ç¬¬ä¸€ä¸ªçŸ©é˜µ:" << endl;
     inputMatrix(matrix1, m, n);
 
-    cout << "\nÇëÊäÈëµÚ¶ş¸ö¾ØÕóµÄÁĞÊı: ";
+    cout << "\nè¯·è¾“å…¥ç¬¬äºŒä¸ªçŸ©é˜µçš„åˆ—æ•°: ";
     cin >> p;
 
-    // ·ÖÅäµÚ¶ş¸ö¾ØÕóÄÚ´æ (nĞĞpÁĞ)
+    // åˆ†é…ç¬¬äºŒä¸ªçŸ©é˜µå†…å­˜ (nè¡Œpåˆ—)
     int** matrix2 = new int* [n];
     for (int i = 0; i < n; ++i) {
         matrix2[i] = new int[p];
@@ -41,14 +41,14 @@ int main() {
 
     printMatrix(matrix2, n, p);
 
-    // ¾ØÕó³Ë·¨
+    // çŸ©é˜µä¹˜æ³•
     int** result = multiplyMatrix(matrix1, m, n, matrix2, p);
 
-    // Êä³ö½á¹û¾ØÕó
+    // è¾“å‡ºç»“æœçŸ©é˜µ
 
     printMatrix(result, m, p);
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     for (int i = 0; i < m; ++i) {
         delete[] matrix1[i];
     }
@@ -85,13 +85,13 @@ void printMatrix(int** matrix, int m, int n) {
 }
 
 int** transposeMatrix(int** matrix, int m, int n) {
-    // ´´½¨×ªÖÃ¾ØÕó£¬Î¬¶ÈÎª n¡Ám
+    // åˆ›å»ºè½¬ç½®çŸ©é˜µï¼Œç»´åº¦ä¸º nÃ—m
     int** transposed = new int* [n];
     for (int i = 0; i < n; ++i) {
         transposed[i] = new int[m];
     }
 
-    // ½øĞĞ×ªÖÃ
+    // è¿›è¡Œè½¬ç½®
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < n; ++j) {
             transposed[j][i] = matrix[i][j];
@@ -102,16 +102,16 @@ int** transposeMatrix(int** matrix, int m, int n) {
 }
 
 int** multiplyMatrix(int** matrix1, int m, int n, int** matrix2, int p) {
-    // ´´½¨½á¹û¾ØÕó£¬Î¬¶ÈÎª m¡Áp
+    // åˆ›å»ºç»“æœçŸ©é˜µï¼Œç»´åº¦ä¸º mÃ—p
     int** result = new int* [m];
     for (int i = 0; i < m; ++i) {
         result[i] = new int[p];
     }
 
-    // ¾ØÕó³Ë·¨: result[i][j] = sum(matrix1[i][k] * matrix2[k][j])
+    // çŸ©é˜µä¹˜æ³•: result[i][j] = sum(matrix1[i][k] * matrix2[k][j])
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < p; ++j) {
-            result[i][j] = 0;  // ³õÊ¼»¯Îª0
+            result[i][j] = 0;  // åˆå§‹åŒ–ä¸º0
             for (int k = 0; k < n; ++k) {
                 result[i][j] += matrix1[i][k] * matrix2[k][j];
             }

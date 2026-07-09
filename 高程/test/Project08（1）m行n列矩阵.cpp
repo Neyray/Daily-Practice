@@ -1,38 +1,38 @@
 #include <iostream>
 using namespace std;
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void inputMatrix(int** matrix, int m, int n);
 void printMatrix(int** matrix, int m, int n);
 int** transposeMatrix(int** matrix, int m, int n);
 
 int main() {
-    int m, n;  // ĞĞÊıºÍÁĞÊı
-    cout << "ÇëÊäÈë¾ØÕóµÄĞĞÊıºÍÁĞÊı: ";
+    int m, n;  // è¡Œæ•°å’Œåˆ—æ•°
+    cout << "è¯·è¾“å…¥çŸ©é˜µçš„è¡Œæ•°å’Œåˆ—æ•°: ";
     cin >> m >> n;
 
-    // ·ÖÅäÔ­¾ØÕóÄÚ´æ
+    // åˆ†é…åŸçŸ©é˜µå†…å­˜
     int** matrix = new int* [m];
     for (int i = 0; i < m; ++i) {
         matrix[i] = new int[n];
     }
 
-    // ÊäÈë¾ØÕó
-    cout << "ÇëÊäÈë" << m << "ĞĞ" << n << "ÁĞµÄ¾ØÕó:" << endl;
+    // è¾“å…¥çŸ©é˜µ
+    cout << "è¯·è¾“å…¥" << m << "è¡Œ" << n << "åˆ—çš„çŸ©é˜µ:" << endl;
     inputMatrix(matrix, m, n);
 
-    // Êä³öÔ­¾ØÕó
-    cout << "\nÔ­¾ØÕó:" << endl;
+    // è¾“å‡ºåŸçŸ©é˜µ
+    cout << "\nåŸçŸ©é˜µ:" << endl;
     printMatrix(matrix, m, n);
 
-    // ×ªÖÃ¾ØÕó
+    // è½¬ç½®çŸ©é˜µ
     int** transposed = transposeMatrix(matrix, m, n);
 
-    // Êä³ö×ªÖÃ¾ØÕó
-    cout << "\n×ªÖÃ¾ØÕó:" << endl;
+    // è¾“å‡ºè½¬ç½®çŸ©é˜µ
+    cout << "\nè½¬ç½®çŸ©é˜µ:" << endl;
     printMatrix(transposed, n, m);
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     for (int i = 0; i < m; ++i) {
         delete[] matrix[i];
     }
@@ -49,7 +49,7 @@ int main() {
 void inputMatrix(int** matrix, int m, int n) {
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < n; ++j) {
-            cin >> matrix[i][j];  // Ê¹ÓÃÊı×éÏÂ±êĞÎÊ½£¬¸üÇåÎú
+            cin >> matrix[i][j];  // ä½¿ç”¨æ•°ç»„ä¸‹æ ‡å½¢å¼ï¼Œæ›´æ¸…æ™°
         }
     }
 }
@@ -57,20 +57,20 @@ void inputMatrix(int** matrix, int m, int n) {
 void printMatrix(int** matrix, int m, int n) {
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < n; ++j) {
-            cout << matrix[i][j] << " ";  // Ê¹ÓÃÊı×éÏÂ±êĞÎÊ½
+            cout << matrix[i][j] << " ";  // ä½¿ç”¨æ•°ç»„ä¸‹æ ‡å½¢å¼
         }
         cout << endl;
     }
 }
 
 int** transposeMatrix(int** matrix, int m, int n) {
-    // ´´½¨×ªÖÃ¾ØÕó£¬Î¬¶ÈÎª n¡Ám
+    // åˆ›å»ºè½¬ç½®çŸ©é˜µï¼Œç»´åº¦ä¸º nÃ—m
     int** transposed = new int* [n];
     for (int i = 0; i < n; ++i) {
         transposed[i] = new int[m];
     }
 
-    // ½øĞĞ×ªÖÃ
+    // è¿›è¡Œè½¬ç½®
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < n; ++j) {
             transposed[j][i] = matrix[i][j];

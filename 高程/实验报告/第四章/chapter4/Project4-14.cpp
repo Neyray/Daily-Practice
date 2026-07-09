@@ -8,7 +8,7 @@ public:
         age += years;
     }
     void showAge() const {
-        cout << "Ê÷ÁäÎª: " << age << " Äê" << endl;
+        cout << "æ ‘é¾„ä¸º: " << age << " å¹´" << endl;
     }
 private:
     int age;

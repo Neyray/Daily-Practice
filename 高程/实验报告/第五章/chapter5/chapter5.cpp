@@ -5,10 +5,10 @@ class Ctype
 {
 private:
     int a;
-    static int s;         // ¾²Ì¬Êı¾İ³ÉÔ±
+    static int s;         // é™æ€æ•°æ®æˆå‘˜
 public:
     void Print();
-    //¹¹Ôìº¯Êı
+    //æ„é€ å‡½æ•°
     Ctype(int x = 0);
 };
 
@@ -23,7 +23,7 @@ Ctype::Ctype(int x)
     a = x;
 }
 
-int Ctype::s = 0;  // ¾²Ì¬Êı¾İ³ÉÔ±±ØĞë¶¨ÒåÔÚÀàÍâ
+int Ctype::s = 0;  // é™æ€æ•°æ®æˆå‘˜å¿…é¡»å®šä¹‰åœ¨ç±»å¤–
 
 int main()
 {

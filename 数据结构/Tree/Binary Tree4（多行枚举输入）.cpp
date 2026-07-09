@@ -1,11 +1,11 @@
 #include <iostream>
-#include <unordered_map>  // ÓÃÓÚ¿ìËÙ²éÕÒ½ÚµãµÄ¹şÏ£±í
-#include <vector>        // ´æ´¢½ÚµãÖµµÄ¶¯Ì¬Êı×é
-#include <set>           // ÓÃÓÚ¼ÇÂ¼×Ó½Úµã¼¯ºÏ
-#include <stack>         // ÊµÏÖ·Çµİ¹é±éÀúµÄÕ»
+#include <unordered_map>  // ç”¨äºå¿«é€ŸæŸ¥æ‰¾èŠ‚ç‚¹çš„å“ˆå¸Œè¡¨
+#include <vector>        // å­˜å‚¨èŠ‚ç‚¹å€¼çš„åŠ¨æ€æ•°ç»„
+#include <set>           // ç”¨äºè®°å½•å­èŠ‚ç‚¹é›†åˆ
+#include <stack>         // å®ç°éé€’å½’éå†çš„æ ˆ
 using namespace std;
 
-// ¶ş²æÊ÷½Úµã½á¹¹¶¨Òå
+// äºŒå‰æ ‘èŠ‚ç‚¹ç»“æ„å®šä¹‰
 struct TreeNode {
     char val;
     TreeNode* left;
@@ -15,38 +15,38 @@ struct TreeNode {
 
 int main() {
     int n;
-    cin >> n;  // ¶ÁÈ¡½ÚµãÊıÁ¿
+    cin >> n;  // è¯»å–èŠ‚ç‚¹æ•°é‡
 
-    // ´´½¨½ÚµãÓ³Éä±í£¨×Ö·û -> ½ÚµãÖ¸Õë£©
+    // åˆ›å»ºèŠ‚ç‚¹æ˜ å°„è¡¨ï¼ˆå­—ç¬¦ -> èŠ‚ç‚¹æŒ‡é’ˆï¼‰
     unordered_map<char, TreeNode*> nodes;
-    set<char> children;      // ¼ÇÂ¼ËùÓĞ×÷Îª×Ó½Úµã³öÏÖµÄ×Ö·û
-    vector<char> nodeVals;   // ±£´æËùÓĞ½ÚµãÖµ£¨ÓÃÓÚºóĞøÕÒ¸ù½Úµã£©
+    set<char> children;      // è®°å½•æ‰€æœ‰ä½œä¸ºå­èŠ‚ç‚¹å‡ºç°çš„å­—ç¬¦
+    vector<char> nodeVals;   // ä¿å­˜æ‰€æœ‰èŠ‚ç‚¹å€¼ï¼ˆç”¨äºåç»­æ‰¾æ ¹èŠ‚ç‚¹ï¼‰
 
-    // ¹¹½¨¶ş²æÊ÷
+    // æ„å»ºäºŒå‰æ ‘
     for (int i = 0; i < n; ++i) {
         char val, left, right;
         cin >> val >> left >> right;
-        nodeVals.push_back(val);   //È·±£Ã¿¸ö×Ö·ûÖ»³öÏÖÒ»´Î
+        nodeVals.push_back(val);   //ç¡®ä¿æ¯ä¸ªå­—ç¬¦åªå‡ºç°ä¸€æ¬¡
 
-        // ´´½¨µ±Ç°½Úµã£¨Èç¹û²»´æÔÚ£©
+        // åˆ›å»ºå½“å‰èŠ‚ç‚¹ï¼ˆå¦‚æœä¸å­˜åœ¨ï¼‰
         if (!nodes[val]) nodes[val] = new TreeNode(val);
 
-        // ´¦Àí×ó×ÓÊ÷
+        // å¤„ç†å·¦å­æ ‘
         if (left != '#') {
             if (!nodes[left]) nodes[left] = new TreeNode(left);
             nodes[val]->left = nodes[left];
-            children.insert(left);  // ¼ÇÂ¼Îª×Ó½Úµã
+            children.insert(left);  // è®°å½•ä¸ºå­èŠ‚ç‚¹
         }
 
-        // ´¦ÀíÓÒ×ÓÊ÷
+        // å¤„ç†å³å­æ ‘
         if (right != '#') {
             if (!nodes[right]) nodes[right] = new TreeNode(right);
             nodes[val]->right = nodes[right];
-            children.insert(right); // ¼ÇÂ¼Îª×Ó½Úµã
+            children.insert(right); // è®°å½•ä¸ºå­èŠ‚ç‚¹
         }
     }
 
-    // Ñ°ÕÒ¸ù½Úµã£¨Ã»ÓĞÔÚchildren¼¯ºÏÖĞ³öÏÖµÄ½Úµã£©
+    // å¯»æ‰¾æ ¹èŠ‚ç‚¹ï¼ˆæ²¡æœ‰åœ¨childrené›†åˆä¸­å‡ºç°çš„èŠ‚ç‚¹ï¼‰
     char rootVal;
     for (char c : nodeVals) {
         if (children.find(c) == children.end()) {
@@ -55,13 +55,13 @@ int main() {
         }
     }
 
-    TreeNode* root = nodes[rootVal];  // »ñÈ¡¸ù½ÚµãÖ¸Õë
+    TreeNode* root = nodes[rootVal];  // è·å–æ ¹èŠ‚ç‚¹æŒ‡é’ˆ
 
 
 
-    // Ê¹ÓÃÕ»ÊµÏÖ·Çµİ¹éÇ°Ğò±éÀú£¨½ÚµãÖ¸Õë + µ±Ç°²ã¼¶£©£¬Êµ¼ÊÉÏÊÇDFS
+    // ä½¿ç”¨æ ˆå®ç°éé€’å½’å‰åºéå†ï¼ˆèŠ‚ç‚¹æŒ‡é’ˆ + å½“å‰å±‚çº§ï¼‰ï¼Œå®é™…ä¸Šæ˜¯DFS
     stack<pair<TreeNode*, int>> stk;
-    stk.push({ root, 1 });  // ¸ù½Úµã²ã¼¶Îª1
+    stk.push({ root, 1 });  // æ ¹èŠ‚ç‚¹å±‚çº§ä¸º1
 
     while (!stk.empty()) {
         auto current = stk.top();
@@ -69,13 +69,13 @@ int main() {
         TreeNode* node = current.first;
         int level = current.second;
 
-        if (!node) continue;  // Ìø¹ı¿Õ½Úµã
+        if (!node) continue;  // è·³è¿‡ç©ºèŠ‚ç‚¹
 
-        // Êä³ö¸ñÊ½£º½ÚµãÖµ + ¿Õ¸ñ + ²ã¼¶
+        // è¾“å‡ºæ ¼å¼ï¼šèŠ‚ç‚¹å€¼ + ç©ºæ ¼ + å±‚çº§
         cout << node->val << " " << level << endl;
 
-        // Õ»µÄÌØĞÔ£ºÏÈÑ¹ÓÒ½Úµã£¬ÔÙÑ¹×ó½Úµã£¨³öÕ»Ë³Ğò¼´ÎªÏÈ×óºóÓÒ£©
-        stk.push({ node->right, level + 1 });  // ×Ó½Úµã²ã¼¶+1
+        // æ ˆçš„ç‰¹æ€§ï¼šå…ˆå‹å³èŠ‚ç‚¹ï¼Œå†å‹å·¦èŠ‚ç‚¹ï¼ˆå‡ºæ ˆé¡ºåºå³ä¸ºå…ˆå·¦åå³ï¼‰
+        stk.push({ node->right, level + 1 });  // å­èŠ‚ç‚¹å±‚çº§+1
         stk.push({ node->left, level + 1 });
     }
 

@@ -1,4 +1,4 @@
-//Ê¢Ë®ÎÊÌâ
+//ç››æ°´é—®é¢˜
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -11,19 +11,19 @@ int trap(vector<int>& height) {
 
     vector<int> left_max(n), right_max(n);
 
-    // ´Ó×óµ½ÓÒ¼ÆËãÃ¿¸öÎ»ÖÃ×ó±ßµÄ×î´ó¸ß¶È
+    // ä»å·¦åˆ°å³è®¡ç®—æ¯ä¸ªä½ç½®å·¦è¾¹çš„æœ€å¤§é«˜åº¦
     left_max[0] = height[0];
     for (int i = 1; i < n; i++) {
         left_max[i] = max(left_max[i - 1], height[i]);
     }
 
-    // ´ÓÓÒµ½×ó¼ÆËãÃ¿¸öÎ»ÖÃÓÒ±ßµÄ×î´ó¸ß¶È
+    // ä»å³åˆ°å·¦è®¡ç®—æ¯ä¸ªä½ç½®å³è¾¹çš„æœ€å¤§é«˜åº¦
     right_max[n - 1] = height[n - 1];
     for (int i = n - 2; i >= 0; i--) {
         right_max[i] = max(right_max[i + 1], height[i]);
     }
 
-    // ¼ÆËãÃ¿¸öÎ»ÖÃÄÜ½ÓµÄÓêË®Á¿
+    // è®¡ç®—æ¯ä¸ªä½ç½®èƒ½æ¥çš„é›¨æ°´é‡
     int water = 0;
     for (int i = 0; i < n; i++) {
         water += min(left_max[i], right_max[i]) - height[i];
@@ -35,7 +35,7 @@ int trap(vector<int>& height) {
 int main() {
     vector<int> height(12);
 
-    // ¶ÁÈ¡12¸öÕûÊı
+    // è¯»å–12ä¸ªæ•´æ•°
     for (int i = 0; i < 12; i++) {
         cin >> height[i];
     }

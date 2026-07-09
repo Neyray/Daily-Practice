@@ -5,13 +5,13 @@
 using namespace std;
 
 /**
- * ¹şÏ£±í£¨Hash Table£©ÊµÏÖ
- * Ê¹ÓÃÁ´µØÖ··¨½â¾ö¹şÏ£³åÍ»
- * Æ½¾ùÊ±¼ä¸´ÔÓ¶È£ºO(1) ²éÕÒ¡¢²åÈë¡¢É¾³ı
- * ×î»µÊ±¼ä¸´ÔÓ¶È£ºO(n) - ËùÓĞÔªËØ¹şÏ£µ½Í¬Ò»Î»ÖÃ
+ * å“ˆå¸Œè¡¨ï¼ˆHash Tableï¼‰å®ç°
+ * ä½¿ç”¨é“¾åœ°å€æ³•è§£å†³å“ˆå¸Œå†²çª
+ * å¹³å‡æ—¶é—´å¤æ‚åº¦ï¼šO(1) æŸ¥æ‰¾ã€æ’å…¥ã€åˆ é™¤
+ * æœ€åæ—¶é—´å¤æ‚åº¦ï¼šO(n) - æ‰€æœ‰å…ƒç´ å“ˆå¸Œåˆ°åŒä¸€ä½ç½®
  */
 
- // ¼üÖµ¶Ô½á¹¹
+ // é”®å€¼å¯¹ç»“æ„
 template<typename K, typename V>
 struct KeyValuePair {
     K key;
@@ -23,19 +23,19 @@ struct KeyValuePair {
 template<typename K, typename V>
 class HashTable {
 private:
-    static const int DEFAULT_CAPACITY = 16;  // Ä¬ÈÏÈİÁ¿
-    static const double LOAD_FACTOR_THRESHOLD; // ¸ºÔØÒò×ÓãĞÖµ
+    static const int DEFAULT_CAPACITY = 16;  // é»˜è®¤å®¹é‡
+    static const double LOAD_FACTOR_THRESHOLD; // è´Ÿè½½å› å­é˜ˆå€¼
 
-    vector<list<KeyValuePair<K, V>>> table;  // ¹şÏ£±í£¨Ê¹ÓÃÁ´±í´¦Àí³åÍ»£©
-    int capacity;     // µ±Ç°ÈİÁ¿
-    int size;         // µ±Ç°ÔªËØÊıÁ¿
+    vector<list<KeyValuePair<K, V>>> table;  // å“ˆå¸Œè¡¨ï¼ˆä½¿ç”¨é“¾è¡¨å¤„ç†å†²çªï¼‰
+    int capacity;     // å½“å‰å®¹é‡
+    int size;         // å½“å‰å…ƒç´ æ•°é‡
 
-    // ¹şÏ£º¯Êı£¨Õë¶ÔÕûÊı£©
+    // å“ˆå¸Œå‡½æ•°ï¼ˆé’ˆå¯¹æ•´æ•°ï¼‰
     int hashFunction(int key) {
         return abs(key) % capacity;
     }
 
-    // ¹şÏ£º¯Êı£¨Õë¶Ô×Ö·û´®£©
+    // å“ˆå¸Œå‡½æ•°ï¼ˆé’ˆå¯¹å­—ç¬¦ä¸²ï¼‰
     int hashFunction(const string& key) {
         int hash = 0;
         for (char c : key) {
@@ -44,7 +44,7 @@ private:
         return abs(hash);
     }
 
-    // Í¨ÓÃ¹şÏ£º¯ÊıÄ£°å
+    // é€šç”¨å“ˆå¸Œå‡½æ•°æ¨¡æ¿
     template<typename T>
     int hash(const T& key) {
         if constexpr (is_same_v<T, int>) {
@@ -54,25 +54,25 @@ private:
             return hashFunction(key);
         }
         else {
-            // ¶ÔÓÚÆäËûÀàĞÍ£¬Ê¹ÓÃ¼òµ¥µÄÄ£ÔËËã
+            // å¯¹äºå…¶ä»–ç±»å‹ï¼Œä½¿ç”¨ç®€å•çš„æ¨¡è¿ç®—
             return abs(static_cast<int>(key)) % capacity;
         }
     }
 
-    // ÖØĞÂ¹şÏ££¨À©ÈİÊ±Ê¹ÓÃ£©
+    // é‡æ–°å“ˆå¸Œï¼ˆæ‰©å®¹æ—¶ä½¿ç”¨ï¼‰
     void rehash() {
-        cout << "´¥·¢ÖØĞÂ¹şÏ££¬ÈİÁ¿´Ó " << capacity << " À©Õ¹µ½ " << capacity * 2 << endl;
+        cout << "è§¦å‘é‡æ–°å“ˆå¸Œï¼Œå®¹é‡ä» " << capacity << " æ‰©å±•åˆ° " << capacity * 2 << endl;
 
         vector<list<KeyValuePair<K, V>>> oldTable = table;
         int oldCapacity = capacity;
 
-        // À©Èİ
+        // æ‰©å®¹
         capacity *= 2;
         table.clear();
         table.resize(capacity);
         size = 0;
 
-        // ÖØĞÂ²åÈëËùÓĞÔªËØ
+        // é‡æ–°æ’å…¥æ‰€æœ‰å…ƒç´ 
         for (int i = 0; i < oldCapacity; i++) {
             for (const auto& pair : oldTable[i]) {
                 insert(pair.key, pair.value);
@@ -80,27 +80,27 @@ private:
         }
     }
 
-    // ¼ÆËãµ±Ç°¸ºÔØÒò×Ó
+    // è®¡ç®—å½“å‰è´Ÿè½½å› å­
     double getLoadFactor() {
         return static_cast<double>(size) / capacity;
     }
 
 public:
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     HashTable(int cap = DEFAULT_CAPACITY) : capacity(cap), size(0) {
         table.resize(capacity);
     }
 
-    // ²åÈë¼üÖµ¶Ô
+    // æ’å…¥é”®å€¼å¯¹
     void insert(const K& key, const V& value) {
-        // ¼ì²éÊÇ·ñĞèÒªÀ©Èİ
+        // æ£€æŸ¥æ˜¯å¦éœ€è¦æ‰©å®¹
         if (getLoadFactor() >= LOAD_FACTOR_THRESHOLD) {
             rehash();
         }
 
         int index = hash(key);
 
-        // ¼ì²é¼üÊÇ·ñÒÑ´æÔÚ£¬Èç¹û´æÔÚÔò¸üĞÂÖµ
+        // æ£€æŸ¥é”®æ˜¯å¦å·²å­˜åœ¨ï¼Œå¦‚æœå­˜åœ¨åˆ™æ›´æ–°å€¼
         for (auto& pair : table[index]) {
             if (pair.key == key) {
                 pair.value = value;
@@ -108,12 +108,12 @@ public:
             }
         }
 
-        // ²åÈëĞÂµÄ¼üÖµ¶Ô
+        // æ’å…¥æ–°çš„é”®å€¼å¯¹
         table[index].emplace_back(key, value);
         size++;
     }
 
-    // ²éÕÒ¼ü¶ÔÓ¦µÄÖµ
+    // æŸ¥æ‰¾é”®å¯¹åº”çš„å€¼
     bool search(const K& key, V& value) {
         int index = hash(key);
 
@@ -127,7 +127,7 @@ public:
         return false;
     }
 
-    // ¼ì²é¼üÊÇ·ñ´æÔÚ
+    // æ£€æŸ¥é”®æ˜¯å¦å­˜åœ¨
     bool contains(const K& key) {
         int index = hash(key);
 
@@ -140,7 +140,7 @@ public:
         return false;
     }
 
-    // É¾³ı¼üÖµ¶Ô
+    // åˆ é™¤é”®å€¼å¯¹
     bool remove(const K& key) {
         int index = hash(key);
 
@@ -156,26 +156,26 @@ public:
         return false;
     }
 
-    // »ñÈ¡ÔªËØÊıÁ¿
+    // è·å–å…ƒç´ æ•°é‡
     int getSize() const {
         return size;
     }
 
-    // ¼ì²éÊÇ·ñÎª¿Õ
+    // æ£€æŸ¥æ˜¯å¦ä¸ºç©º
     bool isEmpty() const {
         return size == 0;
     }
 
-    // ´òÓ¡¹şÏ£±í×´Ì¬
+    // æ‰“å°å“ˆå¸Œè¡¨çŠ¶æ€
     void printTable() {
-        cout << "\n=== ¹şÏ£±í×´Ì¬ ===" << endl;
-        cout << "ÈİÁ¿: " << capacity << ", ´óĞ¡: " << size << endl;
-        cout << "¸ºÔØÒò×Ó: " << getLoadFactor() << endl;
+        cout << "\n=== å“ˆå¸Œè¡¨çŠ¶æ€ ===" << endl;
+        cout << "å®¹é‡: " << capacity << ", å¤§å°: " << size << endl;
+        cout << "è´Ÿè½½å› å­: " << getLoadFactor() << endl;
 
         for (int i = 0; i < capacity; i++) {
-            cout << "Í° " << i << ": ";
+            cout << "æ¡¶ " << i << ": ";
             if (table[i].empty()) {
-                cout << "¿Õ" << endl;
+                cout << "ç©º" << endl;
             }
             else {
                 cout << "[";
@@ -191,7 +191,7 @@ public:
         cout << "==================" << endl;
     }
 
-    // »ñÈ¡ËùÓĞ¼ü
+    // è·å–æ‰€æœ‰é”®
     vector<K> getKeys() {
         vector<K> keys;
         for (int i = 0; i < capacity; i++) {
@@ -202,7 +202,7 @@ public:
         return keys;
     }
 
-    // »ñÈ¡ËùÓĞÖµ
+    // è·å–æ‰€æœ‰å€¼
     vector<V> getValues() {
         vector<V> values;
         for (int i = 0; i < capacity; i++) {
@@ -214,19 +214,19 @@ public:
     }
 };
 
-// ¾²Ì¬³ÉÔ±¶¨Òå
+// é™æ€æˆå‘˜å®šä¹‰
 template<typename K, typename V>
 const double HashTable<K, V>::LOAD_FACTOR_THRESHOLD = 0.75;
 
-// ¿ª·ÅµØÖ··¨¹şÏ£±íÊµÏÖ£¨ÏßĞÔÌ½²â£©
+// å¼€æ”¾åœ°å€æ³•å“ˆå¸Œè¡¨å®ç°ï¼ˆçº¿æ€§æ¢æµ‹ï¼‰
 template<typename K, typename V>
 class HashTableOpenAddressing {
 private:
     struct Entry {
         K key;
         V value;
-        bool deleted;  // ±ê¼ÇÉ¾³ı×´Ì¬
-        bool empty;    // ±ê¼Ç¿Õ×´Ì¬
+        bool deleted;  // æ ‡è®°åˆ é™¤çŠ¶æ€
+        bool empty;    // æ ‡è®°ç©ºçŠ¶æ€
 
         Entry() : deleted(false), empty(true) {}
         Entry(const K& k, const V& v) : key(k), value(v), deleted(false), empty(false) {}
@@ -237,7 +237,7 @@ private:
     int capacity;
     int size;
 
-    // ¹şÏ£º¯Êı
+    // å“ˆå¸Œå‡½æ•°
     int hashFunction(const K& key) {
         if constexpr (is_same_v<K, int>) {
             return abs(key) % capacity;
@@ -252,7 +252,7 @@ private:
         return abs(static_cast<int>(key)) % capacity;
     }
 
-    // ÏßĞÔÌ½²âÕÒµ½ÏÂÒ»¸öÎ»ÖÃ
+    // çº¿æ€§æ¢æµ‹æ‰¾åˆ°ä¸‹ä¸€ä¸ªä½ç½®
     int probe(int index) {
         return (index + 1) % capacity;
     }
@@ -262,38 +262,38 @@ public:
         table.resize(capacity);
     }
 
-    // ²åÈë
+    // æ’å…¥
     void insert(const K& key, const V& value) {
-        if (size >= capacity * 0.7) {  // ¸ºÔØÒò×Ó´ïµ½0.7Ê±À©Èİ
-            cout << "¿ª·ÅµØÖ··¨¹şÏ£±íĞèÒªÀ©Èİ" << endl;
-            return;  // ¼ò»¯ÊµÏÖ£¬²»½øĞĞÀ©Èİ
+        if (size >= capacity * 0.7) {  // è´Ÿè½½å› å­è¾¾åˆ°0.7æ—¶æ‰©å®¹
+            cout << "å¼€æ”¾åœ°å€æ³•å“ˆå¸Œè¡¨éœ€è¦æ‰©å®¹" << endl;
+            return;  // ç®€åŒ–å®ç°ï¼Œä¸è¿›è¡Œæ‰©å®¹
         }
 
         int index = hashFunction(key);
 
-        // ÏßĞÔÌ½²âÕÒµ½ºÏÊÊÎ»ÖÃ
+        // çº¿æ€§æ¢æµ‹æ‰¾åˆ°åˆé€‚ä½ç½®
         while (!table[index].empty && !table[index].deleted) {
             if (table[index].key == key) {
-                // ¸üĞÂÒÑ´æÔÚµÄ¼ü
+                // æ›´æ–°å·²å­˜åœ¨çš„é”®
                 table[index].value = value;
                 return;
             }
             index = probe(index);
         }
 
-        // ²åÈëĞÂÔªËØ
+        // æ’å…¥æ–°å…ƒç´ 
         table[index] = Entry(key, value);
         size++;
     }
 
-    // ²éÕÒ
+    // æŸ¥æ‰¾
     bool search(const K& key, V& value) {
         int index = hashFunction(key);
         int originalIndex = index;
 
         do {
             if (table[index].empty && !table[index].deleted) {
-                return false;  // Óöµ½ÕæÕı¿ÕµÄÎ»ÖÃ£¬ËµÃ÷²»´æÔÚ
+                return false;  // é‡åˆ°çœŸæ­£ç©ºçš„ä½ç½®ï¼Œè¯´æ˜ä¸å­˜åœ¨
             }
 
             if (!table[index].deleted && table[index].key == key) {
@@ -307,7 +307,7 @@ public:
         return false;
     }
 
-    // É¾³ı£¨ÀÁÉ¾³ı£©
+    // åˆ é™¤ï¼ˆæ‡’åˆ é™¤ï¼‰
     bool remove(const K& key) {
         int index = hashFunction(key);
         int originalIndex = index;
@@ -330,14 +330,14 @@ public:
     }
 
     void printTable() {
-        cout << "\n=== ¿ª·ÅµØÖ··¨¹şÏ£±í ===" << endl;
+        cout << "\n=== å¼€æ”¾åœ°å€æ³•å“ˆå¸Œè¡¨ ===" << endl;
         for (int i = 0; i < capacity; i++) {
-            cout << "Î»ÖÃ " << i << ": ";
+            cout << "ä½ç½® " << i << ": ";
             if (table[i].empty) {
-                cout << "¿Õ";
+                cout << "ç©º";
             }
             else if (table[i].deleted) {
-                cout << "ÒÑÉ¾³ı";
+                cout << "å·²åˆ é™¤";
             }
             else {
                 cout << "(" << table[i].key << ":" << table[i].value << ")";
@@ -348,39 +348,39 @@ public:
     }
 };
 
-// ²âÊÔº¯Êı
+// æµ‹è¯•å‡½æ•°
 void testHashTable() {
-    cout << "=== Á´µØÖ··¨¹şÏ£±í²âÊÔ ===" << endl;
+    cout << "=== é“¾åœ°å€æ³•å“ˆå¸Œè¡¨æµ‹è¯• ===" << endl;
     HashTable<int, string> ht(8);
 
-    // ²åÈë²âÊÔ
+    // æ’å…¥æµ‹è¯•
     ht.insert(1, "Apple");
-    ht.insert(9, "Banana");   // ¿ÉÄÜÓë1³åÍ»
-    ht.insert(17, "Cherry");  // ¿ÉÄÜÓë1¡¢9³åÍ»
+    ht.insert(9, "Banana");   // å¯èƒ½ä¸1å†²çª
+    ht.insert(17, "Cherry");  // å¯èƒ½ä¸1ã€9å†²çª
     ht.insert(2, "Date");
     ht.insert(10, "Elderberry");
 
     ht.printTable();
 
-    // ²éÕÒ²âÊÔ
+    // æŸ¥æ‰¾æµ‹è¯•
     string value;
     if (ht.search(9, value)) {
-        cout << "ÕÒµ½¼ü9: " << value << endl;
+        cout << "æ‰¾åˆ°é”®9: " << value << endl;
     }
 
-    // É¾³ı²âÊÔ
+    // åˆ é™¤æµ‹è¯•
     ht.remove(1);
-    cout << "\nÉ¾³ı¼ü1ºó:" << endl;
+    cout << "\nåˆ é™¤é”®1å:" << endl;
     ht.printTable();
 
-    // ´¥·¢À©Èİ
-    cout << "\n¼ÌĞø²åÈëÔªËØ´¥·¢À©Èİ:" << endl;
+    // è§¦å‘æ‰©å®¹
+    cout << "\nç»§ç»­æ’å…¥å…ƒç´ è§¦å‘æ‰©å®¹:" << endl;
     ht.insert(3, "Fig");
     ht.insert(4, "Grape");
     ht.insert(5, "Honeydew");
     ht.printTable();
 
-    cout << "\n=== ¿ª·ÅµØÖ··¨¹şÏ£±í²âÊÔ ===" << endl;
+    cout << "\n=== å¼€æ”¾åœ°å€æ³•å“ˆå¸Œè¡¨æµ‹è¯• ===" << endl;
     HashTableOpenAddressing<int, string> htOpen(8);
 
     htOpen.insert(1, "Apple");
@@ -390,14 +390,14 @@ void testHashTable() {
 
     htOpen.printTable();
 
-    // ²éÕÒ²âÊÔ
+    // æŸ¥æ‰¾æµ‹è¯•
     if (htOpen.search(17, value)) {
-        cout << "ÕÒµ½¼ü17: " << value << endl;
+        cout << "æ‰¾åˆ°é”®17: " << value << endl;
     }
 
-    // É¾³ı²âÊÔ
+    // åˆ é™¤æµ‹è¯•
     htOpen.remove(9);
-    cout << "\nÉ¾³ı¼ü9ºó:" << endl;
+    cout << "\nåˆ é™¤é”®9å:" << endl;
     htOpen.printTable();
 }
 

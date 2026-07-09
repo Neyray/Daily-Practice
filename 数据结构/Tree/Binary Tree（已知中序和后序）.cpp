@@ -10,7 +10,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-// ¹¹½¨¹şÏ£±í¼ÓËÙ²éÕÒ
+// æ„å»ºå“ˆå¸Œè¡¨åŠ é€ŸæŸ¥æ‰¾
 unordered_map<int, int> buildInMap(vector<int>& inorder) {
     unordered_map<int, int> in_map;
     for (int i = 0; i < inorder.size(); ++i) {
@@ -19,24 +19,24 @@ unordered_map<int, int> buildInMap(vector<int>& inorder) {
     return in_map;
 }
 
-// µİ¹é¹¹½¨ºËĞÄ
+// é€’å½’æ„å»ºæ ¸å¿ƒ
 TreeNode* buildHelper(vector<int>& inorder, vector<int>& postorder,
     int in_start, int in_end, int post_start, int post_end,
     unordered_map<int, int>& in_map) {
 
     if (in_start > in_end) return nullptr;
 
-    // ºóĞòÄ©Î»Îª¸ù½Úµã
+    // ååºæœ«ä½ä¸ºæ ¹èŠ‚ç‚¹
     int root_val = postorder[post_end];
     TreeNode* root = new TreeNode(root_val);
 
-    // ¹şÏ£±íÖ±½Ó»ñÈ¡·Ö¸îµã
+    // å“ˆå¸Œè¡¨ç›´æ¥è·å–åˆ†å‰²ç‚¹
     int split_idx = in_map[root_val];
 
-    // ¼ÆËã×óÓÒ×ÓÊ÷½ÚµãÊı
+    // è®¡ç®—å·¦å³å­æ ‘èŠ‚ç‚¹æ•°
     int left_size = split_idx - in_start;
 
-    // µİ¹é¹¹½¨×ÓÊ÷£¨±ÕÇø¼ä´¦Àí£©
+    // é€’å½’æ„å»ºå­æ ‘ï¼ˆé—­åŒºé—´å¤„ç†ï¼‰
     root->left = buildHelper(inorder, postorder,
         in_start, split_idx - 1,
         post_start, post_start + left_size - 1,
@@ -48,7 +48,7 @@ TreeNode* buildHelper(vector<int>& inorder, vector<int>& postorder,
     return root;
 }
 
-// Ö÷¹¹½¨º¯Êı
+// ä¸»æ„å»ºå‡½æ•°
 TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
     auto in_map = buildInMap(inorder);
     return buildHelper(inorder, postorder,
@@ -57,7 +57,7 @@ TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         in_map);
 }
 
-// Ç°Ğò±éÀúº¯Êı
+// å‰åºéå†å‡½æ•°
 void preorderTraversal(TreeNode* root) {
     if (!root) return;
     cout << root->val << " ";
@@ -66,14 +66,14 @@ void preorderTraversal(TreeNode* root) {
 }
 
 int main() {
-    // ²âÊÔÓÃÀı
+    // æµ‹è¯•ç”¨ä¾‹
     vector<int> inorder = { 9,3,15,20,7 };
     vector<int> postorder = { 9,15,7,20,3 };
 
     TreeNode* root = buildTree(inorder, postorder);
 
     cout << "Preorder result: ";
-    preorderTraversal(root); // Ô¤ÆÚÊä³ö£º3 9 20 15 7
+    preorderTraversal(root); // é¢„æœŸè¾“å‡ºï¼š3 9 20 15 7
 
     return 0;
 }

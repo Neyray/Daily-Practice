@@ -2,7 +2,7 @@
 #include <queue>
 using namespace std;
 
-// ¶ş²æÊ÷½Úµã½á¹¹Ìå
+// äºŒå‰æ ‘èŠ‚ç‚¹ç»“æ„ä½“
 struct TreeNode {
     int val;
     TreeNode* left;
@@ -11,14 +11,14 @@ struct TreeNode {
 };
 
 /*
-BFSÊ¹ÓÃ¶ÓÁĞ£¬°´²ã¼¶Ë³Ğò·ÃÎÊ½Úµã
+BFSä½¿ç”¨é˜Ÿåˆ—ï¼ŒæŒ‰å±‚çº§é¡ºåºè®¿é—®èŠ‚ç‚¹
 
-DFSÊ¹ÓÃÕ»£¨µİ¹éÒşÊ½Ê¹ÓÃÏµÍ³Õ»£©£¬ÓÅÏÈ·ÃÎÊµ½×îÉî½Úµã
+DFSä½¿ç”¨æ ˆï¼ˆé€’å½’éšå¼ä½¿ç”¨ç³»ç»Ÿæ ˆï¼‰ï¼Œä¼˜å…ˆè®¿é—®åˆ°æœ€æ·±èŠ‚ç‚¹
 
-BFS¿Õ¼ä¸´ÔÓ¶È×î²îÎªO(n)£¬DFS×î²î¿Õ¼ä¸´ÔÓ¶ÈÎªO(h)£¨hÎªÊ÷µÄ¸ß¶È£©
+BFSç©ºé—´å¤æ‚åº¦æœ€å·®ä¸ºO(n)ï¼ŒDFSæœ€å·®ç©ºé—´å¤æ‚åº¦ä¸ºO(h)ï¼ˆhä¸ºæ ‘çš„é«˜åº¦ï¼‰
 */
 
-// BFSÊµÏÖ£¨²ãĞò±éÀú£©£¬¹ã¶ÈÓÅÏÈ
+// BFSå®ç°ï¼ˆå±‚åºéå†ï¼‰ï¼Œå¹¿åº¦ä¼˜å…ˆ
 void BFS(TreeNode* root) {
     if (!root) return;
 
@@ -28,37 +28,37 @@ void BFS(TreeNode* root) {
     while (!q.empty()) {
         TreeNode* current = q.front();
         q.pop();
-        cout << current->val << " ";  // ·ÃÎÊµ±Ç°½Úµã
+        cout << current->val << " ";  // è®¿é—®å½“å‰èŠ‚ç‚¹
 
         if (current->left) q.push(current->left);
         if (current->right) q.push(current->right);
     }
 }
 
-// DFSµİ¹éÊµÏÖ£¬Éî¶ÈÓÅÏÈ
-void DFS_preorder(TreeNode* node) {   // Ç°Ğò±éÀú
+// DFSé€’å½’å®ç°ï¼Œæ·±åº¦ä¼˜å…ˆ
+void DFS_preorder(TreeNode* node) {   // å‰åºéå†
     if (!node) return;
-    cout << node->val << " ";  // ·ÃÎÊµ±Ç°½Úµã
+    cout << node->val << " ";  // è®¿é—®å½“å‰èŠ‚ç‚¹
     DFS_preorder(node->left);
     DFS_preorder(node->right);
 }
 
-void DFS_inorder(TreeNode* node) {    // ÖĞĞò±éÀú
+void DFS_inorder(TreeNode* node) {    // ä¸­åºéå†
     if (!node) return;
     DFS_inorder(node->left);
-    cout << node->val << " ";  // ·ÃÎÊµ±Ç°½Úµã
+    cout << node->val << " ";  // è®¿é—®å½“å‰èŠ‚ç‚¹
     DFS_inorder(node->right);
 }
 
-void DFS_postorder(TreeNode* node) {  // ºóĞò±éÀú
+void DFS_postorder(TreeNode* node) {  // ååºéå†
     if (!node) return;
     DFS_postorder(node->left);
     DFS_postorder(node->right);
-    cout << node->val << " ";  // ·ÃÎÊµ±Ç°½Úµã
+    cout << node->val << " ";  // è®¿é—®å½“å‰èŠ‚ç‚¹
 }
 
 int main() {
-    /* ´´½¨Ê¾ÀıÊ÷£º
+    /* åˆ›å»ºç¤ºä¾‹æ ‘ï¼š
           1
         /   \
        2     3
@@ -71,17 +71,17 @@ int main() {
     root->left->left = new TreeNode(4);
     root->left->right = new TreeNode(5);
 
-    cout << "BFS½á¹û£º";
-    BFS(root);  // Êä³ö£º1 2 3 4 5
+    cout << "BFSç»“æœï¼š";
+    BFS(root);  // è¾“å‡ºï¼š1 2 3 4 5
 
-    cout << "\nDFSÇ°Ğò£º";
-    DFS_preorder(root);  // Êä³ö£º1 2 4 5 3
+    cout << "\nDFSå‰åºï¼š";
+    DFS_preorder(root);  // è¾“å‡ºï¼š1 2 4 5 3
 
-    cout << "\nDFSÖĞĞò£º";
-    DFS_inorder(root);   // Êä³ö£º4 2 5 1 3
+    cout << "\nDFSä¸­åºï¼š";
+    DFS_inorder(root);   // è¾“å‡ºï¼š4 2 5 1 3
 
-    cout << "\nDFSºóĞò£º";
-    DFS_postorder(root); // Êä³ö£º4 5 2 3 1
+    cout << "\nDFSååºï¼š";
+    DFS_postorder(root); // è¾“å‡ºï¼š4 5 2 3 1
 
     return 0;
 }

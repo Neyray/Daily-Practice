@@ -26,7 +26,7 @@ int main() {
         cout << "Error: " << e.what() << endl;
     }
 
-    // ²âÊÔ¿Õ¶ÓÁĞ³ö¶Ó
+    // æµ‹è¯•ç©ºé˜Ÿåˆ—å‡ºé˜Ÿ
     try {
         cout << "Trying to dequeue from empty queue..." << endl;
         q.dequeue();

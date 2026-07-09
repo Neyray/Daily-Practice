@@ -18,7 +18,7 @@ public:
 	bool empty() {
 		return (front == rear);
 	}
-	//¼Óµ½¶ÓÁĞºóÃæ
+	//åŠ åˆ°é˜Ÿåˆ—åé¢
 	bool push(T e) {
 		if (rear == MaxSize - 1)
 			return false;
@@ -26,7 +26,7 @@ public:
 		data[rear] = e;
 		return true;
 	}
-	//´Ó¶ÓÍ·È¡
+	//ä»é˜Ÿå¤´å–
 	bool pop(T& e) {
 		if (front == rear)
 			return false;
@@ -34,7 +34,7 @@ public:
 		e = data[front];
 		return true;
 	}
-	//È¡¶ÓÍ·ÔªËØ£¬frontµÄÖ¸Ïò²»ÄÜ·¢Éú±ä»¯
+	//å–é˜Ÿå¤´å…ƒç´ ï¼Œfrontçš„æŒ‡å‘ä¸èƒ½å‘ç”Ÿå˜åŒ–
 	bool gethead(T& e) {
 		if (front == rear)
 			return false;

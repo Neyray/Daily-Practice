@@ -1,4 +1,4 @@
-//À¨ºÅÆ¥ÅäÎÊÌâ
+//æ‹¬å·åŒ¹é…é—®é¢˜
 #include <iostream>
 #include <stack>
 #include <cstring>
@@ -7,7 +7,7 @@ using namespace std;
 bool isBalanced(char expr[])
 {
     stack<char> st;
-    int len = strlen(expr);  // »ñÈ¡×Ö·û´®Êµ¼Ê³¤¶È
+    int len = strlen(expr);  // è·å–å­—ç¬¦ä¸²å®é™…é•¿åº¦
 
     for (int i = 0; i < len; ++i) {
         char c = expr[i];
@@ -16,7 +16,7 @@ bool isBalanced(char expr[])
             st.push(c);
         }
         else if (c == ')' || c == ']' || c == '}') {
-            // ¼ì²éÕ»ÊÇ·ñÎª¿Õ£¨ÖØÒª£¡£©
+            // æ£€æŸ¥æ ˆæ˜¯å¦ä¸ºç©ºï¼ˆé‡è¦ï¼ï¼‰
             if (st.empty()) {
                 return false;
             }
@@ -31,10 +31,10 @@ bool isBalanced(char expr[])
                 return false;
             }
         }
-        // ÆäËû×Ö·ûºöÂÔ£¬¼ÌĞø´¦Àí
+        // å…¶ä»–å­—ç¬¦å¿½ç•¥ï¼Œç»§ç»­å¤„ç†
     }
 
-    // ×îºó¼ì²éÕ»ÊÇ·ñÎª¿Õ
+    // æœ€åæ£€æŸ¥æ ˆæ˜¯å¦ä¸ºç©º
     return st.empty();
 }
 

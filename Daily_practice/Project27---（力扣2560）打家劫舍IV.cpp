@@ -42,11 +42,11 @@ int main() {
     Solution s1;
     vector<int> nums1 = { 2, 3, 5, 7, 8, 9 };
     int k1 = 2;
-    cout << "Ê¾Àı1µÄ×îĞ¡ÇÔÈ¡ÄÜÁ¦: " << s1.minCapability(nums1, k1) << endl;  // Êä³ö×îĞ¡ÇÔÈ¡ÄÜÁ¦
+    cout << "ç¤ºä¾‹1çš„æœ€å°çªƒå–èƒ½åŠ›: " << s1.minCapability(nums1, k1) << endl;  // è¾“å‡ºæœ€å°çªƒå–èƒ½åŠ›
 
     vector<int> nums2 = { 2, 7, 9, 3, 1 };
     int k2 = 2;
-    cout << "Ê¾Àı2µÄ×îĞ¡ÇÔÈ¡ÄÜÁ¦: " << s1.minCapability(nums2, k2) << endl;  // Êä³ö×îĞ¡ÇÔÈ¡ÄÜÁ¦
+    cout << "ç¤ºä¾‹2çš„æœ€å°çªƒå–èƒ½åŠ›: " << s1.minCapability(nums2, k2) << endl;  // è¾“å‡ºæœ€å°çªƒå–èƒ½åŠ›
 
     return 0;
 }

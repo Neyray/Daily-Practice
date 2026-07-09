@@ -5,7 +5,7 @@ using namespace std;
 
 class TwoSum {
 public:
-    // ·½·¨1£ºÓĞĞòÊı×éµÄË«Ö¸Õë·¨
+    // æ–¹æ³•1ï¼šæœ‰åºæ•°ç»„çš„åŒæŒ‡é’ˆæ³•
     static vector<int> twoSumSorted(vector<int>& nums, int target) {
         int left = 0;
         int right = nums.size() - 1;
@@ -14,7 +14,7 @@ public:
             int sum = nums[left] + nums[right];
 
             if (sum == target) {
-                return { left, right };  // ·µ»ØË÷Òı
+                return { left, right };  // è¿”å›ç´¢å¼•
             }
             else if (sum < target) {
                 left++;
@@ -24,10 +24,10 @@ public:
             }
         }
 
-        return { -1, -1 };  // Î´ÕÒµ½
+        return { -1, -1 };  // æœªæ‰¾åˆ°
     }
 
-    // ·½·¨2£ºÕÒ³öËùÓĞÁ½ÊıÖ®ºÍµÈÓÚtargetµÄ×éºÏ
+    // æ–¹æ³•2ï¼šæ‰¾å‡ºæ‰€æœ‰ä¸¤æ•°ä¹‹å’Œç­‰äºtargetçš„ç»„åˆ
     static vector<pair<int, int>> findAllPairs(vector<int>& nums, int target) {
         sort(nums.begin(), nums.end());
 
@@ -41,7 +41,7 @@ public:
             if (sum == target) {
                 result.push_back({ nums[left], nums[right] });
 
-                // Ìø¹ıÖØ¸´ÔªËØ
+                // è·³è¿‡é‡å¤å…ƒç´ 
                 int leftVal = nums[left];
                 int rightVal = nums[right];
                 while (left < right && nums[left] == leftVal) left++;
@@ -59,14 +59,14 @@ public:
         return result;
     }
 
-    // ·½·¨3£ºÈıÊıÖ®ºÍ£¨À©Õ¹£©
+    // æ–¹æ³•3ï¼šä¸‰æ•°ä¹‹å’Œï¼ˆæ‰©å±•ï¼‰
     static vector<vector<int>> threeSum(vector<int>& nums, int target) {
         sort(nums.begin(), nums.end());
         vector<vector<int>> result;
         int n = nums.size();
 
         for (int i = 0; i < n - 2; i++) {
-            // Ìø¹ıÖØ¸´ÔªËØ
+            // è·³è¿‡é‡å¤å…ƒç´ 
             if (i > 0 && nums[i] == nums[i - 1]) continue;
 
             int left = i + 1;
@@ -79,7 +79,7 @@ public:
                 if (sum == newTarget) {
                     result.push_back({ nums[i], nums[left], nums[right] });
 
-                    // Ìø¹ıÖØ¸´
+                    // è·³è¿‡é‡å¤
                     while (left < right && nums[left] == nums[left + 1]) left++;
                     while (left < right && nums[right] == nums[right - 1]) right--;
                     left++;
@@ -100,34 +100,34 @@ public:
 };
 
 int main() {
-    cout << "=== Á½ÊıÖ®ºÍÎÊÌâ ===" << endl;
+    cout << "=== ä¸¤æ•°ä¹‹å’Œé—®é¢˜ ===" << endl;
 
-    // ²âÊÔ1£ºÓĞĞòÊı×é
+    // æµ‹è¯•1ï¼šæœ‰åºæ•°ç»„
     vector<int> nums1 = { 2, 7, 11, 15 };
     int target1 = 9;
     vector<int> result1 = TwoSum::twoSumSorted(nums1, target1);
-    cout << "Êı×é: 2 7 11 15, Ä¿±ê: " << target1 << endl;
-    cout << "Ë÷Òı: [" << result1[0] << ", " << result1[1] << "]" << endl;
+    cout << "æ•°ç»„: 2 7 11 15, ç›®æ ‡: " << target1 << endl;
+    cout << "ç´¢å¼•: [" << result1[0] << ", " << result1[1] << "]" << endl;
 
-    // ²âÊÔ2£ºÕÒËùÓĞÅä¶Ô
-    cout << "\n=== ÕÒËùÓĞÅä¶Ô ===" << endl;
+    // æµ‹è¯•2ï¼šæ‰¾æ‰€æœ‰é…å¯¹
+    cout << "\n=== æ‰¾æ‰€æœ‰é…å¯¹ ===" << endl;
     vector<int> nums2 = { 1, 2, 3, 4, 5, 6, 7, 8 };
     int target2 = 9;
     vector<pair<int, int>> pairs = TwoSum::findAllPairs(nums2, target2);
-    cout << "Êı×é: 1 2 3 4 5 6 7 8, Ä¿±ê: " << target2 << endl;
-    cout << "Åä¶Ô: ";
+    cout << "æ•°ç»„: 1 2 3 4 5 6 7 8, ç›®æ ‡: " << target2 << endl;
+    cout << "é…å¯¹: ";
     for (auto p : pairs) {
         cout << "(" << p.first << "," << p.second << ") ";
     }
     cout << endl;
 
-    // ²âÊÔ3£ºÈıÊıÖ®ºÍ
-    cout << "\n=== ÈıÊıÖ®ºÍ ===" << endl;
+    // æµ‹è¯•3ï¼šä¸‰æ•°ä¹‹å’Œ
+    cout << "\n=== ä¸‰æ•°ä¹‹å’Œ ===" << endl;
     vector<int> nums3 = { -1, 0, 1, 2, -1, -4 };
     int target3 = 0;
     vector<vector<int>> triplets = TwoSum::threeSum(nums3, target3);
-    cout << "Êı×é: -1 0 1 2 -1 -4, Ä¿±ê: " << target3 << endl;
-    cout << "ÈıÔª×é: " << endl;
+    cout << "æ•°ç»„: -1 0 1 2 -1 -4, ç›®æ ‡: " << target3 << endl;
+    cout << "ä¸‰å…ƒç»„: " << endl;
     for (auto t : triplets) {
         cout << "[" << t[0] << ", " << t[1] << ", " << t[2] << "]" << endl;
     }

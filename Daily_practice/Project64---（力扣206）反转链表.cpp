@@ -50,7 +50,7 @@ int main() {
 
 	cout << endl;
 
-	//×¢Òâ²»Òª½øĞĞÖØ¶¨Òå
+	//æ³¨æ„ä¸è¦è¿›è¡Œé‡å®šä¹‰
 	head = reverseList(head);
 	ListNode* curr2 = head;
 	while (curr2 != NULL) {

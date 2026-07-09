@@ -5,19 +5,19 @@
 #include <vector>
 using namespace std;
 
-// º¯Êı£ºÔÚ¶ş½øÖÆÎÄ¼şµÄÃ¿Ò»ĞĞÇ°¼ÓĞĞºÅ
+// å‡½æ•°ï¼šåœ¨äºŒè¿›åˆ¶æ–‡ä»¶çš„æ¯ä¸€è¡Œå‰åŠ è¡Œå·
 void addLineNumbersToBinaryFile(const string& inputFilename, const string& outputFilename) {
-    // ÒÔ¶ş½øÖÆÄ£Ê½´ò¿ªÊäÈëÎÄ¼ş
+    // ä»¥äºŒè¿›åˆ¶æ¨¡å¼æ‰“å¼€è¾“å…¥æ–‡ä»¶
     ifstream inputFile(inputFilename, ios::binary);
     if (!inputFile) {
-        cerr << "´íÎó£ºÎŞ·¨´ò¿ªÊäÈëÎÄ¼ş '" << inputFilename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•æ‰“å¼€è¾“å…¥æ–‡ä»¶ '" << inputFilename << "'" << endl;
         return;
     }
 
-    // ÒÔ¶ş½øÖÆÄ£Ê½´ò¿ªÊä³öÎÄ¼ş
+    // ä»¥äºŒè¿›åˆ¶æ¨¡å¼æ‰“å¼€è¾“å‡ºæ–‡ä»¶
     ofstream outputFile(outputFilename, ios::binary);
     if (!outputFile) {
-        cerr << "´íÎó£ºÎŞ·¨´´½¨Êä³öÎÄ¼ş '" << outputFilename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•åˆ›å»ºè¾“å‡ºæ–‡ä»¶ '" << outputFilename << "'" << endl;
         inputFile.close();
         return;
     }
@@ -27,51 +27,51 @@ void addLineNumbersToBinaryFile(const string& inputFilename, const string& outpu
     char ch;
     string currentLine;
 
-    cout << "ÕıÔÚ´¦ÀíÎÄ¼ş: " << inputFilename << endl;
-    cout << "Êä³öÎÄ¼ş: " << outputFilename << endl;
+    cout << "æ­£åœ¨å¤„ç†æ–‡ä»¶: " << inputFilename << endl;
+    cout << "è¾“å‡ºæ–‡ä»¶: " << outputFilename << endl;
 
-    // Öğ¸ö×Ö·û¶ÁÈ¡£¬±£ÁôÔ­Ê¼»»ĞĞ·û
+    // é€ä¸ªå­—ç¬¦è¯»å–ï¼Œä¿ç•™åŸå§‹æ¢è¡Œç¬¦
     while (inputFile.get(ch)) {
-        // ½«×Ö·ûÌí¼Óµ½µ±Ç°ĞĞ
+        // å°†å­—ç¬¦æ·»åŠ åˆ°å½“å‰è¡Œ
         currentLine += ch;
 
-        // ¼ì²éÊÇ·ñÎª»»ĞĞ·û£¨Unix/Linux: \n, Windows: \r\n, Mac: \r£©
+        // æ£€æŸ¥æ˜¯å¦ä¸ºæ¢è¡Œç¬¦ï¼ˆUnix/Linux: \n, Windows: \r\n, Mac: \rï¼‰
         if (ch == '\n') {
-            // ½«ĞĞºÅÌí¼Óµ½Êä³öÎÄ¼ş
+            // å°†è¡Œå·æ·»åŠ åˆ°è¾“å‡ºæ–‡ä»¶
             outputFile << setw(4) << lineNumber << ": ";
 
-            // Ğ´ÈëÔ­Ê¼ĞĞÄÚÈİ£¨°üÀ¨»»ĞĞ·û£©
+            // å†™å…¥åŸå§‹è¡Œå†…å®¹ï¼ˆåŒ…æ‹¬æ¢è¡Œç¬¦ï¼‰
             outputFile.write(currentLine.c_str(), currentLine.size());
 
-            // ÖØÖÃµ±Ç°ĞĞ£¬Ôö¼ÓĞĞºÅ
+            // é‡ç½®å½“å‰è¡Œï¼Œå¢åŠ è¡Œå·
             currentLine.clear();
             lineNumber++;
         }
-        // ¶ÔÓÚMac¸ñÊ½µÄ»Ø³µ»»ĞĞ
+        // å¯¹äºMacæ ¼å¼çš„å›è½¦æ¢è¡Œ
         else if (ch == '\r') {
-            // ÏÈ±£´æµ±Ç°Î»ÖÃ
+            // å…ˆä¿å­˜å½“å‰ä½ç½®
             streampos pos = inputFile.tellg();
             char nextChar;
 
-            // ²é¿´ÏÂÒ»¸ö×Ö·ûÊÇ·ñÎª\n
+            // æŸ¥çœ‹ä¸‹ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸º\n
             if (inputFile.get(nextChar)) {
                 if (nextChar == '\n') {
-                    // Windows¸ñÊ½£º\r\n
+                    // Windowsæ ¼å¼ï¼š\r\n
                     currentLine += nextChar;
                     outputFile << setw(4) << lineNumber << ": ";
                     outputFile.write(currentLine.c_str(), currentLine.size());
                 }
                 else {
-                    // Mac¸ñÊ½£º\r
+                    // Macæ ¼å¼ï¼š\r
                     outputFile << setw(4) << lineNumber << ": ";
                     outputFile.write(currentLine.c_str(), currentLine.size());
 
-                    // ½«¶ÁÈ¡µÄ×Ö·û·Å»Ø»º³åÇø
+                    // å°†è¯»å–çš„å­—ç¬¦æ”¾å›ç¼“å†²åŒº
                     inputFile.seekg(pos);
                 }
             }
             else {
-                // ÎÄ¼ş½áÊø
+                // æ–‡ä»¶ç»“æŸ
                 outputFile << setw(4) << lineNumber << ": ";
                 outputFile.write(currentLine.c_str(), currentLine.size());
             }
@@ -81,7 +81,7 @@ void addLineNumbersToBinaryFile(const string& inputFilename, const string& outpu
         }
     }
 
-    // ´¦Àí×îºóÒ»ĞĞ£¨Èç¹ûÃ»ÓĞÒÔ»»ĞĞ·û½áÎ²£©
+    // å¤„ç†æœ€åä¸€è¡Œï¼ˆå¦‚æœæ²¡æœ‰ä»¥æ¢è¡Œç¬¦ç»“å°¾ï¼‰
     if (!currentLine.empty()) {
         outputFile << setw(4) << lineNumber << ": ";
         outputFile.write(currentLine.c_str(), currentLine.size());
@@ -90,19 +90,19 @@ void addLineNumbersToBinaryFile(const string& inputFilename, const string& outpu
     inputFile.close();
     outputFile.close();
 
-    cout << "´¦ÀíÍê³É£¡¹²Ìí¼ÓÁË " << lineNumber << " ĞĞµÄĞĞºÅ¡£" << endl;
+    cout << "å¤„ç†å®Œæˆï¼å…±æ·»åŠ äº† " << lineNumber << " è¡Œçš„è¡Œå·ã€‚" << endl;
     cout << "==================================" << endl;
 }
 
-// ÏÔÊ¾ÎÄ¼şÄÚÈİ
+// æ˜¾ç¤ºæ–‡ä»¶å†…å®¹
 void displayFile(const string& filename) {
     ifstream file(filename);
     if (!file) {
-        cerr << "´íÎó£ºÎŞ·¨´ò¿ªÎÄ¼ş '" << filename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•æ‰“å¼€æ–‡ä»¶ '" << filename << "'" << endl;
         return;
     }
 
-    cout << "\nÎÄ¼ş '" << filename << "' ÄÚÈİ£º" << endl;
+    cout << "\næ–‡ä»¶ '" << filename << "' å†…å®¹ï¼š" << endl;
     cout << "==================================" << endl;
 
     string line;
@@ -114,34 +114,34 @@ void displayFile(const string& filename) {
 
     file.close();
     cout << "==================================" << endl;
-    cout << "×ÜĞĞÊı: " << lineCount << endl;
+    cout << "æ€»è¡Œæ•°: " << lineCount << endl;
 }
 
 int main() {
-    // Ê¾Àı£º´¦ÀíÒ»¸öÎÄ±¾ÎÄ¼ş
+    // ç¤ºä¾‹ï¼šå¤„ç†ä¸€ä¸ªæ–‡æœ¬æ–‡ä»¶
     string inputFile = "example.txt";
     string outputFile = "example_with_line_numbers.txt";
 
-    // ÏÈ´´½¨Ò»¸öÊ¾ÀıÎÄ¼ş
+    // å…ˆåˆ›å»ºä¸€ä¸ªç¤ºä¾‹æ–‡ä»¶
     ofstream createExample(inputFile);
     if (createExample) {
-        createExample << "ÕâÊÇµÚÒ»ĞĞÎÄ±¾\n";
-        createExample << "ÕâÊÇµÚ¶şĞĞÎÄ±¾\n";
-        createExample << "ÕâÊÇµÚÈıĞĞÎÄ±¾\n";
-        createExample << "×îºóÒ»ĞĞ";
+        createExample << "è¿™æ˜¯ç¬¬ä¸€è¡Œæ–‡æœ¬\n";
+        createExample << "è¿™æ˜¯ç¬¬äºŒè¡Œæ–‡æœ¬\n";
+        createExample << "è¿™æ˜¯ç¬¬ä¸‰è¡Œæ–‡æœ¬\n";
+        createExample << "æœ€åä¸€è¡Œ";
         createExample.close();
-        cout << "ÒÑ´´½¨Ê¾ÀıÎÄ¼ş: " << inputFile << endl;
+        cout << "å·²åˆ›å»ºç¤ºä¾‹æ–‡ä»¶: " << inputFile << endl;
     }
 
-    // ÏÔÊ¾Ô­Ê¼ÎÄ¼şÄÚÈİ
-    cout << "\nÔ­Ê¼ÎÄ¼şÄÚÈİ£º" << endl;
+    // æ˜¾ç¤ºåŸå§‹æ–‡ä»¶å†…å®¹
+    cout << "\nåŸå§‹æ–‡ä»¶å†…å®¹ï¼š" << endl;
     displayFile(inputFile);
 
-    // ÎªÎÄ¼şÌí¼ÓĞĞºÅ
+    // ä¸ºæ–‡ä»¶æ·»åŠ è¡Œå·
     addLineNumbersToBinaryFile(inputFile, outputFile);
 
-    // ÏÔÊ¾´¦ÀíºóµÄÎÄ¼şÄÚÈİ
-    cout << "\n´¦ÀíºóÎÄ¼şÄÚÈİ£º" << endl;
+    // æ˜¾ç¤ºå¤„ç†åçš„æ–‡ä»¶å†…å®¹
+    cout << "\nå¤„ç†åæ–‡ä»¶å†…å®¹ï¼š" << endl;
     displayFile(outputFile);
 
     return 0;

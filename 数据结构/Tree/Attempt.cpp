@@ -12,8 +12,8 @@ string reverseWords(string s) {
     vector<string> words;
     string temp = "";
 
-    // ´íÎó1£ºË÷ÒıÔ½½ç·çÏÕ
-    for (int i = 0; i <= s.length(); i++) {  // Ó¦¸ÃÊÇ i < s.length()
+    // é”™è¯¯1ï¼šç´¢å¼•è¶Šç•Œé£é™©
+    for (int i = 0; i <= s.length(); i++) {  // åº”è¯¥æ˜¯ i < s.length()
         if (s[i] == ' ' || i == s.length()) {
             if (!temp.empty()) {
                 words.push_back(temp);
@@ -26,8 +26,8 @@ string reverseWords(string s) {
     }
 
     string result = "";
-    // ´íÎó2£º·´Ïò±éÀúÊ±Ë÷Òı´íÎó
-    for (int i = words.size(); i >= 0; i--) {  // Ó¦¸ÃÊÇ i = words.size()-1
+    // é”™è¯¯2ï¼šåå‘éå†æ—¶ç´¢å¼•é”™è¯¯
+    for (int i = words.size(); i >= 0; i--) {  // åº”è¯¥æ˜¯ i = words.size()-1
         result += words[i];
         if (i > 0) result += " ";
     }
@@ -37,6 +37,6 @@ string reverseWords(string s) {
 int main() {
     string input = "hello world";
     string output = reverseWords(input);
-    cout << "·´×ª½á¹û: " << output << endl;
+    cout << "åè½¬ç»“æœ: " << output << endl;
     return 0;
 }

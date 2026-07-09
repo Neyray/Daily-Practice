@@ -13,7 +13,7 @@ struct Player {
     Player(int id, int F, int S) : id(id), F(F), S(S) {}
 };
 
-// ¼ÆËãÑ¡ÊÖÔÚµÚtÃëµÄÅÜ²½¾àÀë
+// è®¡ç®—é€‰æ‰‹åœ¨ç¬¬tç§’çš„è·‘æ­¥è·ç¦»
 int getDistance(const Player& player, int t) {
     return player.F + player.S * (t - 1);
 }
@@ -25,7 +25,7 @@ int main() {
     int n;
     inFiles >> n;
 
-    //´æÈë¸÷¸öÔË¶¯Ô±µÄÊı¾İ
+    //å­˜å…¥å„ä¸ªè¿åŠ¨å‘˜çš„æ•°æ®
     vector<Player> players;
     for (int i = 0; i < n; i++) {
         int F, S;
@@ -38,7 +38,7 @@ int main() {
     vector<int> eliminationOrder;
 
     for (int t = 1; t <= n; t++) {
-        //³õÊ¼»¯¸÷¸öÊı¾İ
+        //åˆå§‹åŒ–å„ä¸ªæ•°æ®
         int maxDistance = -1;
         int selectedPlayer = -1;
 
@@ -49,7 +49,7 @@ int main() {
                     maxDistance = distance;
                     selectedPlayer = i;
                 }
-                // Èç¹û¾àÀëÏàÍ¬£¬Ñ¡ÔñID×îĞ¡µÄ
+                // å¦‚æœè·ç¦»ç›¸åŒï¼Œé€‰æ‹©IDæœ€å°çš„
                 else if (distance == maxDistance && players[i].id < players[selectedPlayer].id) {
                     selectedPlayer = i;
                 }
@@ -60,7 +60,7 @@ int main() {
         eliminationOrder.push_back(players[selectedPlayer].id);
     }
 
-    // Êä³ö 
+    // è¾“å‡º 
     for (int i = 0; i < n; i++) {
         cout << eliminationOrder[i] << " ";
     }

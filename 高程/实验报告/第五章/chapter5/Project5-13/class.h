@@ -2,22 +2,22 @@
 #ifndef CLASS_H
 #define CLASS_H
 
-// Ç°ÏòÉùÃ÷£¨±ÜÃâÍ·ÎÄ¼şÏà»¥°üº¬£©
+// å‰å‘å£°æ˜ï¼ˆé¿å…å¤´æ–‡ä»¶ç›¸äº’åŒ…å«ï¼‰
 class X;
 class Y;
 class Z;
 
-// È«¾ÖÓÑÔªº¯ÊıÉùÃ÷£¨ÔÚ X ÖĞÒª×÷Îª friend Ê¹ÓÃ£©
+// å…¨å±€å‹å…ƒå‡½æ•°å£°æ˜ï¼ˆåœ¨ X ä¸­è¦ä½œä¸º friend ä½¿ç”¨ï¼‰
 void h(X*);
 
 class Y {
 public:
-    void g(X* px); // ³ÉÔ±º¯ÊıÉùÃ÷£¨ÉÔºóÔÚ class.cpp ÖĞ¶¨Òå£©
+    void g(X* px); // æˆå‘˜å‡½æ•°å£°æ˜ï¼ˆç¨ååœ¨ class.cpp ä¸­å®šä¹‰ï¼‰
 };
 
 class Z {
 public:
-    void f(X* px); // ³ÉÔ±º¯ÊıÉùÃ÷
+    void f(X* px); // æˆå‘˜å‡½æ•°å£°æ˜
 };
 
 class X {
@@ -27,10 +27,10 @@ public:
     X(int v = 0);
     void print() const;
 
-    // ÓÑÔªÉùÃ÷
-    friend void Y::g(X*); // Y::g ÊÇ X µÄÓÑÔªº¯Êı
-    friend class Z;       // Z ÊÇÓÑÔªÀà
-    friend void h(X*);    // È«¾Öº¯Êı h ÊÇÓÑÔª
+    // å‹å…ƒå£°æ˜
+    friend void Y::g(X*); // Y::g æ˜¯ X çš„å‹å…ƒå‡½æ•°
+    friend class Z;       // Z æ˜¯å‹å…ƒç±»
+    friend void h(X*);    // å…¨å±€å‡½æ•° h æ˜¯å‹å…ƒ
 };
 
 #endif

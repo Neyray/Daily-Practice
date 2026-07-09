@@ -3,7 +3,7 @@
 #include <climits>
 using namespace std;
 
-// ÕÒµ½¾àÀë×î¶ÌÇÒÎ´·ÃÎÊµÄ¶¥µã
+// æ‰¾åˆ°è·ç¦»æœ€çŸ­ä¸”æœªè®¿é—®çš„é¡¶ç‚¹
 int minDistance(vector<int>& dist, vector<bool>& visited, int V) {
     int min = INT_MAX, min_index = -1;
 
@@ -16,7 +16,7 @@ int minDistance(vector<int>& dist, vector<bool>& visited, int V) {
     return min_index;
 }
 
-// ´òÓ¡Â·¾¶
+// æ‰“å°è·¯å¾„
 void printPath(vector<int>& parent, int j) {
     if (parent[j] == -1) {
         cout << j;
@@ -26,27 +26,27 @@ void printPath(vector<int>& parent, int j) {
     cout << " -> " << j;
 }
 
-// µÒ¿ËË¹ÌØÀ­Ëã·¨Çóµ¥Ô´×î¶ÌÂ·¾¶
+// ç‹„å…‹æ–¯ç‰¹æ‹‰ç®—æ³•æ±‚å•æºæœ€çŸ­è·¯å¾„
 void dijkstraAlgorithm(vector<vector<int>>& graph, int src, int V) {
-    vector<int> dist(V, INT_MAX);    // ´æ´¢×î¶Ì¾àÀë
-    vector<bool> visited(V, false);  // ±ê¼ÇÊÇ·ñÒÑ·ÃÎÊ
-    vector<int> parent(V, -1);       // ´æ´¢Â·¾¶µÄ¸¸½Úµã
+    vector<int> dist(V, INT_MAX);    // å­˜å‚¨æœ€çŸ­è·ç¦»
+    vector<bool> visited(V, false);  // æ ‡è®°æ˜¯å¦å·²è®¿é—®
+    vector<int> parent(V, -1);       // å­˜å‚¨è·¯å¾„çš„çˆ¶èŠ‚ç‚¹
 
-    // Ô´µãµ½×ÔÉíµÄ¾àÀëÎª0
+    // æºç‚¹åˆ°è‡ªèº«çš„è·ç¦»ä¸º0
     dist[src] = 0;
 
-    cout << "µÒ¿ËË¹ÌØÀ­Ëã·¨Çó×î¶ÌÂ·¾¶£¨Ô´µã£º" << src << "£©\n";
+    cout << "ç‹„å…‹æ–¯ç‰¹æ‹‰ç®—æ³•æ±‚æœ€çŸ­è·¯å¾„ï¼ˆæºç‚¹ï¼š" << src << "ï¼‰\n";
     cout << "========================================\n";
 
-    // ÕÒµ½ËùÓĞ¶¥µãµÄ×î¶ÌÂ·¾¶
+    // æ‰¾åˆ°æ‰€æœ‰é¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„
     for (int count = 0; count < V - 1; count++) {
-        // Ñ¡Ôñ¾àÀë×î¶ÌµÄÎ´·ÃÎÊ¶¥µã
+        // é€‰æ‹©è·ç¦»æœ€çŸ­çš„æœªè®¿é—®é¡¶ç‚¹
         int u = minDistance(dist, visited, V);
-        visited[u] = true; // ±ê¼ÇÎªÒÑ·ÃÎÊ
+        visited[u] = true; // æ ‡è®°ä¸ºå·²è®¿é—®
 
-        // ¸üĞÂÏàÁÚ¶¥µãµÄ¾àÀë
+        // æ›´æ–°ç›¸é‚»é¡¶ç‚¹çš„è·ç¦»
         for (int v = 0; v < V; v++) {
-            // Èç¹û´æÔÚ±ßu->v£¬ÇÒvÎ´·ÃÎÊ£¬ÇÒÍ¨¹ıuµ½vµÄÂ·¾¶¸ü¶Ì
+            // å¦‚æœå­˜åœ¨è¾¹u->vï¼Œä¸”væœªè®¿é—®ï¼Œä¸”é€šè¿‡uåˆ°vçš„è·¯å¾„æ›´çŸ­
             if (!visited[v] && graph[u][v] &&
                 dist[u] != INT_MAX &&
                 dist[u] + graph[u][v] < dist[v]) {
@@ -56,12 +56,12 @@ void dijkstraAlgorithm(vector<vector<int>>& graph, int src, int V) {
         }
     }
 
-    // Êä³ö½á¹û
-    cout << "¶¥µã\t¾àÀë\tÂ·¾¶\n";
+    // è¾“å‡ºç»“æœ
+    cout << "é¡¶ç‚¹\tè·ç¦»\tè·¯å¾„\n";
     for (int i = 0; i < V; i++) {
         cout << src << " -> " << i << "\t";
         if (dist[i] == INT_MAX) {
-            cout << "¡Ş\tÎŞÂ·¾¶\n";
+            cout << "âˆ\tæ— è·¯å¾„\n";
         }
         else {
             cout << dist[i] << "\t";
@@ -71,9 +71,9 @@ void dijkstraAlgorithm(vector<vector<int>>& graph, int src, int V) {
     }
 }
 
-// ´òÓ¡ÁÚ½Ó¾ØÕó£¨ÓÃÓÚµ÷ÊÔ£©
+// æ‰“å°é‚»æ¥çŸ©é˜µï¼ˆç”¨äºè°ƒè¯•ï¼‰
 void printGraph(vector<vector<int>>& graph, int V) {
-    cout << "Í¼µÄÁÚ½Ó¾ØÕó±íÊ¾£º\n";
+    cout << "å›¾çš„é‚»æ¥çŸ©é˜µè¡¨ç¤ºï¼š\n";
     cout << "   ";
     for (int i = 0; i < V; i++) cout << i << "  ";
     cout << "\n";
@@ -82,7 +82,7 @@ void printGraph(vector<vector<int>>& graph, int V) {
         cout << i << "  ";
         for (int j = 0; j < V; j++) {
             if (graph[i][j] == 0) {
-                cout << "¡Ş  ";
+                cout << "âˆ  ";
             }
             else {
                 cout << graph[i][j] << "  ";
@@ -94,13 +94,13 @@ void printGraph(vector<vector<int>>& graph, int V) {
 }
 
 int main() {
-    cout << "µÒ¿ËË¹ÌØÀ­Ëã·¨Çóµ¥Ô´×î¶ÌÂ·¾¶\n";
+    cout << "ç‹„å…‹æ–¯ç‰¹æ‹‰ç®—æ³•æ±‚å•æºæœ€çŸ­è·¯å¾„\n";
     cout << "==========================\n";
 
-    const int V = 6; // ¶¥µãÊı
+    const int V = 6; // é¡¶ç‚¹æ•°
     vector<vector<int>> graph(V, vector<int>(V, 0));
 
-    // ¹¹½¨ÓĞÏòÍ¼µÄÁÚ½Ó¾ØÕó
+    // æ„å»ºæœ‰å‘å›¾çš„é‚»æ¥çŸ©é˜µ
     graph[0][1] = 4;
     graph[0][2] = 2;
     graph[1][2] = 1;
@@ -111,10 +111,10 @@ int main() {
     graph[3][5] = 6;
     graph[4][5] = 3;
 
-    // ´òÓ¡Í¼µÄ½á¹¹
+    // æ‰“å°å›¾çš„ç»“æ„
     printGraph(graph, V);
 
-    // ´Ó¶¥µã0¿ªÊ¼Ö´ĞĞµÒ¿ËË¹ÌØÀ­Ëã·¨
+    // ä»é¡¶ç‚¹0å¼€å§‹æ‰§è¡Œç‹„å…‹æ–¯ç‰¹æ‹‰ç®—æ³•
     dijkstraAlgorithm(graph, 0, V);
 
     return 0;

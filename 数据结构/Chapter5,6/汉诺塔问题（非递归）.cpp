@@ -16,7 +16,7 @@ struct SNode {
 
 void Hanoi1(int n, char x, char y, char z) {
 	if (n == 1) {
-		cout << "ÅÌÆ¬" << n << "´Ó" << x << "ÒÆ¶¯µ½" << z << endl;
+		cout << "ç›˜ç‰‡" << n << "ä»Ž" << x << "ç§»åŠ¨åˆ°" << z << endl;
 		return;
 	}
 	SNode e, e1, e2, e3;
@@ -31,7 +31,7 @@ void Hanoi1(int n, char x, char y, char z) {
 		char x1 = e.x, y1 = e.y, z1 = e.z;
 		int n1 = e.n;
 		if (flag1) {
-			cout<< "ÅÌÆ¬" << n1 << "´Ó" << x1 << "ÒÆ¶¯µ½" << z1 << endl;
+			cout<< "ç›˜ç‰‡" << n1 << "ä»Ž" << x1 << "ç§»åŠ¨åˆ°" << z1 << endl;
 		}
 		else {
 			if (n1 - 1 == 1)

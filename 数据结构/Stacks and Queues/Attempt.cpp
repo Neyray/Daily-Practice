@@ -4,11 +4,11 @@ using namespace std;
 
 const int MaxSize = 5;
 
-//Ë³ĞòÕ»
+//é¡ºåºæ ˆ
 template <typename T>
 class SqStack {
 public:
-	T* data;       //Êµ¼ÊÉÏÏàµ±ÓÚÒ»¸öÊı×é£¬ÓÃÀ´´æ´¢Êı×éÖĞµÄÔªËØ
+	T* data;       //å®é™…ä¸Šç›¸å½“äºä¸€ä¸ªæ•°ç»„ï¼Œç”¨æ¥å­˜å‚¨æ•°ç»„ä¸­çš„å…ƒç´ 
 	int top;
 
 	SqStack() {
@@ -44,7 +44,7 @@ public:
 	bool isBracketValid(const string& s);
 };
 
-//Á´Õ»£¬Ö»º¬ÓĞÍ·½áµã
+//é“¾æ ˆï¼Œåªå«æœ‰å¤´ç»“ç‚¹
 template <typename T>
 struct LinkNode {
 	T data;
@@ -59,12 +59,12 @@ class LinkStack {
 public:
 	LinkNode<T>* head;
 
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	LinkStack() {
 		head = new LinkNode<T>();
 	}
 
-	//Îö¹¹º¯Êı
+	//ææ„å‡½æ•°
 	~LinkStack() {
 		LinkNode<T>* pre = head, p = pre->next;
 		while (p != NULL) {
@@ -75,16 +75,16 @@ public:
 		delete pre;
 	}
 
-	//´ÓÍ·²å
+	//ä»å¤´æ’
 	bool push(T e) {
 		LinkNode<T>* p = new LinkNode<T>(e);
-		//×¢Òâ£¡headÊÇ²»·¢ÉúÒÆ¶¯µÄ
+		//æ³¨æ„ï¼headæ˜¯ä¸å‘ç”Ÿç§»åŠ¨çš„
 		p->next = head->next;
 		head->next = p;
 		return true;
 	}
 
-	//´ÓÍ·³ö
+	//ä»å¤´å‡º
 	bool pop(T& e) {
 		LinkNode<T>* p;
 		if (head->next == NULL)
@@ -105,7 +105,7 @@ public:
 	int evalRPN(const string& tokens);
 };
 
-//Ñ­»·µ¥Á´±íÁ´Õ»£¬²»´øÍ·½áµã£¬Ö»º¬ÓĞÎ²½áµã
+//å¾ªç¯å•é“¾è¡¨é“¾æ ˆï¼Œä¸å¸¦å¤´ç»“ç‚¹ï¼Œåªå«æœ‰å°¾ç»“ç‚¹
 template <typename T>
 struct CLinkNode {
 	T data;
@@ -142,13 +142,13 @@ public:
 			rear = rear->next;
 		}
 		else {
-			//°Ñ½áµãp²åÈëµ½rearµÄºóÃæ
+			//æŠŠç»“ç‚¹pæ’å…¥åˆ°rearçš„åé¢
 			p->next = rear->next;
 			rear->next = p;
 		}
 		return true;
 	}
-	//³öÕ»²Ù×÷£¬´ÓÍ·³ö
+	//å‡ºæ ˆæ“ä½œï¼Œä»å¤´å‡º
 	bool pop(T& e) {
 		CLinkNode<T>* p;
 		if (empty())
@@ -165,25 +165,25 @@ public:
 		delete p;
 		return true;
 	}
-	//»ñÈ¡Õ»Í·ÔªËØ
+	//è·å–æ ˆå¤´å…ƒç´ 
 	template <typename T>
 	bool gettop(T& e) {
 		if (empty())return false;
 		e = rear->next->data;
 		return true;
 	}
-	//»ñÈ¡Õ»µ×ÔªËØ
+	//è·å–æ ˆåº•å…ƒç´ 
 	T getbottom(T& e) {
-		if (empty())throw "Õ»¿Õ";
+		if (empty())throw "æ ˆç©º";
 		return rear->data;
 	}
 };
 
 
-//Ò».Õ»×¨Ìâ
+//ä¸€.æ ˆä¸“é¢˜
 
 
-//ÌâÄ¿1£ºË³ĞòÕ»ÊµÏÖÀ¨ºÅÆ¥Åä
+//é¢˜ç›®1ï¼šé¡ºåºæ ˆå®ç°æ‹¬å·åŒ¹é…
 template <typename T>
 bool SqStack<T>::isBracketValid(const string& s) {
 	SqStack<char> st;
@@ -206,7 +206,7 @@ bool SqStack<T>::isBracketValid(const string& s) {
 	return st.empty();
 }
 
-//ÌâÄ¿2£ºÁ´Õ»ÊµÏÖ±í´ïÊ½ÇóÖµ£¨¼ò»¯°æ£©
+//é¢˜ç›®2ï¼šé“¾æ ˆå®ç°è¡¨è¾¾å¼æ±‚å€¼ï¼ˆç®€åŒ–ç‰ˆï¼‰
 template <typename T>
 int LinkStack<T>::evalRPN(const string& tokens) {
 	LinkStack<int>st;
@@ -215,7 +215,7 @@ int LinkStack<T>::evalRPN(const string& tokens) {
 
 	while (iss >> token) {
 		if (isdigit(tokems[0])) {
-			st.push(stoi(token));           //stoiÊÇ½«×Ö·û´®×ª»»ÎªÕûÊıµÄÔËËã·û
+			st.push(stoi(token));           //stoiæ˜¯å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•´æ•°çš„è¿ç®—ç¬¦
 		}
 		else {
 			int a, b;
@@ -232,7 +232,7 @@ int LinkStack<T>::evalRPN(const string& tokens) {
 	return res;
 }
 
-//·ÇÑ­»·¶ÓÁĞ
+//éå¾ªç¯é˜Ÿåˆ—
 template <typename T>
 class SqQuene {
 	T* data;
@@ -248,7 +248,7 @@ class SqQuene {
 	bool empty() {
 		return (rear == front);
 	}
-	//°ÑÔªËØ¼Óµ½¶ÓÁĞºóÃæ
+	//æŠŠå…ƒç´ åŠ åˆ°é˜Ÿåˆ—åé¢
 	bool push(T e) {
 		if (rear == MaxSize - 1)
 			return false;
@@ -256,14 +256,14 @@ class SqQuene {
 		data[rear] = e;
 		return true;
 	}
-	//´Ó¶ÓÍ·È¡³öÔªËØ
+	//ä»é˜Ÿå¤´å–å‡ºå…ƒç´ 
 	bool pop(T& e) {
 		if (front == rear)return false;
 		front++;
 		e = data[front];
 		return true;
 	}
-	//»ñÈ¡Õ»Í·ÔªËØ
+	//è·å–æ ˆå¤´å…ƒç´ 
 	bool gettop(T& e) {
 		if (front == rear)return false;
 		T head = front;
@@ -273,7 +273,7 @@ class SqQuene {
 	}
 };
 
-//Ñ­»·¶ÓÁĞ
+//å¾ªç¯é˜Ÿåˆ—
 template <typename T>
 class CSqQuene {
 public:
@@ -304,7 +304,7 @@ public:
 		e = data[front];
 		return true;
 	}
-	//headÊÇ²»ĞèÒª¶¯µÄ
+	//headæ˜¯ä¸éœ€è¦åŠ¨çš„
 	bool gettop(T& e) {
 		if (front == rear)
 			return false;
@@ -315,9 +315,9 @@ public:
 	int josephus(int n, int m);
 };
 
-//¶ş.¶ÓÁĞ×¨Ìâ
+//äºŒ.é˜Ÿåˆ—ä¸“é¢˜
 
-//ÌâÄ¿1£ºÑ­»·¶ÓÁĞÊµÏÖ»÷¹Ä´«»¨
+//é¢˜ç›®1ï¼šå¾ªç¯é˜Ÿåˆ—å®ç°å‡»é¼“ä¼ èŠ±
 template <typename T>
 int CSqQuene<T>::josephus(int n, int m) {
 	CSqQueue<int> q;

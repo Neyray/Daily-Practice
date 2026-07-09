@@ -1,4 +1,4 @@
-//¶ÔÒ»¸öº¬n£¨n<=20000£©¸öÕûÊıµÄµİÔöÓĞĞò±í½øĞĞÕÛ°ë²éÕÒ£¬Êä³ö²éÕÒ³É¹¦»òÊ§°Ü£¬²¢Êä³öÃ¿´ÎµÄ²éÕÒĞòÁĞ
+//å¯¹ä¸€ä¸ªå«nï¼ˆn<=20000ï¼‰ä¸ªæ•´æ•°çš„é€’å¢æœ‰åºè¡¨è¿›è¡ŒæŠ˜åŠæŸ¥æ‰¾ï¼Œè¾“å‡ºæŸ¥æ‰¾æˆåŠŸæˆ–å¤±è´¥ï¼Œå¹¶è¾“å‡ºæ¯æ¬¡çš„æŸ¥æ‰¾åºåˆ—
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    // ´ò¿ªÊäÈëÊä³öÎÄ¼ş
+    // æ‰“å¼€è¾“å…¥è¾“å‡ºæ–‡ä»¶
     ifstream fin("in.txt");
     ofstream fout("out.txt");
 
@@ -14,12 +14,12 @@ int main() {
     string line;
     vector<int> nums;
 
-    // ¶ÁÈ¡ĞèÒª²éÕÒµÄÊı
+    // è¯»å–éœ€è¦æŸ¥æ‰¾çš„æ•°
     getline(fin, line);
     stringstream ss1(line);
     ss1 >> target;
 
-    // ¶ÁÈ¡ÓĞĞò±í
+    // è¯»å–æœ‰åºè¡¨
     getline(fin, line);
     stringstream ss2(line);
     int num;
@@ -27,14 +27,14 @@ int main() {
         nums.push_back(num);
     }
 
-    vector<int> seq; // ´æ´¢²éÕÒĞòÁĞ
+    vector<int> seq; // å­˜å‚¨æŸ¥æ‰¾åºåˆ—
     int left = 0, right = nums.size() - 1;
     bool found = false;
 
-    // ÕÛ°ë²éÕÒ
+    // æŠ˜åŠæŸ¥æ‰¾
     while (left <= right) {
         int mid = left + (right - left) / 2;
-        seq.push_back(nums[mid]); // ¼ÇÂ¼±¾´Î²éÕÒµÄÊı
+        seq.push_back(nums[mid]); // è®°å½•æœ¬æ¬¡æŸ¥æ‰¾çš„æ•°
         if (nums[mid] == target) {
             found = true;
             break;
@@ -47,9 +47,9 @@ int main() {
         }
     }
 
-    // Êä³ö²éÕÒ½á¹û
+    // è¾“å‡ºæŸ¥æ‰¾ç»“æœ
     fout << (found ? "True" : "False") << endl;
-    // Êä³ö²éÕÒĞòÁĞ
+    // è¾“å‡ºæŸ¥æ‰¾åºåˆ—
     for (size_t i = 0; i < seq.size(); ++i) {
         if (i > 0) fout << " ";
         fout << seq[i];

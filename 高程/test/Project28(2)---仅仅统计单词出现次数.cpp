@@ -72,7 +72,7 @@ int main() {
             }
         }
 
-        // ´¦ÀíĞĞÎ²×îºóÒ»¸öµ¥´Ê
+        // å¤„ç†è¡Œå°¾æœ€åä¸€ä¸ªå•è¯
         if (!current.empty() && isValid(current)) {
             int index = findWord(word, wordCount, current);
             if (index == -1) {
@@ -86,7 +86,7 @@ int main() {
         }
     }
 
-    // ÅÅĞò£ºÏÈ´óĞ´A-Z£¬ÔÙĞ¡Ğ´a-z
+    // æ’åºï¼šå…ˆå¤§å†™A-Zï¼Œå†å°å†™a-z
     for (int i = 0; i < wordCount - 1; ++i) {
         for (int j = i + 1; j < wordCount; ++j) {
             bool needSwap = false;
@@ -106,7 +106,7 @@ int main() {
         }
     }
 
-    // Êä³ö£ºµ¥´Ê:´ÎÊı
+    // è¾“å‡ºï¼šå•è¯:æ¬¡æ•°
     for (int i = 0; i < wordCount; ++i) {
         fout << word[i].w << ":" << word[i].totalCount << endl;
     }

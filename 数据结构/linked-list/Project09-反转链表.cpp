@@ -1,29 +1,29 @@
 #include <iostream>
 
-// ¶¨ÒåÁ´±í½ÚµãµÄ½á¹¹Ìå
+// å®šä¹‰é“¾è¡¨èŠ‚ç‚¹çš„ç»“æž„ä½“
 struct ListNode {
     int value;
     ListNode* next;
     ListNode(int x) : value(x), next(nullptr) {}
 };
 
-// ·´×ªÁ´±íµÄº¯Êý
+// åè½¬é“¾è¡¨çš„å‡½æ•°
 ListNode* reverseList(ListNode* head) {
     ListNode* prev = nullptr;
     ListNode* curr = head;
 
     while (curr != nullptr) {
-        ListNode* nextTemp = curr->next; // ÔÝ´æÏÂÒ»¸ö½Úµã
+        ListNode* nextTemp = curr->next; // æš‚å­˜ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 
-        curr->next = prev; // µ±Ç°½ÚµãµÄnextÖ¸ÏòÇ°Ò»¸ö½Úµã
-        prev = curr; // Ç°Ò»¸ö½Úµã¸üÐÂÎªµ±Ç°½Úµã
-        curr = nextTemp; // µ±Ç°½Úµã¸üÐÂÎªÏÂÒ»¸öÔÝ´æµÄ½Úµã
+        curr->next = prev; // å½“å‰èŠ‚ç‚¹çš„nextæŒ‡å‘å‰ä¸€ä¸ªèŠ‚ç‚¹
+        prev = curr; // å‰ä¸€ä¸ªèŠ‚ç‚¹æ›´æ–°ä¸ºå½“å‰èŠ‚ç‚¹
+        curr = nextTemp; // å½“å‰èŠ‚ç‚¹æ›´æ–°ä¸ºä¸‹ä¸€ä¸ªæš‚å­˜çš„èŠ‚ç‚¹
     }
 
-    return prev; // ·µ»Ø·´×ªºóµÄÁ´±íÍ·½Úµã
+    return prev; // è¿”å›žåè½¬åŽçš„é“¾è¡¨å¤´èŠ‚ç‚¹
 }
 
-// ´òÓ¡Á´±íµÄº¯Êý£¨ÓÃÓÚ²âÊÔ£©
+// æ‰“å°é“¾è¡¨çš„å‡½æ•°ï¼ˆç”¨äºŽæµ‹è¯•ï¼‰
 void printList(ListNode* head) {
     ListNode* current = head;
     while (current != nullptr) {
@@ -34,7 +34,7 @@ void printList(ListNode* head) {
 }
 
 int main() {
-    // ´´½¨Ò»¸öÁ´±í 1->2->3->4->5
+    // åˆ›å»ºä¸€ä¸ªé“¾è¡¨ 1->2->3->4->5
     ListNode* head = new ListNode(1);
     head->next = new ListNode(2);
     head->next->next = new ListNode(3);
@@ -44,13 +44,13 @@ int main() {
     std::cout << "Original list: ";
     printList(head);
 
-    // ·´×ªÁ´±í
+    // åè½¬é“¾è¡¨
     ListNode* reversedHead = reverseList(head);
 
     std::cout << "Reversed list: ";
     printList(reversedHead);
 
-    // ÊÍ·ÅÁ´±í½ÚµãÄÚ´æ£¨±ÜÃâÄÚ´æÐ¹Â©£©
+    // é‡Šæ”¾é“¾è¡¨èŠ‚ç‚¹å†…å­˜ï¼ˆé¿å…å†…å­˜æ³„æ¼ï¼‰
     ListNode* current = reversedHead;
     while (current != nullptr) {
         ListNode* next = current->next;

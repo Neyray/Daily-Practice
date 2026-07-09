@@ -3,16 +3,16 @@
 #include <fstream>
 using namespace std;
 
-// µİ¹éº¯ÊıÀ´´¦Àín½øÖÆ×ª»»
+// é€’å½’å‡½æ•°æ¥å¤„ç†nè¿›åˆ¶è½¬æ¢
 void convertToBase(int num, int n, vector<int>& result) {
     if (num == 0) {
-        return;  // »ù±¾Çé¿ö£¬µ±numÎª0Ê±Í£Ö¹µİ¹é
+        return;  // åŸºæœ¬æƒ…å†µï¼Œå½“numä¸º0æ—¶åœæ­¢é€’å½’
     }
 
-    // µİ¹é¼ÆËãnumµÄÏÂÒ»Î»
+    // é€’å½’è®¡ç®—numçš„ä¸‹ä¸€ä½
     convertToBase(num / n, n, result);
 
-    // ¼ÆËãµ±Ç°Î»
+    // è®¡ç®—å½“å‰ä½
     result.push_back(num % n);
 }
 
@@ -23,29 +23,29 @@ int main() {
         return -1;
     }
 
-    // ÊäÈëÊı×ÖmºÍ½øÖÆn
+    // è¾“å…¥æ•°å­—må’Œè¿›åˆ¶n
     int num, n;
     inFiles >> num >> n;
 
     vector<int> result;
 
-    // ÌØÊâÇé¿ö£ºÈç¹ûnumÊÇ0£¬Ö±½Ó´¦Àí
+    // ç‰¹æ®Šæƒ…å†µï¼šå¦‚æœnumæ˜¯0ï¼Œç›´æ¥å¤„ç†
     if (num == 0) {
         result.push_back(0);
     }
     else {
-        // µ÷ÓÃµİ¹éº¯Êı
+        // è°ƒç”¨é€’å½’å‡½æ•°
         convertToBase(num, n, result);
     }
 
-    // Êä³öµ½out.txt
+    // è¾“å‡ºåˆ°out.txt
     ofstream outFiles("out.txt");
     if (!outFiles) {
         cerr << "error!" << endl;
         return -1;
     }
 
-    // Êä³öÃ¿Ò»Î»£¬ÖĞ¼äÓÃ¿Õ¸ñ¸ô¿ª
+    // è¾“å‡ºæ¯ä¸€ä½ï¼Œä¸­é—´ç”¨ç©ºæ ¼éš”å¼€
     for (int i = 0; i < result.size(); ++i) {
         outFiles << result[i] << " ";
     }

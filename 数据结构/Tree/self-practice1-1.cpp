@@ -1,7 +1,7 @@
 /*
-���뷽ʽ����ȫ�������Ĵ洢��ʽ����ABC#D##��
-��Ҫ����������������������е��ڵ�ĸ�����
-�����ʽ��ֱ���������
+输入方式：完全二叉树的存储方式，如ABC#D##；
+现要求构造二叉链，数出二叉树中单节点的个数；
+输出方式：直接输出数字
 */
 
 #include <iostream>
@@ -22,21 +22,21 @@ struct TreeNode {
 
 int countSingle(TreeNode* root) {
     /*
-    ��ʹ�������ж�if (root->left != NULL)��if (root->right != NULL)����������Կ������Ĵ�����Ȼ������ȷ��������
-    �����ӽڵ��Ƿ���ڶ�Ӧ���õݹ麯������Ϊ������ͷ��if (!root) return;���пջ��ơ�
+    你使用条件判断if (root->left != NULL)和if (root->right != NULL)，这会跳过对空子树的处理。然而，正确的做法是
+    无论子节点是否存在都应调用递归函数，因为函数开头有if (!root) return;的判空机制。
     */
     if (!root) return 0;
 
-    // ��ʼ��������
+    // 初始化计数器
     int cnt = 0;
 
-    // ��鵱ǰ�ڵ��Ƿ�Ϊ���ӽڵ�
-    // (root->left == nullptr) != (root->right == nullptr) ��ʾһ���ӽڵ�Ϊ�գ���һ���ӽڵ㲻Ϊ��
+    // 检查当前节点是否为单子节点
+    // (root->left == nullptr) != (root->right == nullptr) 表示一个子节点为空，另一个子节点不为空
     if ((root->left == nullptr) != (root->right == nullptr)) {
-        cnt = 1; // �ǵ��ӽڵ㣬cnt����Ϊ1
+        cnt = 1; // 是单子节点，cnt设置为1
     }
 
-    // �ݹ�������������������еĵ��ӽڵ������������ϵ�ǰ�ڵ�ļ���
+    // 递归计算左子树和右子树中的单子节点数量，并加上当前节点的计数
     return cnt + countSingle(root->left) + countSingle(root->right);
 }
 

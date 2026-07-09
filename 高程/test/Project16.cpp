@@ -7,30 +7,30 @@ int main() {
 	int n, k, m;
 	cin >> n >> k >> m;
 
-	//n¸öÈËÎ§³ÉÒ»È¦£¬´ÓµÚk¸öÈË¿ªÊ¼´Ó1±¨Êı£¬Êıµ½mµÄÈË³öÁĞ
+	//nä¸ªäººå›´æˆä¸€åœˆï¼Œä»ç¬¬kä¸ªäººå¼€å§‹ä»1æŠ¥æ•°ï¼Œæ•°åˆ°mçš„äººå‡ºåˆ—
 
 
-	vector<int> arr1(n, 1);//³õÊ¼»¯Îª1
-	vector<int> arr2;//´æ´¢³öÕ»ĞòÁĞ
+	vector<int> arr1(n, 1);//åˆå§‹åŒ–ä¸º1
+	vector<int> arr2;//å­˜å‚¨å‡ºæ ˆåºåˆ—
 
-	int curr = k - 1;//µ±Ç°±¨ÊıµÄÈË
-	int count = 0;//ÓÃÀ´¼ÆÊı
+	int curr = k - 1;//å½“å‰æŠ¥æ•°çš„äºº
+	int count = 0;//ç”¨æ¥è®¡æ•°
 
 
-	//Ã¿´ÎÒÆ¶¯Ò»¸ñ
+	//æ¯æ¬¡ç§»åŠ¨ä¸€æ ¼
 	while (arr2.size() < n) {
 		if (arr1[curr] == 1) {
 			count++;
 			if (count == m) {
 				arr1[curr] = 0;
 				arr2.push_back(curr + 1);
-				count = 0;//ÔÙ°ÑÕâ¸öcount¹éÁã
+				count = 0;//å†æŠŠè¿™ä¸ªcountå½’é›¶
 			}
 		}
 		curr = (curr + 1) % n;
 	}
 
-	//Êä³ö³öÁĞË³Ğò
+	//è¾“å‡ºå‡ºåˆ—é¡ºåº
 	for (int num : arr2) {
 		cout << num << " ";
 	}

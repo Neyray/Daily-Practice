@@ -7,12 +7,12 @@ using namespace std;
 
 struct Word {
     string w;
-    int line[200];      // ĞĞºÅ
-    int lineCount;      // ĞĞµÄÊıÁ¿
-    int totalCount;     // µ¥´Ê³öÏÖµÄ×Ü´ÎÊı£¨ĞÂÔö£©
+    int line[200];      // è¡Œå·
+    int lineCount;      // è¡Œçš„æ•°é‡
+    int totalCount;     // å•è¯å‡ºç°çš„æ€»æ¬¡æ•°ï¼ˆæ–°å¢ï¼‰
 };
 
-// ÅĞ¶ÏÊÇ·ñÊÇÓĞĞ§µ¥´ÊµÄº¯Êı
+// åˆ¤æ–­æ˜¯å¦æ˜¯æœ‰æ•ˆå•è¯çš„å‡½æ•°
 bool isValidWord(const string& w) {
     if (w.empty() || w[0] == '-') return false;
 
@@ -20,7 +20,7 @@ bool isValidWord(const string& w) {
         if (!isalpha(w[i]) && w[i] != '-') return false;
     }
 
-    // ÅÅ³ıÌØ¶¨µÄ¹Ú´ÊºÍÁ¬´Ê
+    // æ’é™¤ç‰¹å®šçš„å† è¯å’Œè¿è¯
     if (w == "a" || w == "an" || w == "the" || w == "and") return false;
     if (w == "A" || w == "An" || w == "The" || w == "And") return false;
 
@@ -28,7 +28,7 @@ bool isValidWord(const string& w) {
 }
 
 void addLine(Word& w, int line) {
-    // ¼ì²é¸ÃĞĞÊÇ·ñÒÑ¼ÇÂ¼
+    // æ£€æŸ¥è¯¥è¡Œæ˜¯å¦å·²è®°å½•
     bool lineExists = false;
     for (int i = 0; i < w.lineCount; ++i) {
         if (line == w.line[i]) {
@@ -37,7 +37,7 @@ void addLine(Word& w, int line) {
         }
     }
 
-    // Èç¹ûÊÇĞÂĞĞ£¬Ìí¼Óµ½ĞĞºÅÊı×é
+    // å¦‚æœæ˜¯æ–°è¡Œï¼Œæ·»åŠ åˆ°è¡Œå·æ•°ç»„
     if (!lineExists) {
         w.line[w.lineCount] = line;
         w.lineCount++;
@@ -76,35 +76,35 @@ int main() {
         string currentWord = "";
 
         for (int i = 0; i <= line.length(); ++i) {
-            // Èç¹ûÊÇ×ÖÄ¸»òÁ¬×Ö·û£¬¼ÌĞø¹¹½¨µ¥´Ê
+            // å¦‚æœæ˜¯å­—æ¯æˆ–è¿å­—ç¬¦ï¼Œç»§ç»­æ„å»ºå•è¯
             if (i < line.length() && (line[i] == '-' || isalpha(line[i]))) {
                 currentWord += line[i];
             }
-            // Óöµ½·Ö¸ô·û»òĞĞÎ²£¬´¦Àíµ±Ç°µ¥´Ê
+            // é‡åˆ°åˆ†éš”ç¬¦æˆ–è¡Œå°¾ï¼Œå¤„ç†å½“å‰å•è¯
             else if (!currentWord.empty()) {
                 if (isValidWord(currentWord)) {
                     int index = findWord(word, wordCount, currentWord);
 
-                    // µÚÒ»´Î³öÏÖ
+                    // ç¬¬ä¸€æ¬¡å‡ºç°
                     if (index == -1) {
                         word[wordCount].w = currentWord;
                         word[wordCount].lineCount = 0;
-                        word[wordCount].totalCount = 1;  // ³õÊ¼»¯³öÏÖ´ÎÊıÎª1
+                        word[wordCount].totalCount = 1;  // åˆå§‹åŒ–å‡ºç°æ¬¡æ•°ä¸º1
                         addLine(word[wordCount], lineNum);
                         wordCount++;
                     }
-                    // ÒÑ¾­³öÏÖ¹ı
+                    // å·²ç»å‡ºç°è¿‡
                     else {
-                        word[index].totalCount++;  // Ôö¼Ó³öÏÖ´ÎÊı
+                        word[index].totalCount++;  // å¢åŠ å‡ºç°æ¬¡æ•°
                         addLine(word[index], lineNum);
                     }
                 }
-                currentWord = "";  // ÖØÖÃµ±Ç°µ¥´Ê
+                currentWord = "";  // é‡ç½®å½“å‰å•è¯
             }
         }
     }
 
-    // ÅÅĞò£ºÏÈ´óĞ´A-Z£¬ÔÙĞ¡Ğ´a-z£¬ÏàÍ¬Ê××ÖÄ¸°´×ÖµäĞò
+    // æ’åºï¼šå…ˆå¤§å†™A-Zï¼Œå†å°å†™a-zï¼Œç›¸åŒé¦–å­—æ¯æŒ‰å­—å…¸åº
     for (int i = 0; i < wordCount - 1; ++i) {
         for (int j = i + 1; j < wordCount; ++j) {
             bool needSwap = false;
@@ -125,7 +125,7 @@ int main() {
         }
     }
 
-    // Êä³ö½á¹û£ºµ¥´Ê:ĞĞºÅÁĞ±í (³öÏÖ´ÎÊı)
+    // è¾“å‡ºç»“æœï¼šå•è¯:è¡Œå·åˆ—è¡¨ (å‡ºç°æ¬¡æ•°)
     for (int i = 0; i < wordCount; ++i) {
         fout << word[i].w << ":";
         for (int j = 0; j < word[i].lineCount; ++j) {
@@ -134,7 +134,7 @@ int main() {
                 fout << ",";
             }
         }
-        fout << " (" << word[i].totalCount << ")" << endl;  // Êä³ö³öÏÖ´ÎÊı
+        fout << " (" << word[i].totalCount << ")" << endl;  // è¾“å‡ºå‡ºç°æ¬¡æ•°
     }
 
     fin.close();

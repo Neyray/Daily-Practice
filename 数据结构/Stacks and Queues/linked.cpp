@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//1.Á´Õ»µÄ³õÊ¼»¯ºÍÏú»Ù
+//1.é“¾æ ˆçš„åˆå§‹åŒ–å’Œé”€æ¯
 template <typename T>
 LinkStack<T>::LinkStack() {
 	head = new LinkNode<T>();
@@ -19,13 +19,13 @@ LinkStack<T>::~LinkStack() {
 	delete pre;
 }
 
-//2.ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//2.åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 template <typename T>
 bool LinkStack<T>::empty() {
 	return head->next == NULL;
 }
 
-//3.½øÕ»
+//3.è¿›æ ˆ
 template <typename T>
 bool LinkStack<T>::push(T e) {
 	LinkNode<T>* p = new LinkNode<T>(e);
@@ -34,7 +34,7 @@ bool LinkStack<T>::push(T e) {
 	return true;
 }
 
-//4.³öÕ»
+//4.å‡ºæ ˆ
 template <typename T>
 bool LinkStack<T>::pop(T& e) {
 	LinkNode<T>* p;
@@ -46,7 +46,7 @@ bool LinkStack<T>::pop(T& e) {
 	return true;
 }
 
-//5¡£È¡Õ»¶¥ÔªËØ
+//5ã€‚å–æ ˆé¡¶å…ƒç´ 
 template <typename T>
 bool LinkStack<T>::gettop(T& e) {
 	LinkNode<T>* p;

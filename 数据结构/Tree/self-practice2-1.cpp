@@ -1,4 +1,4 @@
-//ÓÉ²ã´Î±éÀúºÍÖĞĞò±éÀú½á¹ûµÃ³öÇ°Ğò±éÀú
+//ç”±å±‚æ¬¡éå†å’Œä¸­åºéå†ç»“æœå¾—å‡ºå‰åºéå†
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -12,7 +12,7 @@ struct TreeNode {
     TreeNode(string x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-//ÌáÈ¡×Ö·û²¢´æÈëÊı×é
+//æå–å­—ç¬¦å¹¶å­˜å…¥æ•°ç»„
 vector<string> split(const string& s) {
     vector<string> res;
     istringstream iss(s);
@@ -31,7 +31,7 @@ TreeNode* buildTree(vector<string> level, int in_start, int in_end, unordered_ma
     TreeNode* root = new TreeNode(root_val);
     int index = in_map[root_val];
 
-    //½øĞĞ·ÖÇø
+    //è¿›è¡Œåˆ†åŒº
     vector<string> left_level, right_level;
     for (int i = 1; i < level.size(); ++i) {
         string val = level[i];

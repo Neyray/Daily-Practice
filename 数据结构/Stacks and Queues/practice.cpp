@@ -8,20 +8,20 @@ public:
 	int* data;
 	int front, rear;
 
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	CSqQueue(int m) :maxsize(m) {
 		data = new int[maxsize];
 		front = rear = 0;
 	}
-	//Îö¹¹º¯Êı
+	//ææ„å‡½æ•°
 	~CSqQueue() {
 		delete[]data;
 	}
-	//ÅĞ¶ÏÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 	bool empty() {
 		return (front == rear);
 	}
-	//½ø¶ÓÁĞ
+	//è¿›é˜Ÿåˆ—
 	bool push(int e) {
 		if ((rear + 1) % maxsize == front)
 			return false;
@@ -29,7 +29,7 @@ public:
 		data[rear] = e;
 		return true;
 	}
-	//³ö¶ÓÁĞ
+	//å‡ºé˜Ÿåˆ—
 	bool pop(int& e) {
 		if (front == rear)
 			return false;
@@ -60,7 +60,7 @@ int main() {
 		c.push(i);
 	}
 
-	//µ÷Õû¶ÓÁĞÍ·²¿Î»ÖÃ
+	//è°ƒæ•´é˜Ÿåˆ—å¤´éƒ¨ä½ç½®
 	for (int i = 0; i < q - 1; ++i) {
 		int temp;
 		c.pop(temp);

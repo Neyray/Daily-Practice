@@ -6,18 +6,18 @@ using namespace std;
 
 void nullPointerDereference() {
     string* ptr = nullptr;
-    cout << "String length: " << ptr->length() << endl; // ´íÎó1
+    cout << "String length: " << ptr->length() << endl; // é”™è¯¯1
 }
 
 void divisionByZero() {
     int a = 10, b = 0;
-    int result = a / b; // ´íÎó2
+    int result = a / b; // é”™è¯¯2
     cout << "Result: " << result << endl;
 }
 
 void outOfBounds() {
     vector<int> vec = { 1, 2, 3 };
-    for (int i = 0; i <= 3; i++) { // ´íÎó3
+    for (int i = 0; i <= 3; i++) { // é”™è¯¯3
         cout << vec[i] << endl;
     }
 }
@@ -25,17 +25,17 @@ void outOfBounds() {
 void invalidIterator() {
     vector<int> nums = { 1, 2, 3 };
     auto it = nums.begin();
-    nums.push_back(4); // ´íÎó4
+    nums.push_back(4); // é”™è¯¯4
     cout << *it << endl;
 }
 
 void memoryLeak() {
-    int* arr = new int[100]; // ´íÎó5
-    // Íü¼Çdelete[]
+    int* arr = new int[100]; // é”™è¯¯5
+    // å¿˜è®°delete[]
 }
 
 int main() {
-    // Ñ¡ÔñÒª´¥·¢µÄ´íÎó
+    // é€‰æ‹©è¦è§¦å‘çš„é”™è¯¯
     cout << "Select error type (1-5):\n";
     cout << "1. Null Pointer Dereference\n";
     cout << "2. Division by Zero\n";

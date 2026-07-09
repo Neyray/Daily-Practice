@@ -2,21 +2,21 @@
 #include <iostream>
 using namespace std;
 
-//1.ÓÃÍ·²å·¨½¨±í
+//1.ç”¨å¤´æ’æ³•å»ºè¡¨
 template <typename T>
 void LinkNode<T>::CreateListF(T a[], int n) {
 	for (int i = 0; i < n; ++i) {
-		LinkNode<T>* s = new LinkNode<T>(a[i]);      //´´½¨Êı¾İ½Úµãs
-		s->next = head->next;           //½«½áµãs²åÈëhead½áµãµÄºóÃæ
-		head->next = s;         //headµÄÎ»ÖÃ²»»á·¢Éú±ä»¯
+		LinkNode<T>* s = new LinkNode<T>(a[i]);      //åˆ›å»ºæ•°æ®èŠ‚ç‚¹s
+		s->next = head->next;           //å°†ç»“ç‚¹sæ’å…¥headç»“ç‚¹çš„åé¢
+		head->next = s;         //headçš„ä½ç½®ä¸ä¼šå‘ç”Ÿå˜åŒ–
 	}
 }
 
-//2.ÓÃÎ²²å·¨½¨±í
+//2.ç”¨å°¾æ’æ³•å»ºè¡¨
 template <typename T>
 void LinkNode<T>::CreateListR(T a[], int n) {
-	LinkNode<T>* s, * r;     //rÊÇÎ²Ö¸Õë£¬Ê¼ÖÕÖ¸Ïòµ±Ç°Á´±íµÄÎ²½áµã
-	r = head;//³õÊ¼»¯
+	LinkNode<T>* s, * r;     //ræ˜¯å°¾æŒ‡é’ˆï¼Œå§‹ç»ˆæŒ‡å‘å½“å‰é“¾è¡¨çš„å°¾ç»“ç‚¹
+	r = head;//åˆå§‹åŒ–
 	for (int i = 0; i < n; ++i) {
 		s = new LinkNode<T>(a[i]);
 		r->next = s;
@@ -25,7 +25,7 @@ void LinkNode<T>::CreateListR(T a[], int n) {
 	r->next = NULL;
 }
 
-//3.²éÕÒĞòºÅÎªiµÄ½áµã
+//3.æŸ¥æ‰¾åºå·ä¸ºiçš„ç»“ç‚¹
 template <typename T>
 LinkNode<T>* geti(int i) {
 	if (i < -1)return NULL;
@@ -38,7 +38,7 @@ LinkNode<T>* geti(int i) {
 	return p;
 }
 
-//4.µ¥Á´±íµÄ³õÊ¼»¯ºÍÏú»Ù
+//4.å•é“¾è¡¨çš„åˆå§‹åŒ–å’Œé”€æ¯
 template <typename T>
 LinkList<T>::LinkList() {
 	head = new ListNode<T>();
@@ -57,10 +57,10 @@ LinkList<T>::~LinkList() {
 	delete pre;
 }
 
-//5.½«ÔªËØeµÄ½áµãÌí¼Óµ½µ¥Á´±íÄ©Î²
+//5.å°†å…ƒç´ eçš„ç»“ç‚¹æ·»åŠ åˆ°å•é“¾è¡¨æœ«å°¾
 template <typename T>
 void LinkList<T>::Add(T e) {
-	LinkNode<T>* s = new LinkNode<T>(e);         //ĞÂ½¨½áµãe
+	LinkNode<T>* s = new LinkNode<T>(e);         //æ–°å»ºç»“ç‚¹e
 	LinkNode<T>* p = head;
 	while (p->next != NULL) {
 		p = p->next;
@@ -68,7 +68,7 @@ void LinkList<T>::Add(T e) {
 	p->next = s;
 }
 
-//6.Çóµ¥Á´±íµÄ³¤¶È
+//6.æ±‚å•é“¾è¡¨çš„é•¿åº¦
 template <typename T>
 int LinkList<T>::Getlength() {
 	LinkNode<T>* p = head;
@@ -80,7 +80,7 @@ int LinkList<T>::Getlength() {
 	return cnt;
 }
 
-//7.Çóµ¥Á´±íÖĞĞòºÅÎªiµÄ½áµãÖµ
+//7.æ±‚å•é“¾è¡¨ä¸­åºå·ä¸ºiçš„ç»“ç‚¹å€¼
 template <typename T>
 bool LinkList<T>::GetElem(int i, T& e) {
 	if (i < 0)return false;
@@ -93,7 +93,7 @@ bool LinkList<T>::GetElem(int i, T& e) {
 		return false;
 }
 
-//8.ÉèÖÃµ¥Á´±íÖĞĞòºÅÎªiµÄ½áµãÖµ
+//8.è®¾ç½®å•é“¾è¡¨ä¸­åºå·ä¸ºiçš„ç»“ç‚¹å€¼
 template <typename T>
 bool LinkList<T>::SetElem(int i, T e) {
 	if (i < 0)return false;
@@ -105,11 +105,11 @@ bool LinkList<T>::SetElem(int i, T e) {
 	return false;
 }
 
-//9.ÇóÁ´±íÖĞµÚÒ»¸öÖµÎªeµÄ½áµãµÄ·ûºÅ
+//9.æ±‚é“¾è¡¨ä¸­ç¬¬ä¸€ä¸ªå€¼ä¸ºeçš„ç»“ç‚¹çš„ç¬¦å·
 template <typename T>
 int LinkList<T>::GetNo(T e) {
 	int j = 0;
-	LinkNode<T>* p = head->next;          //Ö®ËùÒÔÁîp=head->next¶ø²»ÊÇp=headµÄÔ­ÒòÊÇÖ®ºóÒªµ÷ÓÃp->data
+	LinkNode<T>* p = head->next;          //ä¹‹æ‰€ä»¥ä»¤p=head->nextè€Œä¸æ˜¯p=headçš„åŸå› æ˜¯ä¹‹åè¦è°ƒç”¨p->data
 	while (p != NULL && p->data != e) {
 		p = p->next;
 		j++;
@@ -120,13 +120,13 @@ int LinkList<T>::GetNo(T e) {
 		return j;
 }
 
-//10.ÔÚµ¥Á´±íÖĞ²åÈëÔªËØe×÷ÎªµÚi¸ö½áµã
+//10.åœ¨å•é“¾è¡¨ä¸­æ’å…¥å…ƒç´ eä½œä¸ºç¬¬iä¸ªç»“ç‚¹
 template <typename T>
 bool LinkList<T>::Insert(int i, T e) {
 	if (i < 0)return false;
 	LinkNode<T>* p = geti(i - 1);
 	if (p != NULL) {
-		LinkNode<T>* s = new LinkNode<T>(e);         //½¨Á¢ĞÂ½áµãs
+		LinkNode<T>* s = new LinkNode<T>(e);         //å»ºç«‹æ–°ç»“ç‚¹s
 		s->next = p->next;
 		p->next = s;
 		return true;
@@ -135,7 +135,7 @@ bool LinkList<T>::Insert(int i, T e) {
 		return false;
 }
 
-//11.ÔÚµ¥Á´±íÖĞÉ¾³ıĞòºÅÎªiµÄ½áµã
+//11.åœ¨å•é“¾è¡¨ä¸­åˆ é™¤åºå·ä¸ºiçš„ç»“ç‚¹
 template <typename T>
 bool LinkList<T>::Delete(int i) {
 	if (i < 0)return false;
@@ -154,7 +154,7 @@ bool LinkList<T>::Delete(int i) {
 		return false;
 }
 
-//12.Êä³öµ¥Á´±íÖĞµÄËùÓĞ½áµãÖµ
+//12.è¾“å‡ºå•é“¾è¡¨ä¸­çš„æ‰€æœ‰ç»“ç‚¹å€¼
 template <typename T>
 void LinkList<T>::DispList() {
 	LinkNode<T>* p;

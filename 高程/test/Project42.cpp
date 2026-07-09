@@ -1,4 +1,4 @@
-// Ë®ÏÉ»¨Êý
+// æ°´ä»™èŠ±æ•°
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -8,14 +8,14 @@ bool isNarcissistic(int num) {
     int sum = 0;
     int digits = 0;
 
-    //Çó³ö¸ÃÊýµÄÎ»Êý
+    //æ±‚å‡ºè¯¥æ•°çš„ä½æ•°
     int temp = num;
     while (temp > 0) {
         digits++;
         temp /= 10;
     }
 
-    //Çó³öÃ¿Ò»Î»µÄÖ¸Êý²¢½øÐÐÀÛ¼Ó
+    //æ±‚å‡ºæ¯ä¸€ä½çš„æŒ‡æ•°å¹¶è¿›è¡Œç´¯åŠ 
     temp = num;
     while (temp > 0) {
         int digit = temp % 10;

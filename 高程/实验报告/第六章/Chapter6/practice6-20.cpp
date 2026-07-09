@@ -8,53 +8,53 @@ class SimpleCircle {
 private:
     int* itsRadius;
 public:
-    // Ä¬ÈÏ¹¹Ôìº¯Êı
+    // é»˜è®¤æ„é€ å‡½æ•°
     SimpleCircle() {
         itsRadius = new int(2);
     }
 
-    // ´ø²ÎÊı¹¹Ôìº¯Êı
+    // å¸¦å‚æ•°æ„é€ å‡½æ•°
     SimpleCircle(int a) {
-        itsRadius = new int(a);  // ¶¯Ì¬·ÖÅäÄÚ´æ£¬¶ø²»ÊÇÈ¡¾Ö²¿±äÁ¿µØÖ·
+        itsRadius = new int(a);  // åŠ¨æ€åˆ†é…å†…å­˜ï¼Œè€Œä¸æ˜¯å–å±€éƒ¨å˜é‡åœ°å€
     }
 
-    // ¿½±´¹¹Ôìº¯Êı
+    // æ‹·è´æ„é€ å‡½æ•°
     SimpleCircle(const SimpleCircle& other) {
-        itsRadius = new int(*other.itsRadius);  // Éî¿½±´
+        itsRadius = new int(*other.itsRadius);  // æ·±æ‹·è´
     }
 
-    // ¸³ÖµÔËËã·ûÖØÔØ£¨ÕıÈ·°æ±¾£©
+    // èµ‹å€¼è¿ç®—ç¬¦é‡è½½ï¼ˆæ­£ç¡®ç‰ˆæœ¬ï¼‰
     SimpleCircle& operator=(const SimpleCircle& other) {
-        if (this != &other) {  // ¼ì²é×ÔÎÒ¸³Öµ
-            delete itsRadius;  // ÊÍ·ÅÔ­ÓĞÄÚ´æ
-            itsRadius = new int(*other.itsRadius);  // Éî¿½±´
+        if (this != &other) {  // æ£€æŸ¥è‡ªæˆ‘èµ‹å€¼
+            delete itsRadius;  // é‡Šæ”¾åŸæœ‰å†…å­˜
+            itsRadius = new int(*other.itsRadius);  // æ·±æ‹·è´
         }
-        return *this;  // ·µ»ØÒıÓÃ
+        return *this;  // è¿”å›å¼•ç”¨
     }
 
-    // Îö¹¹º¯Êı
+    // ææ„å‡½æ•°
     ~SimpleCircle() {
         delete itsRadius;
     }
 
-    // »ñÈ¡°ë¾¶
+    // è·å–åŠå¾„
     int getRadius() const {
         return *itsRadius;
     }
 
-    // ¼ÆËãÃæ»ı
+    // è®¡ç®—é¢ç§¯
     double getArea() const {
         return M_PI * pow(*itsRadius, 2);
     }
 
-    // ¼ÆËãÖÜ³¤
+    // è®¡ç®—å‘¨é•¿
     double getLength() const {
         return 2 * M_PI * (*itsRadius);
     }
 
-    // ĞŞ¸Ä°ë¾¶£¨ĞŞÕı°æ£©
+    // ä¿®æ”¹åŠå¾„ï¼ˆä¿®æ­£ç‰ˆï¼‰
     void changeRadius(int a) {
-        *itsRadius = a;  // ĞŞ¸ÄÖ¸ÕëÖ¸ÏòµÄÖµ£¬¶ø²»ÊÇ¸Ä±äÖ¸Õë±¾Éí
+        *itsRadius = a;  // ä¿®æ”¹æŒ‡é’ˆæŒ‡å‘çš„å€¼ï¼Œè€Œä¸æ˜¯æ”¹å˜æŒ‡é’ˆæœ¬èº«
     }
 };
 
@@ -62,18 +62,18 @@ int main() {
     int m;
     cin >> m;
 
-    SimpleCircle c1;           // Ê¹ÓÃÄ¬ÈÏ¹¹Ôìº¯Êı
-    SimpleCircle c2(m);        // Ê¹ÓÃ´ø²Î¹¹Ôìº¯Êı
+    SimpleCircle c1;           // ä½¿ç”¨é»˜è®¤æ„é€ å‡½æ•°
+    SimpleCircle c2(m);        // ä½¿ç”¨å¸¦å‚æ„é€ å‡½æ•°
 
     cout << "c1:" << c1.getRadius() << " " << c1.getArea() << " " << c1.getLength() << endl;
     cout << "c2:" << c2.getRadius() << " " << c2.getArea() << " " << c2.getLength() << endl;
 
     int n;
     cin >> n;
-    c2.changeRadius(n);        // ĞŞ¸Ä°ë¾¶
+    c2.changeRadius(n);        // ä¿®æ”¹åŠå¾„
     cout << "c2:" << c2.getRadius() << " " << c2.getArea() << " " << c2.getLength() << endl;
 
-    SimpleCircle c3 = c2;      // Ê¹ÓÃ¿½±´¹¹Ôìº¯Êı
+    SimpleCircle c3 = c2;      // ä½¿ç”¨æ‹·è´æ„é€ å‡½æ•°
     cout << "c3:" << c3.getRadius() << " " << c3.getArea() << " " << c3.getLength() << endl;
 
     return 0;

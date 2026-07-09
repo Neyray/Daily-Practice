@@ -8,10 +8,10 @@ int main()
 
     cout << "Initial p1 points to: " << *p1 << " at address: " << p1 << endl;
 
-    p1++; // Ö¸Õë¼Ó1
+    p1++; // æŒ‡é’ˆåŠ 1
     cout << "After p1++: " << *p1 << " at address: " << p1 << endl;
 
-    p1--; // Ö¸Õë¼õ1
+    p1--; // æŒ‡é’ˆå‡1
     cout << "After p1--: " << *p1 << " at address: " << p1 << endl;
 
     cout << endl;

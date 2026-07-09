@@ -14,7 +14,7 @@ Node* createList() {
     int val;
     string line;
 
-    // »ñÈ¡ÊäÈë
+    // è·å–è¾“å…¥
     getline(cin, line);
     stringstream ss(line);
 
@@ -114,16 +114,16 @@ void deleteLists(Node* head) {
 }
 
 int main() {
-    cout << "ÇëÊäÈëµÚÒ»¸öÁ´±íµÄÔªËØ£º";
+    cout << "è¯·è¾“å…¥ç¬¬ä¸€ä¸ªé“¾è¡¨çš„å…ƒç´ ï¼š";
     Node* A = createList();
-    cout << "ÇëÊäÈëµÚ¶ş¸öÁ´±íµÄÔªËØ£º";
+    cout << "è¯·è¾“å…¥ç¬¬äºŒä¸ªé“¾è¡¨çš„å…ƒç´ ï¼š";
     Node* B = createList();
 
-    Node* C = mergeLists(A, B);   // ºÏ²¢Á´±í
-    C = mergeSort(C);              // ÅÅĞòÁ´±í
-    removeDuplicates(C);           // È¥ÖØ²Ù×÷
-    printLists(C);                 // Êä³öÁ´±í
-    deleteLists(C);                // É¾³ıÁ´±í
+    Node* C = mergeLists(A, B);   // åˆå¹¶é“¾è¡¨
+    C = mergeSort(C);              // æ’åºé“¾è¡¨
+    removeDuplicates(C);           // å»é‡æ“ä½œ
+    printLists(C);                 // è¾“å‡ºé“¾è¡¨
+    deleteLists(C);                // åˆ é™¤é“¾è¡¨
 
     return 0;
 }

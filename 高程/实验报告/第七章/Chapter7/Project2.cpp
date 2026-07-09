@@ -3,7 +3,7 @@ using namespace std;
 
 class Base {
 public:
-    // »ùÀàÃ»ÓĞ¶¨ÒåÈÎºÎ¹¹Ôìº¯Êı
+    // åŸºç±»æ²¡æœ‰å®šä¹‰ä»»ä½•æ„é€ å‡½æ•°
 protected:
     int a;
 };

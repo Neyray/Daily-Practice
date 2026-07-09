@@ -19,7 +19,7 @@ int main() {
     cout << "After insert sort: ";
     arr.display();
 
-    // ÖØĞÂÊäÈëÊı¾İ²âÊÔÆäËûÅÅĞò
+    // é‡æ–°è¾“å…¥æ•°æ®æµ‹è¯•å…¶ä»–æ’åº
     cout << "Enter 10 integers again:" << endl;
     for (int i = 0; i < 10; i++) {
         cin >> val;
@@ -30,7 +30,7 @@ int main() {
     cout << "After select sort: ";
     arr.display();
 
-    // ÖØĞÂÊäÈëÊı¾İ
+    // é‡æ–°è¾“å…¥æ•°æ®
     cout << "Enter 10 integers again:" << endl;
     for (int i = 0; i < 10; i++) {
         cin >> val;
@@ -41,7 +41,7 @@ int main() {
     cout << "After bubble sort: ";
     arr.display();
 
-    // ²âÊÔË³Ğò²éÕÒ
+    // æµ‹è¯•é¡ºåºæŸ¥æ‰¾
     int key;
     cout << "Enter a value to search: ";
     cin >> key;

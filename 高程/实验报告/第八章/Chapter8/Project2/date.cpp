@@ -3,44 +3,44 @@
 #include <iostream>
 using namespace std;
 
-// ¸¨Öúº¯Êı£º¼ÆËãÄ³ÄêÄ³ÔÂµÄÌìÊı
+// è¾…åŠ©å‡½æ•°ï¼šè®¡ç®—æŸå¹´æŸæœˆçš„å¤©æ•°
 int getDaysInMonth(int year, int month) {
     static int days[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     if (month == 2) {
-        // ÈòÄê2ÔÂ29Ìì
+        // é—°å¹´2æœˆ29å¤©
         if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
             return 29;
     }
     return days[month];
 }
 
-// ¼ÆËã´Ó¹«ÔªÔªÄê1ÔÂ1ÈÕµ½Ö¸¶¨ÈÕÆÚµÄ×ÜÌìÊı
+// è®¡ç®—ä»å…¬å…ƒå…ƒå¹´1æœˆ1æ—¥åˆ°æŒ‡å®šæ—¥æœŸçš„æ€»å¤©æ•°
 int calculateTotalDays(int year, int month, int day) {
     int total = 0;
-    // ¼ÓÖ®Ç°Äê·İµÄÌìÊı
+    // åŠ ä¹‹å‰å¹´ä»½çš„å¤©æ•°
     for (int y = 1; y < year; y++) {
         total += ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) ? 366 : 365;
     }
-    // ¼Óµ±Ç°Äê·İÖ®Ç°ÔÂ·İµÄÌìÊı
+    // åŠ å½“å‰å¹´ä»½ä¹‹å‰æœˆä»½çš„å¤©æ•°
     for (int m = 1; m < month; m++) {
         total += getDaysInMonth(year, m);
     }
-    // ¼Óµ±Ç°ÔÂµÄÌìÊı
+    // åŠ å½“å‰æœˆçš„å¤©æ•°
     total += day;
     return total;
 }
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 Date::Date(int y, int m, int d) : year(y), month(m), day(d) {
     totalDays = calculateTotalDays(year, month, day);
 }
 
-// »ñÈ¡µ±ÔÂ×î´óÌìÊı
+// è·å–å½“æœˆæœ€å¤§å¤©æ•°
 int Date::getMaxDay() const {
     return getDaysInMonth(year, month);
 }
 
-// ÏÔÊ¾ÈÕÆÚ
+// æ˜¾ç¤ºæ—¥æœŸ
 void Date::show() const {
     cout << year << "-"
         << (month < 10 ? "0" : "") << month << "-"

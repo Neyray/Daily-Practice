@@ -1,36 +1,36 @@
 #include <iostream>
 using namespace std;
 
-// 1. ÉùÃ÷Òì³£Àà Cexception£¬°üº¬³ÉÔ±º¯Êı Reason()
+// 1. å£°æ˜å¼‚å¸¸ç±» Cexceptionï¼ŒåŒ…å«æˆå‘˜å‡½æ•° Reason()
 class Cexception {
 public:
-    // ³ÉÔ±º¯Êı Reason()£¬ÏÔÊ¾Òì³£µÄÀàĞÍ
+    // æˆå‘˜å‡½æ•° Reason()ï¼Œæ˜¾ç¤ºå¼‚å¸¸çš„ç±»å‹
     void Reason() {
-        cout << "Cexception ÀàĞÍÒì³£±»´¥·¢£¡" << endl;
+        cout << "Cexception ç±»å‹å¼‚å¸¸è¢«è§¦å‘ï¼" << endl;
     }
 };
 
-// 2. ×Óº¯Êı fn1()£¬ÓÃÓÚ´¥·¢Òì³£
+// 2. å­å‡½æ•° fn1()ï¼Œç”¨äºè§¦å‘å¼‚å¸¸
 void fn1() {
-    cout << "ÔÚ fn1() º¯ÊıÖĞ£¬¼´½«´¥·¢Òì³£..." << endl;
-    throw Cexception();  // ´¥·¢Òì³££¬Å×³öÒ»¸ö Cexception ¶ÔÏó
+    cout << "åœ¨ fn1() å‡½æ•°ä¸­ï¼Œå³å°†è§¦å‘å¼‚å¸¸..." << endl;
+    throw Cexception();  // è§¦å‘å¼‚å¸¸ï¼ŒæŠ›å‡ºä¸€ä¸ª Cexception å¯¹è±¡
 }
 
 int main() {
-    cout << "³ÌĞò¿ªÊ¼Ö´ĞĞ..." << endl;
+    cout << "ç¨‹åºå¼€å§‹æ‰§è¡Œ..." << endl;
 
-    // 3. ÔÚÖ÷º¯ÊıµÄ try Ä£¿éÖĞµ÷ÓÃ fn1()
+    // 3. åœ¨ä¸»å‡½æ•°çš„ try æ¨¡å—ä¸­è°ƒç”¨ fn1()
     try {
-        cout << "½øÈë try ¿é..." << endl;
+        cout << "è¿›å…¥ try å—..." << endl;
         fn1();
-        cout << "ÕâÒ»ĞĞ²»»á±»Ö´ĞĞ£¬ÒòÎª fn1() Å×³öÁËÒì³£" << endl;
+        cout << "è¿™ä¸€è¡Œä¸ä¼šè¢«æ‰§è¡Œï¼Œå› ä¸º fn1() æŠ›å‡ºäº†å¼‚å¸¸" << endl;
     }
-    // 4. ÔÚ catch Ä£¿éÖĞ²¶»ñÒì³£
+    // 4. åœ¨ catch æ¨¡å—ä¸­æ•è·å¼‚å¸¸
     catch (Cexception e) {
-        cout << "²¶»ñµ½ Cexception Òì³££¡" << endl;
-        e.Reason();  // µ÷ÓÃÒì³£¶ÔÏóµÄ Reason ·½·¨ÏÔÊ¾Òì³£ÀàĞÍ
+        cout << "æ•è·åˆ° Cexception å¼‚å¸¸ï¼" << endl;
+        e.Reason();  // è°ƒç”¨å¼‚å¸¸å¯¹è±¡çš„ Reason æ–¹æ³•æ˜¾ç¤ºå¼‚å¸¸ç±»å‹
     }
 
-    cout << "³ÌĞòÖ´ĞĞ½áÊø¡£" << endl;
+    cout << "ç¨‹åºæ‰§è¡Œç»“æŸã€‚" << endl;
     return 0;
 }

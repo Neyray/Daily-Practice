@@ -1,12 +1,12 @@
 /*
-¡¾ÎÊÌâÃèÊö¡¿Ğ´³ÌĞò°ÑÒ»¿Ã¶ş²æÊ÷²ÉÓÃ¶ş²æÁ´´æ´¢½á¹¹´æ´¢£¬²¢Çó¸Ã¶ş²æÊ÷bµÄ¿í¶È£¨²ÉÓÃµİ¹é·½·¨£©
+ã€é—®é¢˜æè¿°ã€‘å†™ç¨‹åºæŠŠä¸€æ£µäºŒå‰æ ‘é‡‡ç”¨äºŒå‰é“¾å­˜å‚¨ç»“æ„å­˜å‚¨ï¼Œå¹¶æ±‚è¯¥äºŒå‰æ ‘bçš„å®½åº¦ï¼ˆé‡‡ç”¨é€’å½’æ–¹æ³•ï¼‰
 
-¡¾ÊäÈëĞÎÊ½¡¿±íÊ¾Ò»¿Ã¶ş²æÊ÷µÄÊı×é
+ã€è¾“å…¥å½¢å¼ã€‘è¡¨ç¤ºä¸€æ£µäºŒå‰æ ‘çš„æ•°ç»„
 
-¡¾Êä³öĞÎÊ½¡¿¸Ã¶ş²æÊ÷µÄ¿í¶È
-¡¾ÑùÀıÊäÈë¡¿root=[6,2,8,0,4,7,9,null,null,3,5]
+ã€è¾“å‡ºå½¢å¼ã€‘è¯¥äºŒå‰æ ‘çš„å®½åº¦
+ã€æ ·ä¾‹è¾“å…¥ã€‘root=[6,2,8,0,4,7,9,null,null,3,5]
 
-¡¾ÑùÀıÊä³ö¡¿4
+ã€æ ·ä¾‹è¾“å‡ºã€‘4
 */
 
 #include <iostream>
@@ -26,7 +26,7 @@ struct TreeNode {
     TreeNode(string x) : x(x), left(NULL), right(NULL) {}
 };
 
-//ÀàËÆBFS£¬ÍêÈ«¶ş²æÊ÷
+//ç±»ä¼¼BFSï¼Œå®Œå…¨äºŒå‰æ ‘
 TreeNode* buildTree(const vector<string>& input) {
     if (input.empty() || input[0] == "null") {
         return NULL;
@@ -79,7 +79,7 @@ int calculateWidth(TreeNode* root) {
     return maxWidth;
 }
 
-// È¥³ı×Ö·û´®Ê×Î²µÄ¿Õ¸ñ
+// å»é™¤å­—ç¬¦ä¸²é¦–å°¾çš„ç©ºæ ¼
 string trim(const string& s) {
     size_t start = s.find_first_not_of(" \t\n");
     if (start == string::npos) return "";
@@ -92,7 +92,7 @@ int main() {
     string line;
     getline(cin, line);
 
-    // ÌáÈ¡Êı×é²¿·Ö
+    // æå–æ•°ç»„éƒ¨åˆ†
     size_t bracketStart = line.find('[');
     size_t bracketEnd = line.find(']');
     if (bracketStart == string::npos || bracketEnd == string::npos) {

@@ -5,7 +5,7 @@ using namespace std;
 
 double SavingsAccount::total = 0;
 
-// SavingsAccount类相关成员函数的实现
+// SavingsAccount绫荤浉鍏虫垚鍛樺嚱鏁扮殑瀹炵幇
 SavingsAccount::SavingsAccount(const Date& date, const string& id, double rate)
     : id(id), balance(0), rate(rate), lastDate(date), accumulation(0) {
     date.show();
@@ -15,7 +15,7 @@ SavingsAccount::SavingsAccount(const Date& date, const string& id, double rate)
 void SavingsAccount::record(const Date& date, double amount, const string& desc) {
     accumulation = accumulate(date);
     lastDate = date;
-    amount = floor(amount * 100 + 0.5) / 100; // 保留小数点后两位
+    amount = floor(amount * 100 + 0.5) / 100; // 淇濈暀灏忔暟鐐瑰悗涓や綅
     balance += amount;
     total += amount;
     date.show();
@@ -39,7 +39,7 @@ void SavingsAccount::withdraw(const Date& date, double amount, const string& des
 
 void SavingsAccount::settle(const Date& date) {
     double interest = accumulate(date) * rate /
-        date.distance(Date(date.getYear() - 1, 1, 1)); // 计算年息
+        date.distance(Date(date.getYear() - 1, 1, 1)); // 璁＄畻骞存伅
     if (interest != 0)
         record(date, interest, "interest");
     accumulation = 0;

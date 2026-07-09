@@ -33,7 +33,7 @@ public:
         }
         else {
             tail->next = temp;
-            //¸üĞÂtailµÄÎ»ÖÃ
+            //æ›´æ–°tailçš„ä½ç½®
             tail = temp;
         }
         size++;

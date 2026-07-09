@@ -1,4 +1,4 @@
-//两个大数相乘
+//涓や釜澶ф暟鐩镐箻
 #include <iostream>
 #include <string>
 #include <vector>

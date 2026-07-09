@@ -35,7 +35,7 @@ Node* rearrangeList(Node* head) {
     Node* current = head;
     while (current) {
         Node* nextNode = current->next;
-        //断开当前节点与下一个节点的连接，防止后续不小心把原链表连接回去
+        //鏂紑褰撳墠鑺傜偣涓庝笅涓�涓妭鐐圭殑杩炴帴锛岄槻姝㈠悗缁笉灏忓績鎶婂師閾捐〃杩炴帴鍥炲幓
         current->next = nullptr;
 
         if (current->data < 0) {
@@ -59,7 +59,7 @@ int main() {
     Node* newHead = rearrangeList(head);
 
     Node* current = newHead;
-    //输出
+    //杈撳嚭
     while (current) {
         cout << current->data;
         current = current->next;
@@ -67,7 +67,7 @@ int main() {
     }
     cout << endl;
 
-    //进行删除操作
+    //杩涜鍒犻櫎鎿嶄綔
     while (newHead) {
         Node* temp = newHead;
         newHead = newHead->next;

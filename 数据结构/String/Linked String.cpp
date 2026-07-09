@@ -14,30 +14,30 @@ public:
 	int length;
 };
 
-//preÊÇÔ­´®,tÊÇÒª²åÈëµÄ´®
+//preæ˜¯åŸä¸²,tæ˜¯è¦æ’å…¥çš„ä¸²
 LinkString& InsStr(int i, LinkString pre, LinkString& t) {
-	//ĞÂ½¨Ò»¸ö¿Õ´®
+	//æ–°å»ºä¸€ä¸ªç©ºä¸²
 	static LinkString s;
 	if (i<0 || i>pre.length)
 		return s;
 	LinkNode* p = pre.head->next, * p1 = t.head->next;
 	LinkNode* r = s.head, * q;
 
-	//½«µ±Ç°Á´´®µÄÇ°i¸ö½áµã¸´ÖÆµ½s
+	//å°†å½“å‰é“¾ä¸²çš„å‰iä¸ªç»“ç‚¹å¤åˆ¶åˆ°s
 	for (int k = 0; k < i; ++k) {
 		q = new LinkNode(p->data);
 		r->next = q;
 		r = q;
 		p = p->next;
 	}
-	//½«tÖĞµÄËùÓĞ½Úµã¸´ÖÆµ½s
+	//å°†tä¸­çš„æ‰€æœ‰èŠ‚ç‚¹å¤åˆ¶åˆ°s
 	while (p1 != NULL) {
 		q = new LinkNode(p1->data);
 		r->next = q;
 		r = q;
 		p1 = p1->next;
 	}
-	//½«p¼°ÆäÖ®ºóµÄ½áµã¸´ÖÆµ½s
+	//å°†påŠå…¶ä¹‹åçš„ç»“ç‚¹å¤åˆ¶åˆ°s
 	while (p != NULL) {
 		q = new LinkNode(p->data);
 		r->next = p;

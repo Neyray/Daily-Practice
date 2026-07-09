@@ -2,12 +2,12 @@
 using namespace std;
 
 void Hanoi(int n, char x, char y, char z) {
-	//ÉèÖÃÍË³öÌõ¼ş
+	//è®¾ç½®é€€å‡ºæ¡ä»¶
 	if (n == 1)
-		cout << "½«µÚ" << n << "¸öÅÌÆ¬´Ó" << x << "ÒÆµ½" << z << endl;
+		cout << "å°†ç¬¬" << n << "ä¸ªç›˜ç‰‡ä»" << x << "ç§»åˆ°" << z << endl;
 	else {
 		Hanoi(n - 1, x, z, y);
-		cout << "½«µÚ" << n << "¸öÅÌÆ¬´Ó" << x << "ÒÆµ½" << z << endl;
+		cout << "å°†ç¬¬" << n << "ä¸ªç›˜ç‰‡ä»" << x << "ç§»åˆ°" << z << endl;
 		Hanoi(n - 1, y, x, z);
 	}
 }

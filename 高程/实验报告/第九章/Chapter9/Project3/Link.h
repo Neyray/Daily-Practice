@@ -65,7 +65,7 @@ void LinkedList<T>::concatenate(LinkedList<T>& other) {
         }
         temp->setNext(other.head);
     }
-    other.head = nullptr; // 防止其他链表被析构时释放节点
+    other.head = nullptr; // 闃叉鍏朵粬閾捐〃琚瀽鏋勬椂閲婃斁鑺傜偣
 }
 
 #endif

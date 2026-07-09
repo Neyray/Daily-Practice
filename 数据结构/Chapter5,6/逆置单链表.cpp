@@ -16,9 +16,9 @@ LinkNode<int>* Reverse(LinkNode<int>* p) {
 		return p;
 	else {
 		LinkNode<int>* np;
-		//Çó½â×ÓÎÊÌâ
+		//æ±‚è§£å­é—®é¢˜
 		np = Reverse(p->next);
-		//½«p×÷ÎªÎ²½áµã
+		//å°†pä½œä¸ºå°¾ç»“ç‚¹
 		p->next->next = p;
 		p->next = NULL;
 

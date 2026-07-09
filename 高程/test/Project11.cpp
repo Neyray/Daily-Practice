@@ -1,7 +1,7 @@
 /*
-¡¾ÎÊÌâÃèÊö¡¿
-¶¨ÒåÒ»¸ö»ùÀàShape£¬ÔÚ´Ë»ù´¡ÉÏÅÉÉú³öRectangleºÍCircle£¬¶şÕß´øÓĞgetArea()º¯Êı¼ÆËã¶ÔÏóµÄÃæ»ı¡£
-Ê¹ÓÃRectangleÀà´´½¨Ò»¸öÅÉÉúÀàSquare()¡£Çë×ÔĞĞÍêÉÆ¸÷ÀàµÄÊı¾İ³ÉÔ±ºÍ³ÉÔ±º¯ÊıÒÔ¼°Ö÷º¯Êı²âÊÔÓï¾ä¡£
+ã€é—®é¢˜æè¿°ã€‘
+å®šä¹‰ä¸€ä¸ªåŸºç±»Shapeï¼Œåœ¨æ­¤åŸºç¡€ä¸Šæ´¾ç”Ÿå‡ºRectangleå’ŒCircleï¼ŒäºŒè€…å¸¦æœ‰getArea()å‡½æ•°è®¡ç®—å¯¹è±¡çš„é¢ç§¯ã€‚
+ä½¿ç”¨Rectangleç±»åˆ›å»ºä¸€ä¸ªæ´¾ç”Ÿç±»Square()ã€‚è¯·è‡ªè¡Œå®Œå–„å„ç±»çš„æ•°æ®æˆå‘˜å’Œæˆå‘˜å‡½æ•°ä»¥åŠä¸»å‡½æ•°æµ‹è¯•è¯­å¥ã€‚
 */
 
 #include <iostream>
@@ -51,22 +51,22 @@ public:
 int main() {
     double length, width, radius;
 
-    cout << "ÇëÊäÈë¾ØĞÎµÄ³¤ºÍ¿í£º";
+    cout << "è¯·è¾“å…¥çŸ©å½¢çš„é•¿å’Œå®½ï¼š";
     cin >> length >> width;
     Rectangle rect(length, width);
 
-    cout << "ÇëÊäÈëÔ²µÄ°ë¾¶£º";
+    cout << "è¯·è¾“å…¥åœ†çš„åŠå¾„ï¼š";
     cin >> radius;
     Circle circle(radius);
 
-    cout << "ÇëÊäÈëÕı·½ĞÎµÄ±ß³¤£º";
+    cout << "è¯·è¾“å…¥æ­£æ–¹å½¢çš„è¾¹é•¿ï¼š";
     double side;
     cin >> side;
     Square square(side);
 
-    cout << "¾ØĞÎµÄÃæ»ı£º" << rect.getArea() << endl;
-    cout << "Ô²µÄÃæ»ı£º" << circle.getArea() << endl;
-    cout << "Õı·½ĞÎµÄÃæ»ı£º" << square.getArea() << endl;
+    cout << "çŸ©å½¢çš„é¢ç§¯ï¼š" << rect.getArea() << endl;
+    cout << "åœ†çš„é¢ç§¯ï¼š" << circle.getArea() << endl;
+    cout << "æ­£æ–¹å½¢çš„é¢ç§¯ï¼š" << square.getArea() << endl;
 
     return 0;
 }

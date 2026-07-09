@@ -5,39 +5,39 @@
 #include <vector>
 using namespace std;
 
-// Ñ§ÉúÀà£¨»ùÓÚ³£¼ûµÄÊµÑé10Ñ§ÉúÀà½á¹¹£©
+// å­¦ç”Ÿç±»ï¼ˆåŸºäºå¸¸è§çš„å®éªŒ10å­¦ç”Ÿç±»ç»“æ„ï¼‰
 class Student {
 private:
-    string name;    // ĞÕÃû
-    int id;         // Ñ§ºÅ
-    int age;        // ÄêÁä
-    double score;   // ·ÖÊı
+    string name;    // å§“å
+    int id;         // å­¦å·
+    int age;        // å¹´é¾„
+    double score;   // åˆ†æ•°
 
 public:
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     Student() : id(0), age(0), score(0.0) {}
 
     Student(string n, int i, int a, double s)
         : name(n), id(i), age(a), score(s) {
     }
 
-    // ÊäÈëÑ§ÉúĞÅÏ¢
+    // è¾“å…¥å­¦ç”Ÿä¿¡æ¯
     void input() {
-        cout << "ÇëÊäÈëÑ§ÉúĞÅÏ¢:" << endl;
-        cout << "ĞÕÃû: ";
+        cout << "è¯·è¾“å…¥å­¦ç”Ÿä¿¡æ¯:" << endl;
+        cout << "å§“å: ";
         cin >> name;
-        cout << "Ñ§ºÅ: ";
+        cout << "å­¦å·: ";
         cin >> id;
-        cout << "ÄêÁä: ";
+        cout << "å¹´é¾„: ";
         cin >> age;
-        cout << "·ÖÊı: ";
+        cout << "åˆ†æ•°: ";
         cin >> score;
 
-        // Çå³ıÊäÈë»º³åÇø
+        // æ¸…é™¤è¾“å…¥ç¼“å†²åŒº
         cin.ignore(1000, '\n');
     }
 
-    // ÏÔÊ¾Ñ§ÉúĞÅÏ¢
+    // æ˜¾ç¤ºå­¦ç”Ÿä¿¡æ¯
     void display() const {
         cout << setw(8) << name
             << setw(10) << id
@@ -45,22 +45,22 @@ public:
             << setw(8) << fixed << setprecision(2) << score << endl;
     }
 
-    // Ğ´Èë¶ş½øÖÆÎÄ¼ş
+    // å†™å…¥äºŒè¿›åˆ¶æ–‡ä»¶
     void writeToBinaryFile(ofstream& outFile) const {
-        // Ğ´Èë×Ö·û´®³¤¶ÈºÍÄÚÈİ
+        // å†™å…¥å­—ç¬¦ä¸²é•¿åº¦å’Œå†…å®¹
         size_t nameLength = name.length();
         outFile.write(reinterpret_cast<const char*>(&nameLength), sizeof(nameLength));
         outFile.write(name.c_str(), nameLength);
 
-        // Ğ´ÈëÆäËûÊı¾İ
+        // å†™å…¥å…¶ä»–æ•°æ®
         outFile.write(reinterpret_cast<const char*>(&id), sizeof(id));
         outFile.write(reinterpret_cast<const char*>(&age), sizeof(age));
         outFile.write(reinterpret_cast<const char*>(&score), sizeof(score));
     }
 
-    // ´Ó¶ş½øÖÆÎÄ¼ş¶ÁÈ¡
+    // ä»äºŒè¿›åˆ¶æ–‡ä»¶è¯»å–
     void readFromBinaryFile(ifstream& inFile) {
-        // ¶ÁÈ¡×Ö·û´®³¤¶ÈºÍÄÚÈİ
+        // è¯»å–å­—ç¬¦ä¸²é•¿åº¦å’Œå†…å®¹
         size_t nameLength;
         inFile.read(reinterpret_cast<char*>(&nameLength), sizeof(nameLength));
 
@@ -70,38 +70,38 @@ public:
         name = string(buffer);
         delete[] buffer;
 
-        // ¶ÁÈ¡ÆäËûÊı¾İ
+        // è¯»å–å…¶ä»–æ•°æ®
         inFile.read(reinterpret_cast<char*>(&id), sizeof(id));
         inFile.read(reinterpret_cast<char*>(&age), sizeof(age));
         inFile.read(reinterpret_cast<char*>(&score), sizeof(score));
     }
 
-    // Ğ´ÈëÎÄ±¾ÎÄ¼ş
+    // å†™å…¥æ–‡æœ¬æ–‡ä»¶
     void writeToTextFile(ofstream& outFile) const {
         outFile << name << " " << id << " " << age << " "
             << fixed << setprecision(2) << score << endl;
     }
 
-    // ´ÓÎÄ±¾ÎÄ¼ş¶ÁÈ¡
+    // ä»æ–‡æœ¬æ–‡ä»¶è¯»å–
     void readFromTextFile(ifstream& inFile) {
         inFile >> name >> id >> age >> score;
     }
 
-    // Getter·½·¨£¨ÓÃÓÚÍâ²¿·ÃÎÊ£©
+    // Getteræ–¹æ³•ï¼ˆç”¨äºå¤–éƒ¨è®¿é—®ï¼‰
     string getName() const { return name; }
     int getId() const { return id; }
     int getAge() const { return age; }
     double getScore() const { return score; }
 };
 
-// ÏÔÊ¾Ñ§ÉúÊı×é
+// æ˜¾ç¤ºå­¦ç”Ÿæ•°ç»„
 void displayStudents(const vector<Student>& students, const string& title) {
     cout << "\n" << title << endl;
     cout << "==============================================" << endl;
-    cout << setw(8) << "ĞÕÃû"
-        << setw(10) << "Ñ§ºÅ"
-        << setw(6) << "ÄêÁä"
-        << setw(8) << "·ÖÊı" << endl;
+    cout << setw(8) << "å§“å"
+        << setw(10) << "å­¦å·"
+        << setw(6) << "å¹´é¾„"
+        << setw(8) << "åˆ†æ•°" << endl;
     cout << "----------------------------------------------" << endl;
 
     for (const auto& student : students) {
@@ -109,45 +109,45 @@ void displayStudents(const vector<Student>& students, const string& title) {
     }
 
     cout << "==============================================" << endl;
-    cout << "Ñ§Éú×ÜÊı: " << students.size() << endl;
+    cout << "å­¦ç”Ÿæ€»æ•°: " << students.size() << endl;
 }
 
-// ½«Ñ§ÉúÊı×éĞ´Èë¶ş½øÖÆÎÄ¼ş
+// å°†å­¦ç”Ÿæ•°ç»„å†™å…¥äºŒè¿›åˆ¶æ–‡ä»¶
 void writeStudentsToBinaryFile(const vector<Student>& students, const string& filename) {
     ofstream outFile(filename, ios::binary);
     if (!outFile) {
-        cerr << "´íÎó£ºÎŞ·¨´´½¨¶ş½øÖÆÎÄ¼ş '" << filename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•åˆ›å»ºäºŒè¿›åˆ¶æ–‡ä»¶ '" << filename << "'" << endl;
         return;
     }
 
-    // ÏÈĞ´ÈëÑ§ÉúÊıÁ¿
+    // å…ˆå†™å…¥å­¦ç”Ÿæ•°é‡
     size_t count = students.size();
     outFile.write(reinterpret_cast<const char*>(&count), sizeof(count));
 
-    // Ğ´ÈëÃ¿¸öÑ§ÉúµÄÊı¾İ
+    // å†™å…¥æ¯ä¸ªå­¦ç”Ÿçš„æ•°æ®
     for (const auto& student : students) {
         student.writeToBinaryFile(outFile);
     }
 
     outFile.close();
-    cout << "Ñ§ÉúÊı¾İÒÑ±£´æµ½¶ş½øÖÆÎÄ¼ş: " << filename << endl;
+    cout << "å­¦ç”Ÿæ•°æ®å·²ä¿å­˜åˆ°äºŒè¿›åˆ¶æ–‡ä»¶: " << filename << endl;
 }
 
-// ´Ó¶ş½øÖÆÎÄ¼ş¶ÁÈ¡Ñ§ÉúÊı×é
+// ä»äºŒè¿›åˆ¶æ–‡ä»¶è¯»å–å­¦ç”Ÿæ•°ç»„
 vector<Student> readStudentsFromBinaryFile(const string& filename) {
     vector<Student> students;
     ifstream inFile(filename, ios::binary);
 
     if (!inFile) {
-        cerr << "´íÎó£ºÎŞ·¨´ò¿ª¶ş½øÖÆÎÄ¼ş '" << filename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•æ‰“å¼€äºŒè¿›åˆ¶æ–‡ä»¶ '" << filename << "'" << endl;
         return students;
     }
 
-    // ¶ÁÈ¡Ñ§ÉúÊıÁ¿
+    // è¯»å–å­¦ç”Ÿæ•°é‡
     size_t count;
     inFile.read(reinterpret_cast<char*>(&count), sizeof(count));
 
-    // ¶ÁÈ¡Ã¿¸öÑ§ÉúµÄÊı¾İ
+    // è¯»å–æ¯ä¸ªå­¦ç”Ÿçš„æ•°æ®
     for (size_t i = 0; i < count; i++) {
         Student student;
         student.readFromBinaryFile(inFile);
@@ -155,45 +155,45 @@ vector<Student> readStudentsFromBinaryFile(const string& filename) {
     }
 
     inFile.close();
-    cout << "´Ó¶ş½øÖÆÎÄ¼ş¶ÁÈ¡ÁË " << students.size() << " ¸öÑ§ÉúÊı¾İ" << endl;
+    cout << "ä»äºŒè¿›åˆ¶æ–‡ä»¶è¯»å–äº† " << students.size() << " ä¸ªå­¦ç”Ÿæ•°æ®" << endl;
     return students;
 }
 
-// ½«Ñ§ÉúÊı×éĞ´ÈëÎÄ±¾ÎÄ¼ş
+// å°†å­¦ç”Ÿæ•°ç»„å†™å…¥æ–‡æœ¬æ–‡ä»¶
 void writeStudentsToTextFile(const vector<Student>& students, const string& filename) {
     ofstream outFile(filename);
     if (!outFile) {
-        cerr << "´íÎó£ºÎŞ·¨´´½¨ÎÄ±¾ÎÄ¼ş '" << filename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•åˆ›å»ºæ–‡æœ¬æ–‡ä»¶ '" << filename << "'" << endl;
         return;
     }
 
-    // ÏÈĞ´ÈëÑ§ÉúÊıÁ¿
+    // å…ˆå†™å…¥å­¦ç”Ÿæ•°é‡
     outFile << students.size() << endl;
 
-    // Ğ´ÈëÃ¿¸öÑ§ÉúµÄÊı¾İ
+    // å†™å…¥æ¯ä¸ªå­¦ç”Ÿçš„æ•°æ®
     for (const auto& student : students) {
         student.writeToTextFile(outFile);
     }
 
     outFile.close();
-    cout << "Ñ§ÉúÊı¾İÒÑ±£´æµ½ÎÄ±¾ÎÄ¼ş: " << filename << endl;
+    cout << "å­¦ç”Ÿæ•°æ®å·²ä¿å­˜åˆ°æ–‡æœ¬æ–‡ä»¶: " << filename << endl;
 }
 
-// ´ÓÎÄ±¾ÎÄ¼ş¶ÁÈ¡Ñ§ÉúÊı×é
+// ä»æ–‡æœ¬æ–‡ä»¶è¯»å–å­¦ç”Ÿæ•°ç»„
 vector<Student> readStudentsFromTextFile(const string& filename) {
     vector<Student> students;
     ifstream inFile(filename);
 
     if (!inFile) {
-        cerr << "´íÎó£ºÎŞ·¨´ò¿ªÎÄ±¾ÎÄ¼ş '" << filename << "'" << endl;
+        cerr << "é”™è¯¯ï¼šæ— æ³•æ‰“å¼€æ–‡æœ¬æ–‡ä»¶ '" << filename << "'" << endl;
         return students;
     }
 
-    // ¶ÁÈ¡Ñ§ÉúÊıÁ¿
+    // è¯»å–å­¦ç”Ÿæ•°é‡
     size_t count;
     inFile >> count;
 
-    // ¶ÁÈ¡Ã¿¸öÑ§ÉúµÄÊı¾İ
+    // è¯»å–æ¯ä¸ªå­¦ç”Ÿçš„æ•°æ®
     for (size_t i = 0; i < count; i++) {
         Student student;
         student.readFromTextFile(inFile);
@@ -201,7 +201,7 @@ vector<Student> readStudentsFromTextFile(const string& filename) {
     }
 
     inFile.close();
-    cout << "´ÓÎÄ±¾ÎÄ¼ş¶ÁÈ¡ÁË " << students.size() << " ¸öÑ§ÉúÊı¾İ" << endl;
+    cout << "ä»æ–‡æœ¬æ–‡ä»¶è¯»å–äº† " << students.size() << " ä¸ªå­¦ç”Ÿæ•°æ®" << endl;
     return students;
 }
 
@@ -211,26 +211,26 @@ int main() {
     string filename;
 
     do {
-        cout << "\n======= Ñ§ÉúĞÅÏ¢¹ÜÀíÏµÍ³ =======" << endl;
-        cout << "1. ÊäÈëÑ§ÉúÊı¾İ" << endl;
-        cout << "2. ÏÔÊ¾Ñ§ÉúÊı¾İ" << endl;
-        cout << "3. ±£´æµ½¶ş½øÖÆÎÄ¼ş" << endl;
-        cout << "4. ´Ó¶ş½øÖÆÎÄ¼ş¶ÁÈ¡" << endl;
-        cout << "5. ±£´æµ½ÎÄ±¾ÎÄ¼ş" << endl;
-        cout << "6. ´ÓÎÄ±¾ÎÄ¼ş¶ÁÈ¡" << endl;
-        cout << "7. ÏÔÊ¾ÎÄ¼şÖĞµÄÄÚÈİ" << endl;
-        cout << "0. ÍË³ö" << endl;
-        cout << "ÇëÑ¡Ôñ²Ù×÷: ";
+        cout << "\n======= å­¦ç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿ =======" << endl;
+        cout << "1. è¾“å…¥å­¦ç”Ÿæ•°æ®" << endl;
+        cout << "2. æ˜¾ç¤ºå­¦ç”Ÿæ•°æ®" << endl;
+        cout << "3. ä¿å­˜åˆ°äºŒè¿›åˆ¶æ–‡ä»¶" << endl;
+        cout << "4. ä»äºŒè¿›åˆ¶æ–‡ä»¶è¯»å–" << endl;
+        cout << "5. ä¿å­˜åˆ°æ–‡æœ¬æ–‡ä»¶" << endl;
+        cout << "6. ä»æ–‡æœ¬æ–‡ä»¶è¯»å–" << endl;
+        cout << "7. æ˜¾ç¤ºæ–‡ä»¶ä¸­çš„å†…å®¹" << endl;
+        cout << "0. é€€å‡º" << endl;
+        cout << "è¯·é€‰æ‹©æ“ä½œ: ";
         cin >> choice;
 
         switch (choice) {
         case 1: {
             int n;
-            cout << "ÇëÊäÈëÑ§ÉúÊıÁ¿: ";
+            cout << "è¯·è¾“å…¥å­¦ç”Ÿæ•°é‡: ";
             cin >> n;
 
             for (int i = 0; i < n; i++) {
-                cout << "\nÑ§Éú #" << i + 1 << ":" << endl;
+                cout << "\nå­¦ç”Ÿ #" << i + 1 << ":" << endl;
                 Student student;
                 student.input();
                 students.push_back(student);
@@ -239,44 +239,44 @@ int main() {
         }
 
         case 2:
-            displayStudents(students, "µ±Ç°Ñ§ÉúÊı¾İ");
+            displayStudents(students, "å½“å‰å­¦ç”Ÿæ•°æ®");
             break;
 
         case 3:
-            cout << "ÇëÊäÈë¶ş½øÖÆÎÄ¼şÃû: ";
+            cout << "è¯·è¾“å…¥äºŒè¿›åˆ¶æ–‡ä»¶å: ";
             cin >> filename;
             writeStudentsToBinaryFile(students, filename);
             break;
 
         case 4:
-            cout << "ÇëÊäÈë¶ş½øÖÆÎÄ¼şÃû: ";
+            cout << "è¯·è¾“å…¥äºŒè¿›åˆ¶æ–‡ä»¶å: ";
             cin >> filename;
             students = readStudentsFromBinaryFile(filename);
             break;
 
         case 5:
-            cout << "ÇëÊäÈëÎÄ±¾ÎÄ¼şÃû: ";
+            cout << "è¯·è¾“å…¥æ–‡æœ¬æ–‡ä»¶å: ";
             cin >> filename;
             writeStudentsToTextFile(students, filename);
             break;
 
         case 6:
-            cout << "ÇëÊäÈëÎÄ±¾ÎÄ¼şÃû: ";
+            cout << "è¯·è¾“å…¥æ–‡æœ¬æ–‡ä»¶å: ";
             cin >> filename;
             students = readStudentsFromTextFile(filename);
             break;
 
         case 7: {
-            cout << "ÇëÊäÈëÎÄ¼şÃû: ";
+            cout << "è¯·è¾“å…¥æ–‡ä»¶å: ";
             cin >> filename;
 
             ifstream file(filename, ios::binary);
             if (!file) {
-                cerr << "´íÎó£ºÎŞ·¨´ò¿ªÎÄ¼ş" << endl;
+                cerr << "é”™è¯¯ï¼šæ— æ³•æ‰“å¼€æ–‡ä»¶" << endl;
                 break;
             }
 
-            cout << "\nÎÄ¼ş '" << filename << "' ÄÚÈİ£º" << endl;
+            cout << "\næ–‡ä»¶ '" << filename << "' å†…å®¹ï¼š" << endl;
             cout << "==================================" << endl;
 
             char ch;
@@ -293,16 +293,16 @@ int main() {
 
             file.close();
             cout << "\n==================================" << endl;
-            cout << "ÎÄ¼ş´óĞ¡: " << byteCount << " ×Ö½Ú" << endl;
+            cout << "æ–‡ä»¶å¤§å°: " << byteCount << " å­—èŠ‚" << endl;
             break;
         }
 
         case 0:
-            cout << "³ÌĞò½áÊø£¬ÔÙ¼û£¡" << endl;
+            cout << "ç¨‹åºç»“æŸï¼Œå†è§ï¼" << endl;
             break;
 
         default:
-            cout << "ÎŞĞ§Ñ¡Ôñ£¬ÇëÖØĞÂÊäÈë£¡" << endl;
+            cout << "æ— æ•ˆé€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥ï¼" << endl;
         }
 
     } while (choice != 0);

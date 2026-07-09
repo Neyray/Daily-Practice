@@ -4,25 +4,25 @@
 using namespace std;
 
 void backtrack(vector<int>& nums, vector<int>& current, vector<vector<int>>& result, vector<bool>& used) {
-    // »ù±¾Çé¿ö£ºµ±currentµÄ´óĞ¡µÈÓÚnumsµÄ´óĞ¡Ê±£¬ËµÃ÷Ò»¸öÅÅÁĞÒÑ¾­Íê³É
+    // åŸºæœ¬æƒ…å†µï¼šå½“currentçš„å¤§å°ç­‰äºnumsçš„å¤§å°æ—¶ï¼Œè¯´æ˜ä¸€ä¸ªæ’åˆ—å·²ç»å®Œæˆ
     if (current.size() == nums.size()) {
         result.push_back(current);
         return;
     }
 
-    // ±éÀúnumsÊı×é£¬³¢ÊÔÃ¿¸öÔªËØ
+    // éå†numsæ•°ç»„ï¼Œå°è¯•æ¯ä¸ªå…ƒç´ 
     for (size_t i = 0; i < nums.size(); ++i) {
-        // Èç¹ûÔªËØÒÑ¾­±»Ê¹ÓÃ¹ı£¬¾ÍÌø¹ı
+        // å¦‚æœå…ƒç´ å·²ç»è¢«ä½¿ç”¨è¿‡ï¼Œå°±è·³è¿‡
         if (used[i]) continue;
 
-        // Ñ¡Ôñµ±Ç°Êı×Ö
+        // é€‰æ‹©å½“å‰æ•°å­—
         used[i] = true;
         current.push_back(nums[i]);
 
-        // µİ¹éÉú³ÉÊ£ÓàµÄÅÅÁĞ
+        // é€’å½’ç”Ÿæˆå‰©ä½™çš„æ’åˆ—
         backtrack(nums, current, result, used);
 
-        // »ØËİ£º³·ÏúÑ¡Ôñ
+        // å›æº¯ï¼šæ’¤é”€é€‰æ‹©
         used[i] = false;
         current.pop_back();
     }
@@ -43,12 +43,12 @@ int main() {
 
     vector<vector<int>> result;
     vector<int> current;
-    vector<bool> used(nums.size(), false);  // ÓÃÓÚ±ê¼ÇÃ¿¸öÊı×ÖÊÇ·ñÒÑ±»Ê¹ÓÃ
+    vector<bool> used(nums.size(), false);  // ç”¨äºæ ‡è®°æ¯ä¸ªæ•°å­—æ˜¯å¦å·²è¢«ä½¿ç”¨
 
-    // µ÷ÓÃ»ØËİº¯ÊıÉú³ÉÈ«ÅÅÁĞ
+    // è°ƒç”¨å›æº¯å‡½æ•°ç”Ÿæˆå…¨æ’åˆ—
     backtrack(nums, current, result, used);
 
-    // Êä³öµ½¿ØÖÆÌ¨
+    // è¾“å‡ºåˆ°æ§åˆ¶å°
     for (const auto& permutation : result) {
         for (size_t i = 0; i < permutation.size(); ++i) {
             cout << permutation[i] << " ";

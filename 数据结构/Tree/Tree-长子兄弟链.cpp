@@ -50,7 +50,7 @@ public:
 
 int main() {
     SiblingTree tree;
-    TreeNode* nodeA = tree.addNode(nullptr, 'A');  // ¸ù½Úµã
+    TreeNode* nodeA = tree.addNode(nullptr, 'A');  // æ ¹èŠ‚ç‚¹
     TreeNode* nodeB = tree.addNode(nodeA, 'B');
     TreeNode* nodeC = tree.addNode(nodeA, 'C');
     TreeNode* nodeD = tree.addNode(nodeA, 'D');

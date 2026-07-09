@@ -3,32 +3,32 @@
 #include <iostream>
 using namespace std;
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 SavingsAccount::SavingsAccount(const Date& date, const string& id, double rate)
     : Account(date, id), acc(date, 0), rate(rate) {
 }
 
-// ´æ¿î
+// å­˜æ¬¾
 void SavingsAccount::deposit(const Date& date, double amount, const string& desc) {
-    acc.change(date, getBalance());  // ¸üĞÂÀÛ¼ÓÆ÷
+    acc.change(date, getBalance());  // æ›´æ–°ç´¯åŠ å™¨
     record(date, amount, desc);
-    acc.change(date, getBalance());  // ´æ¿îºó¸üĞÂ
+    acc.change(date, getBalance());  // å­˜æ¬¾åæ›´æ–°
 }
 
-// È¡¿î
+// å–æ¬¾
 void SavingsAccount::withdraw(const Date& date, double amount, const string& desc) {
     if (amount > getBalance()) {
         error("not enough balance");
         return;
     }
-    acc.change(date, getBalance());  // ¸üĞÂÀÛ¼ÓÆ÷
+    acc.change(date, getBalance());  // æ›´æ–°ç´¯åŠ å™¨
     record(date, -amount, desc);
-    acc.change(date, getBalance());  // È¡¿îºó¸üĞÂ
+    acc.change(date, getBalance());  // å–æ¬¾åæ›´æ–°
 }
 
-// ½áËãÀûÏ¢£¨Ã¿Äê1ÔÂ½áËã£©
+// ç»“ç®—åˆ©æ¯ï¼ˆæ¯å¹´1æœˆç»“ç®—ï¼‰
 void SavingsAccount::settle(const Date& date) {
-    if (date.getMonth() == 1) {    // Ã¿ÄêµÄÒ»ÔÂ¼ÆËãÒ»´ÎÀûÏ¢
+    if (date.getMonth() == 1) {    // æ¯å¹´çš„ä¸€æœˆè®¡ç®—ä¸€æ¬¡åˆ©æ¯
         double interest = acc.getSum(date) * rate;
         if (interest != 0) {
             record(date, interest, "interest");
@@ -37,7 +37,7 @@ void SavingsAccount::settle(const Date& date) {
     }
 }
 
-// ÏÔÊ¾ÕË»§ĞÅÏ¢
+// æ˜¾ç¤ºè´¦æˆ·ä¿¡æ¯
 void SavingsAccount::show() const {
     Account::show();
     cout << "\tRate: " << rate;

@@ -1,9 +1,9 @@
-// ÅÅĞòËã·¨£ºÑ¡ÔñÅÅĞò + ¿ìËÙÅÅĞò
+// æ’åºç®—æ³•ï¼šé€‰æ‹©æ’åº + å¿«é€Ÿæ’åº
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Ñ¡ÔñÅÅĞò
+// é€‰æ‹©æ’åº
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
@@ -19,7 +19,7 @@ void selectionSort(vector<int>& arr) {
     }
 }
 
-// ¿ìËÙÅÅĞò
+// å¿«é€Ÿæ’åº
 int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
     int i = low - 1;

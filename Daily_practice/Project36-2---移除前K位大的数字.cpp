@@ -22,7 +22,7 @@ void removeTopKLargest(std::vector<int>& arr, int k) {
         auto it = std::find(arr.begin(), arr.end(), num);
         while (it != arr.end()) {
             arr.erase(it);
-            //ÖØµã
+            //é‡ç‚¹
             it = std::find(arr.begin(), arr.end(), num);
         }
     }

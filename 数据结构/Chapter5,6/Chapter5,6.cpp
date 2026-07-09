@@ -4,7 +4,7 @@ using namespace std;
 
 const int MAX = 10;
 
-// Êä³ö¾ØÕó
+// è¾“å‡ºçŸ©é˜µ
 void disp(int A[MAX][MAX], int n) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -14,7 +14,7 @@ void disp(int A[MAX][MAX], int n) {
     }
 }
 
-// ½«¾ØÕóÑ¹Ëõ´æ´¢µ½Ò»Î¬Êı×éaÖĞ
+// å°†çŸ©é˜µå‹ç¼©å­˜å‚¨åˆ°ä¸€ç»´æ•°ç»„aä¸­
 void compression(int A[MAX][MAX], int n, int a[]) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j <= i; ++j) {
@@ -24,7 +24,7 @@ void compression(int A[MAX][MAX], int n, int a[]) {
     }
 }
 
-// »ñÈ¡Ñ¹Ëõ¾ØÕóÖĞÔªËØµÄÏÂ±ê
+// è·å–å‹ç¼©çŸ©é˜µä¸­å…ƒç´ çš„ä¸‹æ ‡
 int getk(int i, int j) {
     if (i >= j)
         return (i * (i + 1)) / 2 + j;
@@ -32,13 +32,13 @@ int getk(int i, int j) {
         return (j * (j + 1)) / 2 + i;
 }
 
-// ¾ØÕó³Ë·¨
+// çŸ©é˜µä¹˜æ³•
 void Mult(int a[], int b[], int C[MAX][MAX], int n) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             int s = 0;
             for (int k = 0; k < n; ++k) {
-                // »ñÈ¡Ñ¹Ëõ¾ØÕóÖĞµÄÔªËØÎ»ÖÃ
+                // è·å–å‹ç¼©çŸ©é˜µä¸­çš„å…ƒç´ ä½ç½®
                 int k1 = getk(i, k);
                 int k2 = getk(k, j);
                 s += a[k1] * b[k2];
@@ -49,43 +49,43 @@ void Mult(int a[], int b[], int C[MAX][MAX], int n) {
 }
 
 int main() {
-    int n = 3;  // ¾ØÕó´óĞ¡
-    int m = n * (n + 1) / 2;  // Ñ¹ËõÊı×éµÄÔªËØÊıÁ¿
+    int n = 3;  // çŸ©é˜µå¤§å°
+    int m = n * (n + 1) / 2;  // å‹ç¼©æ•°ç»„çš„å…ƒç´ æ•°é‡
     int A[MAX][MAX] = { {1, 2, 3}, {2, 4, 5}, {3, 5, 6} };
     int B[MAX][MAX] = { {2, 1, 3}, {1, 5, 2}, {3, 2, 4} };
-    int C[MAX][MAX];  // ÓÃÓÚ´æ´¢A * BµÄ½á¹û
-    int* a = new int[m];  // ´æ´¢AµÄÑ¹ËõĞÎÊ½
-    int* b = new int[m];  // ´æ´¢BµÄÑ¹ËõĞÎÊ½
+    int C[MAX][MAX];  // ç”¨äºå­˜å‚¨A * Bçš„ç»“æœ
+    int* a = new int[m];  // å­˜å‚¨Açš„å‹ç¼©å½¢å¼
+    int* b = new int[m];  // å­˜å‚¨Bçš„å‹ç¼©å½¢å¼
 
-    // Êä³öÔ­Ê¼¾ØÕóA
+    // è¾“å‡ºåŸå§‹çŸ©é˜µA
     cout << "A:" << endl;
     disp(A, n);
-    cout << "AÑ¹Ëõ´æ´¢µ½aÖĞ:" << endl;
+    cout << "Aå‹ç¼©å­˜å‚¨åˆ°aä¸­:" << endl;
     compression(A, n, a);
     for (int i = 0; i < m; ++i) {
         cout << a[i] << " ";
     }
     cout << endl;
 
-    // Êä³öÔ­Ê¼¾ØÕóB
+    // è¾“å‡ºåŸå§‹çŸ©é˜µB
     cout << "B:" << endl;
     disp(B, n);
-    cout << "BÑ¹Ëõ´æ´¢µ½bÖĞ:" << endl;
+    cout << "Bå‹ç¼©å­˜å‚¨åˆ°bä¸­:" << endl;
     compression(B, n, b);
     for (int i = 0; i < m; ++i) {
         cout << b[i] << " ";
     }
     cout << endl;
 
-    // ½øĞĞ¾ØÕó³Ë·¨
+    // è¿›è¡ŒçŸ©é˜µä¹˜æ³•
     cout << "C = A * B" << endl;
     Mult(a, b, C, n);
 
-    // Êä³ö½á¹û¾ØÕóC
+    // è¾“å‡ºç»“æœçŸ©é˜µC
     cout << "C:" << endl;
     disp(C, n);
 
-    // ÊÍ·Å¶¯Ì¬·ÖÅäµÄÄÚ´æ
+    // é‡Šæ”¾åŠ¨æ€åˆ†é…çš„å†…å­˜
     delete[] a;
     delete[] b;
 

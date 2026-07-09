@@ -4,22 +4,22 @@
 using namespace std;
 
 int main() {
-    Date date(2008, 11, 1);    // ÆğÊ¼ÈÕÆÚ
+    Date date(2008, 11, 1);    // èµ·å§‹æ—¥æœŸ
 
-    // ½¨Á¢¼¸¸öÕË»§
+    // å»ºç«‹å‡ ä¸ªè´¦æˆ·
     SavingsAccount sa1(date, "S3755217", 0.015);
     SavingsAccount sa2(date, "02342342", 0.015);
     CreditAccount ca(date, "C5392394", 10000, 0.0005, 50);
 
-    // Ê¹ÓÃ»ùÀàÖ¸ÕëÊı×é¹ÜÀíËùÓĞÕË»§
+    // ä½¿ç”¨åŸºç±»æŒ‡é’ˆæ•°ç»„ç®¡ç†æ‰€æœ‰è´¦æˆ·
     Account* accounts[] = { &sa1, &sa2, &ca };
-    const int n = sizeof(accounts) / sizeof(Account*); // ÕË»§×ÜÊı
+    const int n = sizeof(accounts) / sizeof(Account*); // è´¦æˆ·æ€»æ•°
 
     cout << "(d)deposit (w)withdraw (s)show (c)change day (n)next month (e)exit" << endl;
 
     char cmd;
     do {
-        // ÏÔÊ¾ÈÕÆÚºÍ×Ü½ğ¶î
+        // æ˜¾ç¤ºæ—¥æœŸå’Œæ€»é‡‘é¢
         date.show();
         cout << "\tTotal: " << Account::getTotal() << "\tcommand> ";
 
@@ -29,8 +29,8 @@ int main() {
 
         cin >> cmd;
         switch (cmd) {
-            // ... Ö÷º¯Êı´úÂëÒÑ¾­ÔÚ¿Î¼şÖĞ¸ø³ö£¬ÕâÀï²»ÔÙÖØ¸´
-            // Ö»ĞèÈ·±£ÉÏÃæµÄÀà¶¨ÒåºÍÊµÏÖÍêÕû
+            // ... ä¸»å‡½æ•°ä»£ç å·²ç»åœ¨è¯¾ä»¶ä¸­ç»™å‡ºï¼Œè¿™é‡Œä¸å†é‡å¤
+            // åªéœ€ç¡®ä¿ä¸Šé¢çš„ç±»å®šä¹‰å’Œå®ç°å®Œæ•´
         }
     } while (cmd != 'e');
 

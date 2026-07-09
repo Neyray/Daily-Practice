@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-// ¶ş²æÊ÷½Úµã½á¹¹¶¨Òå
+// äºŒå‰æ ‘èŠ‚ç‚¹ç»“æ„å®šä¹‰
 struct TreeNode {
     char val;
     TreeNode* left;
@@ -11,8 +11,8 @@ struct TreeNode {
 };
 
 /*
-½âÎöÀ¨ºÅ±íÊ¾·¨µÄ×Ö·û´®Îª¶ş²æÊ÷£¨ÀàËÆLISPÓï·¨£©
-Ê¾ÀıÊäÈë£ºA(B(D,E),C(,F)) ¶ÔÓ¦Ê÷½á¹¹£º
+è§£ææ‹¬å·è¡¨ç¤ºæ³•çš„å­—ç¬¦ä¸²ä¸ºäºŒå‰æ ‘ï¼ˆç±»ä¼¼LISPè¯­æ³•ï¼‰
+ç¤ºä¾‹è¾“å…¥ï¼šA(B(D,E),C(,F)) å¯¹åº”æ ‘ç»“æ„ï¼š
     A
    / \
   B   C
@@ -21,65 +21,65 @@ D   E   F
 */
 
 TreeNode* parse(string s) {
-    if (s.empty()) return nullptr;  // ´¦Àí¿Õ×Ö·û´®
+    if (s.empty()) return nullptr;  // å¤„ç†ç©ºå­—ç¬¦ä¸²
 
-    // ÌáÈ¡¸ù½Úµã£¨Ö±µ½Óöµ½µÚÒ»¸ö×óÀ¨ºÅ£©
+    // æå–æ ¹èŠ‚ç‚¹ï¼ˆç›´åˆ°é‡åˆ°ç¬¬ä¸€ä¸ªå·¦æ‹¬å·ï¼‰
     int rootEnd = 0;
     while (rootEnd < s.size() && s[rootEnd] != '(') {
-        rootEnd++;  // ÕÒµ½¸ù½Úµã½áÊøÎ»ÖÃ
+        rootEnd++;  // æ‰¾åˆ°æ ¹èŠ‚ç‚¹ç»“æŸä½ç½®
     }
-    string rootStr = s.substr(0, rootEnd);  // ½ØÈ¡¸ù½Úµã×Ö·û´®
-    if (rootStr.empty()) return nullptr;    // ¸ù½Úµã²»ÄÜÎª¿Õ
-    TreeNode* root = new TreeNode(rootStr[0]);  // ´´½¨¸ù½Úµã£¨È¡µÚÒ»¸ö×Ö·û£©
+    string rootStr = s.substr(0, rootEnd);  // æˆªå–æ ¹èŠ‚ç‚¹å­—ç¬¦ä¸²
+    if (rootStr.empty()) return nullptr;    // æ ¹èŠ‚ç‚¹ä¸èƒ½ä¸ºç©º
+    TreeNode* root = new TreeNode(rootStr[0]);  // åˆ›å»ºæ ¹èŠ‚ç‚¹ï¼ˆå–ç¬¬ä¸€ä¸ªå­—ç¬¦ï¼‰
 
-    // Èç¹ûÃ»ÓĞ×ÓÊ÷²¿·Ö£¨ÈçÊäÈëÊÇµ¥¸ö×Ö·û"A"£©
+    // å¦‚æœæ²¡æœ‰å­æ ‘éƒ¨åˆ†ï¼ˆå¦‚è¾“å…¥æ˜¯å•ä¸ªå­—ç¬¦"A"ï¼‰
     if (rootEnd >= s.size()) return root;
 
-    // ÌáÈ¡×ÓÊ÷²¿·Ö£ºÈ¥µôÍâ²ãµÄÀ¨ºÅ
-    // ¼ÙÉèÊäÈë¸ñÊ½ÕıÈ·£¬×îºóÒ»¸ö×Ö·ûÊÇ')'£¬ËùÒÔs.size()-rootEnd-2
+    // æå–å­æ ‘éƒ¨åˆ†ï¼šå»æ‰å¤–å±‚çš„æ‹¬å·
+    // å‡è®¾è¾“å…¥æ ¼å¼æ­£ç¡®ï¼Œæœ€åä¸€ä¸ªå­—ç¬¦æ˜¯')'ï¼Œæ‰€ä»¥s.size()-rootEnd-2
     string childrenPart = s.substr(rootEnd + 1, s.size() - rootEnd - 2);
 
-    // ·Ö¸î×óÓÒ×ÓÊ÷£¨Ñ°ÕÒ×îÍâ²ã¶ººÅ£©
+    // åˆ†å‰²å·¦å³å­æ ‘ï¼ˆå¯»æ‰¾æœ€å¤–å±‚é€—å·ï¼‰
     int split_idx = -1;
-    int level = 0;  // À¨ºÅ²ã¼¶¼ÆÊıÆ÷
+    int level = 0;  // æ‹¬å·å±‚çº§è®¡æ•°å™¨
     for (int i = 0; i < childrenPart.size(); ++i) {
-        if (childrenPart[i] == '(') level++;    // ½øÈëÇ¶Ì×À¨ºÅ
-        else if (childrenPart[i] == ')') level--; // ÍË³öÇ¶Ì×À¨ºÅ
-        else if (childrenPart[i] == ',' && level == 0) {  // ÕÒµ½·Ö¸î¶ººÅ
+        if (childrenPart[i] == '(') level++;    // è¿›å…¥åµŒå¥—æ‹¬å·
+        else if (childrenPart[i] == ')') level--; // é€€å‡ºåµŒå¥—æ‹¬å·
+        else if (childrenPart[i] == ',' && level == 0) {  // æ‰¾åˆ°åˆ†å‰²é€—å·
             split_idx = i;
             break;
         }
     }
 
-    // ·Ö¸î×óÓÒ×ÓÊ÷×Ö·û´®
+    // åˆ†å‰²å·¦å³å­æ ‘å­—ç¬¦ä¸²
     string leftPart, rightPart;
-    if (split_idx != -1) {  // ´æÔÚÓÒ×ÓÊ÷
+    if (split_idx != -1) {  // å­˜åœ¨å³å­æ ‘
         leftPart = childrenPart.substr(0, split_idx);
         rightPart = childrenPart.substr(split_idx + 1);
     }
-    else {  // Ö»ÓĞ×ó×ÓÊ÷£¨ÀıÈçÊäÈë"A(B)"£©
+    else {  // åªæœ‰å·¦å­æ ‘ï¼ˆä¾‹å¦‚è¾“å…¥"A(B)"ï¼‰
         leftPart = childrenPart;
         rightPart = "";
     }
 
-    // µİ¹é¹¹½¨×ÓÊ÷
-    if (!leftPart.empty()) root->left = parse(leftPart);   // ´¦Àí×ó×ÓÊ÷
-    if (!rightPart.empty()) root->right = parse(rightPart); // ´¦ÀíÓÒ×ÓÊ÷
+    // é€’å½’æ„å»ºå­æ ‘
+    if (!leftPart.empty()) root->left = parse(leftPart);   // å¤„ç†å·¦å­æ ‘
+    if (!rightPart.empty()) root->right = parse(rightPart); // å¤„ç†å³å­æ ‘
 
     return root;
 }
 
-// Ç°Ğò±éÀú
+// å‰åºéå†
 void preorder(TreeNode* root) {
     if (!root) return;
-    cout << root->val << endl;    // ÏÈ·ÃÎÊ¸ù½Úµã
-    preorder(root->left);         // ÔÙ±éÀú×ó×ÓÊ÷
-    preorder(root->right);        // ×îºó±éÀúÓÒ×ÓÊ÷
+    cout << root->val << endl;    // å…ˆè®¿é—®æ ¹èŠ‚ç‚¹
+    preorder(root->left);         // å†éå†å·¦å­æ ‘
+    preorder(root->right);        // æœ€åéå†å³å­æ ‘
 }
 
 int main() {
     string s;
-    getline(cin, s);  // ¶ÁÈ¡ÕûĞĞÊäÈë£¨ÔÊĞí°üº¬¿Õ¸ñ£©
+    getline(cin, s);  // è¯»å–æ•´è¡Œè¾“å…¥ï¼ˆå…è®¸åŒ…å«ç©ºæ ¼ï¼‰
     TreeNode* root = parse(s);
     preorder(root);
     return 0;

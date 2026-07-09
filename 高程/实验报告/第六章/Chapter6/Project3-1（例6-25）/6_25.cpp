@@ -3,26 +3,26 @@
 using namespace std;
 
 int main() {
-    Date date(2008, 11, 1); // ÆğÊ¼ÈÕÆÚ
+    Date date(2008, 11, 1); // èµ·å§‹æ—¥æœŸ
 
-    // ½¨Á¢¼¸¸öÕË»§
+    // å»ºç«‹å‡ ä¸ªè´¦æˆ·
     SavingsAccount accounts[] = {
         SavingsAccount(date, "03755217", 0.015),
         SavingsAccount(date, "02342342", 0.015)
     };
 
-    // ÕË»§×ÜÊı
+    // è´¦æˆ·æ€»æ•°
     const int n = sizeof(accounts) / sizeof(SavingsAccount);
 
-    // 11ÔÂ·İµÄ¼¸±ÊÕËÄ¿
+    // 11æœˆä»½çš„å‡ ç¬”è´¦ç›®
     accounts[0].deposit(Date(2008, 11, 5), 5000, "salary");
     accounts[1].deposit(Date(2008, 11, 25), 10000, "sell stock 0323");
 
-    // 12ÔÂ·İµÄ¼¸±ÊÕËÄ¿  
+    // 12æœˆä»½çš„å‡ ç¬”è´¦ç›®  
     accounts[0].deposit(Date(2008, 12, 5), 5500, "salary");
     accounts[1].withdraw(Date(2008, 12, 20), 4000, "buy a laptop");
 
-    // ½áËãËùÓĞÕË»§²¢Êä³ö¸÷¸öÕË»§ĞÅÏ¢
+    // ç»“ç®—æ‰€æœ‰è´¦æˆ·å¹¶è¾“å‡ºå„ä¸ªè´¦æˆ·ä¿¡æ¯
     cout << endl;
     for (int i = 0; i < n; i++) {
         accounts[i].settle(Date(2009, 1, 1));

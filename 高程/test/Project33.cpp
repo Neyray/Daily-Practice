@@ -1,18 +1,18 @@
 /*
-¡¾ÎÊÌâÃèÊö¡¿
-¶¨ÒåÒ»¸ö¸´ÊıÀàComplex£¬°üº¬Êµ²¿realºÍĞé²¿imagÁ½¸öÊôĞÔ¡£
-ÒªÇóÍ¨¹ıÔËËã·ûÖØÔØÊµÏÖÒÔÏÂ¹¦ÄÜ£º
-- ¸´ÊıµÄÊäÈëÊä³ö(>>, <<)
-- ¸´ÊıµÄ¼Ó¼õ³Ë³ıÔËËã(+, -, *, /)
-- ¸´ÊıµÄ±È½ÏÔËËã(==, !=)£¬±È½ÏÄ£ÊÇ·ñÏàµÈ
-- ¸´ÊıµÄÈ¡·´ÔËËã(-)
+ã€é—®é¢˜æè¿°ã€‘
+å®šä¹‰ä¸€ä¸ªå¤æ•°ç±»Complexï¼ŒåŒ…å«å®éƒ¨realå’Œè™šéƒ¨imagä¸¤ä¸ªå±æ€§ã€‚
+è¦æ±‚é€šè¿‡è¿ç®—ç¬¦é‡è½½å®ç°ä»¥ä¸‹åŠŸèƒ½ï¼š
+- å¤æ•°çš„è¾“å…¥è¾“å‡º(>>, <<)
+- å¤æ•°çš„åŠ å‡ä¹˜é™¤è¿ç®—(+, -, *, /)
+- å¤æ•°çš„æ¯”è¾ƒè¿ç®—(==, !=)ï¼Œæ¯”è¾ƒæ¨¡æ˜¯å¦ç›¸ç­‰
+- å¤æ•°çš„å–åè¿ç®—(-)
 
-¡¾ÊäÈëĞÎÊ½¡¿
-ÊäÈëÁ½¸ö¸´Êı£¬Ã¿¸ö¸´ÊıÕ¼Ò»ĞĞ£¬¸ñÊ½Îª£ºÊµ²¿ Ğé²¿
+ã€è¾“å…¥å½¢å¼ã€‘
+è¾“å…¥ä¸¤ä¸ªå¤æ•°ï¼Œæ¯ä¸ªå¤æ•°å ä¸€è¡Œï¼Œæ ¼å¼ä¸ºï¼šå®éƒ¨ è™šéƒ¨
 
-¡¾Êä³öĞÎÊ½¡¿
-- ¸´ÊıÊä³ö¸ñÊ½£ºÊµ²¿+Ğé²¿i£¨Ğé²¿Îª¸ºÊ±×Ô¶¯ÏÔÊ¾ÎªÊµ²¿-Ğé²¿i£©
-- ÒÀ´ÎÊä³öÒÔÏÂ±í´ïÊ½µÄ½á¹û£¨Ã¿¸ö½á¹ûÕ¼Ò»ĞĞ£©£º
+ã€è¾“å‡ºå½¢å¼ã€‘
+- å¤æ•°è¾“å‡ºæ ¼å¼ï¼šå®éƒ¨+è™šéƒ¨iï¼ˆè™šéƒ¨ä¸ºè´Ÿæ—¶è‡ªåŠ¨æ˜¾ç¤ºä¸ºå®éƒ¨-è™šéƒ¨iï¼‰
+- ä¾æ¬¡è¾“å‡ºä»¥ä¸‹è¡¨è¾¾å¼çš„ç»“æœï¼ˆæ¯ä¸ªç»“æœå ä¸€è¡Œï¼‰ï¼š
   c1 + c2
   c1 - c2
   c1 * c2
@@ -21,11 +21,11 @@
   c1 == c2
   c1 != c2
 
-¡¾ÑùÀıÊäÈë¡¿
+ã€æ ·ä¾‹è¾“å…¥ã€‘
 3 4
 1 2
 
-¡¾ÑùÀıÊä³ö¡¿
+ã€æ ·ä¾‹è¾“å‡ºã€‘
 4+6i
 2+2i
 -5+10i
@@ -34,9 +34,9 @@
 0
 1
 
-¡¾ÑùÀıËµÃ÷¡¿
-ÊäÈë¸´Êıc1=3+4i£¬c2=1+2i
-Êä³ö¸÷ÖÖÔËËã½á¹û
+ã€æ ·ä¾‹è¯´æ˜ã€‘
+è¾“å…¥å¤æ•°c1=3+4iï¼Œc2=1+2i
+è¾“å‡ºå„ç§è¿ç®—ç»“æœ
 */
 
 #include <iostream>
@@ -52,13 +52,13 @@ private:
 public:
     Complex(double r = 0, double i = 0) : real(r), imag(i) {}
 
-    // ÊäÈëÔËËã·û
+    // è¾“å…¥è¿ç®—ç¬¦
     friend istream& operator>>(istream& in, Complex& c) {
         in >> c.real >> c.imag;
         return in;
     }
 
-    // Êä³öÔËËã·û
+    // è¾“å‡ºè¿ç®—ç¬¦
     friend ostream& operator<<(ostream& out, const Complex& c) {
         out << c.real;
         if (c.imag >= 0) {
@@ -70,24 +70,24 @@ public:
         return out;
     }
 
-    // ¼Ó·¨ÔËËã·û
+    // åŠ æ³•è¿ç®—ç¬¦
     Complex operator+(const Complex& c) const {
         return Complex(real + c.real, imag + c.imag);
     }
 
-    // ¼õ·¨ÔËËã·û
+    // å‡æ³•è¿ç®—ç¬¦
     Complex operator-(const Complex& c) const {
         return Complex(real - c.real, imag - c.imag);
     }
 
-    // ³Ë·¨ÔËËã·û
+    // ä¹˜æ³•è¿ç®—ç¬¦
     Complex operator*(const Complex& c) const {
         double r = real * c.real - imag * c.imag;
         double i = real * c.imag + imag * c.real;
         return Complex(r, i);
     }
 
-    // ³ı·¨ÔËËã·û
+    // é™¤æ³•è¿ç®—ç¬¦
     Complex operator/(const Complex& c) const {
         double denominator = c.real * c.real + c.imag * c.imag;
         double r = (real * c.real + imag * c.imag) / denominator;
@@ -95,22 +95,22 @@ public:
         return Complex(r, i);
     }
 
-    // È¡·´ÔËËã·û
+    // å–åè¿ç®—ç¬¦
     Complex operator-() const {
         return Complex(-real, -imag);
     }
 
-    // ¼ÆËãÄ£
+    // è®¡ç®—æ¨¡
     double modulus() const {
         return sqrt(real * real + imag * imag);
     }
 
-    // µÈÓÚÔËËã·û£¨±È½ÏÄ££©
+    // ç­‰äºè¿ç®—ç¬¦ï¼ˆæ¯”è¾ƒæ¨¡ï¼‰
     bool operator==(const Complex& c) const {
         return fabs(modulus() - c.modulus()) < 1e-6;
     }
 
-    // ²»µÈÓÚÔËËã·û
+    // ä¸ç­‰äºè¿ç®—ç¬¦
     bool operator!=(const Complex& c) const {
         return !(*this == c);
     }

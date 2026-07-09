@@ -1,32 +1,32 @@
-/*������������
+/*【问题描述】
 
-��һ���ı���ͳ�ƴ�Ƶ��ʹ�ù�ϣ��������ַ�����洢�ʼ���Ƶ�ʣ����ͨ�����������Ƶ����ߵ�K���ʣ���Ƶ����ͬ�����ֵ������򣩡�
+从一段文本中统计词频，使用哈希表（链地址法）存储词及其频率，最后通过堆排序输出频率最高的K个词（若频率相同，按字典序升序）。
 
-��������ʽ��
+【输入形式】
 
-���ļ����루in.txt����  
+从文件输入（in.txt）：  
 
-- ��һ��Ϊ�ı����ݣ�������Сд��ĸ�Ϳո񣬵��ʼ�����ж���ո񣩡�  
+- 第一行为文本内容（仅包含小写字母和空格，单词间可能有多余空格）。  
 
-- �ڶ���Ϊ����K��K �� 1����
+- 第二行为整数K（K ≥ 1）。
 
-�������ʽ��
+【输出形式】
 
-������ļ���out.txt����  
+输出到文件（out.txt）：  
 
-- ��Ƶ�ʽ���ͬƵʱ���ֵ����������ǰK���ʼ���Ƶ�ʣ���ʽΪword freq��
+- 按频率降序（同频时按字典序升序）输出前K个词及其频率，格式为word freq。
 
-- ����ͬ������������K��������е��ʣ��԰������������򣩡�
+- 若不同单词总数不足K，输出所有单词（仍按上述规则排序）。
 
-- ���ı�����Ч���ʣ����ı���ȫ�ո񣩣����Ϊ�ա�
+- 若文本无有效单词（空文本或全空格），输出为空。
 
-���������롿
+【样例输入】
 
 apple banana apple cherry banana apple  
 
 3 
 
-�����������
+【样例输出】
 
 apple 3  
 
@@ -34,13 +34,13 @@ banana 2
 
 cherry 1
 
-��Ҫ��
+【要求】
 
-1. �����ֶ�ʵ�ֹ�ϣ��������ַ�����Ͷ�����  
+1. 必须手动实现哈希表（链地址法）和堆排序。  
 
-2. �������蹹�����ѣ�����������谴Ƶ�ʽ���ͬƵ�ֵ������򣩡�  
+2. 堆排序需构建最大堆，但最终输出需按频率降序（同频字典序升序）。  
 
-3. ��ϣ���账����ͻ���Ҵ�Ƶͳ�����ִ�Сд���������뱣֤Сд����
+3. 哈希表需处理冲突，且词频统计区分大小写（本题输入保证小写）。
 
 */
 #include <iostream>
@@ -50,9 +50,9 @@ cherry 1
 #include <algorithm>
 using namespace std;
 
-const int HASH_SIZE = 1009; // ��ϣ����С��������
+const int HASH_SIZE = 1009; // 哈希表大小（质数）
 
-// ��ϣ���ڵ�ṹ
+// 哈希表节点结构
 struct HashNode {
     string word;
     int freq;
@@ -60,19 +60,19 @@ struct HashNode {
     HashNode(string w, int f) : word(w), freq(f), next(nullptr) {}
 };
 
-// ���ڶ�����Ľڵ�ṹ
+// 用于堆排序的节点结构
 struct HeapNode {
     string word;
     int freq;
     HeapNode(string w, int f) : word(w), freq(f) {}
 };
 
-// ��ϣ����
+// 哈希表类
 class HashTable {
 private:
-    HashNode* table[HASH_SIZE]; // ��ϣ������
+    HashNode* table[HASH_SIZE]; // 哈希表数组
 
-    // ��ϣ�����������ַ����Ĺ�ϣֵ
+    // 哈希函数：计算字符串的哈希值
     int hashFunction(const string& word) {
         unsigned long hash = 0;
         for (char c : word) {
@@ -82,14 +82,14 @@ private:
     }
 
 public:
-    // ���캯������ʼ����ϣ��
+    // 构造函数：初始化哈希表
     HashTable() {
         for (int i = 0; i < HASH_SIZE; i++) {
             table[i] = nullptr;
         }
     }
 
-    // �����������ͷ��ڴ�
+    // 析构函数：释放内存
     ~HashTable() {
         for (int i = 0; i < HASH_SIZE; i++) {
             HashNode* node = table[i];
@@ -101,12 +101,12 @@ public:
         }
     }
 
-    // ���뵥�ʵ���ϣ��
+    // 插入单词到哈希表
     void insert(const string& word) {
         int index = hashFunction(word);
         HashNode* node = table[index];
 
-        // ��鵥���Ƿ��Ѵ���
+        // 检查单词是否已存在
         while (node) {
             if (node->word == word) {
                 node->freq++;
@@ -115,15 +115,15 @@ public:
             node = node->next;
         }
 
-        // �����½ڵ㲢���뵽����ͷ��
+        // 创建新节点并插入到链表头部
         HashNode* newNode = new HashNode(word, 1);
         newNode->next = table[index];
         table[index] = newNode;
     }
 
-    // ��ȡ���нڵ㵽����
+    // 提取所有节点到数组
     void getAllNodes(HeapNode**& arr, int& size) {
-        // �ȼ���ڵ�����
+        // 先计算节点总数
         size = 0;
         for (int i = 0; i < HASH_SIZE; i++) {
             HashNode* node = table[i];
@@ -133,11 +133,11 @@ public:
             }
         }
 
-        // ���������ڴ�
+        // 分配数组内存
         arr = new HeapNode * [size];
         int idx = 0;
 
-        // �������
+        // 填充数组
         for (int i = 0; i < HASH_SIZE; i++) {
             HashNode* node = table[i];
             while (node) {
@@ -148,18 +148,18 @@ public:
     }
 };
 
-// ��������
+// 堆排序类
 class HeapSort {
 private:
-    // �ȽϺ�����a�Ƿ�Ӧ������bǰ�棨���ڶ�����
+    // 比较函数：a是否应该排在b前面（用于堆排序）
     static bool compare(const HeapNode* a, const HeapNode* b) {
         if (a->freq != b->freq) {
-            return a->freq > b->freq; // Ƶ�ʽ���
+            return a->freq > b->freq; // 频率降序
         }
-        return a->word < b->word; // �ֵ�������
+        return a->word < b->word; // 字典序升序
     }
 
-    // ������
+    // 调整堆
     static void heapify(HeapNode** arr, int n, int i) {
         int largest = i;
         int left = 2 * i + 1;
@@ -178,14 +178,14 @@ private:
     }
 
 public:
-    // ������
+    // 堆排序
     static void sort(HeapNode** arr, int n) {
-        // ��������
+        // 构建最大堆
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(arr, n, i);
         }
 
-        // ��ȡԪ��
+        // 提取元素
         for (int i = n - 1; i >= 0; i--) {
             swap(arr[0], arr[i]);
             heapify(arr, i, 0);
@@ -197,47 +197,47 @@ int main() {
     ifstream fin("in.txt");
     ofstream fout("out.txt");
 
-    // ��ȡ�ı�����
+    // 读取文本内容
     string line;
     getline(fin, line);
 
-    // ��ȡKֵ
+    // 读取K值
     int K;
     fin >> K;
 
-    // �ָ��
+    // 分割单词
     stringstream ss(line);
     string word;
     HashTable hashTable;
 
-    // ͳ�ƴ�Ƶ
+    // 统计词频
     while (ss >> word) {
         hashTable.insert(word);
     }
 
-    // �ӹ�ϣ����ȡ����
+    // 从哈希表提取数据
     HeapNode** nodes = nullptr;
     int totalWords = 0;
     hashTable.getAllNodes(nodes, totalWords);
 
-    // ���û����Ч���ʣ�ֱ�ӷ���
+    // 如果没有有效单词，直接返回
     if (totalWords == 0) {
         return 0;
     }
 
-    // ������
+    // 堆排序
     HeapSort::sort(nodes, totalWords);
 
-    // ����ʵ���������
+    // 计算实际输出数量
     int outputCount = min(K, totalWords);
 
-    // ���������Ӻ���ǰ�������Ϊ�����������������ģ�
+    // 输出结果（从后往前输出，因为堆排序后数组是升序的）
     for (int i = 0; i < outputCount; i++) {
         int idx = totalWords - 1 - i;
         fout << nodes[idx]->word << " " << nodes[idx]->freq << endl;
     }
 
-    // �ͷ��ڴ�
+    // 释放内存
     for (int i = 0; i < totalWords; i++) {
         delete nodes[i];
     }

@@ -3,11 +3,11 @@
 using namespace std;
 
 /* BST
-×ó×ÓÊ÷½ÚµãÖµ Ð¡ÓÚ µ±Ç°½Úµã£»
+å·¦å­æ ‘èŠ‚ç‚¹å€¼ å°äºŽ å½“å‰èŠ‚ç‚¹ï¼›
 
-ÓÒ×ÓÊ÷½ÚµãÖµ ´óÓÚ µ±Ç°½Úµã£»
+å³å­æ ‘èŠ‚ç‚¹å€¼ å¤§äºŽ å½“å‰èŠ‚ç‚¹ï¼›
 
-×óÓÒ×ÓÊ÷Ò²¶¼ÊÇ¶þ²æËÑË÷Ê÷¡£
+å·¦å³å­æ ‘ä¹Ÿéƒ½æ˜¯äºŒå‰æœç´¢æ ‘ã€‚
 
 */
 
@@ -79,7 +79,7 @@ AVLNode* insert(AVLNode* node, int key) {
     node->height = 1 + max(getHeight(node->left), getHeight(node->right));
     int balance = getBalance(node);
 
-    // 4 ÖÖ²»Æ½ºâÇé¿ö
+    // 4 ç§ä¸å¹³è¡¡æƒ…å†µ
     if (balance > 1 && key < node->left->val) return rotateRight(node);          // LL
     if (balance < -1 && key > node->right->val) return rotateLeft(node);         // RR
     if (balance > 1 && key > node->left->val) {                                   // LR
@@ -99,7 +99,7 @@ AVLNode* insert(AVLNode* node, int key) {
 
 
 
-//ºìºÚÊ÷
+//çº¢é»‘æ ‘
 enum Color { RED, BLACK };
 
 struct RBNode {

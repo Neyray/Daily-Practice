@@ -3,10 +3,10 @@
 #include <iostream>
 using namespace std;
 
-// ³õÊ¼»¯¾²Ì¬³ÉÔ±
+// åˆå§‹åŒ–é™æ€æˆå‘˜
 double Account::total = 0;
 
-// Account ¹¹Ôìº¯Êı
+// Account æ„é€ å‡½æ•°
 Account::Account(const Date& date, const string& id)
     : id(id), balance(0) {
     cout << date.getYear() << "-"
@@ -15,7 +15,7 @@ Account::Account(const Date& date, const string& id)
         << "\t#" << id << " created" << endl;
 }
 
-// ¼ÇÂ¼½»Ò×
+// è®°å½•äº¤æ˜“
 void Account::record(const Date& date, double amount, const string& desc) {
     balance += amount;
     total += amount;
@@ -25,12 +25,12 @@ void Account::record(const Date& date, double amount, const string& desc) {
         << "\t#" << id << "\t" << amount << "\t" << balance << "\t" << desc << endl;
 }
 
-// ÏÔÊ¾ÕË»§ĞÅÏ¢£¨»ùÀàÊµÏÖ£©
+// æ˜¾ç¤ºè´¦æˆ·ä¿¡æ¯ï¼ˆåŸºç±»å®ç°ï¼‰
 void Account::show() const {
     cout << id << "\tBalance: " << balance;
 }
 
-// ´íÎó´¦Àí
+// é”™è¯¯å¤„ç†
 void Account::error(const string& msg) const {
     cout << "Error: " << msg << endl;
 }

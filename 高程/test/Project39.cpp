@@ -3,12 +3,12 @@
 #include <algorithm>
 using namespace std;
 
-// ÕÒÁãÇ® - Ì°ĞÄËã·¨
+// æ‰¾é›¶é’± - è´ªå¿ƒç®—æ³•
 class CoinChange {
 public:
-    // ·½·¨1£º¹Ì¶¨Ãæ¶î£¨1, 5, 10, 25, 50, 100£©
+    // æ–¹æ³•1ï¼šå›ºå®šé¢é¢ï¼ˆ1, 5, 10, 25, 50, 100ï¼‰
     static vector<int> makeChange(int amount) {
-        int coins[] = { 100, 50, 25, 10, 5, 1 };  // ´Ó´óµ½Ğ¡
+        int coins[] = { 100, 50, 25, 10, 5, 1 };  // ä»å¤§åˆ°å°
         vector<int> result;
 
         for (int i = 0; i < 6; i++) {
@@ -21,25 +21,25 @@ public:
         return result;
     }
 
-    // ·½·¨2£º·µ»ØÃ¿ÖÖÓ²±ÒµÄÊıÁ¿
+    // æ–¹æ³•2ï¼šè¿”å›æ¯ç§ç¡¬å¸çš„æ•°é‡
     static void makeChangeCount(int amount) {
         int coins[] = { 100, 50, 25, 10, 5, 1 };
-        string names[] = { "1Ôª", "5½Ç", "2½Ç5·Ö", "1½Ç", "5·Ö", "1·Ö" };
+        string names[] = { "1å…ƒ", "5è§’", "2è§’5åˆ†", "1è§’", "5åˆ†", "1åˆ†" };
 
-        cout << "ÕÒÁã " << amount << " ·Ö£¬ĞèÒª£º" << endl;
+        cout << "æ‰¾é›¶ " << amount << " åˆ†ï¼Œéœ€è¦ï¼š" << endl;
 
         for (int i = 0; i < 6; i++) {
             int count = amount / coins[i];
             if (count > 0) {
-                cout << names[i] << ": " << count << " ¸ö" << endl;
+                cout << names[i] << ": " << count << " ä¸ª" << endl;
                 amount %= coins[i];
             }
         }
     }
 
-    // ·½·¨3£º×Ô¶¨ÒåÃæ¶îÊı×é
+    // æ–¹æ³•3ï¼šè‡ªå®šä¹‰é¢é¢æ•°ç»„
     static int minCoins(int amount, vector<int>& coins) {
-        sort(coins.begin(), coins.end(), greater<int>());  // ½µĞò
+        sort(coins.begin(), coins.end(), greater<int>());  // é™åº
 
         int count = 0;
         for (int coin : coins) {
@@ -47,35 +47,35 @@ public:
             amount %= coin;
         }
 
-        return (amount == 0) ? count : -1;  // Èç¹ûÎŞ·¨´Õ³É·µ»Ø-1
+        return (amount == 0) ? count : -1;  // å¦‚æœæ— æ³•å‡‘æˆè¿”å›-1
     }
 };
 
 int main() {
-    cout << "=== ÕÒÁãÇ®ÎÊÌâ ===" << endl;
+    cout << "=== æ‰¾é›¶é’±é—®é¢˜ ===" << endl;
 
-    // ²âÊÔ1
+    // æµ‹è¯•1
     vector<int> result = CoinChange::makeChange(137);
-    cout << "ÕÒÁã137·Ö£¬ĞèÒªÓ²±Ò£º";
+    cout << "æ‰¾é›¶137åˆ†ï¼Œéœ€è¦ç¡¬å¸ï¼š";
     for (int coin : result) {
         cout << coin << " ";
     }
     cout << endl;
-    cout << "×Ü¹² " << result.size() << " ¸öÓ²±Ò" << endl;
+    cout << "æ€»å…± " << result.size() << " ä¸ªç¡¬å¸" << endl;
 
     cout << "\n";
 
-    // ²âÊÔ2
+    // æµ‹è¯•2
     CoinChange::makeChangeCount(137);
 
     cout << "\n";
 
-    // ²âÊÔ3£º×Ô¶¨ÒåÃæ¶î
+    // æµ‹è¯•3ï¼šè‡ªå®šä¹‰é¢é¢
     vector<int> coins = { 1, 5, 10, 25 };
     int amount = 63;
     int minCount = CoinChange::minCoins(amount, coins);
-    cout << "ÓÃ {1,5,10,25} ´Õ³É " << amount
-        << "£¬×îÉÙĞèÒª " << minCount << " ¸öÓ²±Ò" << endl;
+    cout << "ç”¨ {1,5,10,25} å‡‘æˆ " << amount
+        << "ï¼Œæœ€å°‘éœ€è¦ " << minCount << " ä¸ªç¡¬å¸" << endl;
 
     return 0;
 

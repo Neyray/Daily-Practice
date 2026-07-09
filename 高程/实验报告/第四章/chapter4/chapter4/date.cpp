@@ -6,10 +6,10 @@ Date::Date(int y, int m, int d)
     year = y;
     month = m;
     day = d;
-    cout << "constructing¡­" << endl;
+    cout << "constructingâ€¦" << endl;
 }
 
 void Date::ShowDate()
 {
-    cout << "Date£º" << year << "." << month << "." << day << endl;
+    cout << "Dateï¼š" << year << "." << month << "." << day << endl;
 }

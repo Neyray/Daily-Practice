@@ -1,6 +1,6 @@
-/*¡¢¶¨ÒåÒ»¸ö Cat Àà£¬ÓµÓĞ¾²Ì¬Êı¾İ³ÉÔ± numOfCats £¬¼ÇÂ¼ Cat µÄ¸öÌå
-ÊıÄ¿£»¾²Ì¬³ÉÔ±º¯Êı getNumOfCats ()()£¬¶ÁÈ¡ numOfCats ¡£Éè¼Æ³ÌĞò²â
-ÊÔÕâ¸öÀà£¬Ìå»á¾²Ì¬Êı¾İ³ÉÔ±ºÍ¾²Ì¬³ÉÔ±º¯ÊıµÄÓÃ·¨¡£*/
+/*ã€å®šä¹‰ä¸€ä¸ª Cat ç±»ï¼Œæ‹¥æœ‰é™æ€æ•°æ®æˆå‘˜ numOfCats ï¼Œè®°å½• Cat çš„ä¸ªä½“
+æ•°ç›®ï¼›é™æ€æˆå‘˜å‡½æ•° getNumOfCats ()()ï¼Œè¯»å– numOfCats ã€‚è®¾è®¡ç¨‹åºæµ‹
+è¯•è¿™ä¸ªç±»ï¼Œä½“ä¼šé™æ€æ•°æ®æˆå‘˜å’Œé™æ€æˆå‘˜å‡½æ•°çš„ç”¨æ³•ã€‚*/
 #include <iostream>
 using namespace std;
 
@@ -8,20 +8,20 @@ class Cat {
 private:
 	static int numOfCats;
 public:
-	//¾²Ì¬±äÁ¿
+	//é™æ€å˜é‡
 	static int getNumOfCats();
 
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	Cat(int x) {
 		numOfCats = x;
 		cout << numOfCats << endl;
 	}
 
-	//Êä³öº¯Êı
+	//è¾“å‡ºå‡½æ•°
 	static void show();
 };
 
-//¶¨Òå¾²Ì¬¶ÔÏó
+//å®šä¹‰é™æ€å¯¹è±¡
 int Cat::numOfCats = 10;
 
 int Cat::getNumOfCats() {
@@ -33,15 +33,15 @@ void Cat::show() {
 }
 
 int main() {
-	Cat::show();//Êä³ö11
+	Cat::show();//è¾“å‡º11
 
-	Cat c1(6);//Êä³ö6
-	Cat c2(7);//Êä³ö7
+	Cat c1(6);//è¾“å‡º6
+	Cat c2(7);//è¾“å‡º7
 
-	cout << c1.getNumOfCats() << endl;//Êä³ö7
-	cout << c2.getNumOfCats() << endl;//Êä³ö7
+	cout << c1.getNumOfCats() << endl;//è¾“å‡º7
+	cout << c2.getNumOfCats() << endl;//è¾“å‡º7
 
-	c1.show();//Êä³ö8
-	c2.show();//Êä³ö9
+	c1.show();//è¾“å‡º8
+	c2.show();//è¾“å‡º9
 
 }

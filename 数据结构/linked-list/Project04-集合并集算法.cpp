@@ -29,7 +29,7 @@ public:
                 temp = temp->next;
             }
             if (temp->next && temp->next->data == val) {
-                return; // È¥ÖØ
+                return; // åŽ»é‡
             }
             newNode->next = temp->next;
             temp->next = newNode;

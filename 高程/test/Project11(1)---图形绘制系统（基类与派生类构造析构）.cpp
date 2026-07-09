@@ -1,10 +1,10 @@
-/*¡¾ÎÊÌâÃèÊö¡¿
-Éè¼ÆÒ»¸öÍ¼ÐÎ»æÖÆÏµÍ³£¬°üº¬»ùÀàShapeºÍÁ½¸öÅÉÉúÀàCircle£¨Ô²ÐÎ£©ºÍRectangle£¨¾ØÐÎ£©¡£Í¨¹ýÕâ¸öÏµÍ³À´Àí½âºÍÕÆÎÕ£º
+/*ã€é—®é¢˜æè¿°ã€‘
+è®¾è®¡ä¸€ä¸ªå›¾å½¢ç»˜åˆ¶ç³»ç»Ÿï¼ŒåŒ…å«åŸºç±»Shapeå’Œä¸¤ä¸ªæ´¾ç”Ÿç±»Circleï¼ˆåœ†å½¢ï¼‰å’ŒRectangleï¼ˆçŸ©å½¢ï¼‰ã€‚é€šè¿‡è¿™ä¸ªç³»ç»Ÿæ¥ç†è§£å’ŒæŽŒæ¡ï¼š
 
-»ùÀàºÍÅÉÉúÀàµÄ¹¹Ôìº¯Êýµ÷ÓÃË³Ðò
-ÏÔÊ½µ÷ÓÃºÍÒþÊ½µ÷ÓÃ»ùÀà¹¹Ôìº¯Êý
-ÐéÎö¹¹º¯ÊýµÄ×÷ÓÃºÍÖØÒªÐÔ
-¶ÔÏó´´½¨ºÍÏú»ÙµÄÍêÕû¹ý³Ì
+åŸºç±»å’Œæ´¾ç”Ÿç±»çš„æž„é€ å‡½æ•°è°ƒç”¨é¡ºåº
+æ˜¾å¼è°ƒç”¨å’Œéšå¼è°ƒç”¨åŸºç±»æž„é€ å‡½æ•°
+è™šæžæž„å‡½æ•°çš„ä½œç”¨å’Œé‡è¦æ€§
+å¯¹è±¡åˆ›å»ºå’Œé”€æ¯çš„å®Œæ•´è¿‡ç¨‹
 */
 #include <iostream>
 #include <string>
@@ -18,41 +18,41 @@ protected:
     static int count;
 
 public:
-    // Ä¬ÈÏ¹¹Ôìº¯Êý
-    Shape() : name("Î´ÃüÃû"), color("ÎÞÉ«") {
+    // é»˜è®¤æž„é€ å‡½æ•°
+    Shape() : name("æœªå‘½å"), color("æ— è‰²") {
         count++;
-        cout << "ShapeÄ¬ÈÏ¹¹Ôì: " << name << endl;
+        cout << "Shapeé»˜è®¤æž„é€ : " << name << endl;
     }
 
-    // ´ø²ÎÊý¹¹Ôìº¯Êý
+    // å¸¦å‚æ•°æž„é€ å‡½æ•°
     Shape(string n, string c) : name(n), color(c) {
         count++;
-        cout << "Shape´ø²Î¹¹Ôì: " << name << endl;
+        cout << "Shapeå¸¦å‚æž„é€ : " << name << endl;
     }
 
-    // ÐéÎö¹¹º¯Êý
+    // è™šæžæž„å‡½æ•°
     virtual ~Shape() {
-        cout << "ShapeÎö¹¹: " << name << endl;
+        cout << "Shapeæžæž„: " << name << endl;
     }
 
-    // ´¿Ðéº¯Êý£º¼ÆËãÃæ»ý
+    // çº¯è™šå‡½æ•°ï¼šè®¡ç®—é¢ç§¯
     virtual double getArea() const = 0;
 
-    // ´¿Ðéº¯Êý£º»æÖÆÍ¼ÐÎ
+    // çº¯è™šå‡½æ•°ï¼šç»˜åˆ¶å›¾å½¢
     virtual void draw() const = 0;
 
-    // »ñÈ¡Í¼ÐÎÐÅÏ¢
+    // èŽ·å–å›¾å½¢ä¿¡æ¯
     void displayInfo() const {
-        cout << "Ãû³Æ: " << name << ", ÑÕÉ«: " << color;
+        cout << "åç§°: " << name << ", é¢œè‰²: " << color;
     }
 
-    // ¾²Ì¬º¯Êý£º»ñÈ¡Í¼ÐÎ×ÜÊý
+    // é™æ€å‡½æ•°ï¼šèŽ·å–å›¾å½¢æ€»æ•°
     static int getCount() {
         return count;
     }
 };
 
-// ¾²Ì¬³ÉÔ±³õÊ¼»¯
+// é™æ€æˆå‘˜åˆå§‹åŒ–
 int Shape::count = 0;
 
 class Circle : public Shape {
@@ -60,33 +60,33 @@ private:
     double radius;
 
 public:
-    // Ä¬ÈÏ¹¹Ôìº¯Êý£¨ÒþÊ½µ÷ÓÃ»ùÀàÄ¬ÈÏ¹¹Ôìº¯Êý£©
+    // é»˜è®¤æž„é€ å‡½æ•°ï¼ˆéšå¼è°ƒç”¨åŸºç±»é»˜è®¤æž„é€ å‡½æ•°ï¼‰
     Circle() : radius(1.0) {
-        cout << "CircleÄ¬ÈÏ¹¹Ôì, °ë¾¶: " << radius << endl;
+        cout << "Circleé»˜è®¤æž„é€ , åŠå¾„: " << radius << endl;
     }
 
-    // ´øÒ»¸ö²ÎÊýµÄ¹¹Ôìº¯Êý£¨ÒþÊ½µ÷ÓÃ»ùÀàÄ¬ÈÏ¹¹Ôìº¯Êý£©
+    // å¸¦ä¸€ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ï¼ˆéšå¼è°ƒç”¨åŸºç±»é»˜è®¤æž„é€ å‡½æ•°ï¼‰
     Circle(double r) : radius(r) {
-        cout << "Circle´ø²Î¹¹Ôì, °ë¾¶: " << radius << endl;
+        cout << "Circleå¸¦å‚æž„é€ , åŠå¾„: " << radius << endl;
     }
 
-    // ´øÈý¸ö²ÎÊýµÄ¹¹Ôìº¯Êý£¨ÏÔÊ½µ÷ÓÃ»ùÀà¹¹Ôìº¯Êý£©
+    // å¸¦ä¸‰ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ï¼ˆæ˜¾å¼è°ƒç”¨åŸºç±»æž„é€ å‡½æ•°ï¼‰
     Circle(string n, string c, double r) : Shape(n, c), radius(r) {
-        cout << "Circle´ø²Î¹¹Ôì, °ë¾¶: " << radius << endl;
+        cout << "Circleå¸¦å‚æž„é€ , åŠå¾„: " << radius << endl;
     }
 
-    // Îö¹¹º¯Êý
+    // æžæž„å‡½æ•°
     ~Circle() {
-        cout << "CircleÎö¹¹, °ë¾¶: " << radius << endl;
+        cout << "Circleæžæž„, åŠå¾„: " << radius << endl;
     }
 
-    // ÊµÏÖ´¿Ðéº¯Êý
+    // å®žçŽ°çº¯è™šå‡½æ•°
     double getArea() const override {
         return 3.14159 * radius * radius;
     }
 
     void draw() const override {
-        cout << "»æÖÆÔ²ÐÎ ¡ð" << endl;
+        cout << "ç»˜åˆ¶åœ†å½¢ â—‹" << endl;
     }
 };
 
@@ -96,76 +96,76 @@ private:
     double height;
 
 public:
-    // Ä¬ÈÏ¹¹Ôìº¯Êý£¨ÒþÊ½µ÷ÓÃ»ùÀàÄ¬ÈÏ¹¹Ôìº¯Êý£©
+    // é»˜è®¤æž„é€ å‡½æ•°ï¼ˆéšå¼è°ƒç”¨åŸºç±»é»˜è®¤æž„é€ å‡½æ•°ï¼‰
     Rectangle() : width(1.0), height(1.0) {
-        cout << "RectangleÄ¬ÈÏ¹¹Ôì, " << width << "x" << height << endl;
+        cout << "Rectangleé»˜è®¤æž„é€ , " << width << "x" << height << endl;
     }
 
-    // ´øÁ½¸ö²ÎÊýµÄ¹¹Ôìº¯Êý£¨ÒþÊ½µ÷ÓÃ»ùÀàÄ¬ÈÏ¹¹Ôìº¯Êý£©
+    // å¸¦ä¸¤ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ï¼ˆéšå¼è°ƒç”¨åŸºç±»é»˜è®¤æž„é€ å‡½æ•°ï¼‰
     Rectangle(double w, double h) : width(w), height(h) {
-        cout << "Rectangle´ø²Î¹¹Ôì, " << width << "x" << height << endl;
+        cout << "Rectangleå¸¦å‚æž„é€ , " << width << "x" << height << endl;
     }
 
-    // ´øËÄ¸ö²ÎÊýµÄ¹¹Ôìº¯Êý£¨ÏÔÊ½µ÷ÓÃ»ùÀà¹¹Ôìº¯Êý£©
+    // å¸¦å››ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ï¼ˆæ˜¾å¼è°ƒç”¨åŸºç±»æž„é€ å‡½æ•°ï¼‰
     Rectangle(string n, string c, double w, double h) : Shape(n, c), width(w), height(h) {
-        cout << "Rectangle´ø²Î¹¹Ôì, " << width << "x" << height << endl;
+        cout << "Rectangleå¸¦å‚æž„é€ , " << width << "x" << height << endl;
     }
 
-    // Îö¹¹º¯Êý
+    // æžæž„å‡½æ•°
     ~Rectangle() {
-        cout << "RectangleÎö¹¹, " << width << "x" << height << endl;
+        cout << "Rectangleæžæž„, " << width << "x" << height << endl;
     }
 
-    // ÊµÏÖ´¿Ðéº¯Êý
+    // å®žçŽ°çº¯è™šå‡½æ•°
     double getArea() const override {
         return width * height;
     }
 
     void draw() const override {
-        cout << "»æÖÆ¾ØÐÎ ¡õ" << endl;
+        cout << "ç»˜åˆ¶çŸ©å½¢ â–¡" << endl;
     }
 };
 
 int main() {
-    cout << "=== ²âÊÔ1£ºÔ²ÐÎ¶ÔÏó´´½¨ ===" << endl;
+    cout << "=== æµ‹è¯•1ï¼šåœ†å½¢å¯¹è±¡åˆ›å»º ===" << endl;
     Circle c1;
     Circle c2(5.0);
-    Circle c3("Ô²ÐÎ1", "ºìÉ«", 3.5);
+    Circle c3("åœ†å½¢1", "çº¢è‰²", 3.5);
 
-    cout << "\n=== ²âÊÔ2£º¾ØÐÎ¶ÔÏó´´½¨ ===" << endl;
+    cout << "\n=== æµ‹è¯•2ï¼šçŸ©å½¢å¯¹è±¡åˆ›å»º ===" << endl;
     Rectangle r1;
     Rectangle r2(4.0, 6.0);
-    Rectangle r3("¾ØÐÎ1", "À¶É«", 5.0, 8.0);
+    Rectangle r3("çŸ©å½¢1", "è“è‰²", 5.0, 8.0);
 
-    cout << "\n=== ²âÊÔ3£ºÊ¹ÓÃ¶ÔÏó ===" << endl;
+    cout << "\n=== æµ‹è¯•3ï¼šä½¿ç”¨å¯¹è±¡ ===" << endl;
     c3.displayInfo();
-    cout << ", Ãæ»ý: " << fixed << setprecision(2) << c3.getArea() << endl;
+    cout << ", é¢ç§¯: " << fixed << setprecision(2) << c3.getArea() << endl;
     c3.draw();
 
     r3.displayInfo();
-    cout << ", Ãæ»ý: " << r3.getArea() << endl;
+    cout << ", é¢ç§¯: " << r3.getArea() << endl;
     r3.draw();
 
-    cout << "\n=== ²âÊÔ4£º¶àÌ¬ÐÔ ===" << endl;
+    cout << "\n=== æµ‹è¯•4ï¼šå¤šæ€æ€§ ===" << endl;
     Shape* shapes[3];
-    shapes[0] = new Circle("Ô²ÐÎ2", "ÂÌÉ«", 4.0);
-    shapes[1] = new Rectangle("¾ØÐÎ2", "»ÆÉ«", 3.0, 7.0);
-    shapes[2] = new Circle("Ô²ÐÎ3", "×ÏÉ«", 2.5);
+    shapes[0] = new Circle("åœ†å½¢2", "ç»¿è‰²", 4.0);
+    shapes[1] = new Rectangle("çŸ©å½¢2", "é»„è‰²", 3.0, 7.0);
+    shapes[2] = new Circle("åœ†å½¢3", "ç´«è‰²", 2.5);
 
     for (int i = 0; i < 3; i++) {
         shapes[i]->displayInfo();
-        cout << ", Ãæ»ý: " << shapes[i]->getArea() << endl;
+        cout << ", é¢ç§¯: " << shapes[i]->getArea() << endl;
         shapes[i]->draw();
     }
 
-    cout << "\n=== É¾³ý¶ÔÏó ===" << endl;
+    cout << "\n=== åˆ é™¤å¯¹è±¡ ===" << endl;
     for (int i = 0; i < 3; i++) {
         delete shapes[i];
     }
 
-    cout << "\n=== ¾²Ì¬³ÉÔ± ===" << endl;
-    cout << "Í¼ÐÎ×ÜÊý: " << Shape::getCount() << endl;
+    cout << "\n=== é™æ€æˆå‘˜ ===" << endl;
+    cout << "å›¾å½¢æ€»æ•°: " << Shape::getCount() << endl;
 
-    cout << "\n=== ³ÌÐò½áÊø ===" << endl;
+    cout << "\n=== ç¨‹åºç»“æŸ ===" << endl;
     return 0;
 }

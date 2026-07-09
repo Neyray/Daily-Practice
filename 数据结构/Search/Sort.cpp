@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// ´òÓ¡Êı×éº¯Êı
+// æ‰“å°æ•°ç»„å‡½æ•°
 void printArray(const vector<int>& arr, const string& title) {
     cout << title << ": ";
     for (int num : arr) {
@@ -15,13 +15,13 @@ void printArray(const vector<int>& arr, const string& title) {
     cout << endl;
 }
 
-// 10.2.1 Ö±½Ó²åÈëÅÅĞò
+// 10.2.1 ç›´æ¥æ’å…¥æ’åº
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int j = i - 1;
-        // ½«´óÓÚkeyµÄÔªËØÏòºóÒÆ¶¯
+        // å°†å¤§äºkeyçš„å…ƒç´ å‘åç§»åŠ¨
         while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
             j--;
@@ -30,14 +30,14 @@ void insertionSort(vector<int>& arr) {
     }
 }
 
-// 10.2.2 ÕÛ°ë²åÈëÅÅĞò
+// 10.2.2 æŠ˜åŠæ’å…¥æ’åº
 void binaryInsertionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int left = 0, right = i - 1;
 
-        // Ê¹ÓÃ¶ş·Ö²éÕÒÕÒµ½²åÈëÎ»ÖÃ
+        // ä½¿ç”¨äºŒåˆ†æŸ¥æ‰¾æ‰¾åˆ°æ’å…¥ä½ç½®
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (arr[mid] > key) {
@@ -48,7 +48,7 @@ void binaryInsertionSort(vector<int>& arr) {
             }
         }
 
-        // ÒÆ¶¯ÔªËØ²¢²åÈë
+        // ç§»åŠ¨å…ƒç´ å¹¶æ’å…¥
         for (int j = i - 1; j >= left; j--) {
             arr[j + 1] = arr[j];
         }
@@ -56,12 +56,12 @@ void binaryInsertionSort(vector<int>& arr) {
     }
 }
 
-// 10.2.3 Ï£¶ûÅÅĞò
+// 10.2.3 å¸Œå°”æ’åº
 void shellSort(vector<int>& arr) {
     int n = arr.size();
-    // Ñ¡ÔñÔöÁ¿ĞòÁĞ
+    // é€‰æ‹©å¢é‡åºåˆ—
     for (int gap = n / 2; gap > 0; gap /= 2) {
-        // ¶ÔÃ¿¸ö×ÓĞòÁĞ½øĞĞ²åÈëÅÅĞò
+        // å¯¹æ¯ä¸ªå­åºåˆ—è¿›è¡Œæ’å…¥æ’åº
         for (int i = gap; i < n; i++) {
             int temp = arr[i];
             int j;
@@ -73,7 +73,7 @@ void shellSort(vector<int>& arr) {
     }
 }
 
-// 10.3.1 Ã°ÅİÅÅĞò
+// 10.3.1 å†’æ³¡æ’åº
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
@@ -84,12 +84,12 @@ void bubbleSort(vector<int>& arr) {
                 swapped = true;
             }
         }
-        // Èç¹ûÃ»ÓĞ½»»»£¬ËµÃ÷ÒÑ¾­ÓĞĞò
+        // å¦‚æœæ²¡æœ‰äº¤æ¢ï¼Œè¯´æ˜å·²ç»æœ‰åº
         if (!swapped) break;
     }
 }
 
-// 10.3.2 ¿ìËÙÅÅĞò
+// 10.3.2 å¿«é€Ÿæ’åº
 int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
     int i = low - 1;
@@ -116,7 +116,7 @@ void quickSort(vector<int>& arr) {
     quickSortHelper(arr, 0, arr.size() - 1);
 }
 
-// 10.4.1 ¼òµ¥Ñ¡ÔñÅÅĞò
+// 10.4.1 ç®€å•é€‰æ‹©æ’åº
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
@@ -132,16 +132,16 @@ void selectionSort(vector<int>& arr) {
     }
 }
 
-// ¹é²¢²Ù×÷£ººÏ²¢Á½¸öÓĞĞò×ÓÊı×é
+// å½’å¹¶æ“ä½œï¼šåˆå¹¶ä¸¤ä¸ªæœ‰åºå­æ•°ç»„
 void merge(vector<int>& arr, int left, int mid, int right) {
-    // ´´½¨ÁÙÊ±Êı×é´æ·ÅºÏ²¢½á¹û
+    // åˆ›å»ºä¸´æ—¶æ•°ç»„å­˜æ”¾åˆå¹¶ç»“æœ
     vector<int> temp(right - left + 1);
 
-    int i = left;      // ×ó×ÓÊı×éÆğÊ¼Ë÷Òı
-    int j = mid + 1;   // ÓÒ×ÓÊı×éÆğÊ¼Ë÷Òı
-    int k = 0;         // ÁÙÊ±Êı×éË÷Òı
+    int i = left;      // å·¦å­æ•°ç»„èµ·å§‹ç´¢å¼•
+    int j = mid + 1;   // å³å­æ•°ç»„èµ·å§‹ç´¢å¼•
+    int k = 0;         // ä¸´æ—¶æ•°ç»„ç´¢å¼•
 
-    // ºÏ²¢Á½¸öÓĞĞò×ÓÊı×é
+    // åˆå¹¶ä¸¤ä¸ªæœ‰åºå­æ•°ç»„
     while (i <= mid && j <= right) {
         if (arr[i] <= arr[j]) {
             temp[k++] = arr[i++];
@@ -151,97 +151,97 @@ void merge(vector<int>& arr, int left, int mid, int right) {
         }
     }
 
-    // ¸´ÖÆ×ó×ÓÊı×éÊ£ÓàÔªËØ
+    // å¤åˆ¶å·¦å­æ•°ç»„å‰©ä½™å…ƒç´ 
     while (i <= mid) {
         temp[k++] = arr[i++];
     }
 
-    // ¸´ÖÆÓÒ×ÓÊı×éÊ£ÓàÔªËØ
+    // å¤åˆ¶å³å­æ•°ç»„å‰©ä½™å…ƒç´ 
     while (j <= right) {
         temp[k++] = arr[j++];
     }
 
-    // ½«ÁÙÊ±Êı×éÄÚÈİ¸´ÖÆ»ØÔ­Êı×é
+    // å°†ä¸´æ—¶æ•°ç»„å†…å®¹å¤åˆ¶å›åŸæ•°ç»„
     for (int p = 0; p < k; p++) {
         arr[left + p] = temp[p];
     }
 }
 
-// µİ¹éÊµÏÖ¶şÂ·¹é²¢ÅÅĞò
+// é€’å½’å®ç°äºŒè·¯å½’å¹¶æ’åº
 void mergeSort(vector<int>& arr, int left, int right) {
     if (left < right) {
-        // ¼ÆËãÖĞ¼äÎ»ÖÃ£¨±ÜÃâÒç³ö£©
+        // è®¡ç®—ä¸­é—´ä½ç½®ï¼ˆé¿å…æº¢å‡ºï¼‰
         int mid = left + (right - left) / 2;
 
-        // µİ¹éÅÅĞò×ó°ë²¿·Ö
+        // é€’å½’æ’åºå·¦åŠéƒ¨åˆ†
         mergeSort(arr, left, mid);
 
-        // µİ¹éÅÅĞòÓÒ°ë²¿·Ö
+        // é€’å½’æ’åºå³åŠéƒ¨åˆ†
         mergeSort(arr, mid + 1, right);
 
-        // ºÏ²¢Á½¸öÓĞĞò²¿·Ö
+        // åˆå¹¶ä¸¤ä¸ªæœ‰åºéƒ¨åˆ†
         merge(arr, left, mid, right);
     }
 }
 
-// µü´úÊµÏÖ¶şÂ·¹é²¢ÅÅĞò£¨·Çµİ¹é£©
+// è¿­ä»£å®ç°äºŒè·¯å½’å¹¶æ’åºï¼ˆéé€’å½’ï¼‰
 void iterativeMergeSort(vector<int>& arr) {
     int n = arr.size();
-    // ²½³¤´Ó1¿ªÊ¼£¬Ã¿´Î¼Ó±¶
+    // æ­¥é•¿ä»1å¼€å§‹ï¼Œæ¯æ¬¡åŠ å€
     for (int curr_size = 1; curr_size <= n - 1; curr_size *= 2) {
-        // ±éÀúËùÓĞ×ÓÊı×é½øĞĞºÏ²¢
+        // éå†æ‰€æœ‰å­æ•°ç»„è¿›è¡Œåˆå¹¶
         for (int left_start = 0; left_start < n - 1; left_start += 2 * curr_size) {
-            // ¼ÆËãÖĞ¼äÎ»ÖÃºÍÓÒ¶Ëµã
+            // è®¡ç®—ä¸­é—´ä½ç½®å’Œå³ç«¯ç‚¹
             int mid = min(left_start + curr_size - 1, n - 1);
             int right_end = min(left_start + 2 * curr_size - 1, n - 1);
 
-            // ºÏ²¢×ÓÊı×é
+            // åˆå¹¶å­æ•°ç»„
             merge(arr, left_start, mid, right_end);
         }
     }
 }
 
 
-// 10.4.2 ¶ÑÅÅĞò¸¨Öúº¯Êı
-void heapify(vector<int>& arr, int n, int i) {              //n±íÊ¾µ±Ç°¶ÑµÄ´óĞ¡
-    int largest = i;          // ³õÊ¼»¯×î´óÔªËØÎªµ±Ç°½Úµã
-    int left = 2 * i + 1;     // ¼ÆËã×ó×Ó½ÚµãÎ»ÖÃ
-    int right = 2 * i + 2;    // ¼ÆËãÓÒ×Ó½ÚµãÎ»ÖÃ
+// 10.4.2 å †æ’åºè¾…åŠ©å‡½æ•°
+void heapify(vector<int>& arr, int n, int i) {              //nè¡¨ç¤ºå½“å‰å †çš„å¤§å°
+    int largest = i;          // åˆå§‹åŒ–æœ€å¤§å…ƒç´ ä¸ºå½“å‰èŠ‚ç‚¹
+    int left = 2 * i + 1;     // è®¡ç®—å·¦å­èŠ‚ç‚¹ä½ç½®
+    int right = 2 * i + 2;    // è®¡ç®—å³å­èŠ‚ç‚¹ä½ç½®
 
-    // Èç¹û×ó×Ó½Úµã´æÔÚÇÒ´óÓÚµ±Ç°×î´óÔªËØ
+    // å¦‚æœå·¦å­èŠ‚ç‚¹å­˜åœ¨ä¸”å¤§äºå½“å‰æœ€å¤§å…ƒç´ 
     if (left < n && arr[left] > arr[largest]) {
-        largest = left;       // ¸üĞÂ×î´óÔªËØÎ»ÖÃ
+        largest = left;       // æ›´æ–°æœ€å¤§å…ƒç´ ä½ç½®
     }
 
-    // Èç¹ûÓÒ×Ó½Úµã´æÔÚÇÒ´óÓÚµ±Ç°×î´óÔªËØ
+    // å¦‚æœå³å­èŠ‚ç‚¹å­˜åœ¨ä¸”å¤§äºå½“å‰æœ€å¤§å…ƒç´ 
     if (right < n && arr[right] > arr[largest]) {
-        largest = right;      // ¸üĞÂ×î´óÔªËØÎ»ÖÃ
+        largest = right;      // æ›´æ–°æœ€å¤§å…ƒç´ ä½ç½®
     }
 
-    // Èç¹û×î´óÔªËØ²»ÊÇµ±Ç°½Úµã
+    // å¦‚æœæœ€å¤§å…ƒç´ ä¸æ˜¯å½“å‰èŠ‚ç‚¹
     if (largest != i) {
-        swap(arr[i], arr[largest]);  // ½»»»µ±Ç°½ÚµãºÍ½Ï´ó×Ó½Úµã
-        heapify(arr, n, largest);    // µİ¹éµ÷ÕûÊÜÓ°ÏìµÄ×ÓÊ÷
+        swap(arr[i], arr[largest]);  // äº¤æ¢å½“å‰èŠ‚ç‚¹å’Œè¾ƒå¤§å­èŠ‚ç‚¹
+        heapify(arr, n, largest);    // é€’å½’è°ƒæ•´å—å½±å“çš„å­æ ‘
     }
 }
 
-// 10.4.2 ¶ÑÅÅĞò
+// 10.4.2 å †æ’åº
 void heapSort(vector<int>& arr) {
     int n = arr.size();
 
-    // 1. ¹¹½¨×î´ó¶Ñ£¨×Ôµ×ÏòÉÏ£©
+    // 1. æ„å»ºæœ€å¤§å †ï¼ˆè‡ªåº•å‘ä¸Šï¼‰
     for (int i = n / 2 - 1; i >= 0; i--) {
-        heapify(arr, n, i);  // ´Ó×îºóÒ»¸ö·ÇÒ¶×Ó½Úµã¿ªÊ¼µ÷Õû
+        heapify(arr, n, i);  // ä»æœ€åä¸€ä¸ªéå¶å­èŠ‚ç‚¹å¼€å§‹è°ƒæ•´
     }
 
-    // 2. ÖğÔªËØÌáÈ¡
+    // 2. é€å…ƒç´ æå–
     for (int i = n - 1; i > 0; i--) {
-        swap(arr[0], arr[i]);  // ½«µ±Ç°¶Ñ¶¥£¨×î´óÖµ£©ÒÆµ½Ä©Î²
-        heapify(arr, i, 0);    // µ÷ÕûÊ£ÓàÔªËØ£¨¶Ñ´óĞ¡¼õ1£©
+        swap(arr[0], arr[i]);  // å°†å½“å‰å †é¡¶ï¼ˆæœ€å¤§å€¼ï¼‰ç§»åˆ°æœ«å°¾
+        heapify(arr, i, 0);    // è°ƒæ•´å‰©ä½™å…ƒç´ ï¼ˆå †å¤§å°å‡1ï¼‰
     }
 }
 
-// 10.5.1 ×Ôµ×ÏòÉÏµÄ¶şÂ·¹é²¢ÅÅĞò¸¨Öúº¯Êı
+// 10.5.1 è‡ªåº•å‘ä¸Šçš„äºŒè·¯å½’å¹¶æ’åºè¾…åŠ©å‡½æ•°
 void merge(vector<int>& arr, int left, int mid, int right) {
     vector<int> temp(right - left + 1);
     int i = left, j = mid + 1, k = 0;
@@ -268,7 +268,7 @@ void merge(vector<int>& arr, int left, int mid, int right) {
     }
 }
 
-// 10.5.1 ×Ôµ×ÏòÉÏµÄ¶şÂ·¹é²¢ÅÅĞò
+// 10.5.1 è‡ªåº•å‘ä¸Šçš„äºŒè·¯å½’å¹¶æ’åº
 void mergeSortBottomUp(vector<int>& arr) {
     int n = arr.size();
     for (int size = 1; size < n; size *= 2) {
@@ -280,7 +280,7 @@ void mergeSortBottomUp(vector<int>& arr) {
     }
 }
 
-// 10.5.2 ×Ô¶¥ÏòÏÂµÄ¶şÂ·¹é²¢ÅÅĞò
+// 10.5.2 è‡ªé¡¶å‘ä¸‹çš„äºŒè·¯å½’å¹¶æ’åº
 void mergeSortTopDown(vector<int>& arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -294,101 +294,101 @@ void mergeSortTopDownWrapper(vector<int>& arr) {
     mergeSortTopDown(arr, 0, arr.size() - 1);
 }
 
-// 10.6 »ùÊıÅÅĞò
+// 10.6 åŸºæ•°æ’åº
 void countingSort(vector<int>& arr, int exp) {
     int n = arr.size();
     vector<int> output(n);
     vector<int> count(10, 0);
 
-    // ¼ÆËãÃ¿¸öÊı×ÖµÄ³öÏÖ´ÎÊı
+    // è®¡ç®—æ¯ä¸ªæ•°å­—çš„å‡ºç°æ¬¡æ•°
     for (int i = 0; i < n; i++) {
         count[(arr[i] / exp) % 10]++;
     }
 
-    // ÀÛ¼Ó¼ÆÊı
+    // ç´¯åŠ è®¡æ•°
     for (int i = 1; i < 10; i++) {
         count[i] += count[i - 1];
     }
 
-    // ¹¹½¨Êä³öÊı×é
+    // æ„å»ºè¾“å‡ºæ•°ç»„
     for (int i = n - 1; i >= 0; i--) {
         output[count[(arr[i] / exp) % 10] - 1] = arr[i];
         count[(arr[i] / exp) % 10]--;
     }
 
-    // ¸´ÖÆ»ØÔ­Êı×é
+    // å¤åˆ¶å›åŸæ•°ç»„
     for (int i = 0; i < n; i++) {
         arr[i] = output[i];
     }
 }
 
 void radixSort(vector<int>& arr) {
-    // ÕÒµ½×î´óÖµ
+    // æ‰¾åˆ°æœ€å¤§å€¼
     int maxVal = *max_element(arr.begin(), arr.end());
 
-    // ¶ÔÃ¿Ò»Î»½øĞĞ¼ÆÊıÅÅĞò
+    // å¯¹æ¯ä¸€ä½è¿›è¡Œè®¡æ•°æ’åº
     for (int exp = 1; maxVal / exp > 0; exp *= 10) {
         countingSort(arr, exp);
     }
 }
 
-// ²âÊÔº¯Êı
+// æµ‹è¯•å‡½æ•°
 void testSortingAlgorithm(const string& algorithmName, void (*sortFunc)(vector<int>&)) {
     cout << "\n=== " << algorithmName << " ===" << endl;
 
-    // ²âÊÔÊı¾İ1£ºËæ»úÊı×é
+    // æµ‹è¯•æ•°æ®1ï¼šéšæœºæ•°ç»„
     vector<int> test1 = { 64, 34, 25, 12, 22, 11, 90, 88, 76, 50 };
-    printArray(test1, "²âÊÔÊı¾İ1 - ÅÅĞòÇ°");
+    printArray(test1, "æµ‹è¯•æ•°æ®1 - æ’åºå‰");
     sortFunc(test1);
-    printArray(test1, "²âÊÔÊı¾İ1 - ÅÅĞòºó");
+    printArray(test1, "æµ‹è¯•æ•°æ®1 - æ’åºå");
 
-    // ²âÊÔÊı¾İ2£º²¿·ÖÓĞĞòÊı×é
+    // æµ‹è¯•æ•°æ®2ï¼šéƒ¨åˆ†æœ‰åºæ•°ç»„
     vector<int> test2 = { 5, 2, 8, 1, 9, 3, 7, 4, 6, 0 };
-    printArray(test2, "²âÊÔÊı¾İ2 - ÅÅĞòÇ°");
+    printArray(test2, "æµ‹è¯•æ•°æ®2 - æ’åºå‰");
     sortFunc(test2);
-    printArray(test2, "²âÊÔÊı¾İ2 - ÅÅĞòºó");
+    printArray(test2, "æµ‹è¯•æ•°æ®2 - æ’åºå");
 }
 
-// ÌØÊâ²âÊÔº¯Êı£¨ÓÃÓÚ¹é²¢ÅÅĞòµÄ°ü×°£©
+// ç‰¹æ®Šæµ‹è¯•å‡½æ•°ï¼ˆç”¨äºå½’å¹¶æ’åºçš„åŒ…è£…ï¼‰
 void testMergeSortTopDown() {
-    cout << "\n=== ×Ô¶¥ÏòÏÂµÄ¶şÂ·¹é²¢ÅÅĞò ===" << endl;
+    cout << "\n=== è‡ªé¡¶å‘ä¸‹çš„äºŒè·¯å½’å¹¶æ’åº ===" << endl;
 
     vector<int> test1 = { 64, 34, 25, 12, 22, 11, 90, 88, 76, 50 };
-    printArray(test1, "²âÊÔÊı¾İ1 - ÅÅĞòÇ°");
+    printArray(test1, "æµ‹è¯•æ•°æ®1 - æ’åºå‰");
     mergeSortTopDownWrapper(test1);
-    printArray(test1, "²âÊÔÊı¾İ1 - ÅÅĞòºó");
+    printArray(test1, "æµ‹è¯•æ•°æ®1 - æ’åºå");
 
     vector<int> test2 = { 5, 2, 8, 1, 9, 3, 7, 4, 6, 0 };
-    printArray(test2, "²âÊÔÊı¾İ2 - ÅÅĞòÇ°");
+    printArray(test2, "æµ‹è¯•æ•°æ®2 - æ’åºå‰");
     mergeSortTopDownWrapper(test2);
-    printArray(test2, "²âÊÔÊı¾İ2 - ÅÅĞòºó");
+    printArray(test2, "æµ‹è¯•æ•°æ®2 - æ’åºå");
 }
 
 int main() {
-    cout << "========== ÅÅĞòËã·¨ÑİÊ¾³ÌĞò ==========" << endl;
-    cout << "¸ù¾İ½Ì²Ä10.2-10.8ÕÂ½ÚË³ĞòÊµÏÖ¸÷ÖÖÅÅĞòËã·¨" << endl;
+    cout << "========== æ’åºç®—æ³•æ¼”ç¤ºç¨‹åº ==========" << endl;
+    cout << "æ ¹æ®æ•™æ10.2-10.8ç« èŠ‚é¡ºåºå®ç°å„ç§æ’åºç®—æ³•" << endl;
 
-    // 10.2 ²åÈëÅÅĞò
-    testSortingAlgorithm("10.2.1 Ö±½Ó²åÈëÅÅĞò", insertionSort);
-    testSortingAlgorithm("10.2.2 ÕÛ°ë²åÈëÅÅĞò", binaryInsertionSort);
-    testSortingAlgorithm("10.2.3 Ï£¶ûÅÅĞò", shellSort);
+    // 10.2 æ’å…¥æ’åº
+    testSortingAlgorithm("10.2.1 ç›´æ¥æ’å…¥æ’åº", insertionSort);
+    testSortingAlgorithm("10.2.2 æŠ˜åŠæ’å…¥æ’åº", binaryInsertionSort);
+    testSortingAlgorithm("10.2.3 å¸Œå°”æ’åº", shellSort);
 
-    // 10.3 ½»»»ÅÅĞò
-    testSortingAlgorithm("10.3.1 Ã°ÅİÅÅĞò", bubbleSort);
-    testSortingAlgorithm("10.3.2 ¿ìËÙÅÅĞò", quickSort);
+    // 10.3 äº¤æ¢æ’åº
+    testSortingAlgorithm("10.3.1 å†’æ³¡æ’åº", bubbleSort);
+    testSortingAlgorithm("10.3.2 å¿«é€Ÿæ’åº", quickSort);
 
-    // 10.4 Ñ¡ÔñÅÅĞò
-    testSortingAlgorithm("10.4.1 ¼òµ¥Ñ¡ÔñÅÅĞò", selectionSort);
-    testSortingAlgorithm("10.4.2 ¶ÑÅÅĞò", heapSort);
+    // 10.4 é€‰æ‹©æ’åº
+    testSortingAlgorithm("10.4.1 ç®€å•é€‰æ‹©æ’åº", selectionSort);
+    testSortingAlgorithm("10.4.2 å †æ’åº", heapSort);
 
-    // 10.5 ¹é²¢ÅÅĞò
-    testSortingAlgorithm("10.5.1 ×Ôµ×ÏòÉÏµÄ¶şÂ·¹é²¢ÅÅĞò", mergeSortBottomUp);
+    // 10.5 å½’å¹¶æ’åº
+    testSortingAlgorithm("10.5.1 è‡ªåº•å‘ä¸Šçš„äºŒè·¯å½’å¹¶æ’åº", mergeSortBottomUp);
     testMergeSortTopDown();
 
-    // 10.6 »ùÊıÅÅĞò
-    testSortingAlgorithm("10.6 »ùÊıÅÅĞò", radixSort);
+    // 10.6 åŸºæ•°æ’åº
+    testSortingAlgorithm("10.6 åŸºæ•°æ’åº", radixSort);
 
-    cout << "\n========== ËùÓĞÅÅĞòËã·¨²âÊÔÍê³É ==========" << endl;
+    cout << "\n========== æ‰€æœ‰æ’åºç®—æ³•æµ‹è¯•å®Œæˆ ==========" << endl;
 
     return 0;
 }

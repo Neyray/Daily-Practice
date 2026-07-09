@@ -9,7 +9,7 @@ public:
 	int length;
 };
 
-//´Ói¿ªÊ¼µÄj¸ö×Ö·û
+//ä»Žiå¼€å§‹çš„jä¸ªå­—ç¬¦
 SqString& SubStr(int i, int j) {
 	static SqString s;
 	if (i < 0 || i >= s.length || j<0 || i + j>s.length)

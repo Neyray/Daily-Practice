@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//µ¥Á´±í,ÕâÀïµÄhead²»°üº¬ÓĞĞ§Êı¾İ
+//å•é“¾è¡¨,è¿™é‡Œçš„headä¸åŒ…å«æœ‰æ•ˆæ•°æ®
 template <typename T>
 struct LinkNode {
 	T data;
@@ -30,14 +30,14 @@ public:
 		}
 		delete pre;
 	}
-	//Í·²å·¨½¨±í
+	//å¤´æ’æ³•å»ºè¡¨
 	bool push_head(T e) {
 		LinkNode<T>* s = new LinkNode<T>(e);
 		s->next = head->next;
 		head->next = s;
 		return true;
 	}
-	//Î²²å·¨½¨±í
+	//å°¾æ’æ³•å»ºè¡¨
 	bool push_back(T e) {
 		LinkNode<T>* n = new LinkNode<T>(e);
 
@@ -52,14 +52,14 @@ public:
 			pre->next = n;
 		}
 
-		//ÎŞÂÛÈçºÎnµÄÖ¸ÕëµÄÏÂÒ»Î»Ò»¶¨ÊÇNULL!!!
+		//æ— è®ºå¦‚ä½•nçš„æŒ‡é’ˆçš„ä¸‹ä¸€ä½ä¸€å®šæ˜¯NULL!!!
 		n->next = NULL;
 	}
-	//²éÕÒĞòºÅÎªiµÄ½áµã
+	//æŸ¥æ‰¾åºå·ä¸ºiçš„ç»“ç‚¹
 	LinkNode<T>* geti(int i) {
 		if (i < -1)return NULL;
 
-		LinkNode<T>* p = head;           //head¾ÍÊÇĞòºÅÎª-1µÄ½áµã
+		LinkNode<T>* p = head;           //headå°±æ˜¯åºå·ä¸º-1çš„ç»“ç‚¹
 
 		int j = -1;
 		while (j < i && p->next != NULL) {
@@ -68,7 +68,7 @@ public:
 		}
 		return p;
 	}
-	//É¾³ıĞòºÅÎªiµÄ½áµã
+	//åˆ é™¤åºå·ä¸ºiçš„ç»“ç‚¹
 	bool Delete(int i) {
 		if (i < 0)return false;
 
@@ -88,10 +88,10 @@ public:
 		}
 		}
 	}
-	//ÔÚĞòºÅÎªi´¦²åÈëÒ»¸ö½áµã
+	//åœ¨åºå·ä¸ºiå¤„æ’å…¥ä¸€ä¸ªç»“ç‚¹
 	bool Insert(int i, T e) {
 		if (i < 0)return false;
-		//´´½¨Ò»¸öĞÂ½áµã
+		//åˆ›å»ºä¸€ä¸ªæ–°ç»“ç‚¹
 		LinkNode<T>* node = new LinkNode<T>(e);
 		LinkNode<T>* p = geti(i - 1);
 
@@ -107,30 +107,30 @@ public:
 	LinkNode<T>* findMiddle();
 };
 
-//ÌâÄ¿1£ºÁ´±í·´×ª£¨µü´ú·¨£©
+//é¢˜ç›®1ï¼šé“¾è¡¨åè½¬ï¼ˆè¿­ä»£æ³•ï¼‰
 template <typename T>
 void LinkList<T>::reverse() {
-	//prevÎ»ÓÚÁ´±íµÄ×îºóÒ»¸ö½ÚµãÖ®ºó
+	//prevä½äºé“¾è¡¨çš„æœ€åä¸€ä¸ªèŠ‚ç‚¹ä¹‹å
 	LinkNode<T>* prev = NULL;
 
 	LinkNode<T>* curr = head->next;
 	while (curr != NULL) {
-		//ÓÃÀ´´æ´¢currµÄÏÂÒ»¸ö½áµã
+		//ç”¨æ¥å­˜å‚¨currçš„ä¸‹ä¸€ä¸ªç»“ç‚¹
 		LinkNode<T>* next = curr->next;
 
-		//¸ü¸ÄÖ¸ÕëÖ¸Ïò
+		//æ›´æ”¹æŒ‡é’ˆæŒ‡å‘
 		curr->next = prev;
-		//¸üĞÂÊı¾İ
+		//æ›´æ–°æ•°æ®
 		prev = curr;
 		curr = next;
 	}
 	head->next = prev;
 }
 
-//ÌâÄ¿2£º»·ĞÎÁ´±í¼ì²â
+//é¢˜ç›®2ï¼šç¯å½¢é“¾è¡¨æ£€æµ‹
 template <typename T>
 bool LinkList<T>::hasCycle() {
-	//¿ÕÁ´±íµÄÇé¿ö
+	//ç©ºé“¾è¡¨çš„æƒ…å†µ
 	if (head->next == NULL)return false;
 
 	LinkNode<T>* slow = head->next;
@@ -144,7 +144,7 @@ bool LinkList<T>::hasCycle() {
 	return false;
 }
 
-//ÌâÄ¿3£ººÏ²¢Á½¸öÓĞĞòÁ´±í
+//é¢˜ç›®3ï¼šåˆå¹¶ä¸¤ä¸ªæœ‰åºé“¾è¡¨
 template <typename T>
 static LinkNode<T>* mergeTwoLists(LinkNode<T>* l1, LinkNode<T>* l2) {
 	LinkNode<T> dummy(T());
@@ -158,13 +158,13 @@ static LinkNode<T>* mergeTwoLists(LinkNode<T>* l1, LinkNode<T>* l2) {
 			tail->next = l2;
 			l2 = l2->next;
 		}
-		tail = tail->next; // ÒÆ¶¯ tail Ö¸Õë£¬Ö¸Ïòµ±Ç°Á´±íµÄÄ©Î²
+		tail = tail->next; // ç§»åŠ¨ tail æŒ‡é’ˆï¼ŒæŒ‡å‘å½“å‰é“¾è¡¨çš„æœ«å°¾
 	}
-	tail->next = (l1 != NULL) ? l1 : l2; // Èç¹û l1 »ò l2 »¹ÓĞÊ£Óà½Úµã£¬½«Ê£ÓàµÄÁ´±íÖ±½ÓÁ¬½Óµ½ºÏ²¢Á´±í
-	return dummy.next;       // ·µ»ØºÏ²¢ºóµÄÁ´±íÍ·£¨Ìø¹ı dummy ½Úµã£©
+	tail->next = (l1 != NULL) ? l1 : l2; // å¦‚æœ l1 æˆ– l2 è¿˜æœ‰å‰©ä½™èŠ‚ç‚¹ï¼Œå°†å‰©ä½™çš„é“¾è¡¨ç›´æ¥è¿æ¥åˆ°åˆå¹¶é“¾è¡¨
+	return dummy.next;       // è¿”å›åˆå¹¶åçš„é“¾è¡¨å¤´ï¼ˆè·³è¿‡ dummy èŠ‚ç‚¹ï¼‰
 }
 
-//ÌâÄ¿4£ºÁ´±íÖĞµã£¨¿ìÂıÖ¸Õë£©
+//é¢˜ç›®4ï¼šé“¾è¡¨ä¸­ç‚¹ï¼ˆå¿«æ…¢æŒ‡é’ˆï¼‰
 template <typename T>
 LinkNode<T>* LinkList<T>::findMiddle() {
 	if (!head->next)return NULL;
@@ -178,7 +178,7 @@ LinkNode<T>* LinkList<T>::findMiddle() {
 	return slow;
 }
 
-//Ë«ÏòÁ´±í
+//åŒå‘é“¾è¡¨
 template <typename T>
 struct DLinkNode {
 	T data;
@@ -191,7 +191,7 @@ struct DLinkNode {
 template <typename T>
 class DLinklist {
 public:
-	//Ö»ĞèÒªÒ»¸öÍ·Ö¸Õë¼´¿É
+	//åªéœ€è¦ä¸€ä¸ªå¤´æŒ‡é’ˆå³å¯
 	DLinkNode<T>* dhead;
 
 	DLinklist() {
@@ -208,9 +208,9 @@ public:
 		}
 		delete pre;
 	}
-	//Í·²å·¨½¨±í
+	//å¤´æ’æ³•å»ºè¡¨
 	bool push_head(T e) {
-		//ĞÂ½¨Ò»¸ö½áµã
+		//æ–°å»ºä¸€ä¸ªç»“ç‚¹
 		DLinkNode<T>* node = new DLinkNode<T>();
 		node->next = dhead->next;
 		if (dhead->next != NULL)
@@ -219,7 +219,7 @@ public:
 		dhead->next = node;
 		return true;
 	}
-	//Î²²å·¨½¨±í
+	//å°¾æ’æ³•å»ºè¡¨
 	bool push_back(T e) {
 		DLinkNode<T>* node = new DLinkNode<T>();
 		if (dhead->next == NULL) {
@@ -234,11 +234,11 @@ public:
 			s->next = node;
 			node->prior = s;
 		}
-		//ÔÙ´ÎÇ¿µ÷nodeÊÇÎ²½áµã
+		//å†æ¬¡å¼ºè°ƒnodeæ˜¯å°¾ç»“ç‚¹
 		node->next = NULL;
 		return true;
 	}
-	//²éÕÒĞòºÅÎªiµÄ½áµã
+	//æŸ¥æ‰¾åºå·ä¸ºiçš„ç»“ç‚¹
 	DLinkNode<T>* geti(int i) {
 		if (i < -1)return false;
 
@@ -250,7 +250,7 @@ public:
 		}
 		return p;
 	}
-	//É¾³ıĞòºÅÎªiµÄ½áµã
+	//åˆ é™¤åºå·ä¸ºiçš„ç»“ç‚¹
 	bool Delete(int i) {
 		if (i < 0)return false;
 
@@ -269,9 +269,9 @@ public:
 		else
 			return false;
 	}
-	//²åÈëĞòºÅÎªiµÄ½áµã
+	//æ’å…¥åºå·ä¸ºiçš„ç»“ç‚¹
 	bool Insert(int i, T e) {
-		//ĞÂ½¨Ò»¸ö½áµã
+		//æ–°å»ºä¸€ä¸ªç»“ç‚¹
 		DLinkNode<T>* node = new DLinkNode<T>();
 
 		if (i < 0)return false;

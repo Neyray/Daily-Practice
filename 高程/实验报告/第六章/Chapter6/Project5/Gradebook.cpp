@@ -3,12 +3,12 @@
 #include"GradeBook.h"
 using namespace std;
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 GradeBook::GradeBook(string name, const int gradesArray[][tests])
 {
     setCourseName(name);
 
-    // ¸´ÖÆ³É¼¨Êı×é
+    // å¤åˆ¶æˆç»©æ•°ç»„
     for (int student = 0; student < students; student++)
     {
         for (int test = 0; test < tests; test++)
@@ -38,20 +38,20 @@ void GradeBook::displayMessage()
 
 void GradeBook::processGrades()
 {
-    outputGrades(); // Êä³ö³É¼¨Êı×é
+    outputGrades(); // è¾“å‡ºæˆç»©æ•°ç»„
 
-    // ÏÔÊ¾ËùÓĞ²âÊÔÖĞµÄ×îµÍ·ÖºÍ×î¸ß·Ö
+    // æ˜¾ç¤ºæ‰€æœ‰æµ‹è¯•ä¸­çš„æœ€ä½åˆ†å’Œæœ€é«˜åˆ†
     cout << "\nLowest grade in the grade book is " << getMinimum()
         << "\nHighest grade in the grade book is " << getMaximum() << endl;
 
-    outputBarChart(); // Êä³ö³É¼¨·Ö²¼Í¼
+    outputBarChart(); // è¾“å‡ºæˆç»©åˆ†å¸ƒå›¾
 }
 
 int GradeBook::getMinimum()
 {
-    int lowGrade = 100; // ¼ÙÉè×îµÍ·ÖÊÇ100
+    int lowGrade = 100; // å‡è®¾æœ€ä½åˆ†æ˜¯100
 
-    // ±éÀú³É¼¨Êı×éµÄËùÓĞÔªËØ
+    // éå†æˆç»©æ•°ç»„çš„æ‰€æœ‰å…ƒç´ 
     for (int student = 0; student < students; student++)
     {
         for (int test = 0; test < tests; test++)
@@ -65,9 +65,9 @@ int GradeBook::getMinimum()
 
 int GradeBook::getMaximum()
 {
-    int highGrade = 0; // ¼ÙÉè×î¸ß·ÖÊÇ0
+    int highGrade = 0; // å‡è®¾æœ€é«˜åˆ†æ˜¯0
 
-    // ±éÀú³É¼¨Êı×éµÄËùÓĞÔªËØ
+    // éå†æˆç»©æ•°ç»„çš„æ‰€æœ‰å…ƒç´ 
     for (int student = 0; student < students; student++)
     {
         for (int test = 0; test < tests; test++)
@@ -80,16 +80,16 @@ int GradeBook::getMaximum()
 }
 
 
-//×¢ÒâÕâÀïµÄSetOfGrades[]ÊÇ¶şÎ¬Êı×é£¬µ÷ÓÃµÄÊ±ºòÊ¹ÓÃgrades[student]
+//æ³¨æ„è¿™é‡Œçš„SetOfGrades[]æ˜¯äºŒç»´æ•°ç»„ï¼Œè°ƒç”¨çš„æ—¶å€™ä½¿ç”¨grades[student]
 double GradeBook::getAverage(const int setOfGrades[], const int gradesCount)
 {
     int total = 0;
 
-    // Çó³É¼¨×ÜºÍ
+    // æ±‚æˆç»©æ€»å’Œ
     for (int grade = 0; grade < gradesCount; grade++)
-        total += setOfGrades[grade];//ÕâÀïµÄgrade±íÊ¾µÚ¼¸´Î²âÊÔ
+        total += setOfGrades[grade];//è¿™é‡Œçš„gradeè¡¨ç¤ºç¬¬å‡ æ¬¡æµ‹è¯•
 
-    // ·µ»ØÆ½¾ù·Ö
+    // è¿”å›å¹³å‡åˆ†
     return static_cast<double>(total) / gradesCount;
 }
 
@@ -97,11 +97,11 @@ void GradeBook::outputBarChart()
 {
     cout << "\nOverall grade distribution:" << endl;
 
-    // ´æ´¢Ã¿10·Ö·¶Î§ÄÚµÄ³É¼¨ÆµÂÊ
+    // å­˜å‚¨æ¯10åˆ†èŒƒå›´å†…çš„æˆç»©é¢‘ç‡
     const int frequencySize = 11;
-    int frequency[frequencySize] = {}; // ³õÊ¼»¯Îª0
+    int frequency[frequencySize] = {}; // åˆå§‹åŒ–ä¸º0
 
-    // Í³¼ÆÃ¿¸ö·ÖÊı¶ÎµÄÆµÂÊ
+    // ç»Ÿè®¡æ¯ä¸ªåˆ†æ•°æ®µçš„é¢‘ç‡
     for (int student = 0; student < students; student++)
     {
         for (int test = 0; test < tests; test++)
@@ -110,10 +110,10 @@ void GradeBook::outputBarChart()
         }
     }
 
-    // Êä³ö·Ö²¼Í¼
+    // è¾“å‡ºåˆ†å¸ƒå›¾
     for (int count = 0; count < frequencySize; count++)
     {
-        // Êä³ö±êÇ©
+        // è¾“å‡ºæ ‡ç­¾
         if (count == 0)
             cout << "  0-9: ";
         else if (count == 10)
@@ -121,7 +121,7 @@ void GradeBook::outputBarChart()
         else
             cout << count * 10 << "-" << (count * 10) + 9 << ": ";
 
-        // Êä³öĞÇºÅ
+        // è¾“å‡ºæ˜Ÿå·
         for (int stars = 0; stars < frequency[count]; stars++)
             cout << '*';
 
@@ -132,24 +132,24 @@ void GradeBook::outputBarChart()
 void GradeBook::outputGrades()
 {
     cout << "\nThe grades are:\n\n";
-    cout << "            "; // ¶ÔÆëÁĞ±êÌâ
+    cout << "            "; // å¯¹é½åˆ—æ ‡é¢˜
 
-    // ÎªÃ¿¸ö²âÊÔ´´½¨ÁĞ±êÌâ
+    // ä¸ºæ¯ä¸ªæµ‹è¯•åˆ›å»ºåˆ—æ ‡é¢˜
     for (int test = 0; test < tests; test++)
         cout << "Test " << test + 1 << "  ";
 
-    cout << "Average" << endl; // Ñ§ÉúÆ½¾ù·ÖÁĞ±êÌâ
+    cout << "Average" << endl; // å­¦ç”Ÿå¹³å‡åˆ†åˆ—æ ‡é¢˜
 
-    // ´´½¨±íÊ¾Êı×é³É¼¨µÄĞĞ/ÁĞÎÄ±¾
+    // åˆ›å»ºè¡¨ç¤ºæ•°ç»„æˆç»©çš„è¡Œ/åˆ—æ–‡æœ¬
     for (int student = 0; student < students; student++)
     {
         cout << "Student " << setw(2) << student + 1;
 
-        // Êä³öÑ§Éú³É¼¨
+        // è¾“å‡ºå­¦ç”Ÿæˆç»©
         for (int test = 0; test < tests; test++)
             cout << setw(8) << grades[student][test];
 
-        // µ÷ÓÃ³ÉÔ±º¯Êı¼ÆËãÑ§ÉúÆ½¾ù·Ö
+        // è°ƒç”¨æˆå‘˜å‡½æ•°è®¡ç®—å­¦ç”Ÿå¹³å‡åˆ†
         double average = getAverage(grades[student], tests);
         cout << setw(9) << setprecision(2) << fixed << average << endl;
     }

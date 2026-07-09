@@ -1,10 +1,10 @@
 #pragma once
-// ÈÕÆÚÀàµÄ¶¨Òå¡£
+// æ—¥æœŸç±»çš„å®šä¹‰ã€‚
 // date.h
 #include <iostream>
 using namespace std;
 
-class Date // ¶¨ÒåÈÕÆÚÀàDate
+class Date // å®šä¹‰æ—¥æœŸç±»Date
 {
 public:
     Date(int y = 2011, int m = 1, int d = 1);

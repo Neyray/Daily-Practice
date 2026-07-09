@@ -1,13 +1,13 @@
 #include <iostream>
 
-// ¶¨ÒåÁ´±í½Úµã½á¹¹
+// å®šä¹‰é“¾è¡¨èŠ‚ç‚¹ç»“æ„
 struct ListNode {
     int val;
     ListNode* next;
     ListNode(int x) : val(x), next(nullptr) {}
 };
 
-// ´òÓ¡Á´±í
+// æ‰“å°é“¾è¡¨
 void printList(ListNode* head) {
     ListNode* current = head;
     while (current != nullptr) {
@@ -17,7 +17,7 @@ void printList(ListNode* head) {
     std::cout << std::endl;
 }
 
-// ÊÍ·ÅÁ´±íÄÚ´æ
+// é‡Šæ”¾é“¾è¡¨å†…å­˜
 void deleteList(ListNode* head) {
     ListNode* current = head;
     while (current != nullptr) {
@@ -27,7 +27,7 @@ void deleteList(ListNode* head) {
     }
 }
 
-// ¼ì²éÖµÊÇ·ñÔÚÁ´±íÖĞ´æÔÚ
+// æ£€æŸ¥å€¼æ˜¯å¦åœ¨é“¾è¡¨ä¸­å­˜åœ¨
 bool isExist(ListNode* head, int val) {
     ListNode* current = head;
     while (current != nullptr) {
@@ -39,22 +39,22 @@ bool isExist(ListNode* head, int val) {
     return false;
 }
 
-// ºÏ²¢Á½¸öÁ´±í²¢È¥ÖØ
+// åˆå¹¶ä¸¤ä¸ªé“¾è¡¨å¹¶å»é‡
 ListNode* mergeAndRemoveDuplicates(ListNode* l1, ListNode* l2) {
     ListNode* dummy = new ListNode(0);
     ListNode* current = dummy;
 
-    // ±éÀúµÚÒ»¸öÁ´±í
+    // éå†ç¬¬ä¸€ä¸ªé“¾è¡¨
     while (l1 != nullptr) {
         if (!isExist(dummy->next, l1->val)) {
-            //Ïàµ±ÓÚÖØĞÂ´´½¨ÁËÒ»¸ö½ÚµãÁ¬ÔÚĞÂµÄÁ´±íÉÏ
+            //ç›¸å½“äºé‡æ–°åˆ›å»ºäº†ä¸€ä¸ªèŠ‚ç‚¹è¿åœ¨æ–°çš„é“¾è¡¨ä¸Š
             current->next = new ListNode(l1->val);
             current = current->next;
         }
         l1 = l1->next;
     }
 
-    // ±éÀúµÚ¶ş¸öÁ´±í
+    // éå†ç¬¬äºŒä¸ªé“¾è¡¨
     while (l2 != nullptr) {
         if (!isExist(dummy->next, l2->val)) {
             current->next = new ListNode(l2->val);
@@ -69,30 +69,30 @@ ListNode* mergeAndRemoveDuplicates(ListNode* l1, ListNode* l2) {
 }
 
 int main() {
-    // ´´½¨µÚÒ»¸öÁ´±í
+    // åˆ›å»ºç¬¬ä¸€ä¸ªé“¾è¡¨
     ListNode* l1 = new ListNode(1);
     l1->next = new ListNode(3);
     l1->next->next = new ListNode(5);
 
-    // ´´½¨µÚ¶ş¸öÁ´±í
+    // åˆ›å»ºç¬¬äºŒä¸ªé“¾è¡¨
     ListNode* l2 = new ListNode(2);
     l2->next = new ListNode(3);
     l2->next->next = new ListNode(4);
 
-    // ´òÓ¡Ô­Ê¼Á´±í
+    // æ‰“å°åŸå§‹é“¾è¡¨
     std::cout << "List 1: ";
     printList(l1);
     std::cout << "List 2: ";
     printList(l2);
 
-    // ºÏ²¢Á´±í²¢È¥ÖØ
+    // åˆå¹¶é“¾è¡¨å¹¶å»é‡
     ListNode* mergedList = mergeAndRemoveDuplicates(l1, l2);
 
-    // ´òÓ¡ºÏ²¢ºóµÄÁ´±í
+    // æ‰“å°åˆå¹¶åçš„é“¾è¡¨
     std::cout << "Merged list: ";
     printList(mergedList);
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     deleteList(l1);
     deleteList(l2);
     deleteList(mergedList);

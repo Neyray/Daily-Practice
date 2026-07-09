@@ -3,7 +3,7 @@ using namespace std;
 
 class Shape {
 public:
-    virtual double getArea() = 0;  // ´¿Ðéº¯Êý
+    virtual double getArea() = 0;  // çº¯è™šå‡½æ•°
     virtual ~Shape() {}
 };
 

@@ -5,31 +5,31 @@ using namespace std;
 const int MAXN = 15;
 int a[MAXN][MAXN];
 
-//xÊÇÁĞºÅ£¬yÊÇĞĞºÅ£¨¿ªÊ¼Ê±£©£»startÊÇ¿ªÊ¼µÄÖµ£»nÊÇ¾ØÕó´óĞ¡
+//xæ˜¯åˆ—å·ï¼Œyæ˜¯è¡Œå·ï¼ˆå¼€å§‹æ—¶ï¼‰ï¼›startæ˜¯å¼€å§‹çš„å€¼ï¼›næ˜¯çŸ©é˜µå¤§å°
 void Spiral(int x, int y, int start, int n) {
-	//µİ¹éÍË³öÌõ¼ş
+	//é€’å½’é€€å‡ºæ¡ä»¶
 	if (n <= 0)return;
 	if (n == 1) {
 		a[x][y] = start;
 		return;
 	}
 
-	//ÉÏÒ»ĞĞ
+	//ä¸Šä¸€è¡Œ
 	for (int j = x; j < x + n - 1; ++j) {
 		a[y][j] = start++;
 	}
 
-	//ÓÒÒ»ÁĞ
+	//å³ä¸€åˆ—
 	for (int j = y; j < y + n - 1; ++j) {
 		a[j][x + n - 1] = start++;
 	}
 
-	//ÏÂÒ»ĞĞ
+	//ä¸‹ä¸€è¡Œ
 	for (int j = x + n - 1; j > x; --j) {
 		a[y + n - 1][j] = start++;
 	}
 
-	//×óÒ»ÁĞ
+	//å·¦ä¸€åˆ—
 	for (int j = y + n - 1; j > y; --j) {
 		a[j][x] = start++;
 	}

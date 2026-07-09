@@ -3,7 +3,7 @@ using namespace std;
 
 class Base {
 public:
-    //Base() { a = 0; }  // ×¢ÊÍµôÁËÄ¬ÈÏ¹¹Ôìº¯Êı
+    //Base() { a = 0; }  // æ³¨é‡Šæ‰äº†é»˜è®¤æ„é€ å‡½æ•°
     Base(int i) { a = i; }
 protected:
     int a;
@@ -12,28 +12,28 @@ protected:
 /*
 class Derived : public Base {
 public:
-    // ÕâÀï»á³ö´í£¬ÒòÎªDerived()ÊÔÍ¼µ÷ÓÃBase()£¬µ«Base()²»´æÔÚ
-    Derived() { b = 0; }  // ´íÎó£ºÃ»ÓĞºÏÊÊµÄÄ¬ÈÏ¹¹Ôìº¯Êı¿ÉÓÃ
-    Derived(int i) { b = i; }  // ´íÎó£ºĞèÒªÏÔÊ½µ÷ÓÃ»ùÀà¹¹Ôìº¯Êı
+    // è¿™é‡Œä¼šå‡ºé”™ï¼Œå› ä¸ºDerived()è¯•å›¾è°ƒç”¨Base()ï¼Œä½†Base()ä¸å­˜åœ¨
+    Derived() { b = 0; }  // é”™è¯¯ï¼šæ²¡æœ‰åˆé€‚çš„é»˜è®¤æ„é€ å‡½æ•°å¯ç”¨
+    Derived(int i) { b = i; }  // é”™è¯¯ï¼šéœ€è¦æ˜¾å¼è°ƒç”¨åŸºç±»æ„é€ å‡½æ•°
     void Print() { cout << "a=" << a << ", b=" << b << endl; }
 private:
     int b;
 };
 */
 
-// ĞŞÕı°æ±¾£º
+// ä¿®æ­£ç‰ˆæœ¬ï¼š
 class DerivedFixed : public Base {
 public:
-    DerivedFixed() : Base(0) { b = 0; }  // ÕıÈ·£ºÏÔÊ½µ÷ÓÃ»ùÀà¹¹Ôìº¯Êı
-    DerivedFixed(int i) : Base(i) { b = i; }  // ÕıÈ·£ºÏÔÊ½µ÷ÓÃ»ùÀà¹¹Ôìº¯Êı
+    DerivedFixed() : Base(0) { b = 0; }  // æ­£ç¡®ï¼šæ˜¾å¼è°ƒç”¨åŸºç±»æ„é€ å‡½æ•°
+    DerivedFixed(int i) : Base(i) { b = i; }  // æ­£ç¡®ï¼šæ˜¾å¼è°ƒç”¨åŸºç±»æ„é€ å‡½æ•°
     void Print() { cout << "a=" << a << ", b=" << b << endl; }
 private:
     int b;
 };
 
 int main() {
-    // Derived d1;  // ÕâĞĞ»á±àÒë´íÎó
-    // Derived d2(12);  // ÕâĞĞÒ²»á±àÒë´íÎó
+    // Derived d1;  // è¿™è¡Œä¼šç¼–è¯‘é”™è¯¯
+    // Derived d2(12);  // è¿™è¡Œä¹Ÿä¼šç¼–è¯‘é”™è¯¯
 
     DerivedFixed d1;
     DerivedFixed d2(12);

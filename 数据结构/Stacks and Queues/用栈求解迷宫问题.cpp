@@ -7,13 +7,13 @@ using namespace std;
 int mg[MAX][MAX] = { {0,1,0,0},{0,0,1,1},{0,1,0,0},{0,0,0,0} };
 int m = 4, n = 4;
 
-int dx[] = { -1,0,1,0 };//x·½ÏòÉÏµÄÆ«ÒÆÁ¿
-int dy[] = { 0,1,0,-1 };//y·½ÏòÉÏµÄÆ«ÒÆÁ¿ 
+int dx[] = { -1,0,1,0 };//xæ–¹å‘ä¸Šçš„åç§»é‡
+int dy[] = { 0,1,0,-1 };//yæ–¹å‘ä¸Šçš„åç§»é‡ 
 
 struct Box {
-	int i;//ĞĞºÅ
-	int j;//ÁĞºÅ
-	int di;//ÏÂÒ»¿É×ßÏàÁÚ·½¿éµÄµÄ·½Î»ºÅ
+	int i;//è¡Œå·
+	int j;//åˆ—å·
+	int di;//ä¸‹ä¸€å¯èµ°ç›¸é‚»æ–¹å—çš„çš„æ–¹ä½å·
 	Box() {}
 	Box(int i1, int j1, int d1) :i(i1), j(j1), di(d1) {}
 };
@@ -24,7 +24,7 @@ bool mgpath(int xi, int yi, int xe, int ye) {
 	Box b, b1;
 
 	stack<Box>st;
-	//Èë¿Ú·½¿é½øÕ»
+	//å…¥å£æ–¹å—è¿›æ ˆ
 	b = Box(xi, yi, -1);
 	st.push(b);
 	mg[xi][yi] = -1;
@@ -75,6 +75,6 @@ void disppath(stack <Box>& st) {
 int main() {
 	int xi = 0, yi = 0, xe = 3, ye = 3;
 	if (!mgpath(xi, yi, xe, ye))
-		cout << "²»´æÔÚÃÔ¹¬Â·¾¶" << endl;
+		cout << "ä¸å­˜åœ¨è¿·å®«è·¯å¾„" << endl;
 	return 0;
 }

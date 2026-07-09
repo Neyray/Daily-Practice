@@ -7,18 +7,18 @@
 
 class SavingsAccount {
 private:
-    std::string id;      // ÕÊºÅ
-    double balance;      // Óà¶î
-    double rate;         // ´æ¿îµÄÄêÀûÂÊ
-    Date lastDate;       // ÉÏ´Î±ä¸üÓà¶îµÄÈÕÆÚ
-    double accumulation; // Óà¶î°´ÈÕÀÛ¼ÓÖ®ºÍ
-    static double total; // ËùÓĞÕË»§µÄ×Ü½ğ¶î
+    std::string id;      // å¸å·
+    double balance;      // ä½™é¢
+    double rate;         // å­˜æ¬¾çš„å¹´åˆ©ç‡
+    Date lastDate;       // ä¸Šæ¬¡å˜æ›´ä½™é¢çš„æ—¥æœŸ
+    double accumulation; // ä½™é¢æŒ‰æ—¥ç´¯åŠ ä¹‹å’Œ
+    static double total; // æ‰€æœ‰è´¦æˆ·çš„æ€»é‡‘é¢
 
-    // ¼ÇÂ¼Ò»±ÊÕÊ£¬dateÎªÈÕÆÚ£¬amountÎª½ğ¶î£¬descÎªËµÃ÷
+    // è®°å½•ä¸€ç¬”å¸ï¼Œdateä¸ºæ—¥æœŸï¼Œamountä¸ºé‡‘é¢ï¼Œdescä¸ºè¯´æ˜
     void record(const Date& date, double amount, const std::string& desc);
-    // ±¨¸æ´íÎóĞÅÏ¢
+    // æŠ¥å‘Šé”™è¯¯ä¿¡æ¯
     void error(const std::string& msg) const;
-    // »ñµÃµ½Ö¸¶¨ÈÕÆÚÎªÖ¹µÄ´æ¿î½ğ¶î°´ÈÕÀÛ»ıÖµ
+    // è·å¾—åˆ°æŒ‡å®šæ—¥æœŸä¸ºæ­¢çš„å­˜æ¬¾é‡‘é¢æŒ‰æ—¥ç´¯ç§¯å€¼
     double accumulate(const Date& date) const {
         return accumulation + balance * date.distance(lastDate);
     }
@@ -29,10 +29,10 @@ public:
     double getBalance() const { return balance; }
     double getRate() const { return rate; }
     static double getTotal() { return total; }
-    void deposit(const Date& date, double amount, const std::string& desc); // ´æÈëÏÖ½ğ
-    void withdraw(const Date& date, double amount, const std::string& desc); // È¡³öÏÖ½ğ
-    void settle(const Date& date); // ½áËãÀûÏ¢£¬Ã¿Äê1ÔÂ1ÈÕµ÷ÓÃÒ»´Î¸Ãº¯Êı
-    void show() const; // ÏÔÊ¾ÕË»§ĞÅÏ¢
+    void deposit(const Date& date, double amount, const std::string& desc); // å­˜å…¥ç°é‡‘
+    void withdraw(const Date& date, double amount, const std::string& desc); // å–å‡ºç°é‡‘
+    void settle(const Date& date); // ç»“ç®—åˆ©æ¯ï¼Œæ¯å¹´1æœˆ1æ—¥è°ƒç”¨ä¸€æ¬¡è¯¥å‡½æ•°
+    void show() const; // æ˜¾ç¤ºè´¦æˆ·ä¿¡æ¯
 };
 
 #endif // ACCOUNT_H

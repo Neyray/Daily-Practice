@@ -1,17 +1,17 @@
-// Trapzint.cpp ÎÄ¼ş¶ş£¬ÀàÊµÏÖ
-#include "Trapzint.h"    //°üº¬ÀàµÄ¶¨ÒåÍ·ÎÄ¼ş
+// Trapzint.cpp æ–‡ä»¶äºŒï¼Œç±»å®ç°
+#include "Trapzint.h"    //åŒ…å«ç±»çš„å®šä¹‰å¤´æ–‡ä»¶
 #include <cmath>
 
-double MyFunction::operator () (double x) const {//±»»ıº¯Êı
+double MyFunction::operator () (double x) const {//è¢«ç§¯å‡½æ•°
     return log(1.0 + x) / (1.0 + x * x);
 }
 
 double Trapz::operator () (double a, double b, double eps) const {
-    //»ı·ÖÔËËã¹ı³Ì£¬ÖØÔØÎªÔËËã·û()
-    bool done = false;    //ÊÇTrapzÀàµÄĞéº¯Êı³ÉÔ±
+    //ç§¯åˆ†è¿ç®—è¿‡ç¨‹ï¼Œé‡è½½ä¸ºè¿ç®—ç¬¦()
+    bool done = false;    //æ˜¯Trapzç±»çš„è™šå‡½æ•°æˆå‘˜
     int n = 1;
     double h = b - a;
-    double tn = h * (f(a) + f(b)) / 2;//¼ÆËãn = 1Ê±µÄ»ı·ÖÖµ
+    double tn = h * (f(a) + f(b)) / 2;//è®¡ç®—n = 1æ—¶çš„ç§¯åˆ†å€¼
     double t2n;
     do {
         double sum = 0;
@@ -19,10 +19,10 @@ double Trapz::operator () (double a, double b, double eps) const {
             double x = a + (k + 0.5) * h;
             sum += f(x);
         }
-        t2n = (tn + h * sum) / 2.0;//±ä²½³¤ÌİĞÎ·¨¼ÆËã
+        t2n = (tn + h * sum) / 2.0;//å˜æ­¥é•¿æ¢¯å½¢æ³•è®¡ç®—
         if (fabs(t2n - tn) < eps)
-            done = true; //ÅĞ¶Ï»ı·ÖÎó²î
-        else { //½øĞĞÏÂÒ»²½¼ÆËã
+            done = true; //åˆ¤æ–­ç§¯åˆ†è¯¯å·®
+        else { //è¿›è¡Œä¸‹ä¸€æ­¥è®¡ç®—
             tn = t2n;
             n *= 2;
             h /= 2;

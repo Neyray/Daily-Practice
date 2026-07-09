@@ -3,15 +3,15 @@
 #ifndef __ACCUMULATOR_H__
 #define __ACCUMULATOR_H__
 #include "date.h"
-class Accumulator {    //½«Ä³¸öÊıÖµ°´ÈÕÀÛ¼Ó
+class Accumulator {    //å°†æŸä¸ªæ•°å€¼æŒ‰æ—¥ç´¯åŠ 
 private:
-    Date lastDate;    //ÉÏ´Î±ä¸üÊıÖµµÄÊ±ÆÚ
-    double value;    //ÊıÖµµÄµ±Ç°Öµ
-    double sum;    //ÊıÖµ°´ÈÕÀÛ¼ÓÖ®ºÍ
+    Date lastDate;    //ä¸Šæ¬¡å˜æ›´æ•°å€¼çš„æ—¶æœŸ
+    double value;    //æ•°å€¼çš„å½“å‰å€¼
+    double sum;    //æ•°å€¼æŒ‰æ—¥ç´¯åŠ ä¹‹å’Œ
 public:
     double getSum(const Date& date) const {
         return sum + value * (date - lastDate);
     }
-    //¸ÃÀàÆäËü³ÉÔ±º¯ÊıµÄÔ­ĞÍºÍÊµÏÖÓëÀı7-10ÍêÈ«ÏàÍ¬£¬²»ÔÙÖØ¸´¸ø³ö
+    //è¯¥ç±»å…¶å®ƒæˆå‘˜å‡½æ•°çš„åŸå‹å’Œå®ç°ä¸ä¾‹7-10å®Œå…¨ç›¸åŒï¼Œä¸å†é‡å¤ç»™å‡º
 };
 #endif // __ACCUMULATOR_H__

@@ -1,4 +1,4 @@
-//Ê¹ÓÃÊäÈë¹¹½¨Ò»¸ö¶ş²æÊ÷£¬ÅĞ¶ÏËüÊÇ·ñÊÇ¸ß¶ÈÆ½ºâµÄ¶ş²æÊ÷¡£±¾ÌâÖĞ£¬Ò»¿Ã¸ß¶ÈÆ½ºâ¶ş²æÊ÷¶¨ÒåÎª£ºÒ»¸ö¶ş²æÊ÷Ã¿¸ö½ÚµãµÄ×óÓÒÁ½¸ö×ÓÊ÷µÄ¸ß¶È²îµÄ¾ø¶ÔÖµ²»³¬¹ı 1
+//ä½¿ç”¨è¾“å…¥æ„å»ºä¸€ä¸ªäºŒå‰æ ‘ï¼Œåˆ¤æ–­å®ƒæ˜¯å¦æ˜¯é«˜åº¦å¹³è¡¡çš„äºŒå‰æ ‘ã€‚æœ¬é¢˜ä¸­ï¼Œä¸€æ£µé«˜åº¦å¹³è¡¡äºŒå‰æ ‘å®šä¹‰ä¸ºï¼šä¸€ä¸ªäºŒå‰æ ‘æ¯ä¸ªèŠ‚ç‚¹çš„å·¦å³ä¸¤ä¸ªå­æ ‘çš„é«˜åº¦å·®çš„ç»å¯¹å€¼ä¸è¶…è¿‡ 1
 #include <iostream>
 #include <vector>
 #include <string>
@@ -7,7 +7,7 @@
 #include <algorithm>
 using namespace std;
 
-// ¶ş²æÊ÷½Úµã¶¨Òå
+// äºŒå‰æ ‘èŠ‚ç‚¹å®šä¹‰
 struct TreeNode {
     int val;
     TreeNode* left;
@@ -18,49 +18,49 @@ struct TreeNode {
 
 class Solution {
 public:
-    // Ö÷º¯Êı£ºÅĞ¶ÏÊÇ·ñÎªÆ½ºâ¶ş²æÊ÷
+    // ä¸»å‡½æ•°ï¼šåˆ¤æ–­æ˜¯å¦ä¸ºå¹³è¡¡äºŒå‰æ ‘
     bool isBalanced(TreeNode* root) {
         return checkHeight(root) != -1;
     }
 
 private:
-    // µİ¹é¼ì²é¸ß¶È£¬Èç¹û²»Æ½ºâ·µ»Ø-1£¬·ñÔò·µ»ØÊµ¼Ê¸ß¶È
+    // é€’å½’æ£€æŸ¥é«˜åº¦ï¼Œå¦‚æœä¸å¹³è¡¡è¿”å›-1ï¼Œå¦åˆ™è¿”å›å®é™…é«˜åº¦
     int checkHeight(TreeNode* node) {
-        if (!node) return 0;  // ¿Õ½Úµã¸ß¶ÈÎª0
+        if (!node) return 0;  // ç©ºèŠ‚ç‚¹é«˜åº¦ä¸º0
 
-        // µİ¹é¼ÆËã×ó×ÓÊ÷¸ß¶È
+        // é€’å½’è®¡ç®—å·¦å­æ ‘é«˜åº¦
         int leftHeight = checkHeight(node->left);
-        if (leftHeight == -1) return -1;  // ×ó×ÓÊ÷²»Æ½ºâ£¬Ö±½Ó·µ»Ø
+        if (leftHeight == -1) return -1;  // å·¦å­æ ‘ä¸å¹³è¡¡ï¼Œç›´æ¥è¿”å›
 
-        // µİ¹é¼ÆËãÓÒ×ÓÊ÷¸ß¶È
+        // é€’å½’è®¡ç®—å³å­æ ‘é«˜åº¦
         int rightHeight = checkHeight(node->right);
-        if (rightHeight == -1) return -1;  // ÓÒ×ÓÊ÷²»Æ½ºâ£¬Ö±½Ó·µ»Ø
+        if (rightHeight == -1) return -1;  // å³å­æ ‘ä¸å¹³è¡¡ï¼Œç›´æ¥è¿”å›
 
-        // ¼ì²éµ±Ç°½ÚµãÊÇ·ñÆ½ºâ£¨×óÓÒ×ÓÊ÷¸ß¶È²î²»³¬¹ı1£©
+        // æ£€æŸ¥å½“å‰èŠ‚ç‚¹æ˜¯å¦å¹³è¡¡ï¼ˆå·¦å³å­æ ‘é«˜åº¦å·®ä¸è¶…è¿‡1ï¼‰
         if (abs(leftHeight - rightHeight) > 1) {
-            return -1;  // ²»Æ½ºâ£¬·µ»Ø-1
+            return -1;  // ä¸å¹³è¡¡ï¼Œè¿”å›-1
         }
 
-        // ·µ»Øµ±Ç°½ÚµãµÄ¸ß¶È
+        // è¿”å›å½“å‰èŠ‚ç‚¹çš„é«˜åº¦
         return max(leftHeight, rightHeight) + 1;
     }
 };
 
-// ¸ù¾İÍêÈ«¶ş²æÊ÷ÊäÈë¹¹½¨¶ş²æÊ÷
+// æ ¹æ®å®Œå…¨äºŒå‰æ ‘è¾“å…¥æ„å»ºäºŒå‰æ ‘
 TreeNode* buildTree(const vector<string>& nodes) {
     if (nodes.empty() || nodes[0] == "null") return nullptr;
 
-    // ´´½¨¸ù½Úµã
+    // åˆ›å»ºæ ¹èŠ‚ç‚¹
     TreeNode* root = new TreeNode(stoi(nodes[0]));
-    vector<TreeNode*> queue;  // ÓÃÓÚ²ãĞò±éÀú¹¹½¨Ê÷
+    vector<TreeNode*> queue;  // ç”¨äºå±‚åºéå†æ„å»ºæ ‘
     queue.push_back(root);
 
-    int i = 1;  // ´ÓµÚ¶ş¸öÔªËØ¿ªÊ¼´¦Àí
+    int i = 1;  // ä»ç¬¬äºŒä¸ªå…ƒç´ å¼€å§‹å¤„ç†
     while (i < nodes.size() && !queue.empty()) {
         TreeNode* current = queue.front();
         queue.erase(queue.begin());
 
-        // ´¦Àí×ó×Ó½Úµã
+        // å¤„ç†å·¦å­èŠ‚ç‚¹
         if (i < nodes.size()) {
             if (nodes[i] != "null") {
                 current->left = new TreeNode(stoi(nodes[i]));
@@ -69,7 +69,7 @@ TreeNode* buildTree(const vector<string>& nodes) {
             i++;
         }
 
-        // ´¦ÀíÓÒ×Ó½Úµã
+        // å¤„ç†å³å­èŠ‚ç‚¹
         if (i < nodes.size()) {
             if (nodes[i] != "null") {
                 current->right = new TreeNode(stoi(nodes[i]));
@@ -82,13 +82,13 @@ TreeNode* buildTree(const vector<string>& nodes) {
     return root;
 }
 
-// ½âÎöÊäÈë×Ö·û´®Îª½ÚµãÊı×é
+// è§£æè¾“å…¥å­—ç¬¦ä¸²ä¸ºèŠ‚ç‚¹æ•°ç»„
 vector<string> parseInput(const string& input) {
     vector<string> nodes;
     stringstream ss(input);
     string node;
 
-    // °´¿Õ¸ñ·Ö¸î×Ö·û´®
+    // æŒ‰ç©ºæ ¼åˆ†å‰²å­—ç¬¦ä¸²
     while (ss >> node) {
         nodes.push_back(node);
     }
@@ -96,7 +96,7 @@ vector<string> parseInput(const string& input) {
     return nodes;
 }
 
-// ÊÍ·Å¶ş²æÊ÷ÄÚ´æ£¬·ÀÖ¹ÄÚ´æĞ¹Â©
+// é‡Šæ”¾äºŒå‰æ ‘å†…å­˜ï¼Œé˜²æ­¢å†…å­˜æ³„æ¼
 void deleteTree(TreeNode* root) {
     if (!root) return;
     deleteTree(root->left);
@@ -105,42 +105,42 @@ void deleteTree(TreeNode* root) {
 }
 
 int main() {
-    // ³¢ÊÔ´ÓÎÄ¼ş¶ÁÈ¡ÊäÈë
+    // å°è¯•ä»æ–‡ä»¶è¯»å–è¾“å…¥
     ifstream inFile("in.txt");
     ofstream outFile("out.txt");
 
     string line;
 
-    // Èç¹ûÎÄ¼ş´æÔÚ£¬´ÓÎÄ¼ş¶ÁÈ¡£»·ñÔò´Ó¿ØÖÆÌ¨¶ÁÈ¡
+    // å¦‚æœæ–‡ä»¶å­˜åœ¨ï¼Œä»æ–‡ä»¶è¯»å–ï¼›å¦åˆ™ä»æ§åˆ¶å°è¯»å–
     if (inFile.is_open()) {
         getline(inFile, line);
         inFile.close();
     }
     else {
-        // ÎÄ¼ş²»´æÔÚÊ±£¬´Ó¿ØÖÆÌ¨ÊäÈë
-        cout << "ÇëÊäÈë¶ş²æÊ÷£¨¸ñÊ½£º3 9 20 null null 15 7£©£º";
+        // æ–‡ä»¶ä¸å­˜åœ¨æ—¶ï¼Œä»æ§åˆ¶å°è¾“å…¥
+        cout << "è¯·è¾“å…¥äºŒå‰æ ‘ï¼ˆæ ¼å¼ï¼š3 9 20 null null 15 7ï¼‰ï¼š";
         getline(cin, line);
     }
 
-    // ½âÎöÊäÈë×Ö·û´®²¢¹¹½¨¶ş²æÊ÷
+    // è§£æè¾“å…¥å­—ç¬¦ä¸²å¹¶æ„å»ºäºŒå‰æ ‘
     vector<string> nodes = parseInput(line);
     TreeNode* root = buildTree(nodes);
 
-    // ´´½¨½âÌâ¶ÔÏó²¢ÅĞ¶ÏÊÇ·ñÎªÆ½ºâ¶ş²æÊ÷
+    // åˆ›å»ºè§£é¢˜å¯¹è±¡å¹¶åˆ¤æ–­æ˜¯å¦ä¸ºå¹³è¡¡äºŒå‰æ ‘
     Solution solution;
     bool result = solution.isBalanced(root);
 
-    // ¸ù¾İ½á¹ûÊä³öTrue»òFalse
+    // æ ¹æ®ç»“æœè¾“å‡ºTrueæˆ–False
     string output = result ? "True" : "False";
 
-    // Êä³öµ½ÎÄ¼şºÍ¿ØÖÆÌ¨
+    // è¾“å‡ºåˆ°æ–‡ä»¶å’Œæ§åˆ¶å°
     if (outFile.is_open()) {
         outFile << output << endl;
         outFile.close();
     }
     cout << output << endl;
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     deleteTree(root);
 
     return 0;

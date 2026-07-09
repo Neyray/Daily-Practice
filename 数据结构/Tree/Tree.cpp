@@ -22,13 +22,13 @@ public:
 
 int main() {
     ParentTree tree;
-    tree.addNode('A', -1);  // ¸ù½Úµã
-    tree.addNode('B', 0);   // BµÄ¸¸½ÚµãÊÇA£¬Ë÷ÒýÎª0
-    tree.addNode('C', 0);   // CµÄ¸¸½ÚµãÊÇA£¬Ë÷ÒýÎª0
-    tree.addNode('D', 0);   // DµÄ¸¸½ÚµãÊÇA£¬Ë÷ÒýÎª0
-    tree.addNode('E', 1);   // EµÄ¸¸½ÚµãÊÇB£¬Ë÷ÒýÎª1
-    tree.addNode('F', 2);   // FµÄ¸¸½ÚµãÊÇC£¬Ë÷ÒýÎª2
-    tree.addNode('G', 3);   // GµÄ¸¸½ÚµãÊÇD£¬Ë÷ÒýÎª3
+    tree.addNode('A', -1);  // æ ¹èŠ‚ç‚¹
+    tree.addNode('B', 0);   // Bçš„çˆ¶èŠ‚ç‚¹æ˜¯Aï¼Œç´¢å¼•ä¸º0
+    tree.addNode('C', 0);   // Cçš„çˆ¶èŠ‚ç‚¹æ˜¯Aï¼Œç´¢å¼•ä¸º0
+    tree.addNode('D', 0);   // Dçš„çˆ¶èŠ‚ç‚¹æ˜¯Aï¼Œç´¢å¼•ä¸º0
+    tree.addNode('E', 1);   // Eçš„çˆ¶èŠ‚ç‚¹æ˜¯Bï¼Œç´¢å¼•ä¸º1
+    tree.addNode('F', 2);   // Fçš„çˆ¶èŠ‚ç‚¹æ˜¯Cï¼Œç´¢å¼•ä¸º2
+    tree.addNode('G', 3);   // Gçš„çˆ¶èŠ‚ç‚¹æ˜¯Dï¼Œç´¢å¼•ä¸º3
 
     tree.printTree();
     return 0;

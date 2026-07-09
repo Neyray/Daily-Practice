@@ -4,7 +4,7 @@
 #include <algorithm>
 using namespace std;
 
-// ÈÕÆÚÀà
+// æ—¥æœŸç±»
 class Date {
 private:
     int year, month, day;
@@ -29,7 +29,7 @@ public:
     }
 };
 
-// ³éÏó»ùÀà£ºÍ¼Êé
+// æŠ½è±¡åŸºç±»ï¼šå›¾ä¹¦
 class Book {
 protected:
     string isbn;
@@ -45,12 +45,12 @@ public:
 
     virtual ~Book() {}
 
-    // ´¿Ğéº¯Êı
+    // çº¯è™šå‡½æ•°
     virtual void display() const = 0;
     virtual double calculateLateFee(int daysLate) const = 0;
     virtual string getType() const = 0;
 
-    // ÆÕÍ¨³ÉÔ±º¯Êı
+    // æ™®é€šæˆå‘˜å‡½æ•°
     void borrow() { available = false; }
     void returnBook() { available = true; }
 
@@ -61,7 +61,7 @@ public:
     double getPrice() const { return price; }
 };
 
-// ÅÉÉúÀà£ºÆÕÍ¨Í¼Êé
+// æ´¾ç”Ÿç±»ï¼šæ™®é€šå›¾ä¹¦
 class RegularBook : public Book {
 public:
     RegularBook(string i, string t, string a, double p)
@@ -86,7 +86,7 @@ public:
     }
 };
 
-// ÅÉÉúÀà£º²Î¿¼Êé
+// æ´¾ç”Ÿç±»ï¼šå‚è€ƒä¹¦
 class ReferenceBook : public Book {
 public:
     ReferenceBook(string i, string t, string a, double p)
@@ -111,7 +111,7 @@ public:
     }
 };
 
-// ½èÔÄ¼ÇÂ¼
+// å€Ÿé˜…è®°å½•
 struct BorrowRecord {
     string isbn;
     string borrower;
@@ -132,7 +132,7 @@ struct BorrowRecord {
     }
 };
 
-// Í¼Êé¹İÀà
+// å›¾ä¹¦é¦†ç±»
 class Library {
 private:
     vector<Book*> books;
@@ -145,13 +145,13 @@ public:
         }
     }
 
-    // Ìí¼ÓÍ¼Êé
+    // æ·»åŠ å›¾ä¹¦
     void addBook(Book* book) {
         books.push_back(book);
         cout << "Book added successfully!" << endl;
     }
 
-    // ²éÕÒÍ¼Êé
+    // æŸ¥æ‰¾å›¾ä¹¦
     Book* findBook(const string& isbn) {
         for (auto book : books) {
             if (book->getISBN() == isbn) {
@@ -161,7 +161,7 @@ public:
         return nullptr;
     }
 
-    // ½èÊé
+    // å€Ÿä¹¦
     bool borrowBook(const string& isbn, const string& borrower) {
         Book* book = findBook(isbn);
         if (!book) {
@@ -183,7 +183,7 @@ public:
         return true;
     }
 
-    // »¹Êé
+    // è¿˜ä¹¦
     bool returnBook(const string& isbn) {
         Book* book = findBook(isbn);
         if (!book) {
@@ -193,7 +193,7 @@ public:
 
         book->returnBook();
 
-        // ¸üĞÂ¼ÇÂ¼
+        // æ›´æ–°è®°å½•
         for (auto& record : records) {
             if (record.isbn == isbn && !record.returned) {
                 record.returned = true;
@@ -205,7 +205,7 @@ public:
         return true;
     }
 
-    // ÏÔÊ¾ËùÓĞÍ¼Êé
+    // æ˜¾ç¤ºæ‰€æœ‰å›¾ä¹¦
     void displayAllBooks() const {
         cout << "\n=== All Books ===" << endl;
         for (size_t i = 0; i < books.size(); i++) {
@@ -215,7 +215,7 @@ public:
         }
     }
 
-    // ÏÔÊ¾¿É½èÍ¼Êé
+    // æ˜¾ç¤ºå¯å€Ÿå›¾ä¹¦
     void displayAvailableBooks() const {
         cout << "\n=== Available Books ===" << endl;
         int count = 0;
@@ -231,7 +231,7 @@ public:
         }
     }
 
-    // °´×÷Õß²éÕÒ
+    // æŒ‰ä½œè€…æŸ¥æ‰¾
     void searchByAuthor(const string& author) const {
         cout << "\n=== Books by " << author << " ===" << endl;
         int count = 0;
@@ -247,7 +247,7 @@ public:
         }
     }
 
-    // ÏÔÊ¾½èÔÄ¼ÇÂ¼
+    // æ˜¾ç¤ºå€Ÿé˜…è®°å½•
     void displayBorrowRecords() const {
         cout << "\n=== Borrow Records ===" << endl;
         for (size_t i = 0; i < records.size(); i++) {
@@ -257,7 +257,7 @@ public:
         }
     }
 
-    // Í³¼ÆĞÅÏ¢
+    // ç»Ÿè®¡ä¿¡æ¯
     void showStatistics() const {
         int totalBooks = books.size();
         int availableBooks = 0;
@@ -283,35 +283,35 @@ public:
 int main() {
     Library library;
 
-    // Ìí¼ÓÍ¼Êé
+    // æ·»åŠ å›¾ä¹¦
     cout << "=== Adding Books ===" << endl;
     library.addBook(new RegularBook("001", "C++ Primer", "Stanley Lippman", 59.99));
     library.addBook(new RegularBook("002", "Effective C++", "Scott Meyers", 49.99));
     library.addBook(new ReferenceBook("003", "C++ Reference Manual", "Bjarne Stroustrup", 89.99));
     library.addBook(new RegularBook("004", "The C++ Programming Language", "Bjarne Stroustrup", 79.99));
 
-    // ÏÔÊ¾ËùÓĞÍ¼Êé
+    // æ˜¾ç¤ºæ‰€æœ‰å›¾ä¹¦
     library.displayAllBooks();
 
-    // ½èÊé
+    // å€Ÿä¹¦
     cout << "\n=== Borrowing Books ===" << endl;
     library.borrowBook("001", "Alice");
     library.borrowBook("003", "Bob");
 
-    // ÏÔÊ¾¿É½èÍ¼Êé
+    // æ˜¾ç¤ºå¯å€Ÿå›¾ä¹¦
     library.displayAvailableBooks();
 
-    // °´×÷Õß²éÕÒ
+    // æŒ‰ä½œè€…æŸ¥æ‰¾
     library.searchByAuthor("Bjarne Stroustrup");
 
-    // »¹Êé
+    // è¿˜ä¹¦
     cout << "\n=== Returning Books ===" << endl;
     library.returnBook("001");
 
-    // ÏÔÊ¾½èÔÄ¼ÇÂ¼
+    // æ˜¾ç¤ºå€Ÿé˜…è®°å½•
     library.displayBorrowRecords();
 
-    // Í³¼ÆĞÅÏ¢
+    // ç»Ÿè®¡ä¿¡æ¯
     library.showStatistics();
 
     return 0;

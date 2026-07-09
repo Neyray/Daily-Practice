@@ -4,7 +4,7 @@ using namespace std;
 
 const int MaxSize = 5;
 
-//1.Ë³ĞòÕ»µÄ³õÊ¼»¯ºÍÏú»Ù
+//1.é¡ºåºæ ˆçš„åˆå§‹åŒ–å’Œé”€æ¯
 template <typename T>
 SqStack<T>::SqStack() {
 	data = new T[MaxSize];
@@ -16,13 +16,13 @@ SqStack<T>::~SqStack() {
 	delete[]data;
 }
 
-//2.ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//2.åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 template <typename T>
 bool SqStack<T>::empty() {
 	return top == -1;
 }
 
-//3.½øÕ»
+//3.è¿›æ ˆ
 template <typename T>
 bool SqStack<T>::push(T e) {
 	if (top == MaxSize - 1)
@@ -32,7 +32,7 @@ bool SqStack<T>::push(T e) {
 	return true;
 }
 
-//4.³öÕ»
+//4.å‡ºæ ˆ
 template <typename T>
 bool SqStack<T>::pop(T& e) {
 	if (empty())
@@ -42,7 +42,7 @@ bool SqStack<T>::pop(T& e) {
 	return true;
 }
 
-//5.È¡Õ»¶¥ÔªËØ
+//5.å–æ ˆé¡¶å…ƒç´ 
 template <typename T>
 bool SqStack<T>::gettop(T& e) {
 	if (empty())

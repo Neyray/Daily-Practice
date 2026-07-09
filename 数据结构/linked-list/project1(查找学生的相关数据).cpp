@@ -6,7 +6,7 @@
 #include <unordered_set>
 using namespace std;
 
-//Á´±í
+//é“¾è¡¨
 struct LinkNode_SC {
     string Sno, Cno;
     int grade;
@@ -35,11 +35,11 @@ public:
 
     void insert(string sno, string cno, int grade) {
         LinkNode_SC* node = new LinkNode_SC(sno, cno, grade);
-        //Í·²å·¨
+        //å¤´æ’æ³•
         /*node->next = head->next;
         head->next = node;*/
 
-        //Î²²å·¨
+        //å°¾æ’æ³•
         if (head->next == NULL) {
             head->next = node;
         }
@@ -81,10 +81,10 @@ public:
 
     void insert(string sno, string sname, int age) {
         LinkNode_Stu* node = new LinkNode_Stu(sno, sname, age);
-        //Í·²å·¨
+        //å¤´æ’æ³•
         /*node->next = head->next;
         head->next = node;*/
-        //Î²²å·¨
+        //å°¾æ’æ³•
         if (head->next == NULL) {
             head->next = node;
         }
@@ -97,12 +97,12 @@ public:
         }
     }
 
-    // ÓÃÑ§ÉúĞÕÃû²éÕÒÑ§ºÅ²¢´æÈë¹şÏ£¼¯ºÏ
+    // ç”¨å­¦ç”Ÿå§“åæŸ¥æ‰¾å­¦å·å¹¶å­˜å…¥å“ˆå¸Œé›†åˆ
     void findSnoByName(string name, unordered_set<string>& result) {
         LinkNode_Stu* p = head->next;
         while (p) {
             if (p->sname == name) {
-                result.insert(p->sno);  // Ê¹ÓÃ¼¯ºÏ±ÜÃâÖØ¸´
+                result.insert(p->sno);  // ä½¿ç”¨é›†åˆé¿å…é‡å¤
             }
             p = p->next;
         }
@@ -112,14 +112,14 @@ public:
 int main() {
     ifstream inFiles("in.txt");
     if (!inFiles) {
-        cerr << "ÎŞ·¨´ò¿ªÎÄ¼ş in.txt" << endl;
+        cerr << "æ— æ³•æ‰“å¼€æ–‡ä»¶ in.txt" << endl;
         return 1;
     }
 
     Linklist_SC scList;
     Linklist_Stu stuList;
 
-    // ¶ÁÈ¡Ñ¡¿ÎĞÅÏ¢±í
+    // è¯»å–é€‰è¯¾ä¿¡æ¯è¡¨
     int m;
     inFiles >> m;
     for (int i = 0; i < m; ++i) {
@@ -129,7 +129,7 @@ int main() {
         scList.insert(sno, cno, grade);
     }
 
-    // ¶ÁÈ¡Ñ§ÉúĞÅÏ¢±í
+    // è¯»å–å­¦ç”Ÿä¿¡æ¯è¡¨
     int n;
     inFiles >> n;
     for (int i = 0; i < n; ++i) {
@@ -145,19 +145,19 @@ int main() {
     cin >> name;
 
     unordered_set<string> targetSnos;
-    //°ÑÑ§ÉúID´æÈëresultsÈİÆ÷ÖĞ
+    //æŠŠå­¦ç”ŸIDå­˜å…¥resultså®¹å™¨ä¸­
     stuList.findSnoByName(name, targetSnos);
 
     if (targetSnos.empty()) {
-        cerr << "ÕÒ²»µ½¸ÃÉúµÄÏà¹ØĞÅÏ¢" << endl;
+        cerr << "æ‰¾ä¸åˆ°è¯¥ç”Ÿçš„ç›¸å…³ä¿¡æ¯" << endl;
         return 0;
     }
 
-    // ²éÕÒÑ¡¿Î¼ÇÂ¼
+    // æŸ¥æ‰¾é€‰è¯¾è®°å½•
     LinkNode_SC* p = scList.head->next;
     bool found = false;
     while (p) {
-        if (targetSnos.find(p->Sno) != targetSnos.end()) {  // Ê¹ÓÃ¼¯ºÏ²éÕÒ£¬O(1)
+        if (targetSnos.find(p->Sno) != targetSnos.end()) {  // ä½¿ç”¨é›†åˆæŸ¥æ‰¾ï¼ŒO(1)
             cout << p->Sno << " " << name << " " << p->Cno << " " << p->grade << endl;
             found = true;
         }
@@ -165,7 +165,7 @@ int main() {
     }
 
     if (!found) {
-        cout << "Ã»ÓĞÕÒµ½Ïà¹ØÑ¡¿ÎĞÅÏ¢" << endl;
+        cout << "æ²¡æœ‰æ‰¾åˆ°ç›¸å…³é€‰è¯¾ä¿¡æ¯" << endl;
     }
 
     return 0;

@@ -12,23 +12,23 @@ int main() {
     pd->y = 2.0f;
 
     void* pv = pd;
-    Base2* pb = static_cast<Base2*>(pv);  // ÕâÀïÓĞÎÊÌâ£¡
+    Base2* pb = static_cast<Base2*>(pv);  // è¿™é‡Œæœ‰é—®é¢˜ï¼
 
     cout << pd->y << " " << pb->y << endl;
 
-    delete pd;  // Ó¦¸ÃÉ¾³ıpd£¬¶ø²»ÊÇpb
+    delete pd;  // åº”è¯¥åˆ é™¤pdï¼Œè€Œä¸æ˜¯pb
     return 0;
 }
 */
 
-// ĞŞÕı°æ±¾£º
+// ä¿®æ­£ç‰ˆæœ¬ï¼š
 int main_fixed() {
     Derived* pd = new Derived;
     pd->x = 1;
     pd->y = 2.0f;
 
-    // ÕıÈ·µÄ·½Ê½£ºÊ¹ÓÃdynamic_cast»òÖ±½Ó×ª»»
-    Base2* pb = pd;  // ÒşÊ½×ª»»£¬ÕıÈ·
+    // æ­£ç¡®çš„æ–¹å¼ï¼šä½¿ç”¨dynamic_castæˆ–ç›´æ¥è½¬æ¢
+    Base2* pb = pd;  // éšå¼è½¬æ¢ï¼Œæ­£ç¡®
 
     cout << pd->y << " " << pb->y << endl;
 

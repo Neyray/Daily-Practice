@@ -5,24 +5,24 @@ template <typename T>
 struct LinkNode {
 	T data;
 	LinkNode* next;
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	LinkNode() :next(NULL) {}
 	LinkNode(T d) :data(d), next(NULL) {}
 };
 
 
-//²»´øÍ·½Úµã£¬½öÓĞÎ²½áµãÖ¸ÕëµÄÑ­»·µ¥Á´±íÁ´Õ»
+//ä¸å¸¦å¤´èŠ‚ç‚¹ï¼Œä»…æœ‰å°¾ç»“ç‚¹æŒ‡é’ˆçš„å¾ªç¯å•é“¾è¡¨é“¾æ ˆ
 template <typename T>
 class Stack {
 public:
-	//Á´Õ»µÄÎ²½áµãÖ¸Õë
+	//é“¾æ ˆçš„å°¾ç»“ç‚¹æŒ‡é’ˆ
 	LinkNode<T>* rear;
 
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	Stack() :rear(NULL) {}
-	//Îö¹¹º¯Êı
+	//ææ„å‡½æ•°
 	~Stack() {
-		//¿ÕÁ´±íÖ±½Ó·µ»Ø
+		//ç©ºé“¾è¡¨ç›´æ¥è¿”å›
 		if (rear == NULL)return;
 		LinkNode<T>* pre = rear; , * p = pre->next;
 		while (p != rear) {
@@ -36,27 +36,27 @@ public:
 		return rear == NULL;
 	}
 
-	//½øÕ»Ëã·¨
+	//è¿›æ ˆç®—æ³•
 	bool push(T e) {
-		//ĞÂ½¨½áµãp
+		//æ–°å»ºç»“ç‚¹p
 		LinkNode<T>* p = new LinkNode<T>(e);
 		if (empty()) {
 			rear = p;
 			rear = rear->next;
 		}
 		else {
-			//½«½áµãp²åÈë½áµãrearµÄºóÃæ
+			//å°†ç»“ç‚¹pæ’å…¥ç»“ç‚¹rearçš„åé¢
 			p->next = rear->next;
 			rear->next = p;
 		}
 		return true;
 	}
 
-	//³öÕ»Ëã·¨
+	//å‡ºæ ˆç®—æ³•
 	bool pop(T& e) {
 		LinkNode<T>* p;
 		if (empty())return false;
-		//Õ»ÖĞÖ»ÓĞÒ»¸ö½áµãµÄÇé¿ö
+		//æ ˆä¸­åªæœ‰ä¸€ä¸ªç»“ç‚¹çš„æƒ…å†µ
 		if (rear->next == rear) {
 			p = rear;
 			rear = NULL;
@@ -70,16 +70,16 @@ public:
 		returnr true;
 	}
 
-	//È¡Õ»¶¥ÔªËØ
+	//å–æ ˆé¡¶å…ƒç´ 
 	bool gettop(T& e) {
 		if (empty())return false;
 		e = rear->next->data;
 		return true;
 	}
 
-	//È¡Õ»µ×ÔªËØ
+	//å–æ ˆåº•å…ƒç´ 
 	T getBottom() {
-		if (empty())throw "Õ»¿Õ";
+		if (empty())throw "æ ˆç©º";
 		return rear->data;
 	}
 };

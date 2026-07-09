@@ -18,7 +18,7 @@ public:
 	bool empty() {
 		return (front == rear);
 	}
-	//进栈操作，主要是移动rear
+	//杩涙爤鎿嶄綔锛屼富瑕佹槸绉诲姩rear
 	bool push(T e) {
 		if ((rear + 1) % MaxSize == front)
 			return false;
@@ -26,7 +26,7 @@ public:
 		data[rear] = e;
 		return true;
 	}
-	//出栈操作，主要是移动front
+	//鍑烘爤鎿嶄綔锛屼富瑕佹槸绉诲姩front
 	bool pop(T& e) {
 		if (front == rear)
 			return false;
@@ -34,7 +34,7 @@ public:
 		e = data[front];
 		return true;
 	}
-	//取栈头元素，不需要移动front
+	//鍙栨爤澶村厓绱狅紝涓嶉渶瑕佺Щ鍔╢ront
 	bool gethead(T& e) {
 		if (front == rear)
 			return false;

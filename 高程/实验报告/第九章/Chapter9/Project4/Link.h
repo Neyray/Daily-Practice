@@ -16,7 +16,7 @@ public:
     void display() const;
     void concatenate(LinkedList<T>& other);
 
-    // 新增方法用于队列实现
+    // 鏂板鏂规硶鐢ㄤ簬闃熷垪瀹炵幇
     bool isEmpty() const;
     Node<T>* getHead() const;
     void removeFront();
@@ -68,7 +68,7 @@ void LinkedList<T>::concatenate(LinkedList<T>& other) {
     other.head = nullptr;
 }
 
-// 新增方法实现
+// 鏂板鏂规硶瀹炵幇
 template<typename T>
 bool LinkedList<T>::isEmpty() const {
     return head == nullptr;

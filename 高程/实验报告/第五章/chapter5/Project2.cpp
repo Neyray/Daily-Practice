@@ -4,8 +4,8 @@ using namespace std;
 class Student
 {
 private:
-    static int count;       // 统计学生的总数
-    int StudentNo;          // 普通数据成员，学号
+    static int count;       // 缁熻瀛︾敓鐨勬�绘暟
+    int StudentNo;          // 鏅�氭暟鎹垚鍛橈紝瀛﹀彿
 public:
     Student()
     {

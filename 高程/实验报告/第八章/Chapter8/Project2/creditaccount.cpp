@@ -3,20 +3,20 @@
 #include <iostream>
 using namespace std;
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 CreditAccount::CreditAccount(const Date& date, const string& id,
     double credit, double rate, double fee)
     : Account(date, id), acc(date, 0), credit(credit), rate(rate), fee(fee) {
 }
 
-// ´æ¿î
+// å­˜æ¬¾
 void CreditAccount::deposit(const Date& date, double amount, const string& desc) {
     acc.change(date, getBalance());
     record(date, amount, desc);
     acc.change(date, getBalance());
 }
 
-// È¡¿î
+// å–æ¬¾
 void CreditAccount::withdraw(const Date& date, double amount, const string& desc) {
     if (amount > getBalance() + credit) {
         error("not enough credit");
@@ -27,15 +27,15 @@ void CreditAccount::withdraw(const Date& date, double amount, const string& desc
     acc.change(date, getBalance());
 }
 
-// ½áËãÀûÏ¢ºÍÄê·Ñ£¨Ã¿ÔÂ½áËã£©
+// ç»“ç®—åˆ©æ¯å’Œå¹´è´¹ï¼ˆæ¯æœˆç»“ç®—ï¼‰
 void CreditAccount::settle(const Date& date) {
-    // Ã¿ÔÂ¼ÆËãÀûÏ¢
-    double interest = acc.getSum(date) * rate * 30;  // ¼ÙÉèÃ¿ÔÂ30Ìì
+    // æ¯æœˆè®¡ç®—åˆ©æ¯
+    double interest = acc.getSum(date) * rate * 30;  // å‡è®¾æ¯æœˆ30å¤©
     if (interest != 0) {
         record(date, -interest, "interest");
     }
 
-    // Ã¿ÄêÒ»ÔÂ¿ÛÄê·Ñ
+    // æ¯å¹´ä¸€æœˆæ‰£å¹´è´¹
     if (date.getMonth() == 1 && date.getDay() == 1) {
         record(date, -fee, "annual fee");
     }
@@ -43,7 +43,7 @@ void CreditAccount::settle(const Date& date) {
     acc.reset(date, getBalance());
 }
 
-// ÏÔÊ¾ÕË»§ĞÅÏ¢
+// æ˜¾ç¤ºè´¦æˆ·ä¿¡æ¯
 void CreditAccount::show() const {
     Account::show();
     cout << "\tAvailable credit: " << getAvailableCredit();

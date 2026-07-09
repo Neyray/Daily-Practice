@@ -3,13 +3,13 @@
 using namespace std;
 
 const int MAX = 10;
-//¶ÔÓ¦×óÉÏÓÒÏÂ
+//å¯¹åº”å·¦ä¸Šå³ä¸‹
 int dx[] = { -1,0,1,0 };
 int dy[] = { 0,1,0,-1 };
 
 int mg[MAX][MAX] = { {0,1,0,0},{0,0,1,1},{0,1,0,0},{0,0,0,0} };
 int m = 4, n = 4;
-//ÀÛ¼ÆÃÔ¹¬Â·¾¶Êı
+//ç´¯è®¡è¿·å®«è·¯å¾„æ•°
 int cnt = 0;
 
 class Box {
@@ -20,28 +20,28 @@ public:
 };
 
 void mgpath(int xi, int yi, int xe, int ye, vector<Box>path) {
-	//½«µ±Ç°×ø±ê¼ÓÈëÂ·¾¶ÖĞ
+	//å°†å½“å‰åæ ‡åŠ å…¥è·¯å¾„ä¸­
 	Box b(xi, yi);
 	path.push_back(b);
 
-	//±ê¼Çµ±Ç°Î»ÖÃÒÑ·ÃÎÊ
+	//æ ‡è®°å½“å‰ä½ç½®å·²è®¿é—®
 	mg[xi][yi] = -1;
 
 	if (xi == xe && yi == ye) {
 		cnt++;
-		cout << "ÃÔ¹¬Â·¾¶" << cnt << ":";
+		cout << "è¿·å®«è·¯å¾„" << cnt << ":";
 		for (int k = 0; k < path.size(); k++) {
 			cout << "(" << path[k].i << "," << path[k].j << ")";
 		}
-		//±êÖ¾×ÅÒ»ÌõÂ·¾¶µÄÊä³öÍê±Ï
+		//æ ‡å¿—ç€ä¸€æ¡è·¯å¾„çš„è¾“å‡ºå®Œæ¯•
 		cout << endl;
 		mg[xi][yi] = 0;
 		return;
 	}
 	else {
-		//di´ú±í·½Ïò
+		//diä»£è¡¨æ–¹å‘
 		int di = 0;
-		//±éÀúËÄ¸ö·½Ïò
+		//éå†å››ä¸ªæ–¹å‘
 		while (di < 4) {
 			int i = xi + dx[di];
 			int j = yi + dy[di];
@@ -56,7 +56,7 @@ void mgpath(int xi, int yi, int xe, int ye, vector<Box>path) {
 
 int main() {
 	int xi = 0, yi = 0, xe = 3, ye = 3;
-	cout << "ËùÓĞÃÔ¹¬Â·¾¶£º" << endl;
+	cout << "æ‰€æœ‰è¿·å®«è·¯å¾„ï¼š" << endl;
 
 	vector<Box>path;
 	mgpath(xi, yi, xe, ye, path);

@@ -8,7 +8,7 @@ vector<string> changedString(const string& s) {
     vector<string> str;
     int n = s.size();
 
-    // ¿Õ×Ö·û´®Ö±½Ó·µ»Ø¿Õ
+    // ç©ºå­—ç¬¦ä¸²ç›´æŽ¥è¿”å›žç©º
     if (n == 0) {
         return str;
     }
@@ -27,7 +27,7 @@ vector<string> changedString(const string& s) {
         }
     }
 
-    // ´¦Àí×îºóÒ»¸ö×Ö·û
+    // å¤„ç†æœ€åŽä¸€ä¸ªå­—ç¬¦
     str.push_back(string(1, s[n - 1]));
     if (count > 1) {
         str.push_back(to_string(count));
@@ -48,7 +48,7 @@ void printSubstring(const vector<string>& str) {
 
 int main() {
     string s;
-    cout << "ÇëÊäÈë×Ö·û´®£º";
+    cout << "è¯·è¾“å…¥å­—ç¬¦ä¸²ï¼š";
     cin >> s;
     vector<string> str = changedString(s);
     printSubstring(str);

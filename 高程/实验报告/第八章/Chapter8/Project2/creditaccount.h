@@ -6,17 +6,17 @@
 
 class CreditAccount : public Account {
 private:
-    Accumulator acc;    // ÓÃÓÚ¼ÆËãÀûÏ¢µÄÀÛ¼ÓÆ÷
-    double credit;      // ĞÅÓÃ¶î¶È
-    double rate;        // Ç·¿îµÄÈÕÀûÂÊ
-    double fee;         // ĞÅÓÃ¿¨Äê·Ñ
+    Accumulator acc;    // ç”¨äºè®¡ç®—åˆ©æ¯çš„ç´¯åŠ å™¨
+    double credit;      // ä¿¡ç”¨é¢åº¦
+    double rate;        // æ¬ æ¬¾çš„æ—¥åˆ©ç‡
+    double fee;         // ä¿¡ç”¨å¡å¹´è´¹
 public:
     CreditAccount(const Date& date, const string& id, double credit,
         double rate, double fee);
     double getCredit() const { return credit; }
     double getRate() const { return rate; }
     double getFee() const { return fee; }
-    double getAvailableCredit() const {  // ¿ÉÓÃĞÅÓÃ¶î¶È
+    double getAvailableCredit() const {  // å¯ç”¨ä¿¡ç”¨é¢åº¦
         return (balance < 0) ? credit + balance : credit;
     }
     virtual void deposit(const Date& date, double amount, const string& desc);

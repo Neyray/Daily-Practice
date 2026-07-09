@@ -1,12 +1,12 @@
 /*
-¡¾ÎÊÌâÃèÊö¡¿
-±à³ÌÊµÏÖDeleteSameº¯ÊıµÄ¹¦ÄÜ¡£¼ÙÉèÓĞÈçÏÂµÄº¯Êıµ÷ÓÃ£ºnum=DeleteSame(oldstr, newstr);
-ÆäÖĞ£¬oldstrÊÇ×Ö·û´®£¬¸Ãº¯ÊıÉ¾³ı×Ö·û´®oldstrÖĞÖØ¸´³öÏÖµÄ×Ö·û£¬Ö»±£ÁôÊ×´Î³öÏÖµÄ¸÷¸ö×Ö·û£¬
-½«½á¹û±£´æÖÁ×Ö·û´®newstr£¬²¢ÇÒ·µ»Ø±»É¾³ıµÄ×Ö·û¸öÊı¡£
+ã€é—®é¢˜æè¿°ã€‘
+ç¼–ç¨‹å®ç°DeleteSameå‡½æ•°çš„åŠŸèƒ½ã€‚å‡è®¾æœ‰å¦‚ä¸‹çš„å‡½æ•°è°ƒç”¨ï¼šnum=DeleteSame(oldstr, newstr);
+å…¶ä¸­ï¼Œoldstræ˜¯å­—ç¬¦ä¸²ï¼Œè¯¥å‡½æ•°åˆ é™¤å­—ç¬¦ä¸²oldsträ¸­é‡å¤å‡ºç°çš„å­—ç¬¦ï¼Œåªä¿ç•™é¦–æ¬¡å‡ºç°çš„å„ä¸ªå­—ç¬¦ï¼Œ
+å°†ç»“æœä¿å­˜è‡³å­—ç¬¦ä¸²newstrï¼Œå¹¶ä¸”è¿”å›è¢«åˆ é™¤çš„å­—ç¬¦ä¸ªæ•°ã€‚
 
-ËµÃ÷£º
-1.º¯ÊıÔ­ĞÍ£ºint DeleteSame(char *oldstr, char *newstr);
-2.×Ö·û´®×î³¤Îª49¸ö×Ö·û¡£
+è¯´æ˜ï¼š
+1.å‡½æ•°åŸå‹ï¼šint DeleteSame(char *oldstr, char *newstr);
+2.å­—ç¬¦ä¸²æœ€é•¿ä¸º49ä¸ªå­—ç¬¦ã€‚
 */
 
 #include <iostream>
@@ -17,7 +17,7 @@ int DeleteSame(char* oldstr, char* newstr) {
     int len = strlen(oldstr);
     int newIndex = 0;
     int deleteCount = 0;
-    bool appeared[256] = { false }; // ±ê¼Ç×Ö·ûÊÇ·ñ³öÏÖ¹ı
+    bool appeared[256] = { false }; // æ ‡è®°å­—ç¬¦æ˜¯å¦å‡ºç°è¿‡
 
     for (int i = 0; i < len; i++) {
         if (!appeared[(unsigned char)oldstr[i]]) {
@@ -36,13 +36,13 @@ int DeleteSame(char* oldstr, char* newstr) {
 int main() {
     char oldstr[50], newstr[50];
 
-    cout << "ÇëÊäÈë×Ö·û´®£º";
+    cout << "è¯·è¾“å…¥å­—ç¬¦ä¸²ï¼š";
     cin >> oldstr;
 
     int num = DeleteSame(oldstr, newstr);
 
-    cout << "É¾³ıÖØ¸´×Ö·ûºóµÄ×Ö·û´®£º" << newstr << endl;
-    cout << "É¾³ıµÄ×Ö·û¸öÊı£º" << num << endl;
+    cout << "åˆ é™¤é‡å¤å­—ç¬¦åçš„å­—ç¬¦ä¸²ï¼š" << newstr << endl;
+    cout << "åˆ é™¤çš„å­—ç¬¦ä¸ªæ•°ï¼š" << num << endl;
 
     return 0;
 }

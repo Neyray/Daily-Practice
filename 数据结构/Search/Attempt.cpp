@@ -4,9 +4,9 @@
 #include <algorithm>
 using namespace std;
 
-//¿ìËÙÅÅĞò
+//å¿«é€Ÿæ’åº
 int partition(vector<int>& arr, int low, int high) {
-	//¶¨ÏÂÒ»¸ö±È½ÏµÄ»ù×¼
+	//å®šä¸‹ä¸€ä¸ªæ¯”è¾ƒçš„åŸºå‡†
 	int pivot = arr[high];
 	int i = low - 1;
 
@@ -33,7 +33,7 @@ void Sort(vector<int>& arr) {
 }
 
 
-//¹é²¢ÅÅĞò
+//å½’å¹¶æ’åº
 void mergeSort(vector<int>& arr, int left, int mid, int right) {
 	vector<int>temp(right - left + 1);
 	int i = left;
@@ -72,7 +72,7 @@ void merge(vector<int>& arr, int left, int right) {
 	}
 }
 
-//¶ş·Ö²éÕÒ
+//äºŒåˆ†æŸ¥æ‰¾
 int binarySearch(vector<int>& arr, int target, int left, int right) {
 	if (left > right)return -1;
 

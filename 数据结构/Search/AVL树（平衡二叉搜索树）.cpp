@@ -4,15 +4,15 @@
 using namespace std;
 
 /**
- * AVLÊ÷£¨Æ½ºâ¶ş²æËÑË÷Ê÷£©
- * ÌØĞÔ£ºÈÎºÎ½ÚµãµÄÁ½¸ö×ÓÊ÷µÄ¸ß¶È²î²»³¬¹ı1
- * Ê±¼ä¸´ÔÓ¶È£ºO(log n) ²éÕÒ¡¢²åÈë¡¢É¾³ı
- * Í¨¹ıĞı×ª²Ù×÷Î¬³ÖÆ½ºâ
+ * AVLæ ‘ï¼ˆå¹³è¡¡äºŒå‰æœç´¢æ ‘ï¼‰
+ * ç‰¹æ€§ï¼šä»»ä½•èŠ‚ç‚¹çš„ä¸¤ä¸ªå­æ ‘çš„é«˜åº¦å·®ä¸è¶…è¿‡1
+ * æ—¶é—´å¤æ‚åº¦ï¼šO(log n) æŸ¥æ‰¾ã€æ’å…¥ã€åˆ é™¤
+ * é€šè¿‡æ—‹è½¬æ“ä½œç»´æŒå¹³è¡¡
  */
 
 struct AVLNode {
     int val;
-    int height;      // ½Úµã¸ß¶È
+    int height;      // èŠ‚ç‚¹é«˜åº¦
     AVLNode* left;
     AVLNode* right;
 
@@ -23,60 +23,60 @@ class AVLTree {
 private:
     AVLNode* root;
 
-    // »ñÈ¡½Úµã¸ß¶È
+    // è·å–èŠ‚ç‚¹é«˜åº¦
     int getHeight(AVLNode* node) {
         return node ? node->height : 0;
     }
 
-    // ¼ÆËãÆ½ºâÒò×Ó
+    // è®¡ç®—å¹³è¡¡å› å­
     int getBalance(AVLNode* node) {
         return node ? getHeight(node->left) - getHeight(node->right) : 0;
     }
 
-    // ¸üĞÂ½Úµã¸ß¶È
+    // æ›´æ–°èŠ‚ç‚¹é«˜åº¦
     void updateHeight(AVLNode* node) {
         if (node) {
             node->height = 1 + max(getHeight(node->left), getHeight(node->right));
         }
     }
 
-    // ÓÒĞı×ª£¨LLÇé¿ö£©
+    // å³æ—‹è½¬ï¼ˆLLæƒ…å†µï¼‰
     AVLNode* rotateRight(AVLNode* y) {
         AVLNode* x = y->left;
         AVLNode* T2 = x->right;
 
-        // Ö´ĞĞĞı×ª
+        // æ‰§è¡Œæ—‹è½¬
         x->right = y;
         y->left = T2;
 
-        // ¸üĞÂ¸ß¶È
+        // æ›´æ–°é«˜åº¦
         updateHeight(y);
         updateHeight(x);
 
-        cout << "Ö´ĞĞÓÒĞı×ª£¬ĞÂ¸ù½Úµã: " << x->val << endl;
+        cout << "æ‰§è¡Œå³æ—‹è½¬ï¼Œæ–°æ ¹èŠ‚ç‚¹: " << x->val << endl;
         return x;
     }
 
-    // ×óĞı×ª£¨RRÇé¿ö£©
+    // å·¦æ—‹è½¬ï¼ˆRRæƒ…å†µï¼‰
     AVLNode* rotateLeft(AVLNode* x) {
         AVLNode* y = x->right;
         AVLNode* T2 = y->left;
 
-        // Ö´ĞĞĞı×ª
+        // æ‰§è¡Œæ—‹è½¬
         y->left = x;
         x->right = T2;
 
-        // ¸üĞÂ¸ß¶È
+        // æ›´æ–°é«˜åº¦
         updateHeight(x);
         updateHeight(y);
 
-        cout << "Ö´ĞĞ×óĞı×ª£¬ĞÂ¸ù½Úµã: " << y->val << endl;
+        cout << "æ‰§è¡Œå·¦æ—‹è½¬ï¼Œæ–°æ ¹èŠ‚ç‚¹: " << y->val << endl;
         return y;
     }
 
-    // ²åÈë½Úµã
+    // æ’å…¥èŠ‚ç‚¹
     AVLNode* insertHelper(AVLNode* node, int val) {
-        // 1. Ö´ĞĞ±ê×¼BST²åÈë
+        // 1. æ‰§è¡Œæ ‡å‡†BSTæ’å…¥
         if (node == nullptr) {
             return new AVLNode(val);
         }
@@ -88,49 +88,49 @@ private:
             node->right = insertHelper(node->right, val);
         }
         else {
-            // ÏàµÈÖµ²»²åÈë
+            // ç›¸ç­‰å€¼ä¸æ’å…¥
             return node;
         }
 
-        // 2. ¸üĞÂµ±Ç°½ÚµãµÄ¸ß¶È
+        // 2. æ›´æ–°å½“å‰èŠ‚ç‚¹çš„é«˜åº¦
         updateHeight(node);
 
-        // 3. »ñÈ¡Æ½ºâÒò×Ó
+        // 3. è·å–å¹³è¡¡å› å­
         int balance = getBalance(node);
 
-        // 4. Èç¹û²»Æ½ºâ£¬ÓĞËÄÖÖÇé¿öĞèÒª´¦Àí
+        // 4. å¦‚æœä¸å¹³è¡¡ï¼Œæœ‰å››ç§æƒ…å†µéœ€è¦å¤„ç†
 
-        // Left LeftÇé¿ö
+        // Left Leftæƒ…å†µ
         if (balance > 1 && val < node->left->val) {
-            cout << "¼ì²âµ½LL²»Æ½ºâ£¬½Úµã: " << node->val << endl;
+            cout << "æ£€æµ‹åˆ°LLä¸å¹³è¡¡ï¼ŒèŠ‚ç‚¹: " << node->val << endl;
             return rotateRight(node);
         }
 
-        // Right RightÇé¿ö
+        // Right Rightæƒ…å†µ
         if (balance < -1 && val > node->right->val) {
-            cout << "¼ì²âµ½RR²»Æ½ºâ£¬½Úµã: " << node->val << endl;
+            cout << "æ£€æµ‹åˆ°RRä¸å¹³è¡¡ï¼ŒèŠ‚ç‚¹: " << node->val << endl;
             return rotateLeft(node);
         }
 
-        // Left RightÇé¿ö
+        // Left Rightæƒ…å†µ
         if (balance > 1 && val > node->left->val) {
-            cout << "¼ì²âµ½LR²»Æ½ºâ£¬½Úµã: " << node->val << endl;
+            cout << "æ£€æµ‹åˆ°LRä¸å¹³è¡¡ï¼ŒèŠ‚ç‚¹: " << node->val << endl;
             node->left = rotateLeft(node->left);
             return rotateRight(node);
         }
 
-        // Right LeftÇé¿ö
+        // Right Leftæƒ…å†µ
         if (balance < -1 && val < node->right->val) {
-            cout << "¼ì²âµ½RL²»Æ½ºâ£¬½Úµã: " << node->val << endl;
+            cout << "æ£€æµ‹åˆ°RLä¸å¹³è¡¡ï¼ŒèŠ‚ç‚¹: " << node->val << endl;
             node->right = rotateRight(node->right);
             return rotateLeft(node);
         }
 
-        // ·µ»ØÎ´¸Ä±äµÄ½ÚµãÖ¸Õë
+        // è¿”å›æœªæ”¹å˜çš„èŠ‚ç‚¹æŒ‡é’ˆ
         return node;
     }
 
-    // ÕÒµ½×îĞ¡Öµ½Úµã
+    // æ‰¾åˆ°æœ€å°å€¼èŠ‚ç‚¹
     AVLNode* findMin(AVLNode* node) {
         while (node->left) {
             node = node->left;
@@ -138,9 +138,9 @@ private:
         return node;
     }
 
-    // É¾³ı½Úµã
+    // åˆ é™¤èŠ‚ç‚¹
     AVLNode* deleteHelper(AVLNode* node, int val) {
-        // 1. Ö´ĞĞ±ê×¼BSTÉ¾³ı
+        // 1. æ‰§è¡Œæ ‡å‡†BSTåˆ é™¤
         if (node == nullptr) {
             return node;
         }
@@ -152,23 +152,23 @@ private:
             node->right = deleteHelper(node->right, val);
         }
         else {
-            // ÒªÉ¾³ıµÄ½Úµã
+            // è¦åˆ é™¤çš„èŠ‚ç‚¹
             if (node->left == nullptr || node->right == nullptr) {
                 AVLNode* temp = node->left ? node->left : node->right;
 
                 if (temp == nullptr) {
-                    // ÎŞ×Ó½ÚµãÇé¿ö
+                    // æ— å­èŠ‚ç‚¹æƒ…å†µ
                     temp = node;
                     node = nullptr;
                 }
                 else {
-                    // Ò»¸ö×Ó½ÚµãÇé¿ö
+                    // ä¸€ä¸ªå­èŠ‚ç‚¹æƒ…å†µ
                     *node = *temp;
                 }
                 delete temp;
             }
             else {
-                // Á½¸ö×Ó½ÚµãÇé¿ö
+                // ä¸¤ä¸ªå­èŠ‚ç‚¹æƒ…å†µ
                 AVLNode* temp = findMin(node->right);
                 node->val = temp->val;
                 node->right = deleteHelper(node->right, temp->val);
@@ -179,31 +179,31 @@ private:
             return node;
         }
 
-        // 2. ¸üĞÂ¸ß¶È
+        // 2. æ›´æ–°é«˜åº¦
         updateHeight(node);
 
-        // 3. »ñÈ¡Æ½ºâÒò×Ó
+        // 3. è·å–å¹³è¡¡å› å­
         int balance = getBalance(node);
 
-        // 4. Èç¹û²»Æ½ºâ£¬´¦ÀíËÄÖÖÇé¿ö
+        // 4. å¦‚æœä¸å¹³è¡¡ï¼Œå¤„ç†å››ç§æƒ…å†µ
 
-        // Left LeftÇé¿ö
+        // Left Leftæƒ…å†µ
         if (balance > 1 && getBalance(node->left) >= 0) {
             return rotateRight(node);
         }
 
-        // Left RightÇé¿ö
+        // Left Rightæƒ…å†µ
         if (balance > 1 && getBalance(node->left) < 0) {
             node->left = rotateLeft(node->left);
             return rotateRight(node);
         }
 
-        // Right RightÇé¿ö
+        // Right Rightæƒ…å†µ
         if (balance < -1 && getBalance(node->right) <= 0) {
             return rotateLeft(node);
         }
 
-        // Right LeftÇé¿ö
+        // Right Leftæƒ…å†µ
         if (balance < -1 && getBalance(node->right) > 0) {
             node->right = rotateRight(node->right);
             return rotateLeft(node);
@@ -212,7 +212,7 @@ private:
         return node;
     }
 
-    // ²éÕÒ½Úµã
+    // æŸ¥æ‰¾èŠ‚ç‚¹
     AVLNode* searchHelper(AVLNode* node, int val) {
         if (node == nullptr || node->val == val) {
             return node;
@@ -226,7 +226,7 @@ private:
         }
     }
 
-    // ÖĞĞò±éÀú
+    // ä¸­åºéå†
     void inorderHelper(AVLNode* node) {
         if (node) {
             inorderHelper(node->left);
@@ -235,7 +235,7 @@ private:
         }
     }
 
-    // Ç°Ğò±éÀú
+    // å‰åºéå†
     void preorderHelper(AVLNode* node) {
         if (node) {
             cout << node->val << "(h:" << node->height << ",b:" << getBalance(node) << ") ";
@@ -244,7 +244,7 @@ private:
         }
     }
 
-    // ¼ì²éÊÇ·ñÎªAVLÊ÷
+    // æ£€æŸ¥æ˜¯å¦ä¸ºAVLæ ‘
     bool isAVLHelper(AVLNode* node) {
         if (node == nullptr) {
             return true;
@@ -258,7 +258,7 @@ private:
         return isAVLHelper(node->left) && isAVLHelper(node->right);
     }
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     void destroyTree(AVLNode* node) {
         if (node) {
             destroyTree(node->left);
@@ -268,53 +268,53 @@ private:
     }
 
 public:
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     AVLTree() : root(nullptr) {}
 
-    // Îö¹¹º¯Êı
+    // ææ„å‡½æ•°
     ~AVLTree() {
         destroyTree(root);
     }
 
-    // ²åÈë
+    // æ’å…¥
     void insert(int val) {
-        cout << "\n²åÈë " << val << ":" << endl;
+        cout << "\næ’å…¥ " << val << ":" << endl;
         root = insertHelper(root, val);
     }
 
-    // É¾³ı
+    // åˆ é™¤
     void remove(int val) {
-        cout << "\nÉ¾³ı " << val << ":" << endl;
+        cout << "\nåˆ é™¤ " << val << ":" << endl;
         root = deleteHelper(root, val);
     }
 
-    // ²éÕÒ
+    // æŸ¥æ‰¾
     bool search(int val) {
         return searchHelper(root, val) != nullptr;
     }
 
-    // ÖĞĞò±éÀú
+    // ä¸­åºéå†
     void inorderTraversal() {
-        cout << "ÖĞĞò±éÀú: ";
+        cout << "ä¸­åºéå†: ";
         inorderHelper(root);
         cout << endl;
     }
 
-    // Ç°Ğò±éÀú
+    // å‰åºéå†
     void preorderTraversal() {
-        cout << "Ç°Ğò±éÀú: ";
+        cout << "å‰åºéå†: ";
         preorderHelper(root);
         cout << endl;
     }
 
-    // ²ãĞò±éÀú
+    // å±‚åºéå†
     void levelOrderTraversal() {
         if (root == nullptr) {
-            cout << "²ãĞò±éÀú: ¿ÕÊ÷" << endl;
+            cout << "å±‚åºéå†: ç©ºæ ‘" << endl;
             return;
         }
 
-        cout << "²ãĞò±éÀú: ";
+        cout << "å±‚åºéå†: ";
         queue<AVLNode*> q;
         q.push(root);
 
@@ -334,21 +334,21 @@ public:
         cout << endl;
     }
 
-    // »ñÈ¡Ê÷µÄ¸ß¶È
+    // è·å–æ ‘çš„é«˜åº¦
     int getTreeHeight() {
         return getHeight(root);
     }
 
-    // ¼ì²éÊÇ·ñÎªÓĞĞ§µÄAVLÊ÷
+    // æ£€æŸ¥æ˜¯å¦ä¸ºæœ‰æ•ˆçš„AVLæ ‘
     bool isValidAVL() {
         return isAVLHelper(root);
     }
 
-    // ´òÓ¡Ê÷µÄ½á¹¹£¨¼òµ¥°æ±¾£©
+    // æ‰“å°æ ‘çš„ç»“æ„ï¼ˆç®€å•ç‰ˆæœ¬ï¼‰
     void printTree() {
-        cout << "\n=== AVLÊ÷½á¹¹ ===" << endl;
+        cout << "\n=== AVLæ ‘ç»“æ„ ===" << endl;
         if (root == nullptr) {
-            cout << "¿ÕÊ÷" << endl;
+            cout << "ç©ºæ ‘" << endl;
             return;
         }
 
@@ -378,46 +378,46 @@ public:
     }
 };
 
-// ²âÊÔº¯Êı
+// æµ‹è¯•å‡½æ•°
 void testAVLTree() {
     AVLTree avl;
 
-    cout << "=== AVLÊ÷²âÊÔ ===" << endl;
+    cout << "=== AVLæ ‘æµ‹è¯• ===" << endl;
 
-    // ²âÊÔ²åÈë£¨»á´¥·¢¸÷ÖÖĞı×ª£©
-    cout << "\n--- ²åÈë²âÊÔ ---" << endl;
+    // æµ‹è¯•æ’å…¥ï¼ˆä¼šè§¦å‘å„ç§æ—‹è½¬ï¼‰
+    cout << "\n--- æ’å…¥æµ‹è¯• ---" << endl;
     vector<int> values = { 10, 20, 30, 40, 50, 25 };
 
     for (int val : values) {
         avl.insert(val);
         avl.printTree();
-        cout << "ÊÇ·ñÎªÓĞĞ§AVLÊ÷: " << (avl.isValidAVL() ? "ÊÇ" : "·ñ") << endl;
+        cout << "æ˜¯å¦ä¸ºæœ‰æ•ˆAVLæ ‘: " << (avl.isValidAVL() ? "æ˜¯" : "å¦") << endl;
     }
 
-    // ±éÀú²âÊÔ
-    cout << "\n--- ±éÀú²âÊÔ ---" << endl;
+    // éå†æµ‹è¯•
+    cout << "\n--- éå†æµ‹è¯• ---" << endl;
     avl.inorderTraversal();
     avl.preorderTraversal();
     avl.levelOrderTraversal();
 
-    // ²éÕÒ²âÊÔ
-    cout << "\n--- ²éÕÒ²âÊÔ ---" << endl;
-    cout << "²éÕÒ 25: " << (avl.search(25) ? "ÕÒµ½" : "Î´ÕÒµ½") << endl;
-    cout << "²éÕÒ 35: " << (avl.search(35) ? "ÕÒµ½" : "Î´ÕÒµ½") << endl;
+    // æŸ¥æ‰¾æµ‹è¯•
+    cout << "\n--- æŸ¥æ‰¾æµ‹è¯• ---" << endl;
+    cout << "æŸ¥æ‰¾ 25: " << (avl.search(25) ? "æ‰¾åˆ°" : "æœªæ‰¾åˆ°") << endl;
+    cout << "æŸ¥æ‰¾ 35: " << (avl.search(35) ? "æ‰¾åˆ°" : "æœªæ‰¾åˆ°") << endl;
 
-    // É¾³ı²âÊÔ
-    cout << "\n--- É¾³ı²âÊÔ ---" << endl;
+    // åˆ é™¤æµ‹è¯•
+    cout << "\n--- åˆ é™¤æµ‹è¯• ---" << endl;
     avl.remove(10);
     avl.printTree();
-    cout << "ÊÇ·ñÎªÓĞĞ§AVLÊ÷: " << (avl.isValidAVL() ? "ÊÇ" : "·ñ") << endl;
+    cout << "æ˜¯å¦ä¸ºæœ‰æ•ˆAVLæ ‘: " << (avl.isValidAVL() ? "æ˜¯" : "å¦") << endl;
 
     avl.remove(25);
     avl.printTree();
-    cout << "ÊÇ·ñÎªÓĞĞ§AVLÊ÷: " << (avl.isValidAVL() ? "ÊÇ" : "·ñ") << endl;
+    cout << "æ˜¯å¦ä¸ºæœ‰æ•ˆAVLæ ‘: " << (avl.isValidAVL() ? "æ˜¯" : "å¦") << endl;
 
-    cout << "\n×îÖÕÖĞĞò±éÀú: ";
+    cout << "\næœ€ç»ˆä¸­åºéå†: ";
     avl.inorderTraversal();
-    cout << "Ê÷µÄ¸ß¶È: " << avl.getTreeHeight() << endl;
+    cout << "æ ‘çš„é«˜åº¦: " << avl.getTreeHeight() << endl;
 }
 
 int main() {

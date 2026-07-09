@@ -1,5 +1,5 @@
 /*
-���ڵ�i����������ڵ�Ϊ2i,�ҽڵ�Ϊ21+1�����ڵ�Ϊi mod 2
+对于第i个数，其左节点为2i,右节点为21+1，父节点为i mod 2
 */
 #include <iostream>
 #include <queue>
@@ -17,24 +17,24 @@ TreeNode* buildTree(const string& s) {
     if (s.empty() || s[0] == '#') return nullptr;
     TreeNode* root = new TreeNode(s[0]);
 
-    //�������Ƚ��ȳ��������ǰ��
+    //队列是先进先出，即后进前出
     queue<TreeNode*> q;
     q.push(root);
     int i = 1;
     int n = s.size();
 
-    //ע�⣡����Ķ��в���ѭ�����У�
+    //注意！这里的队列不是循环队列！
     while (!q.empty() && i < n) {
         TreeNode* current = q.front();
 
-        //ʵ������˫ָ��
+        //实际上是双指针
 
-        //ͨ��ɾ��������ʵ��ָ���ƶ�
+        //通过删除操作来实现指针移动
         q.pop();
 
-        //�������ǰ�˳����еģ���ÿ��ѭ���ж����������if֮��
+        //这两个是按顺序进行的，即每个循环中都会进入两个if之中
         
-        // ���ӽڵ�
+        // 左子节点
         if (i < n) {
             char c = s[i];
             if (c != '#') {
@@ -43,7 +43,7 @@ TreeNode* buildTree(const string& s) {
             }
             i++;
         }
-        // ���ӽڵ�
+        // 右子节点
         if (i < n) {
             char c = s[i];
             if (c != '#') {

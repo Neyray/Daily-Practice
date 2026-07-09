@@ -18,16 +18,16 @@ int main() {
 
 	int score;
 	if (score >= 85) {
-		cout << "ÓÅ";
+		cout << "ä¼˜";
 	}
 	else if (score < 85 && score >= 75) {
-		cout << "Á¼";
+		cout << "è‰¯";
 	}
 	else if (score < 75 && score >= 60) {
-		cout << "ÖĞ";
+		cout << "ä¸­";
 	}
 	else {
-		cout << "²î";
+		cout << "å·®";
 	}
 
 	return 0;

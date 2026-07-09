@@ -1,6 +1,6 @@
 #pragma once
 template <typename T>
-struct LinkNode            //每个结点均为LinkNode类型
+struct LinkNode            //姣忎釜缁撶偣鍧囦负LinkNode绫诲瀷
 {
 	T data;
 	LinkNode<T>* next;

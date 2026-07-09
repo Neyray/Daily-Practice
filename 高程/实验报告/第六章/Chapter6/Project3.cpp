@@ -15,7 +15,7 @@ int main()
 
 void tryToModifyArray(const int b[])
 {
-    // 以下代码会导致编译错误，因为b是const数组
+    // 浠ヤ笅浠ｇ爜浼氬鑷寸紪璇戦敊璇紝鍥犱负b鏄痗onst鏁扮粍
     b[0] /= 2;
     b[1] /= 2;
     b[2] /= 2;

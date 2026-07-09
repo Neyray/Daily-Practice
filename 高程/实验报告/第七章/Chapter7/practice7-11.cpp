@@ -13,10 +13,10 @@ public:
         return a - b;
     }
     BaseClass(int a, int b) : a(a), b(b) {
-        cout << "BaseClass¹¹Ôìº¯Êı: a=" << a << ", b=" << b << endl;
+        cout << "BaseClassæ„é€ å‡½æ•°: a=" << a << ", b=" << b << endl;
     }
     virtual ~BaseClass() {
-        cout << "BaseClassÎö¹¹º¯Êı" << endl;
+        cout << "BaseClassææ„å‡½æ•°" << endl;
     }
 };
 
@@ -26,7 +26,7 @@ private:
     int d;
 public:
     DerivedClass(int c1, int d1) : BaseClass(c1 + 2, d1 + 2), c(c1), d(d1) {
-        cout << "DerivedClass¹¹Ôìº¯Êı: c=" << c << ", d=" << d << endl;
+        cout << "DerivedClassæ„é€ å‡½æ•°: c=" << c << ", d=" << d << endl;
     }
 
     int fn1() override {
@@ -44,21 +44,21 @@ public:
     }
 
     ~DerivedClass() {
-        cout << "DerivedClassÎö¹¹º¯Êı" << endl;
+        cout << "DerivedClassææ„å‡½æ•°" << endl;
     }
 };
 
 int main() {
-    cout << "=== ´´½¨DerivedClass¶ÔÏó ===" << endl;
+    cout << "=== åˆ›å»ºDerivedClasså¯¹è±¡ ===" << endl;
     DerivedClass d1(4, 3);
 
     cout << "d1.fn1(): ";
     int result1 = d1.fn1();
-    cout << "·µ»ØÖµ: " << result1 << endl;
+    cout << "è¿”å›å€¼: " << result1 << endl;
 
     cout << "d1.fn2(): ";
     int result2 = d1.fn2();
-    cout << "·µ»ØÖµ: " << result2 << endl;
+    cout << "è¿”å›å€¼: " << result2 << endl;
 
 
 
@@ -66,11 +66,11 @@ int main() {
     BaseClass* basePtr = &d1;
     cout << "basePtr->fn1(): ";
     int result3 = basePtr->fn1();
-    cout << "·µ»ØÖµ: " << result3 << endl;
+    cout << "è¿”å›å€¼: " << result3 << endl;
 
     cout << "basePtr->fn2(): ";
     int result4 = basePtr->fn2();
-    cout << "·µ»ØÖµ: " << result4 << endl;
+    cout << "è¿”å›å€¼: " << result4 << endl;
 
 
 
@@ -79,11 +79,11 @@ int main() {
     DerivedClass* derivedPtr = &d1;
     cout << "derivedPtr->fn1(): ";
     int result5 = derivedPtr->fn1();
-    cout << "·µ»ØÖµ: " << result5 << endl;
+    cout << "è¿”å›å€¼: " << result5 << endl;
 
     cout << "derivedPtr->fn2(): ";
     int result6 = derivedPtr->fn2();
-    cout << "·µ»ØÖµ: " << result6 << endl;
+    cout << "è¿”å›å€¼: " << result6 << endl;
 
 
 
@@ -92,21 +92,21 @@ int main() {
     BaseClass* basePtr2 = new DerivedClass(5, 2);
     cout << "basePtr2->fn1(): ";
     int result7 = basePtr2->fn1();
-    cout << "·µ»ØÖµ: " << result7 << endl;
+    cout << "è¿”å›å€¼: " << result7 << endl;
 
     cout << "basePtr2->fn2(): ";
     int result8 = basePtr2->fn2();
-    cout << "·µ»ØÖµ: " << result8 << endl;
+    cout << "è¿”å›å€¼: " << result8 << endl;
 
     delete basePtr2;
 
     cout << "d1.BaseClass::fn1(): ";
     int result9 = d1.BaseClass::fn1();
-    cout << "·µ»ØÖµ: " << result9 << endl;
+    cout << "è¿”å›å€¼: " << result9 << endl;
 
     cout << "d1.BaseClass::fn2(): ";
     int result10 = d1.BaseClass::fn2();
-    cout << "·µ»ØÖµ: " << result10 << endl;
+    cout << "è¿”å›å€¼: " << result10 << endl;
 
     return 0;
 }

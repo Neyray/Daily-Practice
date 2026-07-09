@@ -2,7 +2,7 @@
 
 int main()
 {
-    // 二维学生成绩数组
+    // 浜岀淮瀛︾敓鎴愮哗鏁扮粍
     int gradesArray[GradeBook::students][GradeBook::tests] =
     {
         {87, 96, 70},

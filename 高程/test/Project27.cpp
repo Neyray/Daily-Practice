@@ -1,15 +1,15 @@
 /*
-������������
-��дһ�����򣬴�һ���ļ��ж��뵥�ʣ������Կո��س����зָ����ַ�������
-���Ե��ʽ�������ɾ���ظ����ֵĵ��ʣ�Ȼ�󽫽���������һ���ļ��С�
+【问题描述】
+编写一个程序，从一个文件中读入单词（即：以空格或回车换行分隔的字符串），
+并对单词进行排序，删除重复出现的单词，然后将结果输出到另一个文件中。
 
-��������ʽ��
-Դ�ļ�����Ŀ���ļ�����ִ��ʱ��Ϊ���������в������롣������������Ϊsort��
-Դ�ļ�����Ŀ���ļ����ֱ�Ϊsort.in��sort.out����������Ϊ��sort sort.in sort.out��
-���򽫴ӵ�ǰĿ¼��sort.in�ļ��ж��뵥�ʡ�
+【输入形式】
+源文件名和目标文件名在执行时作为程序命令行参数输入。例如若程序名为sort，
+源文件名和目标文件名分别为sort.in和sort.out，则命令行为：sort sort.in sort.out。
+程序将从当前目录下sort.in文件中读入单词。
 
-�������ʽ��
-�Ե��ʽ�������ɾ���ظ����ֵĵ��ʣ�Ȼ�󽫽��������ļ�sort.out�С�
+【输出形式】
+对单词进行排序，删除重复出现的单词，然后将结果输出到文件sort.out中。
 */
 
 #include <iostream>
@@ -21,21 +21,21 @@ using namespace std;
 int main() {
     string inputFile, outputFile;
 
-    // ��ʾ�û������ļ���
-    cout << "������Դ�ļ���: ";
+    // 提示用户输入文件名
+    cout << "请输入源文件名: ";
     cin >> inputFile;
-    cout << "������Ŀ���ļ���: ";
+    cout << "请输入目标文件名: ";
     cin >> outputFile;
 
-    // �������ļ�
+    // 打开输入文件
     ifstream fin(inputFile);
-    //����ʲô����ж�û�򿪷�ʽ��������Щ����VS�汾̫��
+    //还有什么别的判断没打开方式？我怕有些电脑VS版本太低
     if (!fin.is_open()) {
-        cout << "�޷��������ļ�: " << inputFile << endl;
+        cout << "无法打开输入文件: " << inputFile << endl;
         return 1;
     }
 
-    // ��ȡ����
+    // 读取单词
     string words[1000];
     int count = 0;
     string word;
@@ -45,17 +45,17 @@ int main() {
     }
     fin.close();
 
-    // ����
+    // 排序
     sort(words, words + count);
 
-    // ������ļ�
+    // 打开输出文件
     ofstream fout(outputFile);
     if (!fout.is_open()) {
-        cout << "�޷�������ļ�: " << outputFile << endl;
+        cout << "无法打开输出文件: " << outputFile << endl;
         return 1;
     }
 
-    // ȥ�ز����
+    // 去重并输出
     if (count > 0) {
         fout << words[0];
         for (int i = 1; i < count; i++) {
@@ -66,7 +66,7 @@ int main() {
     }
 
     fout.close();
-    cout << "������ɣ�����ѱ��浽 " << outputFile << endl;
+    cout << "处理完成！结果已保存到 " << outputFile << endl;
 
     return 0;
 }

@@ -16,11 +16,11 @@ void main()
             else cout << triangle(a, b, c) << endl;
         }
         catch (WrongInput) {
-            cout << "ÊäÈë´íÎó£¡";
+            cout << "è¾“å…¥é”™è¯¯ï¼";
         }
         catch (double)
         {
-            cout << "a=" <<a << "b="<<b << "c="<< c << ";²»Âú×ãÈý½ÇÐÎÈý±ßÌõ¼þ!" << endl;
+            cout << "a=" <<a << "b="<<b << "c="<< c << ";ä¸æ»¡è¶³ä¸‰è§’å½¢ä¸‰è¾¹æ¡ä»¶!" << endl;
         }
         cout << "end" << endl;
     }

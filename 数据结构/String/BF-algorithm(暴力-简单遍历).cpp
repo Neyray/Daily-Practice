@@ -1,9 +1,9 @@
-//Ñ°ÕÒ×Ö·û´® t ÔÚ×Ö·û´® s ÖĞµÄÎ»ÖÃ
+//å¯»æ‰¾å­—ç¬¦ä¸² t åœ¨å­—ç¬¦ä¸² s ä¸­çš„ä½ç½®
 #include <iostream>
 #include <string>
 using namespace std;
 
-//sµÄ³¤¶È´óÓÚt
+//sçš„é•¿åº¦å¤§äºt
 int BF(string s, string t) {
 	int i = 0, j = 0;
 	while (i < s.length() && j < t.length()) {

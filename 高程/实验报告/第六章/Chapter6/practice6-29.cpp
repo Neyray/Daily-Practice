@@ -5,7 +5,7 @@ int main()
 {
     int arr[] = { 1, 2, 3 };
     double* p = reinterpret_cast<double*>(&arr[0]);
-    *p = 5;  // Î£ÏÕ²Ù×÷£º½«intÖ¸Õë×ª»»ÎªdoubleÖ¸Õë²¢Ğ´Èë
+    *p = 5;  // å±é™©æ“ä½œï¼šå°†intæŒ‡é’ˆè½¬æ¢ä¸ºdoubleæŒ‡é’ˆå¹¶å†™å…¥
 
     cout << arr[0] << " " << arr[1] << " " << arr[2] << endl;
     return 0;

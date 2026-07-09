@@ -24,21 +24,21 @@ int maxArea(vector<int>& height) {
 }
 
 int main() {
-    // Ê¾Àý1
+    // ç¤ºä¾‹1
     vector<int> height1 = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
-    cout << "Ê¾Àý1µÄ×î´óË®Á¿: " << maxArea(height1) << endl; // Êä³ö 49
+    cout << "ç¤ºä¾‹1çš„æœ€å¤§æ°´é‡: " << maxArea(height1) << endl; // è¾“å‡º 49
 
-    // Ê¾Àý2
+    // ç¤ºä¾‹2
     vector<int> height2 = { 1, 1 };
-    cout << "Ê¾Àý2µÄ×î´óË®Á¿: " << maxArea(height2) << endl; // Êä³ö 1
+    cout << "ç¤ºä¾‹2çš„æœ€å¤§æ°´é‡: " << maxArea(height2) << endl; // è¾“å‡º 1
 
-    // Ê¾Àý3
+    // ç¤ºä¾‹3
     vector<int> height3 = { 4, 3, 2, 1, 4 };
-    cout << "Ê¾Àý3µÄ×î´óË®Á¿: " << maxArea(height3) << endl; // Êä³ö 16
+    cout << "ç¤ºä¾‹3çš„æœ€å¤§æ°´é‡: " << maxArea(height3) << endl; // è¾“å‡º 16
 
-    // Ê¾Àý4
+    // ç¤ºä¾‹4
     vector<int> height4 = { 1, 2, 1 };
-    cout << "Ê¾Àý4µÄ×î´óË®Á¿: " << maxArea(height4) << endl; // Êä³ö 2
+    cout << "ç¤ºä¾‹4çš„æœ€å¤§æ°´é‡: " << maxArea(height4) << endl; // è¾“å‡º 2
 
     return 0;
 }

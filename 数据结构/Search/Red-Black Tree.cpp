@@ -3,17 +3,17 @@
 using namespace std;
 
 /**
- * ºìºÚÊ÷£¨Red-Black Tree£©
- * Ò»ÖÖ×ÔÆ½ºâµÄ¶ş²æËÑË÷Ê÷
+ * çº¢é»‘æ ‘ï¼ˆRed-Black Treeï¼‰
+ * ä¸€ç§è‡ªå¹³è¡¡çš„äºŒå‰æœç´¢æ ‘
  *
- * ºìºÚÊ÷µÄĞÔÖÊ£º
- * 1. Ã¿¸ö½ÚµãÒªÃ´ÊÇºìÉ«£¬ÒªÃ´ÊÇºÚÉ«
- * 2. ¸ù½ÚµãÊÇºÚÉ«
- * 3. ËùÓĞÒ¶×Ó½Úµã£¨NIL½Úµã£©¶¼ÊÇºÚÉ«
- * 4. Èç¹ûÒ»¸ö½ÚµãÊÇºìÉ«£¬ÄÇÃ´ËüµÄÁ½¸ö×Ó½Úµã¶¼ÊÇºÚÉ«
- * 5. ´ÓÈÎÒ»½Úµãµ½ÆäÃ¿¸öÒ¶×ÓµÄËùÓĞ¼òµ¥Â·¾¶¶¼°üº¬ÏàÍ¬ÊıÄ¿µÄºÚÉ«½Úµã
+ * çº¢é»‘æ ‘çš„æ€§è´¨ï¼š
+ * 1. æ¯ä¸ªèŠ‚ç‚¹è¦ä¹ˆæ˜¯çº¢è‰²ï¼Œè¦ä¹ˆæ˜¯é»‘è‰²
+ * 2. æ ¹èŠ‚ç‚¹æ˜¯é»‘è‰²
+ * 3. æ‰€æœ‰å¶å­èŠ‚ç‚¹ï¼ˆNILèŠ‚ç‚¹ï¼‰éƒ½æ˜¯é»‘è‰²
+ * 4. å¦‚æœä¸€ä¸ªèŠ‚ç‚¹æ˜¯çº¢è‰²ï¼Œé‚£ä¹ˆå®ƒçš„ä¸¤ä¸ªå­èŠ‚ç‚¹éƒ½æ˜¯é»‘è‰²
+ * 5. ä»ä»»ä¸€èŠ‚ç‚¹åˆ°å…¶æ¯ä¸ªå¶å­çš„æ‰€æœ‰ç®€å•è·¯å¾„éƒ½åŒ…å«ç›¸åŒæ•°ç›®çš„é»‘è‰²èŠ‚ç‚¹
  *
- * Ê±¼ä¸´ÔÓ¶È£ºO(log n) ²éÕÒ¡¢²åÈë¡¢É¾³ı
+ * æ—¶é—´å¤æ‚åº¦ï¼šO(log n) æŸ¥æ‰¾ã€æ’å…¥ã€åˆ é™¤
  */
 
 enum Color { RED, BLACK };
@@ -31,16 +31,16 @@ struct RBNode {
 class RedBlackTree {
 private:
     RBNode* root;
-    RBNode* NIL;  // ÉÚ±ø½Úµã£¬±íÊ¾ËùÓĞÒ¶×Ó½Úµã
+    RBNode* NIL;  // å“¨å…µèŠ‚ç‚¹ï¼Œè¡¨ç¤ºæ‰€æœ‰å¶å­èŠ‚ç‚¹
 
-    // ³õÊ¼»¯NIL½Úµã
+    // åˆå§‹åŒ–NILèŠ‚ç‚¹
     void initializeNIL() {
         NIL = new RBNode(0);
         NIL->color = BLACK;
         NIL->left = NIL->right = NIL->parent = nullptr;
     }
 
-    // ×óĞı×ª
+    // å·¦æ—‹è½¬
     void leftRotate(RBNode* x) {
         RBNode* y = x->right;
         x->right = y->left;
@@ -64,10 +64,10 @@ private:
         y->left = x;
         x->parent = y;
 
-        cout << "×óĞı×ª½Úµã " << x->val << endl;
+        cout << "å·¦æ—‹è½¬èŠ‚ç‚¹ " << x->val << endl;
     }
 
-    // ÓÒĞı×ª
+    // å³æ—‹è½¬
     void rightRotate(RBNode* x) {
         RBNode* y = x->left;
         x->left = y->right;
@@ -91,40 +91,40 @@ private:
         y->right = x;
         x->parent = y;
 
-        cout << "ÓÒĞı×ª½Úµã " << x->val << endl;
+        cout << "å³æ—‹è½¬èŠ‚ç‚¹ " << x->val << endl;
     }
 
-    // ²åÈëĞŞ¸´
+    // æ’å…¥ä¿®å¤
     void insertFixup(RBNode* z) {
         while (z->parent && z->parent->color == RED) {
             if (z->parent == z->parent->parent->left) {
-                // ¸¸½ÚµãÊÇ×æ¸¸½ÚµãµÄ×ó×Ó½Úµã
-                RBNode* y = z->parent->parent->right;  // ÊåÊå½Úµã
+                // çˆ¶èŠ‚ç‚¹æ˜¯ç¥–çˆ¶èŠ‚ç‚¹çš„å·¦å­èŠ‚ç‚¹
+                RBNode* y = z->parent->parent->right;  // å”å”èŠ‚ç‚¹
 
                 if (y->color == RED) {
-                    // Çé¿ö1£ºÊåÊå½ÚµãÊÇºìÉ«
+                    // æƒ…å†µ1ï¼šå”å”èŠ‚ç‚¹æ˜¯çº¢è‰²
                     z->parent->color = BLACK;
                     y->color = BLACK;
                     z->parent->parent->color = RED;
                     z = z->parent->parent;
-                    cout << "²åÈëĞŞ¸´Çé¿ö1£ºÖØĞÂ×ÅÉ«" << endl;
+                    cout << "æ’å…¥ä¿®å¤æƒ…å†µ1ï¼šé‡æ–°ç€è‰²" << endl;
                 }
                 else {
                     if (z == z->parent->right) {
-                        // Çé¿ö2£ºÊåÊåÊÇºÚÉ«£¬ÇÒzÊÇÓÒ×Ó½Úµã
+                        // æƒ…å†µ2ï¼šå”å”æ˜¯é»‘è‰²ï¼Œä¸”zæ˜¯å³å­èŠ‚ç‚¹
                         z = z->parent;
                         leftRotate(z);
-                        cout << "²åÈëĞŞ¸´Çé¿ö2£º×óĞı×ª" << endl;
+                        cout << "æ’å…¥ä¿®å¤æƒ…å†µ2ï¼šå·¦æ—‹è½¬" << endl;
                     }
-                    // Çé¿ö3£ºÊåÊåÊÇºÚÉ«£¬ÇÒzÊÇ×ó×Ó½Úµã
+                    // æƒ…å†µ3ï¼šå”å”æ˜¯é»‘è‰²ï¼Œä¸”zæ˜¯å·¦å­èŠ‚ç‚¹
                     z->parent->color = BLACK;
                     z->parent->parent->color = RED;
                     rightRotate(z->parent->parent);
-                    cout << "²åÈëĞŞ¸´Çé¿ö3£ºÖØĞÂ×ÅÉ«²¢ÓÒĞı×ª" << endl;
+                    cout << "æ’å…¥ä¿®å¤æƒ…å†µ3ï¼šé‡æ–°ç€è‰²å¹¶å³æ—‹è½¬" << endl;
                 }
             }
             else {
-                // ¸¸½ÚµãÊÇ×æ¸¸½ÚµãµÄÓÒ×Ó½Úµã£¨¶Ô³ÆÇé¿ö£©
+                // çˆ¶èŠ‚ç‚¹æ˜¯ç¥–çˆ¶èŠ‚ç‚¹çš„å³å­èŠ‚ç‚¹ï¼ˆå¯¹ç§°æƒ…å†µï¼‰
                 RBNode* y = z->parent->parent->left;
 
                 if (y->color == RED) {
@@ -132,30 +132,30 @@ private:
                     y->color = BLACK;
                     z->parent->parent->color = RED;
                     z = z->parent->parent;
-                    cout << "²åÈëĞŞ¸´Çé¿ö1£¨¶Ô³Æ£©£ºÖØĞÂ×ÅÉ«" << endl;
+                    cout << "æ’å…¥ä¿®å¤æƒ…å†µ1ï¼ˆå¯¹ç§°ï¼‰ï¼šé‡æ–°ç€è‰²" << endl;
                 }
                 else {
                     if (z == z->parent->left) {
                         z = z->parent;
                         rightRotate(z);
-                        cout << "²åÈëĞŞ¸´Çé¿ö2£¨¶Ô³Æ£©£ºÓÒĞı×ª" << endl;
+                        cout << "æ’å…¥ä¿®å¤æƒ…å†µ2ï¼ˆå¯¹ç§°ï¼‰ï¼šå³æ—‹è½¬" << endl;
                     }
                     z->parent->color = BLACK;
                     z->parent->parent->color = RED;
                     leftRotate(z->parent->parent);
-                    cout << "²åÈëĞŞ¸´Çé¿ö3£¨¶Ô³Æ£©£ºÖØĞÂ×ÅÉ«²¢×óĞı×ª" << endl;
+                    cout << "æ’å…¥ä¿®å¤æƒ…å†µ3ï¼ˆå¯¹ç§°ï¼‰ï¼šé‡æ–°ç€è‰²å¹¶å·¦æ—‹è½¬" << endl;
                 }
             }
         }
-        root->color = BLACK;  // ¸ù½ÚµãÊ¼ÖÕÎªºÚÉ«
+        root->color = BLACK;  // æ ¹èŠ‚ç‚¹å§‹ç»ˆä¸ºé»‘è‰²
     }
 
-    // ²åÈë½Úµã
+    // æ’å…¥èŠ‚ç‚¹
     void insertHelper(RBNode* z) {
         RBNode* y = nullptr;
         RBNode* x = root;
 
-        // ÕÒµ½²åÈëÎ»ÖÃ
+        // æ‰¾åˆ°æ’å…¥ä½ç½®
         while (x != NIL) {
             y = x;
             if (z->val < x->val) {
@@ -178,16 +178,16 @@ private:
             y->right = z;
         }
 
-        // ĞÂ½ÚµãµÄ×óÓÒ×Ó½Úµã¶¼ÊÇNIL
+        // æ–°èŠ‚ç‚¹çš„å·¦å³å­èŠ‚ç‚¹éƒ½æ˜¯NIL
         z->left = NIL;
         z->right = NIL;
-        z->color = RED;  // ĞÂ½ÚµãÎªºìÉ«
+        z->color = RED;  // æ–°èŠ‚ç‚¹ä¸ºçº¢è‰²
 
-        // ĞŞ¸´ºìºÚÊ÷ĞÔÖÊ
+        // ä¿®å¤çº¢é»‘æ ‘æ€§è´¨
         insertFixup(z);
     }
 
-    // ÓÃvÌæ»»u
+    // ç”¨væ›¿æ¢u
     void transplant(RBNode* u, RBNode* v) {
         if (u->parent == nullptr) {
             root = v;
@@ -201,7 +201,7 @@ private:
         v->parent = u->parent;
     }
 
-    // ÕÒµ½×îĞ¡Öµ½Úµã
+    // æ‰¾åˆ°æœ€å°å€¼èŠ‚ç‚¹
     RBNode* minimum(RBNode* x) {
         while (x->left != NIL) {
             x = x->left;
@@ -209,47 +209,47 @@ private:
         return x;
     }
 
-    // É¾³ıĞŞ¸´
+    // åˆ é™¤ä¿®å¤
     void deleteFixup(RBNode* x) {
         while (x != root && x->color == BLACK) {
             if (x == x->parent->left) {
-                RBNode* w = x->parent->right;  // ĞÖµÜ½Úµã
+                RBNode* w = x->parent->right;  // å…„å¼ŸèŠ‚ç‚¹
 
                 if (w->color == RED) {
-                    // Çé¿ö1£ºĞÖµÜ½ÚµãÊÇºìÉ«
+                    // æƒ…å†µ1ï¼šå…„å¼ŸèŠ‚ç‚¹æ˜¯çº¢è‰²
                     w->color = BLACK;
                     x->parent->color = RED;
                     leftRotate(x->parent);
                     w = x->parent->right;
-                    cout << "É¾³ıĞŞ¸´Çé¿ö1£ºĞÖµÜ½ÚµãºìÉ«" << endl;
+                    cout << "åˆ é™¤ä¿®å¤æƒ…å†µ1ï¼šå…„å¼ŸèŠ‚ç‚¹çº¢è‰²" << endl;
                 }
 
                 if (w->left->color == BLACK && w->right->color == BLACK) {
-                    // Çé¿ö2£ºĞÖµÜ½ÚµãµÄÁ½¸ö×Ó½Úµã¶¼ÊÇºÚÉ«
+                    // æƒ…å†µ2ï¼šå…„å¼ŸèŠ‚ç‚¹çš„ä¸¤ä¸ªå­èŠ‚ç‚¹éƒ½æ˜¯é»‘è‰²
                     w->color = RED;
                     x = x->parent;
-                    cout << "É¾³ıĞŞ¸´Çé¿ö2£ºĞÖµÜ×Ó½Úµã¶¼ÊÇºÚÉ«" << endl;
+                    cout << "åˆ é™¤ä¿®å¤æƒ…å†µ2ï¼šå…„å¼Ÿå­èŠ‚ç‚¹éƒ½æ˜¯é»‘è‰²" << endl;
                 }
                 else {
                     if (w->right->color == BLACK) {
-                        // Çé¿ö3£ºĞÖµÜ½ÚµãÓÒ×Ó½ÚµãÊÇºÚÉ«£¬×ó×Ó½ÚµãÊÇºìÉ«
+                        // æƒ…å†µ3ï¼šå…„å¼ŸèŠ‚ç‚¹å³å­èŠ‚ç‚¹æ˜¯é»‘è‰²ï¼Œå·¦å­èŠ‚ç‚¹æ˜¯çº¢è‰²
                         w->left->color = BLACK;
                         w->color = RED;
                         rightRotate(w);
                         w = x->parent->right;
-                        cout << "É¾³ıĞŞ¸´Çé¿ö3£º×ª»»ÎªÇé¿ö4" << endl;
+                        cout << "åˆ é™¤ä¿®å¤æƒ…å†µ3ï¼šè½¬æ¢ä¸ºæƒ…å†µ4" << endl;
                     }
-                    // Çé¿ö4£ºĞÖµÜ½ÚµãÓÒ×Ó½ÚµãÊÇºìÉ«
+                    // æƒ…å†µ4ï¼šå…„å¼ŸèŠ‚ç‚¹å³å­èŠ‚ç‚¹æ˜¯çº¢è‰²
                     w->color = x->parent->color;
                     x->parent->color = BLACK;
                     w->right->color = BLACK;
                     leftRotate(x->parent);
                     x = root;
-                    cout << "É¾³ıĞŞ¸´Çé¿ö4£ºĞÖµÜÓÒ×Ó½ÚµãºìÉ«" << endl;
+                    cout << "åˆ é™¤ä¿®å¤æƒ…å†µ4ï¼šå…„å¼Ÿå³å­èŠ‚ç‚¹çº¢è‰²" << endl;
                 }
             }
             else {
-                // ¶Ô³ÆÇé¿ö
+                // å¯¹ç§°æƒ…å†µ
                 RBNode* w = x->parent->left;
 
                 if (w->color == RED) {
@@ -281,7 +281,7 @@ private:
         x->color = BLACK;
     }
 
-    // É¾³ı½Úµã
+    // åˆ é™¤èŠ‚ç‚¹
     void deleteHelper(RBNode* z) {
         RBNode* y = z;
         RBNode* x;
@@ -322,7 +322,7 @@ private:
         delete z;
     }
 
-    // ²éÕÒ½Úµã
+    // æŸ¥æ‰¾èŠ‚ç‚¹
     RBNode* searchHelper(RBNode* node, int val) {
         if (node == NIL || node->val == val) {
             return node;
@@ -336,7 +336,7 @@ private:
         }
     }
 
-    // ÖĞĞò±éÀú
+    // ä¸­åºéå†
     void inorderHelper(RBNode* node) {
         if (node != NIL) {
             inorderHelper(node->left);
@@ -345,7 +345,7 @@ private:
         }
     }
 
-    // ¼ì²éºìºÚÊ÷ĞÔÖÊ
+    // æ£€æŸ¥çº¢é»‘æ ‘æ€§è´¨
     bool isValidRBHelper(RBNode* node, int& blackCount, int currentBlackCount) {
         if (node == NIL) {
             if (blackCount == -1) {
@@ -354,7 +354,7 @@ private:
             return blackCount == currentBlackCount;
         }
 
-        // ¼ì²éºìÉ«½ÚµãµÄ×Ó½ÚµãÊÇ·ñ¶¼ÊÇºÚÉ«
+        // æ£€æŸ¥çº¢è‰²èŠ‚ç‚¹çš„å­èŠ‚ç‚¹æ˜¯å¦éƒ½æ˜¯é»‘è‰²
         if (node->color == RED) {
             if ((node->left != NIL && node->left->color == RED) ||
                 (node->right != NIL && node->right->color == RED)) {
@@ -368,7 +368,7 @@ private:
             isValidRBHelper(node->right, blackCount, newBlackCount);
     }
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     void destroyTree(RBNode* node) {
         if (node != NIL) {
             destroyTree(node->left);
@@ -378,57 +378,57 @@ private:
     }
 
 public:
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     RedBlackTree() {
         initializeNIL();
         root = NIL;
     }
 
-    // Îö¹¹º¯Êı
+    // ææ„å‡½æ•°
     ~RedBlackTree() {
         destroyTree(root);
         delete NIL;
     }
 
-    // ²åÈë
+    // æ’å…¥
     void insert(int val) {
-        cout << "\n²åÈë " << val << ":" << endl;
+        cout << "\næ’å…¥ " << val << ":" << endl;
         RBNode* z = new RBNode(val);
         insertHelper(z);
     }
 
-    // É¾³ı
+    // åˆ é™¤
     void remove(int val) {
-        cout << "\nÉ¾³ı " << val << ":" << endl;
+        cout << "\nåˆ é™¤ " << val << ":" << endl;
         RBNode* z = searchHelper(root, val);
         if (z != NIL) {
             deleteHelper(z);
         }
         else {
-            cout << "Î´ÕÒµ½ÒªÉ¾³ıµÄ½Úµã" << endl;
+            cout << "æœªæ‰¾åˆ°è¦åˆ é™¤çš„èŠ‚ç‚¹" << endl;
         }
     }
 
-    // ²éÕÒ
+    // æŸ¥æ‰¾
     bool search(int val) {
         return searchHelper(root, val) != NIL;
     }
 
-    // ÖĞĞò±éÀú
+    // ä¸­åºéå†
     void inorderTraversal() {
-        cout << "ÖĞĞò±éÀú: ";
+        cout << "ä¸­åºéå†: ";
         inorderHelper(root);
         cout << endl;
     }
 
-    // ²ãĞò±éÀú
+    // å±‚åºéå†
     void levelOrderTraversal() {
         if (root == NIL) {
-            cout << "²ãĞò±éÀú: ¿ÕÊ÷" << endl;
+            cout << "å±‚åºéå†: ç©ºæ ‘" << endl;
             return;
         }
 
-        cout << "²ãĞò±éÀú: ";
+        cout << "å±‚åºéå†: ";
         queue<RBNode*> q;
         q.push(root);
 
@@ -446,11 +446,11 @@ public:
         cout << endl;
     }
 
-    // ¼ì²éÊÇ·ñÎªÓĞĞ§µÄºìºÚÊ÷
+    // æ£€æŸ¥æ˜¯å¦ä¸ºæœ‰æ•ˆçš„çº¢é»‘æ ‘
     bool isValidRBTree() {
         if (root == NIL) return true;
 
-        // ¼ì²é¸ù½ÚµãÊÇ·ñÎªºÚÉ«
+        // æ£€æŸ¥æ ¹èŠ‚ç‚¹æ˜¯å¦ä¸ºé»‘è‰²
         if (root->color != BLACK) {
             return false;
         }
@@ -459,7 +459,7 @@ public:
         return isValidRBHelper(root, blackCount, 0);
     }
 
-    // »ñÈ¡ºÚ¸ß¶È
+    // è·å–é»‘é«˜åº¦
     int getBlackHeight() {
         int height = 0;
         RBNode* current = root;
@@ -474,11 +474,11 @@ public:
         return height;
     }
 
-    // ´òÓ¡Ê÷µÄ½á¹¹
+    // æ‰“å°æ ‘çš„ç»“æ„
     void printTree() {
-        cout << "\n=== ºìºÚÊ÷½á¹¹ ===" << endl;
+        cout << "\n=== çº¢é»‘æ ‘ç»“æ„ ===" << endl;
         if (root == NIL) {
-            cout << "¿ÕÊ÷" << endl;
+            cout << "ç©ºæ ‘" << endl;
             return;
         }
 
@@ -505,18 +505,18 @@ public:
     }
 };
 
-// ²âÊÔº¯Êı
+// æµ‹è¯•å‡½æ•°
 void testRedBlackTree() {
     RedBlackTree rbt;
 
-    cout << "=== ºìºÚÊ÷²âÊÔ ===" << endl;
+    cout << "=== çº¢é»‘æ ‘æµ‹è¯• ===" << endl;
 
-    // ²åÈë²âÊÔ
-    cout << "\n--- ²åÈë²âÊÔ ---" << endl;
+    // æ’å…¥æµ‹è¯•
+    cout << "\n--- æ’å…¥æµ‹è¯• ---" << endl;
     vector<int> values = { 10, 5, 15, 3, 7, 12, 18, 1, 4, 6, 8 };
 
     for (int val : values) {
         rbt.insert(val);
         rbt.printTree();
-        cout << "ÊÇ·ñÎªÓĞĞ§ºìºÚÊ÷: " << (rbt.isValidRBTree() ? "ÊÇ" : "·ñ") << endl;
+        cout << "æ˜¯å¦ä¸ºæœ‰æ•ˆçº¢é»‘æ ‘: " << (rbt.isValidRBTree() ? "æ˜¯" : "å¦") << endl;
     }

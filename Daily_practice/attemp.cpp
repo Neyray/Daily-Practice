@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-	//ÊäÈëÒ»ĞĞÊı×Ö
+	//è¾“å…¥ä¸€è¡Œæ•°å­—
 	string str;
 	getline(cin, str);
 
-	//½øĞĞ±éÀú
+	//è¿›è¡Œéå†
 	int n = str.size();
 	bool result = false;
 	for (int i = 0; i < n / 2; ++i) {

@@ -2,22 +2,22 @@
 #include <string>
 using namespace std;
 
-// Éú³É×î³¤¹«¹²Ç°ºó×º³¤¶ÈµÄ next Êı×é
+// ç”Ÿæˆæœ€é•¿å…¬å…±å‰åç¼€é•¿åº¦çš„ next æ•°ç»„
 void GetNext(string t, int* next) {
-    int j = 0;          // Ç°×ºÖ¸Õë
-    next[0] = 0;        // ³õÊ¼Î»ÖÃÎŞÇ°×º
+    int j = 0;          // å‰ç¼€æŒ‡é’ˆ
+    next[0] = 0;        // åˆå§‹ä½ç½®æ— å‰ç¼€
     for (int i = 1; i < t.length();) {
         if (t[i] == t[j]) {
             j++;
-            next[i] = j; // µ±Ç°Î»ÖÃµÄ×î³¤¹«¹²Ç°ºó×º³¤¶È
+            next[i] = j; // å½“å‰ä½ç½®çš„æœ€é•¿å…¬å…±å‰åç¼€é•¿åº¦
             i++;
         }
         else {
             if (j > 0) {
-                j = next[j - 1]; // »ØÍËµ½Ç°Ò»¸öÎ»ÖÃµÄ×î³¤¹«¹²Ç°×º
+                j = next[j - 1]; // å›é€€åˆ°å‰ä¸€ä¸ªä½ç½®çš„æœ€é•¿å…¬å…±å‰ç¼€
             }
             else {
-                next[i] = 0;     // ÎŞ¹«¹²Ç°×º
+                next[i] = 0;     // æ— å…¬å…±å‰ç¼€
                 i++;
             }
         }
@@ -26,11 +26,11 @@ void GetNext(string t, int* next) {
 
 int KMP(string s, string t) {
     int n = s.length(), m = t.length();
-    if (m == 0) return 0;        // ¿ÕÄ£Ê½Ö±½ÓÆ¥Åä
+    if (m == 0) return 0;        // ç©ºæ¨¡å¼ç›´æ¥åŒ¹é…
     int* next = new int[m];
     GetNext(t, next);
 
-    //jÊÇÓÃÀ´±éÀút×Ö·û´®µÄ,i±éÀú×Ö·û´®s
+    //jæ˜¯ç”¨æ¥éå†tå­—ç¬¦ä¸²çš„,iéå†å­—ç¬¦ä¸²s
     int i = 0, j = 0;
     while (i < n) {
         if (s[i] == t[j]) {
@@ -38,16 +38,16 @@ int KMP(string s, string t) {
             j++;
             if (j == m) {
                 delete[] next;
-                return i - m;    // ÍêÈ«Æ¥Åä
+                return i - m;    // å®Œå…¨åŒ¹é…
             }
         }
         else {
-            if (j > 0) j = next[j - 1]; // »ØÍËµ½Ç°Ò»¸öÎ»ÖÃµÄ next Öµ
+            if (j > 0) j = next[j - 1]; // å›é€€åˆ°å‰ä¸€ä¸ªä½ç½®çš„ next å€¼
             else i++;
         }
     }
     delete[] next;
-    return -1;                   // Î´ÕÒµ½
+    return -1;                   // æœªæ‰¾åˆ°
 }
 
 int main() {

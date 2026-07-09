@@ -6,8 +6,8 @@
 
 class SavingsAccount : public Account {
 private:
-    Accumulator acc;    // 用于计算利息的累加器
-    double rate;        // 存款的年利率
+    Accumulator acc;    // 鐢ㄤ簬璁＄畻鍒╂伅鐨勭疮鍔犲櫒
+    double rate;        // 瀛樻鐨勫勾鍒╃巼
 public:
     SavingsAccount(const Date& date, const string& id, double rate);
     double getRate() const { return rate; }

@@ -1,30 +1,30 @@
-/*¡¾ÎÊÌâÃèÊö¡¿
+/*ã€é—®é¢˜æè¿°ã€‘
 
-ÓĞÒ»¸öº¬n£¨n<=200000£©¸öÕûÊıµÄÎŞĞòĞòÁĞ£¬²ÉÓÃÁ´±íµÄ¶şÂ·¹é²¢ÅÅĞòÊµÏÖµİÔöÅÅĞò
+æœ‰ä¸€ä¸ªå«nï¼ˆn<=200000ï¼‰ä¸ªæ•´æ•°çš„æ— åºåºåˆ—ï¼Œé‡‡ç”¨é“¾è¡¨çš„äºŒè·¯å½’å¹¶æ’åºå®ç°é€’å¢æ’åº
 
-¡¾ÊäÈëĞÎÊ½¡¿
+ã€è¾“å…¥å½¢å¼ã€‘
 
-Ò»ĞĞ×Ö·û´®£¬°üº¬¶à¸öÕûÊı£¬Ã¿¸öÊıÖ®¼äÓÃ¿Õ¸ñ·Ö¿ª¡£
+ä¸€è¡Œå­—ç¬¦ä¸²ï¼ŒåŒ…å«å¤šä¸ªæ•´æ•°ï¼Œæ¯ä¸ªæ•°ä¹‹é—´ç”¨ç©ºæ ¼åˆ†å¼€ã€‚
 
-¡¾Êä³öĞÎÊ½¡¿
+ã€è¾“å‡ºå½¢å¼ã€‘
 
-µİÔöÅÅĞòµÄ½á¹û£¬Ã¿¸öÊıÖ®¼äÓÃ¿Õ¸ñ·Ö¿ª¡£
+é€’å¢æ’åºçš„ç»“æœï¼Œæ¯ä¸ªæ•°ä¹‹é—´ç”¨ç©ºæ ¼åˆ†å¼€ã€‚
 
-¡¾ÑùÀıÊäÈë¡¿
+ã€æ ·ä¾‹è¾“å…¥ã€‘
 
 9 4 7 6 2 5 8 1 3
 
-¡¾ÑùÀıÊä³ö¡¿
+ã€æ ·ä¾‹è¾“å‡ºã€‘
 
 1 2 3 4 5 6 7 8 9
 
-¡¾ÑùÀıËµÃ÷¡¿
+ã€æ ·ä¾‹è¯´æ˜ã€‘
 
-²âÊÔÊı¾İµÄÎÄ¼şÃûÎªin.txt£¬Êä³öÎÄ¼şÃûÎªout.txt
+æµ‹è¯•æ•°æ®çš„æ–‡ä»¶åä¸ºin.txtï¼Œè¾“å‡ºæ–‡ä»¶åä¸ºout.txt
 
-¡¾ÆÀ·Ö±ê×¼¡¿
+ã€è¯„åˆ†æ ‡å‡†ã€‘
 
-¸ÃÌâÄ¿ÓĞ10¸ö²âÊÔÓÃÀı£¬Ã¿Í¨¹ıÒ»¸ö²âÊÔÓÃÀıµÃ10·Ö */
+è¯¥é¢˜ç›®æœ‰10ä¸ªæµ‹è¯•ç”¨ä¾‹ï¼Œæ¯é€šè¿‡ä¸€ä¸ªæµ‹è¯•ç”¨ä¾‹å¾—10åˆ† */
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -37,14 +37,14 @@ struct Node {
     Node(int x) : val(x), next(nullptr) {}
 };
 
-// ºÏ²¢Á½¸öÓĞĞòÁ´±í
+// åˆå¹¶ä¸¤ä¸ªæœ‰åºé“¾è¡¨
 Node* merge(Node* l1, Node* l2) {
     Node dummy(0);
     Node* tail = &dummy;
     while (l1 && l2) {
         if (l1->val <= l2->val) {
             tail->next = l1;
-            //¸üĞÂÎ»ÖÃ
+            //æ›´æ–°ä½ç½®
             l1 = l1->next;
         }
         else {
@@ -57,12 +57,12 @@ Node* merge(Node* l1, Node* l2) {
     return dummy.next;
 }
 
-// Á´±í¹é²¢ÅÅĞò
+// é“¾è¡¨å½’å¹¶æ’åº
 Node* mergeSort(Node* head) {
     if (!head || !head->next)
         return head;
 
-    // ¿ìÂıÖ¸ÕëÕÒÖĞµã
+    // å¿«æ…¢æŒ‡é’ˆæ‰¾ä¸­ç‚¹
     Node* slow = head;
     Node* fast = head->next;
     while (fast && fast->next) {
@@ -70,7 +70,7 @@ Node* mergeSort(Node* head) {
         fast = fast->next->next;
     }
     Node* mid = slow->next;
-    slow->next = nullptr;  // ¶Ï¿ªÁ´±í
+    slow->next = nullptr;  // æ–­å¼€é“¾è¡¨
 
     Node* left = mergeSort(head);
     Node* right = mergeSort(mid);
@@ -78,10 +78,10 @@ Node* mergeSort(Node* head) {
 }
 
 int main() {
-    // ¶ÁÈ¡ÊäÈëÎÄ¼ş
+    // è¯»å–è¾“å…¥æ–‡ä»¶
     ifstream inFile("in.txt");
     if (!inFile) {
-        cerr << "ÎŞ·¨´ò¿ªÊäÈëÎÄ¼ş in.txt" << endl;
+        cerr << "æ— æ³•æ‰“å¼€è¾“å…¥æ–‡ä»¶ in.txt" << endl;
         return 1;
     }
 
@@ -94,7 +94,7 @@ int main() {
     Node* head = nullptr;
     Node* tail = nullptr;
 
-    // ¹¹½¨Á´±í
+    // æ„å»ºé“¾è¡¨
     while (ss >> num) {
         Node* newNode = new Node(num);
         if (!head) {
@@ -107,15 +107,15 @@ int main() {
         }
     }
 
-    // Á´±íÅÅĞò
+    // é“¾è¡¨æ’åº
     if (head) {
         head = mergeSort(head);
     }
 
-    // Ğ´ÈëÊä³öÎÄ¼ş
+    // å†™å…¥è¾“å‡ºæ–‡ä»¶
     ofstream outFile("out.txt");
     if (!outFile) {
-        cerr << "ÎŞ·¨´´½¨Êä³öÎÄ¼ş out.txt" << endl;
+        cerr << "æ— æ³•åˆ›å»ºè¾“å‡ºæ–‡ä»¶ out.txt" << endl;
         return 1;
     }
 
@@ -128,7 +128,7 @@ int main() {
     }
     outFile.close();
 
-    // ÊÍ·ÅÁ´±íÄÚ´æ
+    // é‡Šæ”¾é“¾è¡¨å†…å­˜
     while (head) {
         Node* temp = head;
         head = head->next;

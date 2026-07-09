@@ -1,66 +1,66 @@
-/*¡¾ÎÊÌâÃèÊö¡¿
+/*ã€é—®é¢˜æè¿°ã€‘
 
-ÓÐÁ½¸ö¼¯ºÏ²ÉÓÃµÝÔöÓÐÐòµÄÕûÊýµ¥Á´±íA¡¢B´æ´¢£¬Éè¼ÆÒ»¸öËã·¨ÇóÁ½¸ö¼¯ºÏ½»¼¯C£¬CÈÔÈ»ÓÃµ¥Á´±í´æ´¢£¬ÇÒµÝ¼õÓÐÐò¡£
+æœ‰ä¸¤ä¸ªé›†åˆé‡‡ç”¨é€’å¢žæœ‰åºçš„æ•´æ•°å•é“¾è¡¨Aã€Bå­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•æ±‚ä¸¤ä¸ªé›†åˆäº¤é›†Cï¼ŒCä»ç„¶ç”¨å•é“¾è¡¨å­˜å‚¨ï¼Œä¸”é€’å‡æœ‰åºã€‚
 
-¡¾ÊäÈëÐÎÊ½¡¿
+ã€è¾“å…¥å½¢å¼ã€‘
 
-·Ö±ðÊäÈëÁ½ÐÐÕûÊý£¬Ã¿ÐÐÕûÊýÒÔ¿Õ¸ñ·Ö¸ô£¬Ã¿ÐÐÕûÊýÒÀ´Î±íÊ¾µ¥Á´±í A ºÍµ¥Á´±í B µÄÔªËØÖµ£¬ÒÔÊäÈë½áÊø·û×÷ÎªÃ¿ÐÐÊäÈëµÄ½áÊø±êÖ¾¡£
+åˆ†åˆ«è¾“å…¥ä¸¤è¡Œæ•´æ•°ï¼Œæ¯è¡Œæ•´æ•°ä»¥ç©ºæ ¼åˆ†éš”ï¼Œæ¯è¡Œæ•´æ•°ä¾æ¬¡è¡¨ç¤ºå•é“¾è¡¨ A å’Œå•é“¾è¡¨ B çš„å…ƒç´ å€¼ï¼Œä»¥è¾“å…¥ç»“æŸç¬¦ä½œä¸ºæ¯è¡Œè¾“å…¥çš„ç»“æŸæ ‡å¿—ã€‚
 
-¡¾Êä³öÐÎÊ½¡¿
+ã€è¾“å‡ºå½¢å¼ã€‘
 
-Êä³öÒ»ÐÐÕûÊý£¬ÕâÐ©ÕûÊýÎªÁ½¸ö¼¯ºÏ½»¼¯¹¹³ÉµÄµ¥Á´±íµÄÔªËØÖµ£¬ÔªËØÖ®¼äÒÔ¿Õ¸ñ·Ö¸ô¡£ÈôÃ»ÓÐ½»¼¯£¬Êä³öerror
+è¾“å‡ºä¸€è¡Œæ•´æ•°ï¼Œè¿™äº›æ•´æ•°ä¸ºä¸¤ä¸ªé›†åˆäº¤é›†æž„æˆçš„å•é“¾è¡¨çš„å…ƒç´ å€¼ï¼Œå…ƒç´ ä¹‹é—´ä»¥ç©ºæ ¼åˆ†éš”ã€‚è‹¥æ²¡æœ‰äº¤é›†ï¼Œè¾“å‡ºerror
 
-¡¾ÑùÀýÊäÈë1¡¿
+ã€æ ·ä¾‹è¾“å…¥1ã€‘
 
 1 2 3
 
 1 2 4 5
 
-¡¾ÑùÀýÊä³ö1¡¿
+ã€æ ·ä¾‹è¾“å‡º1ã€‘
 
 2 1
 
-¡¾ÑùÀýÊäÈë2¡¿
+ã€æ ·ä¾‹è¾“å…¥2ã€‘
 
 1 2 3
 
 4 5
 
-¡¾ÑùÀýÊä³ö2¡¿
+ã€æ ·ä¾‹è¾“å‡º2ã€‘
 
 error
 
-¡¾Àà¿âÊ¹ÓÃÒªÇó¡¿
+ã€ç±»åº“ä½¿ç”¨è¦æ±‚ã€‘
 
-²»¿ÉÒÔÊ¹ÓÃSTL¿âº¯Êý£¬¿ÉÒÔÊ¹ÓÃ×Ö·û´®STL´¦ÀíÊäÈë¡£*/
+ä¸å¯ä»¥ä½¿ç”¨STLåº“å‡½æ•°ï¼Œå¯ä»¥ä½¿ç”¨å­—ç¬¦ä¸²STLå¤„ç†è¾“å…¥ã€‚*/
 
 #include <iostream>
 #include <sstream>
 #include <string>
 using namespace std;
 
-// ¶¨Òåµ¥Á´±í½Úµã
+// å®šä¹‰å•é“¾è¡¨èŠ‚ç‚¹
 struct Node {
     int data;
     Node* next;
     Node(int val) : data(val), next(nullptr) {}
 };
 
-// µ¥Á´±í²åÈë²Ù×÷£¨Í·²å·¨£©
+// å•é“¾è¡¨æ’å…¥æ“ä½œï¼ˆå¤´æ’æ³•ï¼‰
 void insert(Node*& head, int value) {
     Node* newNode = new Node(value);
     newNode->next = head;
     head = newNode;
 }
 
-// ´òÓ¡Á´±í
+// æ‰“å°é“¾è¡¨
 void printList(Node* head) {
     if (!head) {
         cout << "error" << endl;
         return;
     }
     Node* temp = head;
-    //±£Ö¤¿Õ¸ñÅÅÁÐÕýÈ·
+    //ä¿è¯ç©ºæ ¼æŽ’åˆ—æ­£ç¡®
     bool first = true;
     while (temp) {
         if (first) {
@@ -75,7 +75,7 @@ void printList(Node* head) {
     cout << endl;
 }
 
-// ÊÍ·ÅÁ´±íÄÚ´æ
+// é‡Šæ”¾é“¾è¡¨å†…å­˜
 void deleteList(Node* head) {
     while (head) {
         Node* temp = head;
@@ -84,13 +84,13 @@ void deleteList(Node* head) {
     }
 }
 
-// ´Ó×Ö·û´®¹¹Ôìµ¥Á´±í
+// ä»Žå­—ç¬¦ä¸²æž„é€ å•é“¾è¡¨
 Node* createListFromString(const string& str) {
     Node* head = nullptr;
     istringstream iss(str);
     int num;
     while (iss >> num) {
-        // ÎªÁË±£Ö¤µÝÔöÅÅÐò
+        // ä¸ºäº†ä¿è¯é€’å¢žæŽ’åº
         if (!head || head->data >= num) {
             insert(head, num);
         }
@@ -107,14 +107,14 @@ Node* createListFromString(const string& str) {
     return head;
 }
 
-// ÇóÁ½¸öÓÐÐòÁ´±íµÄ½»¼¯
+// æ±‚ä¸¤ä¸ªæœ‰åºé“¾è¡¨çš„äº¤é›†
 Node* getIntersection(Node* headA, Node* headB) {
     Node* intersectionHead = nullptr;
     while (headA && headB) {
         if (headA->data == headB->data) {
             if (!intersectionHead || intersectionHead->data != headA->data)
-                //µ÷ÓÃº¯Êý
-                insert(intersectionHead, headA->data); // ²åÈëµ½½»¼¯Á´±í
+                //è°ƒç”¨å‡½æ•°
+                insert(intersectionHead, headA->data); // æ’å…¥åˆ°äº¤é›†é“¾è¡¨
             headA = headA->next;
             headB = headB->next;
         }
@@ -130,21 +130,21 @@ Node* getIntersection(Node* headA, Node* headB) {
 
 int main() {
     string lineA, lineB;
-    // ¶ÁÈ¡ÊäÈë
+    // è¯»å–è¾“å…¥
     getline(cin, lineA);
     getline(cin, lineB);
 
-    // ´´½¨Á´±íAºÍÁ´±íB
+    // åˆ›å»ºé“¾è¡¨Aå’Œé“¾è¡¨B
     Node* listA = createListFromString(lineA);
     Node* listB = createListFromString(lineB);
 
-    // »ñÈ¡½»¼¯Á´±í
+    // èŽ·å–äº¤é›†é“¾è¡¨
     Node* intersectionList = getIntersection(listA, listB);
 
-    // Êä³ö½»¼¯Á´±í
+    // è¾“å‡ºäº¤é›†é“¾è¡¨
     printList(intersectionList);
 
-    // ÊÍ·ÅÄÚ´æ
+    // é‡Šæ”¾å†…å­˜
     deleteList(listA);
     deleteList(listB);
     deleteList(intersectionList);

@@ -2,7 +2,7 @@
 #define QUEUE_H
 
 #include "Link.h"
-#include <stdexcept> // ÓÃÓÚÒì³£´¦Àí
+#include <stdexcept> // ç”¨äºå¼‚å¸¸å¤„ç†
 #include <iostream>
 using namespace std;
 
@@ -27,7 +27,7 @@ T Queue<T>::dequeue() {
     if (list.isEmpty()) {
         throw underflow_error("Queue is empty");
     }
-    // »ñÈ¡Í·½ÚµãÊı¾İ
+    // è·å–å¤´èŠ‚ç‚¹æ•°æ®
     Node<T>* head = list.getHead();
     T data = head->getData();
     list.removeFront();

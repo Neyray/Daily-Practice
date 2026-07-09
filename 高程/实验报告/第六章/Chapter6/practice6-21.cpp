@@ -8,7 +8,7 @@ int countLetters(const string& sentence)
     int count = 0;
     for (char c : sentence)
     {
-        if (isalpha(c))  // 检查是否为字母
+        if (isalpha(c))  // 妫�鏌ユ槸鍚︿负瀛楁瘝
         {
             count++;
         }
