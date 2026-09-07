@@ -4,10 +4,13 @@
 
 当前计划共：
 
-- 15 个算法学习主题
-- 每周 4 题
+- 8 个算法主题模块
+- 15 周，每周 4 题
 - 共 60 道 LeetCode
 - 重点不是刷题数量，而是形成可以独立实现的算法模板
+
+每个模块目录下的 `template.cpp` 已经写好可直接编译的参考实现，
+题号命名的 `.cpp` 留空，由自己动手完成。
 
 目录按照「主要训练的算法模板」进行分类，而不是按照 LeetCode 的全部标签进行分类。
 
@@ -19,29 +22,43 @@
 Algorithm/
 ├── README.md
 │
-├── search/
-│   └── template.cpp
+├── search/                 # 二分查找
+│   ├── template.cpp
+│   ├── 704.cpp  35.cpp  69.cpp  34.cpp  33.cpp
 │
-├── divide-conquer/
-│   └── template.cpp
+├── divide-conquer/         # 递归与分治
+│   ├── template.cpp
+│   ├── 50.cpp  53.cpp  169.cpp  108.cpp
 │
-├── sort-structure/
-│   └── template.cpp
+├── sort-structure/         # 排序 / 选择 / 堆 / 单调队列
+│   ├── template.cpp
+│   ├── 912.cpp  215.cpp  75.cpp  347.cpp  239.cpp
 │
-├── greedy/
-│   └── template.cpp
+├── greedy/                 # 贪心与区间
+│   ├── template.cpp
+│   ├── 455.cpp  860.cpp  55.cpp  45.cpp  435.cpp
+│   ├── 452.cpp  763.cpp  134.cpp  56.cpp
 │
-├── dp/
-│   └── template.cpp
+├── dp/                     # 动态规划
+│   ├── template.cpp
+│   ├── 70.cpp  746.cpp  198.cpp  213.cpp  416.cpp
+│   ├── 494.cpp  322.cpp  518.cpp  300.cpp  1143.cpp
+│   ├── 72.cpp  139.cpp  152.cpp
 │
-├── backtracking/
-│   └── template.cpp
+├── backtracking/           # 回溯
+│   ├── template.cpp
+│   ├── 46.cpp  78.cpp  77.cpp  39.cpp  40.cpp
+│   ├── 79.cpp  131.cpp  51.cpp
 │
-├── graph/
-│   └── template.cpp
+├── graph/                  # 树 / 图 / 拓扑排序 / 最短路
+│   ├── template.cpp
+│   ├── 94.cpp  102.cpp  104.cpp  236.cpp
+│   ├── 200.cpp  994.cpp  207.cpp  210.cpp
+│   ├── 743.cpp  787.cpp  1334.cpp  1631.cpp
 │
-└── dsu-mst/
-    └── template.cpp
+└── dsu-mst/                # 并查集 / 最小生成树
+    ├── template.cpp
+    ├── 684.cpp  547.cpp  1584.cpp  721.cpp
 ```
 
 ---
@@ -85,6 +102,18 @@ Algorithm/search/
 search/template.cpp
 ```
 
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `binarySearch` | 闭区间二分，找精确值 |
+| `lowerBound` | 第一个 `>= target` 的下标 |
+| `upperBound` | 第一个 `> target` 的下标 |
+| `searchRange` | 由左右边界组合出元素起止区间 |
+| `binarySearchAnswer` | 二分答案（在单调 `check` 上二分）|
+| `mySqrt` | 求最大可行值时 `mid` 上取整，防死循环 |
+| `searchRotated` | 旋转有序数组，先判断哪半边有序 |
+
 ---
 
 # 2. Divide and Conquer
@@ -122,6 +151,17 @@ Algorithm/divide-conquer/
 ```text
 divide-conquer/template.cpp
 ```
+
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `myPow` / `powRecursive` | 快速幂，迭代与递归两种写法 |
+| `maxSubArrayDC` | 分治求最大子数组和，含跨中点情况 |
+| `maxSubArrayKadane` | 对照的 O(n) 线性解法 |
+| `majorityElementDC` | 分治求众数 |
+| `majorityElementVote` | 对照的 Boyer-Moore 投票法 |
+| `buildBST` | 有序数组建平衡 BST |
 
 ---
 
@@ -167,6 +207,19 @@ Algorithm/sort-structure/
 sort-structure/template.cpp
 ```
 
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `mergeSort` | 归并排序，稳定，`tmp` 数组提到递归外 |
+| `quickSort` | 随机 pivot + 三路切分 |
+| `quickSelect` | 迭代式快速选择，期望 O(n) |
+| `kthLargestByHeap` | 大小为 k 的小顶堆求第 k 大 |
+| `siftDown` / `heapSort` | 手写下沉与堆排序 |
+| `topKFrequent` | 桶排序求 Top-K 频次 |
+| `sortColors` | 荷兰国旗三路 Partition |
+| `maxSlidingWindow` | 单调队列（存下标）|
+
 ---
 
 # 4. Greedy
@@ -210,6 +263,19 @@ Algorithm/greedy/
 ```text
 greedy/template.cpp
 ```
+
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `findContentChildren` | 排序 + 双指针 |
+| `lemonadeChange` | 找零时优先消耗大面额 |
+| `canJump` / `jump` | 最远可达下标 / BFS 分层 |
+| `eraseOverlapIntervals` | 按右端点排序 |
+| `findMinArrowShots` | 同上，比较写法避免相减溢出 |
+| `mergeIntervals` | 按左端点排序 |
+| `partitionLabels` | 预处理字母最后出现位置 |
+| `canCompleteCircuit` | 断油即换起点 |
 
 ---
 
@@ -274,6 +340,22 @@ vs
 dp/template.cpp
 ```
 
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `climbStairs` / `rob` / `robCircle` | 线性 DP，滚动变量压空间 |
+| `knapsack01` | 0/1 背包，容量**倒序** |
+| `canPartition` | 0/1 背包 · 可行性 |
+| `findTargetSumWays` | 0/1 背包 · 计数 |
+| `coinChange` | 完全背包 · 求最值，容量**正序** |
+| `coinChangeCombinations` | 完全背包 · 组合数（物品在外层）|
+| `lengthOfLIS` / `lengthOfLISFast` | O(n²) 与 贪心+二分 O(n log n) |
+| `longestCommonSubsequence` | 双序列 DP |
+| `minDistance` | 编辑距离 |
+| `wordBreak` | 划分型 DP |
+| `maxProduct` | 同时维护 max / min |
+
 ---
 
 # 6. Backtracking
@@ -328,6 +410,19 @@ Algorithm/backtracking/
 ```text
 backtracking/template.cpp
 ```
+
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `permute` | 排列，用 `used` 数组 |
+| `subsets` | 子集，每个节点都收集 |
+| `combine` | 组合，上界剪枝 |
+| `combinationSum` | 可重复选：递归传 `i` |
+| `combinationSum2` | 每个只用一次 + 同层去重 |
+| `partitionPalindrome` | 分割型回溯 |
+| `exist` | 网格 DFS，原地标记再还原 |
+| `solveNQueens` | 列 / 两条对角线三个标记数组 |
 
 ---
 
@@ -411,6 +506,22 @@ Floyd-Warshall
 graph/template.cpp
 ```
 
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `inorder` / `inorderIterative` | 递归与显式栈遍历 |
+| `levelOrder` | 层序，进循环先固定本层大小 |
+| `maxDepth` / `lowestCommonAncestor` | 树递归，重点是返回值含义 |
+| `floodFill` / `numIslands` | 网格 DFS 沉岛 |
+| `orangesRotting` | 多源 BFS 分层计数 |
+| `topoSort` | Kahn 入度法，可判环 |
+| `dijkstra` | 优先队列 + 懒删除 |
+| `bellmanFordLimited` | 限制边数，每轮基于快照松弛 |
+| `hasNegativeCycle` | 第 n 轮仍可松弛即有负环 |
+| `floyd` | 中转点 k 必须在最外层 |
+| `minimumEffortPath` | Dijkstra 变形：瓶颈路 |
+
 ---
 
 # 8. DSU / MST
@@ -453,6 +564,18 @@ Prim
 ```text
 dsu-mst/template.cpp
 ```
+
+模板内容：
+
+| 函数 | 说明 |
+|---|---|
+| `DSU` | 路径压缩（迭代式）+ 按大小合并 |
+| `findRedundantConnection` | `unite` 返回 false 即成环 |
+| `findCircleNum` | 连通分量计数 |
+| `accountsMerge` | 用 map 把非整数元素映射成下标 |
+| `kruskal` | 边排序 + 并查集判环 |
+| `minCostConnectPoints` | 完全图建边后跑 Kruskal |
+| `prim` / `primDense` | 优先队列版 / 稠密图 O(V²) 版 |
 
 ---
 
@@ -569,7 +692,8 @@ Review
 
 # Template Goal
 
-以下模板建议最终做到能够脱离题解独立写出：
+每个模块的 `template.cpp` 都已给出参考实现（含复杂度与易错点注释），
+但目标不是照抄，而是最终能**合上文件独立默写**出下面这些：
 
 ```text
 Binary Search
@@ -632,6 +756,28 @@ template.cpp
 Algorithm/search/template.cpp
 Algorithm/dp/template.cpp
 Algorithm/graph/template.cpp
+```
+
+---
+
+# Build
+
+`template.cpp` 只包含函数定义、不含 `main`，用于查阅和语法检查：
+
+```bash
+g++ -std=c++17 -fsyntax-only dp/template.cpp
+```
+
+题号文件按 VS Code 的 `build` 任务（`.vscode/tasks.json`）编译即可：
+
+```bash
+g++ -g -std=c++17 dp/70.cpp -o dp/70.exe
+```
+
+本地调试建议开上越界检查：
+
+```bash
+g++ -std=c++17 -fsanitize=address,undefined -g dp/70.cpp -o dp/70.exe
 ```
 
 ---
