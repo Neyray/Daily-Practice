@@ -1,3 +1,4 @@
+// 闭区间，二分查找
 #include <iostream>
 #include <vector>
 #include <algorithm>

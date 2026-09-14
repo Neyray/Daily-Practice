@@ -1,4 +1,5 @@
 // 左闭右开区间
+// 搜索插入位置
 #include <iostream>
 #include <vector>
 #include <algorithm>
