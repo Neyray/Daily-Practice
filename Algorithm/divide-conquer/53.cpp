@@ -1,4 +1,5 @@
 // 最大子数组和
+// 贪心策略
 #include <iostream>
 #include <vector>
 using namespace std;
