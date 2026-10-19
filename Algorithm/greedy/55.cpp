@@ -1,4 +1,4 @@
-// 跳跃游戏II
+// 跳跃游戏I
 // 贪心策略
 #include <iostream>
 #include <vector>
