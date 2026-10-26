@@ -1,7 +1,9 @@
-## Daily-Practice 🌐
-> C++源码
+# Daily-Practice
 
-日常 C++ 编程练习，持续更新。
+C++ 日常练习与课程代码。
 
-**Tags:** `cpp` `wsl-ubuntu`  
-**Language:** C++
+- [算法：200 题分类题单](Algorithm/README.md)
+- [数据结构](data-structureA/README.md)
+- [历史日常练习](Daily_practice/)
+- [面试题](面试题/)
+- [高程课程练习](高程/)
