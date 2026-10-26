@@ -1,4 +1,5 @@
 // 子集
+// 元素互不相同
 // 搜索树的每一个节点都是子集
 #include <iostream>
 #include <vector>
