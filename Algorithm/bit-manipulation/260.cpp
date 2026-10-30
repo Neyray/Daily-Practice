@@ -1,6 +1,33 @@
-// LeetCode 260：只出现一次的数字 III
-// 题目链接：https://leetcode.cn/problems/single-number-iii/
-// 难度：中等
-// 训练主题：位运算与位集合
-// 思考方向：所有数异或后按某个置位分组，再分别抵消重复项。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 只出现一次的数字 III
+// 两个元素出现一次，其余元素出现两次
+// x&(-x)表示保留最后一位的1，其余的都设为0，可用来对异或后的数据进行分组；-x=~x+1（无符号数）
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+
+vector<int> singleNumber(vector<int>& nums) {
+    uint32_t x = 0;
+
+    // 第一步：全部异或，得到两个不同数字的异或值
+    for (int num : nums) {
+        x ^= static_cast<uint32_t>(num);
+    }
+
+    // 第二步：提取最低位的1，作为分组依据
+    uint32_t lowbit = x & -x;
+
+    int a = 0, b = 0;
+
+    // 第三步：按照lowbit分组，分别异或
+    for (int num : nums) {
+        if (static_cast<uint32_t>(num) & lowbit) {
+            a ^= num;
+        } else {
+            b ^= num;
+        }
+    }
+
+    return {a, b};
+}

@@ -1,4 +1,16 @@
-// LeetCode 136：只出现一次的数字
-// 训练主题：XOR 异或
-// 思考方向：利用 x ^ x == 0、x ^ 0 == x，以及异或的交换律和结合律。
-// TODO: 独立实现本题，完成后对照 template.cpp。
+// 只出现一次的数字
+// 别的数字出现两次
+// ^ 异或运算可以交换、结合
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int singleNumber(vector<int>& nums) {
+    int ans = 0;
+
+    for (int x : nums) {
+        ans ^= x;  // 相同数字异或后抵消
+    }
+
+    return ans;
+}

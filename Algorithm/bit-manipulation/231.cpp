@@ -1,4 +1,17 @@
-// LeetCode 231：2 的幂
-// 训练主题：基础位运算
-// 思考方向：先判断 n > 0，再判断是否只有一个二进制位为 1。
-// TODO: 独立实现本题，完成后对照 template.cpp。
+// L2 的幂
+#include <iostream>
+using namespace std;
+
+bool isPowerOfTwo(int n) {
+    if (n <= 0) return false;
+
+    uint32_t x = static_cast<uint32_t>(n);
+    int count = 0;
+
+    while (x != 0) {
+        count += x & 1;//表示加上x二进制表示的末尾数字
+        x >>= 1;
+    }
+
+    return count == 1;
+}

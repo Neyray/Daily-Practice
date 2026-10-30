@@ -1,4 +1,16 @@
-// LeetCode 191：位1的个数
-// 训练主题：基础位运算
-// 思考方向：用 n & (n - 1) 每次清除最低位的 1；注意使用无符号类型。
-// TODO: 独立实现本题，完成后对照 template.cpp。
+// 位1的个数
+// n&(n-1)表示去掉最后一位的1,n&1表示最后一位是否是1
+#include <iostream>
+using namespace std;
+
+int hammingWeight(int n) {
+    uint32_t x = static_cast<uint32_t>(n);
+    int count = 0;
+
+    while (x != 0) {
+        count += (x & 1);  // 判断最低位是否为1
+        x >>= 1;           // 右移一位
+    }
+
+    return count;
+}
