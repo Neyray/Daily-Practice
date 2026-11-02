@@ -1,4 +1,30 @@
-// LeetCode 338：比特位计数
-// 训练主题：位运算 + DP
-// 思考方向：定义 dp[i] 为 i 的二进制中 1 的数量，思考 i & (i - 1) 对应哪个已知状态。
-// TODO: 独立实现本题，完成后对照 template.cpp。
+// 比特位计数
+#include <iostream>
+#include <functional>
+#include <vector>
+using namespace std;
+
+vector<int> countBits(int n) {
+    vector<int> ans(n + 1, 0);
+
+    function<int(int)> fun = [&](int num) {
+        uint32_t x = static_cast<uint32_t>(num);
+
+        int count = 0;
+        while (x != 0) {
+            if ((x & 1u) == 0) break;
+
+            count++;
+            x >>= 1;
+        }
+
+        return count - 1;// 表示减少1的数量
+    };
+
+    for (int i = 1; i <= n; ++i) {
+        int count = fun(i - 1);
+        ans[i] = ans[i - 1] - count;
+    }
+
+    return ans;
+}

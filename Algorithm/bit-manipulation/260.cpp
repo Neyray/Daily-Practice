@@ -16,6 +16,7 @@ vector<int> singleNumber(vector<int>& nums) {
     }
 
     // 第二步：提取最低位的1，作为分组依据
+    // 为什么选1？异或为1说明这一位两个数字不同，可以用来作为区分标准
     uint32_t lowbit = x & -x;
 
     int a = 0, b = 0;

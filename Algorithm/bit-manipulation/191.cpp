@@ -1,5 +1,5 @@
 // 位1的个数
-// n&(n-1)表示去掉最后一位的1,n&1表示最后一位是否是1
+// n&(n-1)表示去掉最后的1,n&1表示最后一位是否是1
 #include <iostream>
 using namespace std;
 

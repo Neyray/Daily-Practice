@@ -18,6 +18,7 @@ int singleNumber(vector<int>& nums) {
         }
 
         // 对3取模，恢复答案的第i位
+        // 结果要么为1要么为0
         if (count % 3 != 0) {
             ans |= (1u << i);
         }

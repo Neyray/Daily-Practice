@@ -1,4 +1,42 @@
-// LeetCode 318：最大单词长度乘积
-// 训练主题：位掩码 Bitmask
-// 思考方向：用 26 位记录小写英文字母是否出现，通过按位与判断两个单词是否共享字母。
-// TODO: 独立实现本题，完成后对照 template.cpp。
+// 最大单词长度乘积
+// | 用于合并元素，& 用于检查共同元素，^ 用于判断哪些位不同
+#include <iostream>
+#include <functional>
+#include <vector>
+#include <string>
+using namespace std;
+
+int maxProduct(vector<string>& words) {
+    int n = words.size();
+
+    function<bool(const string&, const string&)> compare =
+        [&](const string& word1, const string& word2) {
+            uint32_t num1 = 0;
+            uint32_t num2 = 0;
+
+            for (int i = 0; i < word1.length(); ++i) {
+                int num = word1[i] - 'a';
+                num1 |= 1u << num;
+            }
+
+            for (int j = 0; j < word2.length(); ++j) {
+                int num = word2[j] - 'a';
+                num2 |= 1u << num;
+            }
+
+            return (num1 & num2) == 0;
+        };
+
+    int result = 0;
+
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (compare(words[i], words[j])) {
+                int count = words[i].length() * words[j].length();
+                result = max(result, count);
+            }
+        }
+    }
+
+    return result;
+}
