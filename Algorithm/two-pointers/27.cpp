@@ -1,6 +1,18 @@
-// LeetCode 27：移除元素
-// 题目链接：https://leetcode.cn/problems/remove-element/
-// 难度：简单
-// 训练主题：双指针 / 快慢指针
-// 思考方向：读指针扫描非目标元素，写指针维护有效前缀，返回新长度。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 移除元素
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int removeElement(vector<int>& nums, int val) {
+    int n = nums.size();
+    int slow = 0;
+
+    for (int fast = 0; fast < n; ++fast) {
+        if (nums[fast] != val) {
+            nums[slow] = nums[fast];
+            slow++;
+        }
+    }
+
+    return slow;
+}
