@@ -1,6 +1,19 @@
-// LeetCode 88：合并两个有序数组
-// 题目链接：https://leetcode.cn/problems/merge-sorted-array/
-// 难度：简单
-// 训练主题：双指针 / 逆向双指针
-// 思考方向：从两个数组尾部比较，将较大元素写入第一个数组末尾，避免覆盖未处理元素。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 合并两个有序数组
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// 从后到前的指针
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    int p1 = m - 1;
+    int p2 = n - 1;
+    int p = m + n - 1;
+
+    while (p2 >= 0) {
+        if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+            nums1[p--] = nums1[p1--];
+        } else {
+            nums1[p--] = nums2[p2--];
+        }
+    }
+}

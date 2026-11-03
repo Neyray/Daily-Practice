@@ -1,6 +1,14 @@
-// LeetCode 344：反转字符串
-// 题目链接：https://leetcode.cn/problems/reverse-string/
-// 难度：简单
-// 训练主题：双指针 / 相向双指针
-// 思考方向：左右指针向中间移动并交换字符，注意空串和奇偶长度。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 反转字符串
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void reverseString(vector<char>& s) {
+    int p1 = 0, p2 = s.size() - 1;
+
+    while (p1 < p2) {
+        swap(s[p1], s[p2]);
+        p1++;
+        p2--;
+    }
+}

@@ -1,6 +1,25 @@
-// LeetCode 125：验证回文串
-// 题目链接：https://leetcode.cn/problems/valid-palindrome/
-// 难度：简单
-// 训练主题：双指针 / 相向双指针
-// 思考方向：两端跳过非字母数字字符，忽略大小写后比较，注意字符分类函数的参数类型。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 验证回文串
+#include <iostream>
+#include <cctype>
+#include <vector>
+using namespace std;
+
+bool isPalindrome(string s) {
+    string ans = "";
+
+    for (char c : s) {
+        if (isalnum(c)) {
+            ans += tolower(c);
+        }
+    }
+
+    int p1 = 0, p2 = (int)ans.size() - 1;
+
+    while (p1 < p2) {
+        if (ans[p1] != ans[p2]) return false;
+        p1++;
+        p2--;
+    }
+
+    return true;
+}
