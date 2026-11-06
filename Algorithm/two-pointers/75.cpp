@@ -1,7 +1,27 @@
-// LeetCode 75：颜色分类
-// 题目链接：https://leetcode.cn/problems/sort-colors/
-// 难度：中等
-// 训练主题：双指针 / 三指针 / 荷兰国旗
-// 思考方向：维护 0、待处理、2 三段边界，交换到右端后不要跳过新换来的元素。
-// 跨专题对照：../sorting/75.cpp；同题进度按本专题文件独立记录。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 颜色分类
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void sortColors(vector<int>& nums) {
+    int n=nums.size();
+
+    int p1=-1,p2=n;
+    int i=0;
+
+    while(i<p2){
+        if(nums[i]==0){
+            p1++;
+            swap(nums[i],nums[p1]);
+
+            // nums[p1]已经检查过了，所以不需要再次进行检查
+            i++;
+        }else if(nums[i]==1){
+            i++;
+        }else{
+            p2--;
+            swap(nums[i],nums[p2]);
+            // 不移动 i，重新检查交换过来的数，nums[p2]未遍历过，所以需要再次检查
+        }
+    }
+}

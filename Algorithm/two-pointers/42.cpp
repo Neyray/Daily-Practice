@@ -1,6 +1,36 @@
-// LeetCode 42：接雨水
-// 题目链接：https://leetcode.cn/problems/trapping-rain-water/
-// 难度：困难
-// 训练主题：双指针
-// 思考方向：维护左右最高边界，确定当前较小边界一侧能够积水的量。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 接雨水
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// 贪心思想：p1,p2高的那个不需要动
+int trap(vector<int>& height) {
+    int n=height.size();
+
+    int p1=0,p2=n-1;
+    int sum=0;
+
+    while(p1<p2){
+        if(height[p1]<=height[p2]){
+            int temp1=height[p1];
+
+            p1++; // 先移动指针
+
+            while(p1<p2 && height[p1]<temp1){
+                sum+=temp1-height[p1];
+                p1++;
+            }
+        }else{
+            int temp2=height[p2];
+
+            p2--; // 先移动指针
+
+            while(p1<p2 && height[p2]<temp2){
+                sum+=temp2-height[p2];
+                p2--;
+            }
+        }
+    }
+
+    return sum;
+}

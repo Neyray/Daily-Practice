@@ -1,6 +1,21 @@
-// LeetCode 392：判断子序列
-// 题目链接：https://leetcode.cn/problems/is-subsequence/
-// 难度：简单
-// 训练主题：双指针 / 同向双指针
-// 思考方向：两个指针同向扫描，仅在字符匹配时推进子序列指针，注意空子序列。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 判断子序列
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool isSubsequence(string s, string t) {
+    int n1=s.length(),n2=t.length();
+
+    int p1=0,p2=0;
+
+    while(p1<n1 && p2<n2){
+        if(s[p1]==t[p2]){
+            p1++;
+            p2++;
+        }else{
+            p2++;
+        }
+    }
+
+    return p1==n1;
+}
