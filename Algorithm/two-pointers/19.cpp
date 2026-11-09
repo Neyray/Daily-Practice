@@ -1,7 +1,36 @@
-// LeetCode 19：删除链表的倒数第 N 个结点
-// 题目链接：https://leetcode.cn/problems/remove-nth-node-from-end-of-list/
-// 难度：中等
-// 训练主题：双指针 / 固定间距双指针
-// 思考方向：使用哑节点与固定间距的前后指针，定位待删除节点的前驱，注意删除头节点。
-// 跨专题对照：../linked-list/19.cpp；同题进度按本专题文件独立记录。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 删除链表的倒数第 N 个结点
+#include <iostream>
+using namespace std;
+
+
+struct ListNode{
+    int val;
+    ListNode* next;
+
+    ListNode(int v):val(v),next(NULL){}
+};
+
+
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+    ListNode dummy(0);
+    dummy.next=head;
+
+    ListNode* fast = &dummy;
+    ListNode* slow = &dummy;
+
+    // 快指针先走 n+1 步
+    for (int i = 0; i <= n; ++i) {
+        fast = fast->next;
+    }
+
+    // 快慢指针同步移动
+    while (fast != NULL) {
+        fast = fast->next;
+        slow = slow->next;
+    }
+
+    // 此时 slow 指向待删除节点的前驱节点
+    slow->next = slow->next->next;
+
+    return dummy.next;
+}
