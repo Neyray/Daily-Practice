@@ -1,6 +1,43 @@
-// LeetCode 1052：爱生气的书店老板
-// 题目链接：https://leetcode.cn/problems/grumpy-bookstore-owner/
-// 难度：中等
-// 训练主题：滑动窗口
-// 思考方向：分开累计天然满意人数与可挽回人数，对后者做固定窗口。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 爱生气的书店老板
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+    int n = customers.size();
+
+    int sum = 0;
+
+    // 计算原本就满意的顾客数量
+    for (int i = 0; i < n; ++i) {
+        if (grumpy[i] == 0) {
+            sum += customers[i];
+        }
+    }
+
+    // 初始化第一个窗口，增加原本不满意的顾客
+    for (int i = 0; i < minutes; ++i) {
+        if (grumpy[i] == 1) {
+            sum += customers[i];
+        }
+    }
+
+    int ans = sum;
+
+    // 定长滑动窗口
+    for (int i = minutes; i < n; ++i) {
+        // 右侧进入窗口
+        if (grumpy[i] == 1) {
+            sum += customers[i];
+        }
+
+        // 左侧离开窗口
+        if (grumpy[i - minutes] == 1) {
+            sum -= customers[i - minutes];
+        }
+
+        ans = max(ans, sum);
+    }
+
+    return ans;
+}

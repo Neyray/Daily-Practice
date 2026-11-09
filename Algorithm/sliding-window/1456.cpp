@@ -1,6 +1,33 @@
-// LeetCode 1456：定长子串中元音的最大数目
-// 题目链接：https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
-// 难度：中等
-// 训练主题：滑动窗口
-// 思考方向：固定长度窗口维护元音数量，处理进出窗口的字符。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 定长子串中元音的最大数目
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int maxVowels(string s, int k) {
+    int n = s.size();
+
+    auto isVowel = [](char c) {
+        return c == 'a' || c == 'e' || c == 'i' ||
+               c == 'o' || c == 'u';
+    };
+
+    int sum = 0;
+
+    // 初始化第一个窗口
+    for (int i = 0; i < k; ++i) {
+        sum += isVowel(s[i]);
+    }
+
+    int ans = sum;
+
+    // 定长滑动窗口
+    for (int i = k; i < n; ++i) {
+        sum += isVowel(s[i]);      // 右侧字符进入
+        sum -= isVowel(s[i - k]);  // 左侧字符离开
+
+        ans = max(ans, sum);
+    }
+
+    return ans;
+}

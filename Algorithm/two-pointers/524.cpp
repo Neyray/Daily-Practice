@@ -1,4 +1,5 @@
 // 通过删除字母匹配到字典里最长单词
+// 寻找子序列问题，可以维护nxt二维数组表示每个位置之后每个元素第一次出现的位置，遍历时按照index判断之后是否存在该元素
 #include <iostream>
 #include <vector>
 using namespace std;

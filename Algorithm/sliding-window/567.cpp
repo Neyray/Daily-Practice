@@ -1,6 +1,42 @@
-// LeetCode 567：字符串的排列
-// 题目链接：https://leetcode.cn/problems/permutation-in-string/
-// 难度：中等
-// 训练主题：滑动窗口 / 定长窗口字符频次
-// 思考方向：窗口长度固定为模式串长度，比较两组字母频次或维护频次差，注意模式串更长。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 字符串的排列
+// 异步排列问题可以考虑维护数组cnt(26)来判定元素出现个数，只要能相互抵消，就说明存在子串
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+
+bool checkInclusion(string s1, string s2) {
+    int n = s1.size();
+    int m = s2.size();
+
+    if (n > m) return false;
+
+    vector<int> cnt(26, 0);
+
+    // 初始化第一个窗口
+    for (int i = 0; i < n; ++i) {
+        cnt[s1[i] - 'a']++;
+        cnt[s2[i] - 'a']--;
+    }
+
+    // 判断两个字符串的字符频率是否相同
+    auto check = [&]() {
+        for (int x : cnt) {
+            if (x != 0) return false;
+        }
+        return true;
+    };
+    // 一定要检查第一个滑动窗口！！！
+    if (check()) return true;
+
+    // 定长滑动窗口
+    for (int i = n; i < m; ++i) {
+        cnt[s2[i] - 'a']--;       // 右侧字符进入
+        cnt[s2[i - n] - 'a']++;   // 左侧字符离开
+
+        if (check()) return true;
+    }
+
+    return false;
+}
