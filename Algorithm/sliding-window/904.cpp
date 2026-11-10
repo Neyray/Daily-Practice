@@ -1,6 +1,36 @@
-// LeetCode 904：水果成篮
-// 题目链接：https://leetcode.cn/problems/fruit-into-baskets/
-// 难度：中等
-// 训练主题：滑动窗口 / 最多 K 种元素
-// 思考方向：维护窗口中的水果种类及频次，超过两种时收缩左端点并删除零频次项。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 水果成篮
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+
+int totalFruit(vector<int>& fruits) {
+    int ans = 0;
+    int left = 0;
+
+    unordered_map<int, int> mp;
+
+    for (int right = 0; right < fruits.size(); ++right) {
+        // 加入右端水果
+        // right只管“开疆拓土”
+        mp[fruits[right]]++;
+
+        // 水果种类超过 2，缩小窗口
+        while (mp.size() > 2) {
+            mp[fruits[left]]--;
+
+            // 某种水果已经不存在，删除对应键
+            if (mp[fruits[left]] == 0) {
+                mp.erase(fruits[left]);
+            }
+
+            left++;
+        }
+
+        // 当前窗口合法，更新最大长度
+        ans = max(ans, right - left + 1);
+    }
+
+    return ans;
+}

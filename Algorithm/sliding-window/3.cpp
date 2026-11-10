@@ -1,6 +1,30 @@
-// LeetCode 3：无重复字符的最长子串
-// 题目链接：https://leetcode.cn/problems/longest-substring-without-repeating-characters/
-// 难度：中等
-// 训练主题：滑动窗口
-// 思考方向：维护无重复窗口，发现重复字符时收缩左端点。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 无重复字符的最长子串
+// 找最长：不满足条件右移left，一旦满足就停止移动，保证长度尽可能大
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int lengthOfLongestSubstring(string s) {
+    int n = s.size();
+
+    vector<int> cnt(256, 0);
+    int left = 0;
+    int ans = 0;
+
+    for (int right = 0; right < n; ++right) {
+        unsigned char c = s[right];
+        cnt[c]++;
+
+        // 出现重复字符，缩小窗口
+        while (cnt[c] > 1) {
+            cnt[(unsigned char)s[left]]--;
+            left++;
+        }
+
+        // 当前窗口合法，更新最长长度
+        ans = max(ans, right - left + 1);
+    }
+
+    return ans;
+}

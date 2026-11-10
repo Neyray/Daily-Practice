@@ -1,6 +1,36 @@
-// LeetCode 1004：最大连续 1 的个数 III
-// 题目链接：https://leetcode.cn/problems/max-consecutive-ones-iii/
-// 难度：中等
-// 训练主题：滑动窗口 / 最多 K 次修改
-// 思考方向：将最多翻转 k 次转成窗口内零的个数不超过 k，非法时收缩左端点。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 最大连续 1 的个数 III
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+
+int longestOnes(vector<int>& nums, int k) {
+    int n = nums.size();
+
+    int left = 0;
+    int zero = 0;
+    int ans = 0;
+
+    for (int right = 0; right < n; ++right) {
+        // 扩大窗口，统计 0 的数量
+
+        // right只管向前扩展滑动窗口，left来兜底
+        if (nums[right] == 0) {
+            zero++;
+        }
+
+        // 0 的数量超过 k，窗口不合法
+        while (zero > k) {
+            if (nums[left] == 0) {
+                zero--;
+            }
+            left++;
+        }
+
+        // 窗口合法，更新最长长度
+        ans = max(ans, right - left + 1);
+    }
+
+    return ans;
+}
