@@ -1,6 +1,27 @@
-// LeetCode 713：乘积小于 K 的子数组
-// 题目链接：https://leetcode.cn/problems/subarray-product-less-than-k/
-// 难度：中等
-// 训练主题：滑动窗口 / 窗口计数
-// 思考方向：正整数数组中维护乘积小于 k 的窗口，每个右端点贡献 right-left+1 个子数组；先处理 k <= 1。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 乘积小于 K 的子数组
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+    if(k<=1)return 0;
+
+    int n=nums.size();
+    int left=0;
+    int ans=0;
+    int temp=1;
+
+    for(int right=0;right<n;++right){
+        temp*=nums[right];
+
+        while(temp>=k){
+            temp/=nums[left];
+            left++;
+        }
+
+        // 为什么在这里更新？因为right变化了位置，加入了前面的判断条件后再统计增加的子数组数量
+        ans+=right-left+1;
+    }
+
+    return ans;
+}

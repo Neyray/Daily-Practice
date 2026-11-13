@@ -1,6 +1,45 @@
-// LeetCode 1438：绝对差不超过限制的最长连续子数组
-// 题目链接：https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/
-// 难度：中等
-// 训练主题：滑动窗口 / 最大/最小单调队列
-// 思考方向：分别维护最大值与最小值的单调队列，二者差超过 limit 时收缩窗口并清理过期下标。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 绝对差不超过限制的最长连续子数组
+#include <iostream>
+#include <vector>
+#include <deque>
+using namespace std;
+
+
+int longestSubarray(vector<int>& nums, int limit) {
+    int n=nums.size();
+
+    deque<int> maxQ,minQ;
+    int left=0;
+    int ans=0;
+
+    for(int right=0;right<n;++right){
+        // 维护单调递减队列（最大值）
+        while(!maxQ.empty() && nums[maxQ.back()]<nums[right]){
+            maxQ.pop_back();
+        }
+        maxQ.push_back(right);
+
+        // 维护单调递增队列（最小值）
+        while(!minQ.empty() && nums[minQ.back()]>nums[right]){
+            minQ.pop_back();
+        }
+        minQ.push_back(right);
+
+        // 最大值和最小值之差超过limit，收缩窗口
+        while(nums[maxQ.front()]-nums[minQ.front()]>limit){
+            if(maxQ.front()==left){
+                maxQ.pop_front();
+            }
+
+            if(minQ.front()==left){
+                minQ.pop_front();
+            }
+
+            left++;
+        }
+
+        ans=max(ans,right-left+1);
+    }
+
+    return ans;
+}

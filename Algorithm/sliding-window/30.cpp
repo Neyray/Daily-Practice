@@ -1,6 +1,66 @@
-// LeetCode 30：串联所有单词的子串
-// 题目链接：https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
-// 难度：困难
-// 训练主题：滑动窗口 / 分组滑动窗口
-// 思考方向：按单词长度划分起始偏移，以整个单词为单位维护定额频次，遇到非法词或超额词时调整窗口。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 串联所有单词的子串
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+
+vector<int> findSubstring(string s, vector<string>& words) {
+    int n=s.size();
+    int m=words.size();
+    int len=words[0].size();
+
+    vector<int> ans;
+
+    if(n<m*len)return ans;
+
+    // 统计目标单词出现次数
+    unordered_map<string,int> need;
+    for(string& w:words){
+        need[w]++;
+    }
+
+    // 枚举不同的起始偏移量
+    for(int i=0;i<len;++i){
+        int left=i;
+        int cnt=0;
+
+        unordered_map<string,int> mp;
+
+        for(int right=i;right+len<=n;right+=len){
+            string word=s.substr(right,len);
+
+            // 当前单词不在words中，重置窗口
+            if(!need.count(word)){
+                mp.clear();
+                cnt=0;
+                left=right+len;
+                continue;
+            }
+
+            mp[word]++;
+            cnt++;
+
+            // 当前单词出现次数过多，收缩窗口
+            while(mp[word]>need[word]){
+                string temp=s.substr(left,len);
+                mp[temp]--;
+                cnt--;
+                left+=len;
+            }
+
+            // 找到包含全部单词的合法窗口
+            if(cnt==m){
+                ans.push_back(left);
+
+                // 左边界右移，继续寻找
+                string temp=s.substr(left,len);
+                mp[temp]--;
+                cnt--;
+                left+=len;
+            }
+        }
+    }
+
+    return ans;
+}
