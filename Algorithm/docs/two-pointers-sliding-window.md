@@ -10,11 +10,11 @@
 |---|---|---:|---:|---|
 | 1 | 双指针基础 | 9 | 9 | [27](../two-pointers/27.cpp) → [26](../two-pointers/26.cpp) → [80](../two-pointers/80.cpp) → [283](../two-pointers/283.cpp) → [88](../two-pointers/88.cpp) → [344](../two-pointers/344.cpp) → [125](../two-pointers/125.cpp) → [167](../two-pointers/167.cpp) → [977](../two-pointers/977.cpp) |
 | 2 | 双指针进阶 | 11 | 11 | [11](../two-pointers/11.cpp) → [15](../two-pointers/15.cpp) → [18](../two-pointers/18.cpp) → [75](../two-pointers/75.cpp) → [42](../two-pointers/42.cpp) → [392](../two-pointers/392.cpp) → [524](../two-pointers/524.cpp) → [141](../two-pointers/141.cpp) → [142](../two-pointers/142.cpp) → [19](../two-pointers/19.cpp) → [287](../two-pointers/287.cpp) |
-| 3 | 定长滑动窗口 | 7 | 0 | [643](../sliding-window/643.cpp) → [1456](../sliding-window/1456.cpp) → [1343](../sliding-window/1343.cpp) → [1052](../sliding-window/1052.cpp) → [1423](../sliding-window/1423.cpp) → [567](../sliding-window/567.cpp) → [438](../sliding-window/438.cpp) |
-| 4 | 不定长滑动窗口 | 9 | 0 | [209](../sliding-window/209.cpp) → [3](../sliding-window/3.cpp) → [1004](../sliding-window/1004.cpp) → [904](../sliding-window/904.cpp) → [424](../sliding-window/424.cpp) → [713](../sliding-window/713.cpp) → [1248](../sliding-window/1248.cpp) → [76](../sliding-window/76.cpp) → [30](../sliding-window/30.cpp) |
-| 5 | 特殊窗口 | 4 | 0 | [239](../sliding-window/239.cpp) → [1438](../sliding-window/1438.cpp) → [480](../sliding-window/480.cpp) → [995](../sliding-window/995.cpp) |
+| 3 | 定长滑动窗口 | 7 | 7 | [643](../sliding-window/643.cpp) → [1456](../sliding-window/1456.cpp) → [1343](../sliding-window/1343.cpp) → [1052](../sliding-window/1052.cpp) → [1423](../sliding-window/1423.cpp) → [567](../sliding-window/567.cpp) → [438](../sliding-window/438.cpp) |
+| 4 | 不定长滑动窗口 | 9 | 9 | [209](../sliding-window/209.cpp) → [3](../sliding-window/3.cpp) → [1004](../sliding-window/1004.cpp) → [904](../sliding-window/904.cpp) → [424](../sliding-window/424.cpp) → [713](../sliding-window/713.cpp) → [1248](../sliding-window/1248.cpp) → [76](../sliding-window/76.cpp) → [30](../sliding-window/30.cpp) |
+| 5 | 特殊窗口 | 4 | 2 | [239](../sliding-window/239.cpp) → [1438](../sliding-window/1438.cpp) → [480](../sliding-window/480.cpp) → [995](../sliding-window/995.cpp) |
 
-当前进度：**20 / 40 题已有代码，2 / 5 阶段全部有代码**。
+当前进度：**38 / 40 题已有代码，4 / 5 阶段全部有代码**。剩余 [480](../sliding-window/480.cpp) 和 [995](../sliding-window/995.cpp)。
 
 ## 阶段 1：双指针基础
 
