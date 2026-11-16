@@ -1,6 +1,43 @@
-// LeetCode 2：两数相加
-// 题目链接：https://leetcode.cn/problems/add-two-numbers/
-// 难度：中等
-// 训练主题：链表
-// 思考方向：逐位相加并维护进位，处理两条链长度不同和最后的进位。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 两数相加
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct ListNode{
+    int val;
+    ListNode* next;
+
+    ListNode():val(0),next(NULL){}
+    ListNode(int v):val(v),next(NULL){}
+};
+
+
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode dummy(0);
+    ListNode* p = &dummy;
+
+    int carry = 0;
+
+
+    // 要考虑链表长度不一致的情况
+    while(l1 || l2 || carry) {
+        int sum = carry;
+
+        if(l1) {
+            sum += l1->val;
+            l1 = l1->next;
+        }
+
+        if(l2) {
+            sum += l2->val;
+            l2 = l2->next;
+        }
+
+        carry = sum / 10;
+
+        p->next = new ListNode(sum % 10);
+        p = p->next;
+    }
+
+    return dummy.next;
+}

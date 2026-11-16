@@ -1,6 +1,30 @@
-// LeetCode 141：环形链表
-// 题目链接：https://leetcode.cn/problems/linked-list-cycle/
-// 难度：简单
-// 训练主题：链表
-// 思考方向：快慢指针检测相遇，处理空链表和单节点。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 环形链表
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct ListNode{
+    int val;
+    ListNode* next;
+
+    ListNode(int v):val(v),next(NULL){}
+};
+
+bool hasCycle(ListNode* head) {
+    if (head == NULL || head->next == NULL)
+        return false;
+
+    ListNode* p1 = head;
+    ListNode* p2 = head;
+
+    // 快指针一次走两步，必须保证两步可走
+    while (p2 != NULL && p2->next != NULL) {
+        p1 = p1->next;
+        p2 = p2->next->next;
+
+        if (p1 == p2)
+            return true;
+    }
+
+    return false;
+}

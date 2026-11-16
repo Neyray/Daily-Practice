@@ -1,6 +1,35 @@
-// LeetCode 21：合并两个有序链表
-// 题目链接：https://leetcode.cn/problems/merge-two-sorted-lists/
-// 难度：简单
-// 训练主题：链表
-// 思考方向：用哑节点拼接较小节点，最后接上剩余链表。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 合并两个有序链表
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct ListNode{
+    int val;
+    ListNode* next;
+
+    ListNode():val(0),next(NULL){}
+    ListNode(int v):val(v),next(NULL){}
+};
+
+
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    ListNode dummy(0);
+    ListNode* tail = &dummy;
+
+    while (list1 && list2) {
+        if (list1->val <= list2->val) {
+            tail->next = list1;
+            list1 = list1->next;
+        } else {
+            tail->next = list2;
+            list2 = list2->next;
+        }
+
+        tail = tail->next;
+    }
+
+    // 接上剩余链表
+    tail->next = list1 ? list1 : list2;
+
+    return dummy.next;
+}

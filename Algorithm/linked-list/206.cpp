@@ -1,6 +1,29 @@
-// LeetCode 206：反转链表
-// 题目链接：https://leetcode.cn/problems/reverse-linked-list/
-// 难度：简单
-// 训练主题：链表
-// 思考方向：保存后继后再反转指针，对照迭代与递归方法。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 反转链表
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct ListNode{
+    int val;
+    ListNode* next;
+
+    ListNode():val(0),next(NULL){}
+    ListNode(int v):val(v),next(NULL){}
+};
+
+
+ListNode* reverseList(ListNode* head) {
+    ListNode* pre = nullptr;
+    ListNode* cur = head;
+
+    while (cur != nullptr) {
+        ListNode* next = cur->next; // 1. 保存后继节点
+
+        cur->next = pre;            // 2. 反转当前节点指针
+
+        pre = cur;                  // 3. pre 前进
+        cur = next;                 // 4. cur 前进
+    }
+
+    return pre;
+}
