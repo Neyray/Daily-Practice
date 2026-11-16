@@ -1,6 +1,39 @@
-// LeetCode 155：最小栈
-// 题目链接：https://leetcode.cn/problems/min-stack/
-// 难度：中等
-// 训练主题：栈、队列与单调栈
-// 思考方向：维护数据栈和最小值信息，重复的最小值也要正确出栈。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 最小栈
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class MinStack {
+private:
+    stack<int> st;
+    stack<int> minSt;
+
+public:
+    MinStack() {
+
+    }
+
+    void push(int val) {
+        st.push(val);
+
+        if(minSt.empty() || val <= minSt.top()){
+            minSt.push(val);
+        }
+    }
+
+    void pop() {
+        if(st.top() == minSt.top()){
+            minSt.pop();
+        }
+
+        st.pop();
+    }
+
+    int top() {
+        return st.top();
+    }
+
+    int getMin() {
+        return minSt.top();
+    }
+};
