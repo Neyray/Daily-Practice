@@ -1,6 +1,54 @@
-// LeetCode 25：K 个一组翻转链表
-// 题目链接：https://leetcode.cn/problems/reverse-nodes-in-k-group/
-// 难度：困难
-// 训练主题：链表
-// 思考方向：每次先确认剩余节点足够 k 个，再反转并接回后续区间。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// K 个一组翻转链表
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct ListNode{
+    int val;
+    ListNode* next;
+
+    ListNode():val(0),next(NULL){}
+    ListNode(int v):val(v),next(NULL){}
+};
+
+
+ListNode* reverseKGroup(ListNode* head, int k) {
+    ListNode dummy(0);
+    dummy.next = head;
+    ListNode* groupPrev = &dummy;
+
+    while (true) {
+        // 1. 找到当前组的第 k 个节点
+        ListNode* kth = groupPrev;
+
+        for (int i = 1; i <= k; ++i) {
+            kth = kth->next;
+            if (kth == NULL) return dummy.next;
+        }
+
+        // 2. 保存下一组的头节点
+        ListNode* groupNext = kth->next;
+
+        // 3. 反转当前组
+        ListNode* oldHead = groupPrev->next;
+        ListNode* p = oldHead;
+        ListNode* prev = groupNext;
+
+        while (p != groupNext) {
+            ListNode* temp = p->next;
+
+            p->next = prev;
+
+            prev = p;
+            p = temp;
+        }
+
+        // 4. 连接反转后的链表
+        groupPrev->next = prev;
+
+        // 5. 更新下一组的前驱节点
+        groupPrev = oldHead;
+    }
+
+    return dummy.next;
+}
