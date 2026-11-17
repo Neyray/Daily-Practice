@@ -1,6 +1,30 @@
-// LeetCode 226：翻转二叉树
-// 题目链接：https://leetcode.cn/problems/invert-binary-tree/
-// 难度：简单
-// 训练主题：二叉树与二叉搜索树
-// 思考方向：递归交换左右子树，注意空树边界。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 翻转二叉树
+#include <iostream>
+#include <vector>
+#include <functional>
+#include <algorithm>
+#include <queue>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right)
+        : val(x), left(left), right(right) {}
+};
+
+TreeNode* invertTree(TreeNode* root) {
+    if (root == nullptr) return nullptr;
+
+    TreeNode* left = invertTree(root->left);
+    TreeNode* right = invertTree(root->right);
+
+    root->left = right;
+    root->right = left;
+
+    return root;
+}

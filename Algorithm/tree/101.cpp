@@ -1,6 +1,32 @@
-// LeetCode 101：对称二叉树
-// 题目链接：https://leetcode.cn/problems/symmetric-tree/
-// 难度：简单
-// 训练主题：二叉树与二叉搜索树
-// 思考方向：成对比较镜像位置的节点，递归参数应包含两个节点。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 对称二叉树
+#include <iostream>
+#include <functional>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right)
+        : val(x), left(left), right(right) {}
+};
+
+bool isSymmetric(TreeNode* root) {
+    if (root == nullptr) return true;
+
+    function<bool(TreeNode*, TreeNode*)> isSame =
+        [&](TreeNode* node1, TreeNode* node2) {
+            if (node1 == nullptr || node2 == nullptr)
+                return node1 == node2;
+
+            if (node1->val != node2->val) return false;
+
+            return isSame(node1->left, node2->right) &&
+                   isSame(node1->right, node2->left);
+        };
+
+    return isSame(root->left, root->right);
+}

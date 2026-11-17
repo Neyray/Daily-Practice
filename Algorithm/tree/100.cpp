@@ -1,6 +1,25 @@
-// LeetCode 100：相同的树
-// 题目链接：https://leetcode.cn/problems/same-tree/
-// 难度：简单
-// 训练主题：二叉树与二叉搜索树
-// 思考方向：同步比较两棵树的结构和节点值，注意单侧为空。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 相同的树
+#include <iostream>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right)
+        : val(x), left(left), right(right) {}
+};
+
+bool isSameTree(TreeNode* p, TreeNode* q) {
+    if (p == nullptr || q == nullptr) {
+        return p == q;
+    }
+
+    if (p->val != q->val) return false;
+
+    return isSameTree(p->left, q->left) &&
+           isSameTree(p->right, q->right);
+}

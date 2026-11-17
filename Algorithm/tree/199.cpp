@@ -1,6 +1,42 @@
-// LeetCode 199：二叉树的右视图
-// 题目链接：https://leetcode.cn/problems/binary-tree-right-side-view/
-// 难度：中等
-// 训练主题：二叉树与二叉搜索树
-// 思考方向：取每层最后一个节点，或用右侧优先 DFS 记录首次到达的层。
-// TODO: 独立实现本题，并记录时间复杂度、空间复杂度及关键边界用例。
+// 二叉树的右视图
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right)
+        : val(x), left(left), right(right) {}
+};
+
+vector<int> rightSideView(TreeNode* root) {
+    // 层次遍历
+    if(root==NULL)return {};
+
+    vector<int> ans;
+
+    queue<TreeNode*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        int levelSize=q.size();
+
+        // 找每一层最右边的元素
+        for(int i=0;i<levelSize;++i){
+            TreeNode* cur=q.front();q.pop();
+
+            if(i==levelSize-1)ans.push_back(cur->val);
+
+            if(cur->left!=NULL)q.push(cur->left);
+            if(cur->right!=NULL)q.push(cur->right);
+        }
+    }
+
+    return ans;
+}
