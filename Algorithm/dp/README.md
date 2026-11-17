@@ -2,7 +2,7 @@
 
 [返回总览](../README.md)
 
-本专题共 **32 题**，已有代码 **18 题**，待练 **14 题**（同题多种实现不重复计数）。
+本专题共 **34 题**，已有代码 **20 题**，待练 **14 题**（同题多种实现不重复计数）。
 
 ## 建议刷题顺序
 
@@ -15,6 +15,7 @@
 5. 股票状态机：[121](121.cpp) → [122](122.cpp) → [309](309.cpp)。
 6. 双序列与回文 DP：[1143](1143.cpp) → [72](72.cpp) → [647](647.cpp) → [5](5.cpp) → [516](516.cpp) → [115](115.cpp)。
 7. 区间 DP 综合：[312](312.cpp)。
+8. 与单调栈对照：先做 [739](739.cpp) 的状态跳转，再看 [402](402.cpp) 的逐轮删除对照写法。
 
 ## 题目清单
 
@@ -52,5 +53,9 @@
 | [122](122.cpp) | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/) | 中等 | 待练 |
 | [309](309.cpp) | [买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | 中等 | 待练 |
 | [115](115.cpp) | [不同的子序列](https://leetcode.cn/problems/distinct-subsequences/) | 困难 | 待练 |
+| [739](739.cpp) | [每日温度](https://leetcode.cn/problems/daily-temperatures/) | 中等 | 已有代码 |
+| [402](402.cpp) | [移掉 K 位数字](https://leetcode.cn/problems/remove-k-digits/) | 中等 | 已有代码 |
 
 参考：[template.cpp](template.cpp)。
+
+跨专题对照：[739 单调栈](../stack-queue/739.cpp)、[402 单调栈](../stack-queue/402.cpp)。402 的本目录版本每删除一位都重新计算，作为对照练习，推荐使用单调栈版本。
