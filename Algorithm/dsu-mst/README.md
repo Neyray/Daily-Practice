@@ -2,28 +2,32 @@
 
 [返回总览](../README.md)
 
-本专题共 **8 题**，已有代码 **0 题**，待练 **8 题**（同题多种实现不重复计数）。
+本专题共 **10 题**，已有代码 **0 题**，待练 **10 题**（同题多种实现不重复计数）。
 
 ## 建议刷题顺序
 
 按以下阶段推进，同一阶段内按题号列出的顺序练习：
 
-1. 并查集基础：连通分量与判环：[547](547.cpp) → [684](684.cpp) → [990](990.cpp) → [1319](1319.cpp)。
+1. 并查集基础：连通分量与判环：[547](547.cpp) → [323](323.cpp) → [684](684.cpp) → [990](990.cpp) → [1319](1319.cpp)。
 2. 元素建模、归组与连通分量应用：[721](721.cpp) → [1202](1202.cpp) → [947](947.cpp)。
-3. 最小生成树：对照 Kruskal 与 Prim：[1584](1584.cpp)。
+3. 最小生成树：对照 Kruskal 与 Prim：[1584](1584.cpp) → [1135](1135.cpp)。
 
 ## 题目清单
 
-| 题号 | 题目 | 难度 | 进度 |
-|---|---|---|---|
-| [684](684.cpp) | [冗余连接](https://leetcode.cn/problems/redundant-connection/) | 中等 | 待练 |
-| [547](547.cpp) | [省份数量](https://leetcode.cn/problems/number-of-provinces/) | 中等 | 待练 |
-| [1584](1584.cpp) | [连接所有点的最小费用](https://leetcode.cn/problems/min-cost-to-connect-all-points/) | 中等 | 待练 |
-| [721](721.cpp) | [账户合并](https://leetcode.cn/problems/accounts-merge/) | 中等 | 待练 |
-| [1319](1319.cpp) | [连通网络的操作次数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/) | 中等 | 待练 |
-| [990](990.cpp) | [等式方程的可满足性](https://leetcode.cn/problems/satisfiability-of-equality-equations/) | 中等 | 待练 |
-| [1202](1202.cpp) | [交换字符串中的元素](https://leetcode.cn/problems/smallest-string-with-swaps/) | 中等 | 待练 |
-| [947](947.cpp) | [移除最多的同行或同列石头](https://leetcode.cn/problems/most-stones-removed-with-same-row-or-column/) | 中等 | 待练 |
+| 题号 | 题目 | 难度 | 进度 | 课程对照 |
+|---|---|---|---|---|
+| [684](684.cpp) | [冗余连接](https://leetcode.cn/problems/redundant-connection/) | 中等 | 待练 |  |
+| [547](547.cpp) | [省份数量](https://leetcode.cn/problems/number-of-provinces/) | 中等 | 待练 |  |
+| [1584](1584.cpp) | [连接所有点的最小费用](https://leetcode.cn/problems/min-cost-to-connect-all-points/) | 中等 | 待练 |  |
+| [721](721.cpp) | [账户合并](https://leetcode.cn/problems/accounts-merge/) | 中等 | 待练 |  |
+| [1319](1319.cpp) | [连通网络的操作次数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/) | 中等 | 待练 |  |
+| [990](990.cpp) | [等式方程的可满足性](https://leetcode.cn/problems/satisfiability-of-equality-equations/) | 中等 | 待练 |  |
+| [1202](1202.cpp) | [交换字符串中的元素](https://leetcode.cn/problems/smallest-string-with-swaps/) | 中等 | 待练 |  |
+| [947](947.cpp) | [移除最多的同行或同列石头](https://leetcode.cn/problems/most-stones-removed-with-same-row-or-column/) | 中等 | 待练 |  |
+| [323](323.cpp) | [无向图中连通分量的数目](https://leetcode.cn/problems/number-of-connected-components-in-an-undirected-graph/)（会员） | 中等 | 待练 | [课程源码](../../data-structureA/daily-practice3/project6.cpp) |
+| [1135](1135.cpp) | [最低成本连通所有城市](https://leetcode.cn/problems/connecting-cities-with-minimum-cost/)（会员） | 中等 | 待练 | [课程源码](../../data-structureA/daily-practice3/project8.cpp) |
+
+[323](323.cpp) 从边表统计连通分量，[547](547.cpp) 从邻接矩阵统计连通分量。[1135](1135.cpp) 从给定道路里选边，[1584](1584.cpp) 用点坐标计算边权。课程的 Kruskal 版本见 [project9.cpp](../../data-structureA/daily-practice3/project9.cpp)。
 
 参考：[template.cpp](template.cpp)。
 
